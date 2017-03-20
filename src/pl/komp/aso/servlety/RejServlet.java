@@ -26,7 +26,7 @@ public class RejServlet extends HttpServlet {
 		response.setContentType("text/html");
 
 		SterownikPolBD spbd = new SterownikPolBD();
-		int odp = spbd.zarejestruj(request.getParameter("login"), request.getParameter("haslo"), request.getParameter("imie"), request.getParameter("nazwisko"), Integer.parseInt(request.getParameter("telefon")));
+		int odp = spbd.zarejestruj(request.getParameter("login"), request.getParameter("haslo"), request.getParameter("imie"), request.getParameter("nazwisko"), request.getParameter("email"), Integer.parseInt(request.getParameter("telefon")));
 		
 		if(odp==1) out.println("zarejestrowano");
 		else out.println("podany login jest ju¿ zajêty!");

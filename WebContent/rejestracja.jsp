@@ -35,12 +35,13 @@
 			<!-- prawa glowna czesc strony zawierajaca tresc-->
 			<div class="trescRejestracja">
 				<form action="rej" method="post">
-					Login: <input type="text" name="login" maxlength="20"></br></br></br>
-					Hasło: <input type="password" name="haslo" maxlength="20"></br></br></br>
-					Powtórz hasło: <input type="password" name="haslo2" maxlength="20"></br></br></br>
-					Imię: <input type="text" name="imie" maxlength="20"></br></br></br>
-					Nazwisko: <input type="text" name="nazwisko" maxlength="20"></br></br></br>
-					Nr telefonu: <input type="text" name="telefon" maxlength="10"></br></br></br>
+					Login: <input type="text" placeholder="Login" name="login" maxlength="20"></br></br>
+					Hasło: <input type="password" placeholder="Hasło" name="haslo" maxlength="20"></br></br>
+					Powtórz hasło: <input type="password" placeholder="Powtórzone hasło" name="haslo2" maxlength="20"></br></br>
+					Imię: <input type="text" placeholder="Imię" name="imie" maxlength="20"></br></br>
+					Nazwisko: <input type="text" placeholder="Nazwisko" name="nazwisko" maxlength="20"></br></br>
+					E-Mail: <input type="text" placeholder="Email@przyklad.pl" name="email" maxlength="20"></br></br>
+					Nr telefonu: <input type="text" placeholder="123456789" name="telefon" maxlength="10"></br></br>
 					<input type="submit" name="zarejestruj" value="Zarejestruj się"></br></br>
 					
 				</form>

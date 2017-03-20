@@ -37,16 +37,17 @@ public class SterownikPolBD {
 	 * Metoda rejestrujaca uzytkownika
 	 * @return -1 jesli wystapil blad rejestracji (zajety login), 1 jesli udalo sie zarejestrowac
 	 */
-	public int zarejestruj(String login, String haslo, String imie, String nazwisko, int nr_telefonu) {
+	public int zarejestruj(String login, String haslo, String imie, String nazwisko, String email, int nr_telefonu) {
 		PreparedStatement pstmt = null;
 		try {
 			//przygotowanie zapytania
-			pstmt = con.prepareStatement("INSERT INTO `uzytkownik`(`login`, `haslo`, 'imie', 'nazwisko', 'nr_telefonu') VALUES (?,?,?,?,?)");
+			pstmt = con.prepareStatement("INSERT INTO uzytkownik(login, haslo, imie, nazwisko, email, nr_telefonu) VALUES (?,?,?,?,?,?)");
 			pstmt.setString(1, login);
 			pstmt.setString(2, haslo);
 			pstmt.setString(3, imie);
 			pstmt.setString(4, nazwisko);
-			pstmt.setInt(5, nr_telefonu);
+			pstmt.setString(5, email);
+			pstmt.setInt(6, nr_telefonu);
 			//wykonanie zapytania
 			pstmt.executeUpdate(); 
 		} catch (java.sql.SQLIntegrityConstraintViolationException e) {

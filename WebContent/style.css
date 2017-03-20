@@ -83,7 +83,7 @@ body{
 
 .menu a:hover {
 	color: #FFF;
-	background: #888;
+	background: #132d4c;
 }
 
 h1 {
@@ -107,17 +107,17 @@ h1 {
 }
 
 .informacje {
-	background: #aba;
+	background: #a3cdff;
 }
 
 .wiadomosc {
 	margin-top: 10px;
-	background: #abc
+	background: #a3cdff;
 }
 
 .fb {
 	margin-top: 10px;
-	background: #abb;
+	background: #a3cdff;
 }
 
 .tresc {
@@ -151,7 +151,7 @@ h1 {
 .stopka {
 	clear: both;
 	height: 20px;
-	background: #888;
+	background: #132d4c;
 	color: white;
 	width: 100%;
 	text-align: center;
