@@ -29,7 +29,7 @@ public class RejServlet extends HttpServlet {
 		int odp = spbd.zarejestruj(request.getParameter("login"), request.getParameter("haslo"), request.getParameter("imie"), request.getParameter("nazwisko"), request.getParameter("email"), Integer.parseInt(request.getParameter("telefon")));
 		
 		if(odp==1) out.println("zarejestrowano");
-		else out.println("podany login jest ju¿ zajêty!");
+		else out.println("podany login jest juÅ¼ zajÄ™ty!");
 	}
 
 }
