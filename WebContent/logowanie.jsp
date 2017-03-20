@@ -34,7 +34,16 @@
 			
 			<!-- prawa glowna czesc strony zawierajaca tresc-->
 			<div class="tresc">
-				
+				<form action="login" method="post">
+					Login: <input type="text" name="login" maxlength="20"></br></br></br>
+					Hasło: <input type="password" name="haslo" maxlength="20"></br></br></br>
+					<input type="submit" name="zaloguj" value="Zaloguj się"></br></br>
+					
+				</form>
+				<div id="podLogowaniem">
+					<a href="">Przypomnij hasło </a></br></br>
+					<a href="rejestracja.jsp">Zarejestruj się</a>
+				</div>
 			</div>	
 		</div>
 		<div class="stopka">
