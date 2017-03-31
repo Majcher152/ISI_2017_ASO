@@ -33,21 +33,59 @@ public class SterownikPolBD {
 	}
 	
 	//-----------------------------------------------------------------------------------------------------
+//	/**
+//	 * Metoda rejestrujaca uzytkownika
+//	 * @return -1 jesli wystapil blad rejestracji (zajety login), 1 jesli udalo sie zarejestrowac
+//	 */
+//	public int zarejestruj(String login, String haslo, String imie, String nazwisko, String email, int nr_telefonu) {
+//		PreparedStatement pstmt = null;
+//		try {
+//			//przygotowanie zapytania
+//			pstmt = con.prepareStatement("INSERT INTO uzytkownik(login, haslo, imie, nazwisko, email, nr_telefonu) VALUES (?,?,?,?,?,?)");
+//			pstmt.setString(1, login);
+//			pstmt.setString(2, haslo);
+//			pstmt.setString(3, imie);
+//			pstmt.setString(4, nazwisko);
+//			pstmt.setString(5, email);
+//			pstmt.setInt(6, nr_telefonu);
+//			//wykonanie zapytania
+//			pstmt.executeUpdate(); 
+//		} catch (java.sql.SQLIntegrityConstraintViolationException e) {
+//			System.out.println("zduplikowane dane w bazie");
+//			return -1;
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//			return -1;
+//		} finally{
+//			close(pstmt);
+//		}
+//		return 1;
+//	}
+//	
+
 	/**
-	 * Metoda rejestrujaca uzytkownika
-	 * @return -1 jesli wystapil blad rejestracji (zajety login), 1 jesli udalo sie zarejestrowac
+	 * 
+	 * @param login
+	 * @param haslo
+	 * @param imie
+	 * @param nazwisko
+	 * @param email
+	 * @param nrtel
+	 * @param rodzaj
+	 * @return
 	 */
-	public int zarejestruj(String login, String haslo, String imie, String nazwisko, String email, int nr_telefonu) {
+	public int zarejestruj(String login, String haslo, String imie, String nazwisko, String email, String nrtel, String rodzaj) {
 		PreparedStatement pstmt = null;
 		try {
 			//przygotowanie zapytania
-			pstmt = con.prepareStatement("INSERT INTO uzytkownik(login, haslo, imie, nazwisko, email, nr_telefonu) VALUES (?,?,?,?,?,?)");
+			pstmt = con.prepareStatement("INSERT INTO `uzytkownik`(`login`, `haslo`, `imie`, `nazwisko`, `email`, `nr_telefonu`,`rodzaj_konta`) VALUES (?,?,?,?,?,?,?)");
 			pstmt.setString(1, login);
 			pstmt.setString(2, haslo);
 			pstmt.setString(3, imie);
 			pstmt.setString(4, nazwisko);
 			pstmt.setString(5, email);
-			pstmt.setInt(6, nr_telefonu);
+			pstmt.setString(6, nrtel);
+			pstmt.setString(7, rodzaj);
 			//wykonanie zapytania
 			pstmt.executeUpdate(); 
 		} catch (java.sql.SQLIntegrityConstraintViolationException e) {

@@ -40,8 +40,8 @@
 					Powtórz hasło: <input type="password" placeholder="Powtórzone hasło" name="haslo2" maxlength="20"></br></br>
 					Imię: <input type="text" placeholder="Imię" name="imie" maxlength="20"></br></br>
 					Nazwisko: <input type="text" placeholder="Nazwisko" name="nazwisko" maxlength="20"></br></br>
-					E-Mail: <input type="text" placeholder="Email@przyklad.pl" name="email" maxlength="20"></br></br>
-					Nr telefonu: <input type="text" placeholder="123456789" name="telefon" maxlength="10"></br></br>
+					E-Mail: <input type="email" placeholder="Email@przyklad.pl" name="email" maxlength="20"></br></br>
+					Nr telefonu: <input type="number" placeholder="123456789" name="nr_telefonu" maxlength="10"></br></br>
 					<input type="submit" name="zarejestruj" value="Zarejestruj się"></br></br>
 					
 				</form>
