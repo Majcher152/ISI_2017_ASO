@@ -74,22 +74,22 @@ public class SterownikPolBD {
 	 * @param rodzaj
 	 * @return
 	 */
-	public int zarejestruj(String login, String haslo, String imie, String nazwisko, String email, String nrtel, String rodzaj) {
+	public int zarejestruj(String login, String haslo, String imie, String nazwisko, String email, String numer_telefonu, String rodzaj) {
 		PreparedStatement pstmt = null;
 		try {
 			//przygotowanie zapytania
-			pstmt = con.prepareStatement("INSERT INTO `uzytkownik`(`login`, `haslo`, `imie`, `nazwisko`, `email`, `nr_telefonu`,`rodzaj_konta`) VALUES (?,?,?,?,?,?,?)");
+			pstmt = con.prepareStatement("INSERT INTO uzytkownik(login, haslo, imie, nazwisko, email, numer_telefonu, rodzaj_konta) VALUES (?,?,?,?,?,?,?)");
 			pstmt.setString(1, login);
 			pstmt.setString(2, haslo);
 			pstmt.setString(3, imie);
 			pstmt.setString(4, nazwisko);
 			pstmt.setString(5, email);
-			pstmt.setString(6, nrtel);
+			pstmt.setString(6, numer_telefonu);
 			pstmt.setString(7, rodzaj);
 			//wykonanie zapytania
 			pstmt.executeUpdate(); 
 		} catch (java.sql.SQLIntegrityConstraintViolationException e) {
-			System.out.println("zduplikowane dane w bazie");
+			e.printStackTrace();
 			return -1;
 		} catch (SQLException e) {
 			e.printStackTrace();

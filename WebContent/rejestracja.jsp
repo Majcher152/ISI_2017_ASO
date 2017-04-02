@@ -1,55 +1,119 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ page import="java.io.*,java.sql.*" %>
-<!DOCTYPE html>
-<html lang="pl-PL">
 
-<head>
+<jsp:include page="header.jsp" />
 
-<title>Projekt ISI - ASO Samochodowe</title>
-<link rel="stylesheet" type="text/css" href="style.css"/>
-</head>
-<body>
-	<div class="kontener">
-		<div class="naglowek">
-			<h1></h1>
-		</div>
-		<div class="menu">
-			<div class="odnosnik"><a href="index.jsp">Strona główna</a></div>
-			<div class="odnosnik"><a href="">Podstawowy cennik</a></div>
-			<div class="odnosnik"><a href="">Lokalizacja serwisów</a></div>
-			<div class="odnosnik"><a href="logowanie.jsp">Logowanie</a></div> 
-		</div>
-		<div class="srodek">
-			<div class="lewy">
-				<div class="informacje">
-				informacje
-				</div>
-				<div class="wiadomosc">
-				wiadomosc
-				</div>
-				<div class="fb">
-				facebook
+	<div class="container marketing">
+		<div class="row main">
+
+			<div class="panel-heading">
+				<div class="panel-title text-center">
+					<h2 class="title" >Wypełnij formularz:</h2>
 				</div>
 			</div>
-			
-			<!-- prawa glowna czesc strony zawierajaca tresc-->
-			<div class="trescRejestracja">
-				<form action="rej" method="post">
-					Login: <input type="text" placeholder="Login" name="login" maxlength="20"></br></br>
-					Hasło: <input type="password" placeholder="Hasło" name="haslo" maxlength="20"></br></br>
-					Powtórz hasło: <input type="password" placeholder="Powtórzone hasło" name="haslo2" maxlength="20"></br></br>
-					Imię: <input type="text" placeholder="Imię" name="imie" maxlength="20"></br></br>
-					Nazwisko: <input type="text" placeholder="Nazwisko" name="nazwisko" maxlength="20"></br></br>
-					E-Mail: <input type="email" placeholder="Email@przyklad.pl" name="email" maxlength="20"></br></br>
-					Nr telefonu: <input type="number" placeholder="123456789" name="nr_telefonu" maxlength="10"></br></br>
-					<input type="submit" name="zarejestruj" value="Zarejestruj się"></br></br>
-					
+
+			<div class="main-login main-center">
+				<form class="form-horizontal" method="post" action="rej">
+
+					<div class="form-group">
+						<label for="name" class="cols-sm-2 control-label">Twoje
+							Imię</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-user fa"
+									aria-hidden="true"></i></span> <input type="text" class="form-control"
+									name="imie" id="imie" placeholder="Wpisz swoje imię." />
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="name" class="cols-sm-2 control-label">Twoje
+							Nazwisko</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-user fa"
+									aria-hidden="true"></i></span> <input type="text" class="form-control"
+									name="nazwisko" id="nazwisko"
+									placeholder="Wpisz swoje nazwisko." />
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="email" class="cols-sm-2 control-label">Twój
+							Email</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i
+									class="fa fa-envelope fa" aria-hidden="true"></i></span> <input
+									type="text" class="form-control" name="email" id="email"
+									placeholder="Wpisz twój email." />
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="email" class="cols-sm-2 control-label">Twój
+							Numer Telefonu</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-phone"
+									aria-hidden="true"></i></span> <input type="text" class="form-control"
+									name="numer_telefonu" id="numer_telefonu"
+									placeholder="Wpisz twój numer telefonu." />
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="username" class="cols-sm-2 control-label">Login</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-users fa"
+									aria-hidden="true"></i></span> <input type="text" class="form-control"
+									name="login" id="login" placeholder="Wpisz twój login" />
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="password" class="cols-sm-2 control-label">Hasło</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i
+									class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
+									type="password" class="form-control" name="haslo" id="haslo"
+									placeholder="Wpisz twoje hasło." />
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="confirm" class="cols-sm-2 control-label">Powtórz
+							Hasło</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i
+									class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
+									type="password" class="form-control" name="haslo2" id="haslo2"
+									placeholder="Ponownie wpisz hasło." />
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group ">
+						<button type="submit"
+							class="btn btn-primary btn-lg btn-block login-button">Zarejestruj</button>
+					</div>
+					<div class="login-register">
+						<a href="logowanie.jsp">Zaloguj się</a>
+					</div>
 				</form>
-			</div>	
+			</div>
 		</div>
-		<div class="stopka">
-			&copy;2017 Stopka
-		</div>
-	</div>
-</body>
+
+		<hr class="featurette-divider">
+
+<jsp:include page="footer.jsp" />	
 </html>
