@@ -74,6 +74,7 @@ public class SterownikPolBD {
 	 * @param rodzaj
 	 * @return
 	 */
+
 	public int zarejestruj(String login, String haslo, String imie, String nazwisko, String email, String numer_telefonu, String rodzaj) {
 		PreparedStatement pstmt = null;
 		try {
@@ -90,6 +91,7 @@ public class SterownikPolBD {
 			pstmt.executeUpdate(); 
 		} catch (java.sql.SQLIntegrityConstraintViolationException e) {
 			e.printStackTrace();
+
 			return -1;
 		} catch (SQLException e) {
 			e.printStackTrace();

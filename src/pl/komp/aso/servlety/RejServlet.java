@@ -30,6 +30,7 @@ public class RejServlet extends HttpServlet {
 		if (rodzaj_konta == null) {
 			rodzaj_konta = "uzytkownik";
 		}
+
 		int odp = spbd.zarejestruj(request.getParameter("login"), request.getParameter("haslo"), request.getParameter("imie"), request.getParameter("nazwisko"), request.getParameter("email"), request.getParameter("numer_telefonu"), rodzaj_konta);
 		
 		if(odp==1) out.println("zarejestrowano");
