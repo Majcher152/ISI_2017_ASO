@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+<title>Projekt ISI - ASO Samochodowe</title>
+<link rel="stylesheet" type="text/css" href="styleAdmin.css" />
+
+</head>
+<body>
+	<div class="kontener">
+		<div class="naglowek">Witaj administratorze!</div>
+		<div class="menu">
+			<ul>
+				<li><a href="panelAdminaPracownicy.html">Pracownicy</a>
+				<li><a href="panelAdminaUzytkownicy.html">U¿ytkownicy</a>
+				<li><a href="panelAdminaStatystyki.html">Statystki</a>
+			</ul>
+		</div>
+		<div class="srodek">
+
+			<div class="tresc">
+				<form method="post" action="adminServletpath">
+					Nazwa u¿ytkownika:</br>
+					<div class="inputForm">
+						<input name="login" class="form-control" type="text"
+							placeholder="Login">
+					</div>
+
+					Has³o u¿ytkownika:</br>
+					<div class="inputForm">
+						<input name="haslo" class="form-control" type="password"
+							placeholder="Haslo">
+					</div>
+
+					Imie u¿ytkownika:</br>
+					<div class="inputForm">
+						<input name="imie" class="form-control" type="text"
+							placeholder="Imie">
+					</div>
+
+					Nazwisko u¿ytkownika:</br>
+					<div class="inputForm">
+						<input name="nazwisko" class="form-control" type="text"
+							placeholder="Nazwisko">
+					</div>
+
+					Email u¿ytkownika:</br>
+					<div class="inputForm">
+						<input name="email" class="form-control" type="email"
+							placeholder="Email@przyklad.pl">
+					</div>
+
+					Numer telefonu u¿ytkownika:</br>
+					<div class="inputForm">
+						<input name="nrtel" class="form-control" type="number"
+							placeholder="123456789">
+					</div>
+					Rodzaj konta:</br>
+					<div class="inputForm">
+						<select name="rodzaj" class="form-control">
+							<option>Mechanik</option>
+							<option>Ksiêgowy</option>
+							<option>Administrator</option>
+						</select>
+					</div>
+					<div>
+						<input type="submit">
+					</div>
+				</form>
+				<button type="button" class="button">
+					<a href="panelAdminaPracownicy.html">Powrót</a>
+				</button>
+			</div>
+
+		</div>
+		<div class="stopka">&copy;2017 Stopka</div>
+	</div>
+</body>
+</html>

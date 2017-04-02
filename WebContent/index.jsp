@@ -68,3 +68,4 @@
 		<hr class="featurette-divider">
 
 <jsp:include page="footer.jsp" />	
+
