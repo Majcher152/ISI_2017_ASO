@@ -106,6 +106,10 @@
 						<button type="submit"
 							class="btn btn-primary btn-lg btn-block login-button">Zarejestruj</button>
 					</div>
+					<div class="alert alert-danger">
+						<%String blad =(String) request.getAttribute("blad"); %>
+						<%if(blad!=null && !blad.equals("")){ %> <%=blad %> <%} %>
+					</div>
 					<div class="login-register">
 						<a href="logowanie.jsp">Zaloguj się</a>
 					</div>
