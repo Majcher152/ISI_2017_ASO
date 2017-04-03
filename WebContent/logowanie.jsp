@@ -41,7 +41,7 @@
 						<button type="submit"
 							class="btn btn-primary btn-lg btn-block login-button">Zaloguj</button>
 					</div>
-					<div class="error">
+					<div class="alert alert-danger">
 						<%String blad =(String) request.getAttribute("blad"); %>
 						<%if(blad!=null){ %> <%=blad %> <%} %>
 					</div>
