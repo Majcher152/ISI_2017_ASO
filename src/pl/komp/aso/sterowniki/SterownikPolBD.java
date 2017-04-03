@@ -11,6 +11,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import pl.komp.aso.dto.Uzytkownik;
+
 /**
  * Klasa sluzaca do polaczenia z baza danych
  * @author Piotrek
@@ -111,6 +113,7 @@ public class SterownikPolBD {
 	public int zaloguj(String login, String haslo) {
 		ResultSet rs = null;
 		PreparedStatement stmt = null;
+		int odp;
 		try {
 			//przygotowanie zapytania
 			stmt = con.prepareStatement("SELECT * FROM `uzytkownik` WHERE login=? and haslo=?");
@@ -121,16 +124,62 @@ public class SterownikPolBD {
 			rs = stmt.executeQuery();
 			rs.next();
 			rs.getString("login");
+			
+			if(rs.getString("rodzaj_konta").equals("uzytkownik")) {
+				odp=5;
+			}
+			else if(rs.getString("rodzaj_konta").equals("mechanik")) {
+				odp=6;
+			}
+			else if(rs.getString("rodzaj_konta").equals("ksiegowy")) {
+				odp=7;
+			}
+			else{
+				odp=8;
+			}
+			
+			
 		} catch (SQLException e) {
+			e.printStackTrace();
 			System.out.println("brak danych");
-			return -1;
+			odp=3;
+			return 3;
+		} finally{
+			close(rs);
+			close(stmt);
+		}
+		return odp;
+	}
+	
+	
+	public Uzytkownik pobierzUzytkownika(String login) {
+		ResultSet rs = null;
+		PreparedStatement stmt = null;
+		Uzytkownik uzytkownik=new Uzytkownik();
+		try {
+			//przygotowanie zapytania
+			stmt = con.prepareStatement("SELECT * FROM `uzytkownik` WHERE login=? ");
+			stmt.setString(1, login);
+			
+			
+			//sprawdzenie czy w bazie istnieje podany uzytkownik z podanym haslem
+			rs = stmt.executeQuery();
+			rs.next();
+			uzytkownik.setImie(rs.getString("imie"));			
+			uzytkownik.setNazwisko(rs.getString("nazwisko"));			
+			uzytkownik.setLogin(rs.getString("login"));		
+			uzytkownik.setEmail(rs.getString("email"));
+			uzytkownik.setNrTelefonu(rs.getInt("numer_telefonu"));
+			uzytkownik.setHaslo(rs.getString("haslo"));
+		} catch (SQLException e) {
+			System.out.println("blad");
+			
 		} finally{
 			close(rs);
 			close(stmt);
 		}
 		
-		//jesli uzytkownik istnieje i haslo pasuje zwroc 1
-		return 1;
+		return uzytkownik;
 	}
 	
 	//-----------------------------------------------------------------------------------------------------
