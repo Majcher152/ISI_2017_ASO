@@ -55,6 +55,12 @@ public class LoginServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 			
 		}
+		else if(wynik==-1) {
+			blad="Użyto nieprawidłowego znaku w loginie.";
+			request.setAttribute("blad", blad);
+			dispatcher =request.getRequestDispatcher("logowanie.jsp"); 
+			dispatcher.forward(request, response);
+		}
 		else if(wynik==3) {
 			System.out.println("bledny login lub haslo");
 			blad="Błędny login lub hasło.";
