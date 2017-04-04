@@ -44,9 +44,9 @@ public class AdminServlet extends HttpServlet {
 			rodzaj = "Uzytkownik";
 		}
 		SterownikPolBD spbd = new SterownikPolBD();
-		int odp = spbd.zarejestruj(login,haslo,imie,nazwisko,email,nrtel,rodzaj);
+		boolean odp = spbd.zarejestruj(login,haslo,imie,nazwisko,email,nrtel,rodzaj);
 		
-		if(odp==1) out.println("zarejestrowano");
-		else out.println("podany login jest ju¿ zajêty!");
+		if(odp==true) out.println("zarejestrowano");
+		else out.println("podany login jest juï¿½ zajï¿½ty!");
 	}
 }
