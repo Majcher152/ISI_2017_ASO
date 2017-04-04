@@ -65,9 +65,9 @@ public class SterownikRejestracji {
 
 	private boolean sprawdzZnaki(String wejscie, String ciag) {
 		boolean czyInna=true;
-		wejscie.toLowerCase();
+		String nazwa=wejscie.toLowerCase();
 		// sprawdzenie imienia
-		for (char c : wejscie.toCharArray()) {
+		for (char c : nazwa.toCharArray()) {
 			for (int i = 0; i < ciag.length(); i++) {
 				if (c == ciag.charAt(i)) {
 					czyInna=false;
@@ -78,7 +78,7 @@ public class SterownikRejestracji {
 				return false;
 		}
 		return true;
-	}
+	}	
 	
 	private boolean maxDlugosc(String wejscie,int max) {
 		if(wejscie.length()>max)

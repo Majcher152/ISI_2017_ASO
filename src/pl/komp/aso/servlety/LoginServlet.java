@@ -87,7 +87,7 @@ public class LoginServlet extends HttpServlet {
 		else if(wynik==8) {
 			Uzytkownik uzytkownik=sterownikLogowania.getUzytkownik(login);
 			request.getSession().setAttribute("uzytkownik", uzytkownik);
-			response.sendRedirect("PanelAdmina/admin.html");
+			response.sendRedirect("PanelAdmina/admin.jsp");
 		}
 		
 		return;
