@@ -1,9 +1,12 @@
 package pl.komp.aso.sterowniki;
 
 public class SterownikRejestracji {
-
+	
+	SterownikPolBD spbd = new SterownikPolBD();
+	
 	public int uwierzytelnij(String imie, String nazwisko, String email, String nrTelefonu, String login, String haslo,String haslo2) {
 		
+	
 		String litery="abcdefghijklmnoprstuwxyząęćźżńół";
 		String liczby = "1234567890";
 		String alfanumeryczne = litery+liczby;
@@ -58,6 +61,15 @@ public class SterownikRejestracji {
 		if(!haslo.equals(haslo2))
 			return 13;
 		
+		if(spbd.czyIstnieje(login))
+			return 14;
+		
+		if(spbd.czyIstnieje(nrTelefonu))
+			return 16;
+		
+		if(spbd.czyIstnieje(email))
+			return 15;
+		
 		
 		//wszystko poprawne
 		return 0;
@@ -78,7 +90,7 @@ public class SterownikRejestracji {
 				return false;
 		}
 		return true;
-	}	
+	}
 	
 	private boolean maxDlugosc(String wejscie,int max) {
 		if(wejscie.length()>max)
@@ -114,6 +126,11 @@ public class SterownikRejestracji {
 			}
 		}
 		return false;
+	}
+	
+	public boolean zaloguj(String login,String haslo,String imie,String nazwisko,String email,String numer_telefonu,String rodzaj_konta) {
+		boolean odp=spbd.zarejestruj(login, haslo, imie, nazwisko, email, numer_telefonu, rodzaj_konta);
+		return odp;
 	}
 	
 	
