@@ -77,7 +77,7 @@ public class SterownikPolBD {
 	 * @return
 	 */
 
-	public int zarejestruj(String login, String haslo, String imie, String nazwisko, String email, String numer_telefonu, String rodzaj) {
+	public boolean zarejestruj(String login, String haslo, String imie, String nazwisko, String email, String numer_telefonu, String rodzaj) {
 		PreparedStatement pstmt = null;
 		try {
 			//przygotowanie zapytania
@@ -94,14 +94,14 @@ public class SterownikPolBD {
 		} catch (java.sql.SQLIntegrityConstraintViolationException e) {
 			e.printStackTrace();
 
-			return -1;
+			return false;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return -1;
+			return false;
 		} finally{
 			close(pstmt);
 		}
-		return 1;
+		return true;
 	}
 	
 	/**
@@ -180,6 +180,29 @@ public class SterownikPolBD {
 		}
 		
 		return uzytkownik;
+	}
+	
+	
+	public boolean czyIstnieje(String nazwa) {
+		ResultSet rs = null;
+		PreparedStatement stmt = null;
+		boolean odp=true;
+		try {
+			//przygotowanie zapytania
+			stmt = con.prepareStatement("SELECT * FROM `uzytkownik` WHERE login=? ");
+			stmt.setString(1, nazwa);		
+			//sprawdzenie czy w bazie istnieje podany uzytkownik z podanym haslem
+			rs = stmt.executeQuery();
+			rs.next();
+		} catch (SQLException e) {
+			odp=false;
+			return false;
+			
+		} finally{
+			close(rs);
+			close(stmt);
+		}
+		return odp;
 	}
 	
 	//-----------------------------------------------------------------------------------------------------

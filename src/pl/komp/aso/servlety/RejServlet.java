@@ -29,7 +29,7 @@ public class RejServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
 
-		SterownikPolBD spbd = new SterownikPolBD();
+		
 		String rodzaj_konta = request.getParameter("rodzaj_konta");
 		if (rodzaj_konta == null) {
 			rodzaj_konta = "uzytkownik";
@@ -47,9 +47,8 @@ public class RejServlet extends HttpServlet {
 		String wyswietl="";
 		RequestDispatcher dispatcher;
 		switch(blad) {
-			case 0 :
-				int odp=spbd.zarejestruj(login, haslo, imie, nazwisko, email, numer_telefonu, rodzaj_konta);
-				if(odp==1) 
+			case 0 :	
+				if(sr.zaloguj(login, haslo2, imie, nazwisko, email, numer_telefonu, rodzaj_konta))
 					wyswietl="Zarejestrowano pomyślnie.";
 				else 
 					wyswietl="Błąd";
@@ -135,8 +134,27 @@ public class RejServlet extends HttpServlet {
 				dispatcher =request.getRequestDispatcher("rejestracja.jsp"); 
 				dispatcher.forward(request, response);
 				break;
+			case 14:
+					wyswietl="Login już istnieje.";
+					request.setAttribute("blad", wyswietl);
+					dispatcher =request.getRequestDispatcher("rejestracja.jsp"); 
+					dispatcher.forward(request, response);
+					break;
+			case 15:
+					wyswietl="Email już istnieje.";
+					request.setAttribute("blad", wyswietl);
+					dispatcher =request.getRequestDispatcher("rejestracja.jsp"); 
+					dispatcher.forward(request, response);
+					break;
+			case 16:
+					wyswietl="Numer telefonu już istnieje.";
+					request.setAttribute("blad", wyswietl);
+					dispatcher =request.getRequestDispatcher("rejestracja.jsp"); 
+					dispatcher.forward(request, response);
+					break;
 			
 		}
+		
 		
 		
 		
