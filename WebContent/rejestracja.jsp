@@ -3,6 +3,58 @@
 
 <jsp:include page="header.jsp" />
 
+<script>
+$(document).ready(function() {
+ 
+	//Walidacja imienia
+	$('#imie').on('blur', function() {
+		var input = $(this);
+		var name_length = input.val().length;
+		if(name_length <= 29){
+			input.removeClass("invalid").addClass("valid");
+			input.next('.komunikat').text("OK.").removeClass("blad").addClass("ok");
+		}
+		else{
+			input.removeClass("valid").addClass("invalid");
+			input.next('.komunikat').text("Imie nie może być dłuższe niż 30 znaków!").removeClass("ok").addClass("blad");
+			
+		}
+	});
+	
+	//Walidacja nazwiska
+	$('#nazwisko').on('blur', function() {
+		var input = $(this);
+		var name_length = input.val().length;
+		var pattern = /^[a-zA-Z ]+$/;
+		var is_name = pattern.test(input.val());
+		if(name_length <= 29){
+			input.removeClass("invalid").addClass("valid");
+			input.next('.komunikat').text("OK.").removeClass("blad").addClass("ok");
+		}
+		else {
+			input.removeClass("valid").addClass("invalid");
+			input.next('.komunikat').text("Nazwisko nie może być dłuższe niż 30 znaków!").removeClass("ok").addClass("blad");
+			
+		}
+	});
+		
+	//Walidacja email
+	$('#email').on('blur', function() {
+		var input = $(this);
+		var pattern = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+		var is_email = pattern.test(input.val());
+		if(is_email){
+			input.removeClass("invalid").addClass("valid");
+			input.next('.komunikat').text("OK.").removeClass("blad").addClass("ok");
+		}
+		else{
+			input.removeClass("valid").addClass("invalid");
+			input.next('.komunikat').text("Wprowadź poprawny email!").removeClass("ok").addClass("blad");
+		}
+	});	
+});
+</script>
+
 	<div class="container marketing">
 		<div class="row main">
 
@@ -23,7 +75,9 @@
 								<span class="input-group-addon"><i class="fa fa-user fa"
 									aria-hidden="true"></i></span> <input type="text" class="form-control"
 									name="imie" id="imie" placeholder="Wpisz swoje imię." />
+									<span class="komunikat"></span>
 							</div>
+							
 						</div>
 					</div>
 
@@ -36,6 +90,7 @@
 									aria-hidden="true"></i></span> <input type="text" class="form-control"
 									name="nazwisko" id="nazwisko"
 									placeholder="Wpisz swoje nazwisko." />
+									<span class="komunikat"></span>
 							</div>
 						</div>
 					</div>
@@ -49,6 +104,7 @@
 									class="fa fa-envelope fa" aria-hidden="true"></i></span> <input
 									type="text" class="form-control" name="email" id="email"
 									placeholder="Wpisz twój email." />
+									<span class="komunikat"></span>
 							</div>
 						</div>
 					</div>
@@ -106,10 +162,13 @@
 						<button type="submit"
 							class="btn btn-primary btn-lg btn-block login-button">Zarejestruj</button>
 					</div>
-					<div class="alert alert-danger">
+					
 						<%String blad =(String) request.getAttribute("blad"); %>
-						<%if(blad!=null && !blad.equals("")){ %> <%=blad %> <%} %>
-					</div>
+						<%if(blad!=null && !blad.equals("")){ %>
+						<div class="alert alert-danger"> <%=blad %> 
+						</div>
+						<%} %>
+					
 					<div class="login-register">
 						<a href="logowanie.jsp">Zaloguj się</a>
 					</div>
