@@ -47,6 +47,12 @@ public class RejServlet extends HttpServlet {
 		String wyswietl="";
 		RequestDispatcher dispatcher;
 		switch(blad) {
+		case 17:
+			wyswietl="Błędny adres email.";
+			request.setAttribute("blad", wyswietl);
+			dispatcher =request.getRequestDispatcher("rejestracja.jsp"); 
+			dispatcher.forward(request, response);
+			break;
 			case 0 :	
 				if(sr.zaloguj(login, haslo2, imie, nazwisko, email, numer_telefonu, rodzaj_konta))
 					wyswietl="Zarejestrowano pomyślnie.";
@@ -56,8 +62,21 @@ public class RejServlet extends HttpServlet {
 				dispatcher =request.getRequestDispatcher("rejestracja.jsp"); 
 				dispatcher.forward(request, response);
 				break;
+			case 18:
+				wyswietl="Podaj imię.";
+				request.setAttribute("blad", wyswietl);
+				dispatcher =request.getRequestDispatcher("rejestracja.jsp"); 
+				dispatcher.forward(request, response);
+				break;
 			case 1:
 				wyswietl="Imię może zawierać tylko litery.";
+				request.setAttribute("blad", wyswietl);
+				dispatcher =request.getRequestDispatcher("rejestracja.jsp"); 
+				dispatcher.forward(request, response);
+				break;
+
+			case 19:
+				wyswietl="Podaj nazwisko.";
 				request.setAttribute("blad", wyswietl);
 				dispatcher =request.getRequestDispatcher("rejestracja.jsp"); 
 				dispatcher.forward(request, response);
@@ -92,14 +111,39 @@ public class RejServlet extends HttpServlet {
 				dispatcher =request.getRequestDispatcher("rejestracja.jsp"); 
 				dispatcher.forward(request, response);
 				break;
-			case 7:
-				wyswietl="Login może zawierać maksymalnie 16 znaków.";
+			
+			case 15:
+				wyswietl="Email już istnieje.";
+				request.setAttribute("blad", wyswietl);
+				dispatcher =request.getRequestDispatcher("rejestracja.jsp"); 
+				dispatcher.forward(request, response);
+				break;
+			case 11:
+				wyswietl="Numer telefonu musi zawierać 9 znaków.";
+				request.setAttribute("blad", wyswietl);
+				dispatcher =request.getRequestDispatcher("rejestracja.jsp"); 
+				dispatcher.forward(request, response);
+				break;
+			case 16:
+				wyswietl="Numer telefonu już istnieje.";
 				request.setAttribute("blad", wyswietl);
 				dispatcher =request.getRequestDispatcher("rejestracja.jsp"); 
 				dispatcher.forward(request, response);
 				break;
 			case 8:
 				wyswietl="Login musi zawierać minimalnie 4 znaki.";
+				request.setAttribute("blad", wyswietl);
+				dispatcher =request.getRequestDispatcher("rejestracja.jsp"); 
+				dispatcher.forward(request, response);
+				break;
+			case 7:
+				wyswietl="Login może zawierać maksymalnie 16 znaków.";
+				request.setAttribute("blad", wyswietl);
+				dispatcher =request.getRequestDispatcher("rejestracja.jsp"); 
+				dispatcher.forward(request, response);
+				break;
+			case 14:
+				wyswietl="Login już istnieje.";
 				request.setAttribute("blad", wyswietl);
 				dispatcher =request.getRequestDispatcher("rejestracja.jsp"); 
 				dispatcher.forward(request, response);
@@ -116,12 +160,7 @@ public class RejServlet extends HttpServlet {
 				dispatcher =request.getRequestDispatcher("rejestracja.jsp"); 
 				dispatcher.forward(request, response);
 				break;
-			case 11:
-				wyswietl="Numer telefonu musi zawierać 9 znaków.";
-				request.setAttribute("blad", wyswietl);
-				dispatcher =request.getRequestDispatcher("rejestracja.jsp"); 
-				dispatcher.forward(request, response);
-				break;
+			
 			case 12:
 				wyswietl="Hasło za słabe(Musi zawierać co najmniej jeden znak, jedną cyfrę, jedną literę dużą oraz jedną literę małą.";
 				request.setAttribute("blad", wyswietl);
@@ -133,26 +172,7 @@ public class RejServlet extends HttpServlet {
 				request.setAttribute("blad", wyswietl);
 				dispatcher =request.getRequestDispatcher("rejestracja.jsp"); 
 				dispatcher.forward(request, response);
-				break;
-			case 14:
-					wyswietl="Login już istnieje.";
-					request.setAttribute("blad", wyswietl);
-					dispatcher =request.getRequestDispatcher("rejestracja.jsp"); 
-					dispatcher.forward(request, response);
-					break;
-			case 15:
-					wyswietl="Email już istnieje.";
-					request.setAttribute("blad", wyswietl);
-					dispatcher =request.getRequestDispatcher("rejestracja.jsp"); 
-					dispatcher.forward(request, response);
-					break;
-			case 16:
-					wyswietl="Numer telefonu już istnieje.";
-					request.setAttribute("blad", wyswietl);
-					dispatcher =request.getRequestDispatcher("rejestracja.jsp"); 
-					dispatcher.forward(request, response);
-					break;
-			
+				break;		
 		}
 		
 		

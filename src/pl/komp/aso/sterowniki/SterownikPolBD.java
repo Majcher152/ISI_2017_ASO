@@ -183,7 +183,7 @@ public class SterownikPolBD {
 	}
 	
 	
-	public boolean czyIstnieje(String nazwa) {
+	public boolean czyIstniejeLogin(String nazwa) {
 		ResultSet rs = null;
 		PreparedStatement stmt = null;
 		boolean odp=true;
@@ -194,6 +194,56 @@ public class SterownikPolBD {
 			//sprawdzenie czy w bazie istnieje podany uzytkownik z podanym haslem
 			rs = stmt.executeQuery();
 			rs.next();
+			rs.getString("login");
+			System.out.println("Istnieje");
+		} catch (SQLException e) {
+			odp=false;
+			System.out.println("Nie istnieje");
+			return false;
+			
+		} finally{
+			close(rs);
+			close(stmt);
+		}
+		System.out.println("Koniec");
+		return odp;
+	}
+	
+	public boolean czyIstniejeEmail(String nazwa) {
+		ResultSet rs = null;
+		PreparedStatement stmt = null;
+		boolean odp=true;
+		try {
+			//przygotowanie zapytania
+			stmt = con.prepareStatement("SELECT * FROM `uzytkownik` WHERE email=? ");
+			stmt.setString(1, nazwa);		
+			//sprawdzenie czy w bazie istnieje podany uzytkownik z podanym haslem
+			rs = stmt.executeQuery();
+			rs.next();
+			rs.getString("login");
+		} catch (SQLException e) {
+			odp=false;
+			return false;
+			
+		} finally{
+			close(rs);
+			close(stmt);
+		}
+		return odp;
+	}
+	
+	public boolean czyIstniejeNrTelefonu(String nazwa) {
+		ResultSet rs = null;
+		PreparedStatement stmt = null;
+		boolean odp=true;
+		try {
+			//przygotowanie zapytania
+			stmt = con.prepareStatement("SELECT * FROM `uzytkownik` WHERE numer_telefonu=? ");
+			stmt.setString(1, nazwa);		
+			//sprawdzenie czy w bazie istnieje podany uzytkownik z podanym haslem
+			rs = stmt.executeQuery();
+			rs.next();
+			rs.getString("login");
 		} catch (SQLException e) {
 			odp=false;
 			return false;

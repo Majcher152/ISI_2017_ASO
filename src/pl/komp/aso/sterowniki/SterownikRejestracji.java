@@ -1,137 +1,151 @@
 package pl.komp.aso.sterowniki;
 
+import java.util.regex.Pattern;
+
 public class SterownikRejestracji {
-	
+
 	SterownikPolBD spbd = new SterownikPolBD();
-	
-	public int uwierzytelnij(String imie, String nazwisko, String email, String nrTelefonu, String login, String haslo,String haslo2) {
-		
-	
-		String litery="abcdefghijklmnoprstuwxyząęćźżńół";
+
+	public int uwierzytelnij(String imie, String nazwisko, String email, String nrTelefonu, String login, String haslo,
+			String haslo2) {
+
+		String litery = "abcdefghijklmnoprstuwxyząęćźżńół";
 		String liczby = "1234567890";
-		String alfanumeryczne = litery+liczby;
-			
-		//bledne znaki w imieniu
-		if(!sprawdzZnaki(imie, litery))
-			return 1;
-		//bledne znaki w nazwisku
-		if(!sprawdzZnaki(nazwisko, litery))
-			return 2;
-		//inne znaki niz cyfry w numerze
-		if(!sprawdzZnaki(nrTelefonu,liczby))
-			return 3;
-		
-		//bledne znaki w loginie
-		if(!sprawdzZnaki(login,alfanumeryczne))
-			return 4;
-		
-		//za dlugie imie
-		if(!maxDlugosc(imie,30))
+		String alfanumeryczne = litery + liczby;
+
+		// brak imienia
+		if (imie == null || imie.equals("") || imie.isEmpty())
+			return 18;
+		// za dlugie imie
+		if (!maxDlugosc(imie, 30))
 			return 5;
-		
-		//za dlugie nazwisko
-		if(!maxDlugosc(nazwisko,30))
+		// bledne znaki w imieniu
+		if (!sprawdzZnaki(imie, litery))
+			return 1;
+		// brak nazwiska
+		if (nazwisko == null || nazwisko.equals("") || nazwisko.isEmpty())
+			return 19;
+
+		// bledne znaki w nazwisku
+		if (!sprawdzZnaki(nazwisko, litery))
+			return 2;
+		// za dlugie nazwisko
+		if (!maxDlugosc(nazwisko, 30))
 			return 6;
-		
-		//za dlugi login
-		if(!maxDlugosc(login,16))
-			return 7;
-		
-		//za krotki login
-		if(!minDlugosc(login,4))
-			return 8;
-		
-		//za krotkie haslo
-		if(!minDlugosc(haslo,8))
-			return 9;
-		
-		//za dlugie haslo
-		if(!maxDlugosc(haslo,18))
-			return 10;
-		
-		//bledna ilosc cyfr w numerze telefonu
-		if(nrTelefonu.length()!=9)
-			return 11;
-		
-		//haslo za slabe
-		if(!silaHasla(haslo))
-			return 12;
-		
-		//hasla sie nie zgadzaja
-		if(!haslo.equals(haslo2))
-			return 13;
-		
-		if(spbd.czyIstnieje(login))
-			return 14;
-		
-		if(spbd.czyIstnieje(nrTelefonu))
-			return 16;
-		
-		if(spbd.czyIstnieje(email))
+
+		// bledny adres email
+		if (!Pattern.matches("/^([\\w-]+(?:\\.[\\w-]+)*)@((?:[\\w-]+\\.)*\\w[\\w-]{0,66})\\.([a-z]{2,6}(?:\\.[a-z]{2})?)$/i", email))
+			return 17;
+
+		// email juz istnieje
+		if (spbd.czyIstniejeEmail(email))
 			return 15;
-		
-		
-		//wszystko poprawne
+
+		// inne znaki niz cyfry w numerze
+		if (!sprawdzZnaki(nrTelefonu, liczby))
+			return 3;
+
+		// bledna ilosc cyfr w numerze telefonu
+		if (nrTelefonu.length() != 9)
+			return 11;
+
+		// nr telefonu juz istnieje
+		if (spbd.czyIstniejeNrTelefonu(nrTelefonu))
+			return 16;
+
+		// za krotki login
+		if (!minDlugosc(login, 4))
+			return 8;
+
+		// bledne znaki w loginie
+		if (!sprawdzZnaki(login, alfanumeryczne))
+			return 4;
+
+		// za dlugi login
+		if (!maxDlugosc(login, 16))
+			return 7;
+
+		// login juz istnieje
+		if (spbd.czyIstniejeLogin(login))
+			return 14;
+
+		// za krotkie haslo
+		if (!minDlugosc(haslo, 8))
+			return 9;
+
+		// za dlugie haslo
+		if (!maxDlugosc(haslo, 18))
+			return 10;
+
+		// haslo za slabe
+		if (!silaHasla(haslo))
+			return 12;
+
+		// hasla sie nie zgadzaja
+		if (!haslo.equals(haslo2))
+			return 13;
+
+		// wszystko poprawne
 		return 0;
 	}
 
 	private boolean sprawdzZnaki(String wejscie, String ciag) {
-		boolean czyInna=true;
-		String nazwa=wejscie.toLowerCase();
+		boolean czyInna = true;
+		String nazwa = wejscie.toLowerCase();
 		// sprawdzenie imienia
 		for (char c : nazwa.toCharArray()) {
 			for (int i = 0; i < ciag.length(); i++) {
 				if (c == ciag.charAt(i)) {
-					czyInna=false;
+					czyInna = false;
 					break;
 				}
 			}
-			if(czyInna)
+			if (czyInna)
 				return false;
 		}
 		return true;
 	}
-	
-	private boolean maxDlugosc(String wejscie,int max) {
-		if(wejscie.length()>max)
+
+	private boolean maxDlugosc(String wejscie, int max) {
+		if (wejscie.length() > max)
 			return false;
 		return true;
 	}
-	
-	private boolean minDlugosc(String wejscie,int min) {
-		if(wejscie.length()<min)
+
+	private boolean minDlugosc(String wejscie, int min) {
+		if (wejscie.length() < min)
 			return false;
 		return true;
 	}
-	
+
 	private boolean silaHasla(String haslo) {
 		String liczby = "1234567890";
 		String znaki = "~`!@#$%^&*()_-+= {}[]|:;'<,>.?";
 		boolean hasUppercase = !haslo.equals(haslo.toLowerCase());
 		boolean hasLowercase = !haslo.equals(haslo.toUpperCase());
-		if(czyMaZnak(haslo,liczby)&& czyMaZnak(haslo,liczby)&& hasUppercase && hasLowercase )
+		if (czyMaZnak(haslo, liczby) && czyMaZnak(haslo, liczby) && hasUppercase && hasLowercase)
 			return true;
-		return false;	
+		return false;
 	}
-	
-	private boolean czyMaZnak(String haslo,String ciag) {
-		
+
+	private boolean czyMaZnak(String haslo, String ciag) {
+
 		int i;
-		for(char c: haslo.toCharArray()) {
-			i=0;
-			while(i<ciag.length()) {
-				if(ciag.charAt(i)==c)
+		for (char c : haslo.toCharArray()) {
+			i = 0;
+			while (i < ciag.length()) {
+				if (ciag.charAt(i) == c)
 					return true;
 				i++;
 			}
 		}
 		return false;
 	}
-	
-	public boolean zaloguj(String login,String haslo,String imie,String nazwisko,String email,String numer_telefonu,String rodzaj_konta) {
-		boolean odp=spbd.zarejestruj(login, haslo, imie, nazwisko, email, numer_telefonu, rodzaj_konta);
+
+	public boolean zaloguj(String login, String haslo, String imie, String nazwisko, String email,
+			String numer_telefonu, String rodzaj_konta) {
+		boolean odp = spbd.zarejestruj(login, haslo, imie, nazwisko, email, numer_telefonu, rodzaj_konta);
 		return odp;
 	}
-	
-	
+
 }
