@@ -9,7 +9,7 @@ public class SterownikRejestracji {
 	public int uwierzytelnij(String imie, String nazwisko, String email, String nrTelefonu, String login, String haslo,
 			String haslo2) {
 
-		String litery = "abcdefghijklmnopqrstuwxyząęćźżńół";
+		String litery = "abcdefghijklmnopqrstuvxwyząęćźżńół";
 		String liczby = "1234567890";
 		String alfanumeryczne = litery + liczby;
 
