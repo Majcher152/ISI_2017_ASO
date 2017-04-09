@@ -57,7 +57,7 @@ background-color: #46b8da;
 
 		</div>
 				<div class=" bottom">
-		<p><a href="admin.jsp">Nowy użytkownik</a></p>
+		<p><a href="uzytkownicyDodajAdmin.jsp">Nowy użytkownik</a></p>
 	</div>
 			</div>
 		</div>

@@ -48,16 +48,16 @@ background-color: #46b8da;
 					</tr>
 					<tr>
 						<td>Kamil Płaczek</td>
-						<td>Wyświetl</td>
-						<td>Edytuj</td>
-						<td>Usuń</td>
+						<td><a href="pracownicyWyswietlAdmin.jsp">Wyświetl</a></td>
+						<td><a href="pracownicyEdytujAdmin.jsp">Edytuj</a></td>
+						<td><a href="pracownicyUsunAdmin.jsp">Usuń</a></td>
 					</tr>
 				</table>
 			</div>
 
 		</div>
 		<div class=" bottom">
-		<p><a href="admin.jsp">Nowy pracownik</a></p>
+		<p><a href="pracownicyDodajAdmin.jsp">Nowy pracownik</a></p>
 	</div>
 			</div>
 		
