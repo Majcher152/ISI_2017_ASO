@@ -151,6 +151,46 @@ public class SterownikPolBD {
 		return odp;
 	}
 	
+	public Uzytkownik[] pobierzWszystkichUzytkownikow() {
+		ResultSet rs = null;
+		PreparedStatement stmt = null;
+		ResultSet rs2 = null;
+		PreparedStatement stmt2 = null;
+		int liczbaUzytkownikow;
+		Uzytkownik uzytkownik[] = null;
+		try {
+			//przygotowanie zapytania
+			stmt = con.prepareStatement("SELECT COUNT(*) FROM `uzytkownik` WHERE rodzaj_konta = 'mechanik'  ");
+			rs = stmt.executeQuery();
+			rs.next();
+			liczbaUzytkownikow = rs.getInt("COUNT(*)");
+			uzytkownik=new Uzytkownik[liczbaUzytkownikow];
+			stmt2 = con.prepareStatement("SELECT * FROM `uzytkownik` WHERE rodzaj_konta = 'mechanik'  ");
+			rs2 = stmt.executeQuery();
+			System.out.println();
+			for(int i = 0; i<liczbaUzytkownikow;i++ )
+			{
+				rs2.next();
+				uzytkownik[i].setImie(rs.getString("imie"));			
+				uzytkownik[i].setNazwisko(rs.getString("nazwisko"));			
+				uzytkownik[i].setLogin(rs.getString("login"));		
+				uzytkownik[i].setEmail(rs.getString("email"));
+				uzytkownik[i].setNrTelefonu(rs.getInt("numer_telefonu"));
+				uzytkownik[i].setHaslo(rs.getString("haslo"));
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("blad");
+			
+		} finally{
+			close(rs);
+			close(stmt);
+			close(rs2);
+			close(stmt2);
+		}
+		
+		return uzytkownik;
+	}
 	
 	public Uzytkownik pobierzUzytkownika(String login) {
 		ResultSet rs = null;

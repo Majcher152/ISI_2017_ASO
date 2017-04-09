@@ -28,33 +28,14 @@ background-color: #46b8da;
 			<div class="panel panel-default">
 				<!-- Table -->
 				<table class="table table-hover table-striped table-condensed">
-
-					<tr>
-						<td>Katarzyna Klimek1</td>
-						<td>Wyświetl</td>
-						<td>Edytuj</td>
-						<td>Usuń</td>
-					</tr>
-			
-					
-					<tr>
-						<td>Łukasz Majcher2</td>
-						<td>Wyświetl</td>
-						<td>Edytuj</td>
-						<td>Usuń</td>
-					</tr>
-					<tr>
-						<td>Piotr Osiewicz3</td>
-						<td>Wyświetl</td>
-						<td>Edytuj</td>
-						<td>Usuń</td>
-					</tr>
+				<% for ( int i = 0; i < 3; i++ ) { %>
 					<tr>
 						<td>Kamil Płaczek4</td>
 						<td><a href="uzytkownicyWyswietlAdmin.jsp">Wyświetl</a></td>
 						<td><a href="uzytkownicyEdytujAdmin.jsp">Edytuj</a></td>
 						<td><a href="uzytkownicyUsunAdmin.jsp">Usuń</a></td>
 					</tr>
+  				<% } %>
 				</table>
 			</div>
 
