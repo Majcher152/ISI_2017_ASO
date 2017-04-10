@@ -152,7 +152,7 @@ $(document).ready(function() {
 	//Walidacja powtorzonego hasla
 	$('#haslo2').on('blur', function() {
 		var input = $(this);
-		if(input.val() == $('#haslo').val()){
+		if(input.val() == $('#haslo').val() && $('#haslo').hasClass('valid')){
 			input.next().removeClass("glyphicon-remove").addClass("glyphicon-ok");
 			input.parent().removeClass("has-error").addClass("has-success");
 			input.removeClass("invalid").addClass("valid");

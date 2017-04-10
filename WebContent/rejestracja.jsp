@@ -26,7 +26,7 @@
 								<span class="input-group-addon"><i class="fa fa-user fa"
 									aria-hidden="true"></i></span> <input type="text" class="form-control"
 									name="imie" id="imie" placeholder="Wpisz swoje imię." 
-									data-toggle="popover" data-content="Imię musi składać 3 do 30 liter."/>
+									data-toggle="popover" data-content="Imię musi składać się z 3 do 30 liter."/>
 									<span class="glyphicon form-control-feedback"></span>
 							</div>
 							
@@ -42,7 +42,7 @@
 									aria-hidden="true"></i></span> <input type="text" class="form-control"
 									name="nazwisko" id="nazwisko"
 									placeholder="Wpisz swoje nazwisko." 
-									data-toggle="popover" data-content="Nazwisko musi składać 3 do 30 liter."/>
+									data-toggle="popover" data-content="Nazwisko musi składać się z 3 do 30 liter."/>
 									<span class="glyphicon form-control-feedback"></span>
 							</div>
 						</div>
