@@ -3,19 +3,34 @@
 
 <script>
 $(document).ready(function() {
-	 
-	//Walidacja nazwy
+ 
+	//Walidacja imienia
 	$('#imie').on('blur', function() {
 		var input = $(this);
-		var name_length = input.val().length;
-		if(name_length >= 5 && name_length <= 15){
-			input.removeClass("invalid").addClass("valid");
-			input.next('.komunikat').text("Wprowadzono poprawną nazwę.").removeClass("blad").addClass("ok");
+		var pattern = /^[a-zA-ZąęółżźćĘŹĆŻŁÓĄ-\s]{3,30}$/;
+		var is_name = pattern.test(input.val());
+		if(is_name){
+			input.next().removeClass("glyphicon-remove").addClass("glyphicon-ok");
+			input.parent().removeClass("has-error").addClass("has-success");
 		}
 		else{
-			input.removeClass("valid").addClass("invalid");
-			input.next('.komunikat').text("Nazwa musi mieć więcej niż 4 i mniej niż 16 znaków!").removeClass("ok").addClass("blad");
-			
+			input.next().removeClass("glyphicon-ok").addClass("glyphicon-remove");
+			input.parent().removeClass("has-success").addClass("has-error");
+		}
+	});
+	
+	//Walidacja nazwiska
+	$('#nazwisko').on('blur', function() {
+		var input = $(this);
+		var pattern = /^[a-zA-ZąęółżźćĘŹĆŻŁÓĄ-]{3,30}$/;
+		var is_name = pattern.test(input.val());
+		if(is_name){
+			input.next().removeClass("glyphicon-remove").addClass("glyphicon-ok");
+			input.parent().removeClass("has-error").addClass("has-success");
+		}
+		else {
+			input.next().removeClass("glyphicon-ok").addClass("glyphicon-remove");
+			input.parent().removeClass("has-success").addClass("has-error");
 		}
 	});
 		
@@ -25,42 +40,71 @@ $(document).ready(function() {
 		var pattern = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 		var is_email = pattern.test(input.val());
 		if(is_email){
-			input.removeClass("invalid").addClass("valid");
-			input.next('.komunikat').text("Wprowadzono poprawny email.").removeClass("blad").addClass("ok");
+			input.next().removeClass("glyphicon-remove").addClass("glyphicon-ok");
+			input.parent().removeClass("has-error").addClass("has-success");
 		}
 		else{
-			input.removeClass("valid").addClass("invalid");
-			input.next('.komunikat').text("Wprowadź poprawny email!").removeClass("ok").addClass("blad");
+			input.next().removeClass("glyphicon-ok").addClass("glyphicon-remove");
+			input.parent().removeClass("has-success").addClass("has-error");
 		}
 	});	
 	
-	//Walidacja wiadomości
-	$('#message').on('blur', function() {
+	//Walidacja numeru telefonu
+	$('#numer_telefonu').on('blur', function() {
 		var input = $(this);
-		var message = $(this).val();
-		if(message){
-			input.removeClass("invalid").addClass("valid");
-			input.next('.komunikat').text("Wprowadzono poprawną wiadomość.").removeClass("blad").addClass("ok");
+		var pattern = /^[0-9]{9}$/;
+		var is_email = pattern.test(input.val());
+		if(is_email){
+			input.next().removeClass("glyphicon-remove").addClass("glyphicon-ok");
+			input.parent().removeClass("has-error").addClass("has-success");
 		}
 		else{
-			input.removeClass("valid").addClass("invalid");
-			input.next('.komunikat').text("Wiadomość nie może być pusta!").removeClass("ok").addClass("blad");
-		}   
+			input.next().removeClass("glyphicon-ok").addClass("glyphicon-remove");
+			input.parent().removeClass("has-success").addClass("has-error");
+		}
 	});
 	
-	//Po próbie wysłania formularza
-		$('#submit button').click(function(event){
-			var name = $('#name');
-			var email = $('#email');
-			var message = $('#message');
-			
-			if(name.hasClass('valid') && email.hasClass('valid') && message.hasClass('valid')){
-				alert("Pomyślnie wysłano formularz.");	
-			}
-			else {
-				event.preventDefault();
-				alert("Uzupełnij wszystkie pola!");	
-			}
-		});
+	//Walidacja loginu
+	$('#login').on('blur', function() {
+		var input = $(this);
+		var pattern = /^[a-z0-9]{4,16}$/;
+		var is_email = pattern.test(input.val());
+		if(is_email){
+			input.next().removeClass("glyphicon-remove").addClass("glyphicon-ok");
+			input.parent().removeClass("has-error").addClass("has-success");
+		}
+		else{
+			input.next().removeClass("glyphicon-ok").addClass("glyphicon-remove");
+			input.parent().removeClass("has-success").addClass("has-error");
+		}
+	});
+	
+	//Walidacja hasla
+	$('#haslo').on('blur', function() {
+		var input = $(this);
+		var pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,18}$/;
+		var is_email = pattern.test(input.val());
+		if(is_email){
+			input.next().removeClass("glyphicon-remove").addClass("glyphicon-ok");
+			input.parent().removeClass("has-error").addClass("has-success");
+		}
+		else{
+			input.next().removeClass("glyphicon-ok").addClass("glyphicon-remove");
+			input.parent().removeClass("has-success").addClass("has-error");
+		}
+	});
+	
+	//Walidacja powtorzonego hasla
+	$('#haslo2').on('blur', function() {
+		var input = $(this);
+		if(input.val() == $('#haslo').val()){
+			input.next().removeClass("glyphicon-remove").addClass("glyphicon-ok");
+			input.parent().removeClass("has-error").addClass("has-success");
+		}
+		else{
+			input.next().removeClass("glyphicon-ok").addClass("glyphicon-remove");
+			input.parent().removeClass("has-success").addClass("has-error");
+		}
+	});
 });
 </script>

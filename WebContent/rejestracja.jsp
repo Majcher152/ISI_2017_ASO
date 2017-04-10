@@ -2,58 +2,9 @@
 <%@ page import="java.io.*,java.sql.*" %>
 
 <jsp:include page="header.jsp" />
+<jsp:include page="walidacjaRejestracji.jsp" />
 
-<script>
-$(document).ready(function() {
- 
-	//Walidacja imienia
-	$('#imie').on('blur', function() {
-		var input = $(this);
-		var name_length = input.val().length;
-		if(name_length <= 29){
-			input.removeClass("invalid").addClass("valid");
-			input.next('.komunikat').text("OK.").removeClass("blad").addClass("ok");
-		}
-		else{
-			input.removeClass("valid").addClass("invalid");
-			input.next('.komunikat').text("Imie nie może być dłuższe niż 30 znaków!").removeClass("ok").addClass("blad");
-			
-		}
-	});
-	
-	//Walidacja nazwiska
-	$('#nazwisko').on('blur', function() {
-		var input = $(this);
-		var name_length = input.val().length;
-		var pattern = /^[a-zA-Z ]+$/;
-		var is_name = pattern.test(input.val());
-		if(name_length <= 29){
-			input.removeClass("invalid").addClass("valid");
-			input.next('.komunikat').text("OK.").removeClass("blad").addClass("ok");
-		}
-		else {
-			input.removeClass("valid").addClass("invalid");
-			input.next('.komunikat').text("Nazwisko nie może być dłuższe niż 30 znaków!").removeClass("ok").addClass("blad");
-			
-		}
-	});
-		
-	//Walidacja email
-	$('#email').on('blur', function() {
-		var input = $(this);
-		var pattern = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-		var is_email = pattern.test(input.val());
-		if(is_email){
-			input.removeClass("invalid").addClass("valid");
-			input.next('.komunikat').text("OK.").removeClass("blad").addClass("ok");
-		}
-		else{
-			input.removeClass("valid").addClass("invalid");
-			input.next('.komunikat').text("Wprowadź poprawny email!").removeClass("ok").addClass("blad");
-		}
-	});	
-});
-</script>
+
 
 	<div class="container marketing">
 		<div class="row main">
@@ -67,7 +18,7 @@ $(document).ready(function() {
 			<div class="main-login main-center">
 				<form class="form-horizontal" method="post" action="rej">
 
-					<div class="form-group">
+					<div class="form-group ">
 						<label for="name" class="cols-sm-2 control-label">Twoje
 							Imię</label>
 						<div class="cols-sm-10">
@@ -75,7 +26,7 @@ $(document).ready(function() {
 								<span class="input-group-addon"><i class="fa fa-user fa"
 									aria-hidden="true"></i></span> <input type="text" class="form-control"
 									name="imie" id="imie" placeholder="Wpisz swoje imię." />
-									<span class="komunikat"></span>
+									<span class="glyphicon form-control-feedback"></span>
 							</div>
 							
 						</div>
@@ -90,7 +41,7 @@ $(document).ready(function() {
 									aria-hidden="true"></i></span> <input type="text" class="form-control"
 									name="nazwisko" id="nazwisko"
 									placeholder="Wpisz swoje nazwisko." />
-									<span class="komunikat"></span>
+									<span class="glyphicon form-control-feedback"></span>
 							</div>
 						</div>
 					</div>
@@ -104,7 +55,7 @@ $(document).ready(function() {
 									class="fa fa-envelope fa" aria-hidden="true"></i></span> <input
 									type="text" class="form-control" name="email" id="email"
 									placeholder="Wpisz twój email." />
-									<span class="komunikat"></span>
+									<span class="glyphicon form-control-feedback"></span>
 							</div>
 						</div>
 					</div>
@@ -118,6 +69,7 @@ $(document).ready(function() {
 									aria-hidden="true"></i></span> <input type="text" class="form-control"
 									name="numer_telefonu" id="numer_telefonu"
 									placeholder="Wpisz twój numer telefonu." />
+									<span class="glyphicon form-control-feedback"></span>
 							</div>
 						</div>
 					</div>
@@ -129,6 +81,7 @@ $(document).ready(function() {
 								<span class="input-group-addon"><i class="fa fa-users fa"
 									aria-hidden="true"></i></span> <input type="text" class="form-control"
 									name="login" id="login" placeholder="Wpisz twój login" />
+									<span class="glyphicon form-control-feedback"></span>
 							</div>
 						</div>
 					</div>
@@ -141,6 +94,7 @@ $(document).ready(function() {
 									class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
 									type="password" class="form-control" name="haslo" id="haslo"
 									placeholder="Wpisz twoje hasło." />
+									<span class="glyphicon form-control-feedback"></span>
 							</div>
 						</div>
 					</div>
@@ -154,12 +108,13 @@ $(document).ready(function() {
 									class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
 									type="password" class="form-control" name="haslo2" id="haslo2"
 									placeholder="Ponownie wpisz hasło." />
+									<span class="glyphicon form-control-feedback"></span>
 							</div>
 						</div>
 					</div>
 
 					<div class="form-group ">
-						<button type="submit"
+						<button type="submit" id="btn_loguj"
 							class="btn btn-primary btn-lg btn-block login-button">Zarejestruj</button>
 					</div>
 					
@@ -179,4 +134,3 @@ $(document).ready(function() {
 		<hr class="featurette-divider">
 
 <jsp:include page="footer.jsp" />	
-</html>
