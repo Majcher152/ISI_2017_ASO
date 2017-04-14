@@ -104,6 +104,10 @@ public class SterownikPolBD {
 		return true;
 	}
 	
+	public Connection getCon() {
+		return con;
+	}
+
 	/**
 	 * Metoda do logowania uzytkownika do aplikacji
 	 * @param login
