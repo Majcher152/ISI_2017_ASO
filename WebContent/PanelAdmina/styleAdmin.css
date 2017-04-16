@@ -88,3 +88,10 @@ h2{
 .main .page-header {
   margin-top: 0;
 }
+
+
+input,
+input::-webkit-input-placeholder {
+    font-size: 15px;
+    padding-top: 3px;
+}

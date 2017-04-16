@@ -15,13 +15,19 @@
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <link href="../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
-<!-- Custom styles for this template -->
-<link href="styleAdmin.css" rel="stylesheet">
-
 <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
 <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 <script src="../js/ie-emulation-modes-warning.js"></script>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+
+<!-- Custom styles for this template -->
+<link href="styleAdmin.css" rel="stylesheet">
+
+<!-- Website Font style -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
 
 </head>
