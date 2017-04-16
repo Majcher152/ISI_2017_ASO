@@ -5,6 +5,7 @@
 <jsp:include page="headerAdmin.jsp" />
 <jsp:include page="waliAdmin.jsp" />
 
+
 <div class="container marketing">
 
 
@@ -16,12 +17,12 @@
 		
 		
 								<div class="form-group">
-						<label for="username" class="cols-sm-2 control-label">Nazwa pracownika:</label>
+						<label for="username" class="cols-sm-2 control-label">Login</label>
 						<div class="cols-sm-10">
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fa fa-users fa"
 									aria-hidden="true"></i></span> <input type="text" class="form-control"
-									name="login" id="login" placeholder="Podaj login pracownika"
+									name="login" id="login" placeholder="Wpisz twój login"
 									data-toggle="popover" data-content="Login musi składać się z 4 do 16 liter lub cyfr."/>
 									<span class="glyphicon form-control-feedback"></span>
 							</div>

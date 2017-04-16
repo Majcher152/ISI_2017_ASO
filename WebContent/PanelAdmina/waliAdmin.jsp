@@ -2,7 +2,7 @@
 <%@ page import="java.io.*,java.sql.*" %>
 
 <script>
-$(document).ready(function() {
+$().ready(function() {
  
 	
 	$('#login').popover({
@@ -10,6 +10,8 @@ $(document).ready(function() {
 		trigger : 'focus',
 		placement : 'right'
 	});
+	
+	
 
 	
 });
