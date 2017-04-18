@@ -16,13 +16,10 @@
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <link href="../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
-<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 <script src="../js/ie-emulation-modes-warning.js"></script>
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
 
 <link href="styleKlient.css" rel="stylesheet">
 
@@ -62,7 +59,7 @@
 								aria-haspopup="true" aria-expanded="false">Moje Konto<span
 									class="caret"></span></a>
 								<ul class="dropdown-menu">
-									<li><a href="../index.jsp">Edytuj dane</a></li>
+									<li><a href="">Edytuj dane</a></li>
 									<li><a href="../index.jsp">Wyloguj</a></li>
 								</ul></li>
 						</ul>
@@ -78,7 +75,6 @@
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner" role="listbox">
 			<div class="item active">
-				<img class="first-slide" src="svw.jpg" alt="First slide">
+				<img class="first-slide" src="vwb.jpg" alt="First slide">
 			</div>
 		</div>
-	</div>
