@@ -25,6 +25,8 @@
 
 			<div class="alert alert-success">
 				<%=poprawnie%>
+				
+				
 
 			</div>
 			<%
