@@ -2,8 +2,8 @@
 <%@ page import="java.io.*,java.sql.*"%>
 
 <script>
+
 $(document).ready(function() {
- 
 	//wyswietlanie dymku z informacja
 	$('#imie').popover({
 		container: 'body',

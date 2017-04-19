@@ -8,23 +8,24 @@
 
 
 <div class="container marketing">
-
-
 	<div class="col-sm-10 col-sm-offset-2 col-md-11 col-md-offset-1 main">
 		<h1 class="page-header">Dodaj pracownika</h1>
 
 		<div class="main-login main-center">
+
 			<%
 				String poprawnie = (String) request.getAttribute("poprawnie");
 			%>
 			<%
 				if (poprawnie != null && !poprawnie.equals("")) {
 			%>
+			<sql:update dataSource="jdbc/aso" var="result">
+			INSERT INTO uzytkownik VALUE ('1', '212121211', '212121211', '212121211', '212121211', 787878787, '212121211');
+			 </sql:update>
+
 			<div class="alert alert-success">
 				<%=poprawnie%>
-			<!--  <sql:query dataSource="jdbc/aso" var="result">
-				SELECT * FROM `uzytkownik` where rodzaj_konta != 'Uzytkownik';
-				</sql:query>-->	
+
 			</div>
 			<%
 				}
@@ -43,7 +44,7 @@
 					</div>
 				</div>
 			</div>
-
+			</br>
 			<div class="form-group">
 				<label for="name" class="cols-sm-2 control-label">Nazwisko
 					pracownika:</label>
@@ -69,7 +70,6 @@
 							class="form-control" data-toggle="popover"
 							data-content="Wybierz jedną z opcji.">
 							<option>Wybierz jedną z opcji.</option>
-							<li role="separator" class="divider"></li>
 							<option>Mechanik</option>
 							<option>Księgowy</option>
 							<option>Administrator</option>
@@ -139,7 +139,7 @@
 				</div>
 			</div>
 
-			<div class="form-group">
+			<div class="form-group321">
 				<label for="email" class="cols-sm-2 control-label">Numer
 					telefonu pracownika:</label>
 				<div class="cols-sm-10">
@@ -156,7 +156,6 @@
 			</div>
 
 
-
 			<div class="form-group-last">
 				<button type="submit" id="btn_rej"
 					class="btn_rej btn-primary btn-sm col-sm-2  col-md-1 ">Rejestruj</button>
@@ -166,11 +165,15 @@
 				</button>
 			</div>
 
+
 			<%
 				String blad = (String) request.getAttribute("blad");
 			%>
 			<%
 				if (blad != null && !blad.equals("")) {
+					String site = new String("http://localhost:8080/ISI_2017_ASO/PanelAdmina/pracownicyAdmin.jsp");
+					response.setStatus(response.SC_MOVED_TEMPORARILY);
+					response.setHeader("Location", site);
 			%>
 			<div class="alert alert-danger">
 				<%=blad%>

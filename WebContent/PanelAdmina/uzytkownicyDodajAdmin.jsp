@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+					<div class="form-group ">
+						<button type="submit" id="btn_loguj"
+							class="btn btn-primary btn-lg btn-block login-button">Zarejestruj</button>
+					</div>
 </body>
 </html>
