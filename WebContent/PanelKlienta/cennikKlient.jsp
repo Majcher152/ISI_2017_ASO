@@ -4,7 +4,7 @@
 <jsp:include page="headerKlient.jsp" />
 	<div class="container marketing">
 		<div class="row main">
-
+			<br> <br>
 			<div class="panel panel-default">
 				<!-- Default panel contents -->
 				<div class="panel-heading">Cennik.</div>

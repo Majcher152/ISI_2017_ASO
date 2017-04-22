@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="pl-PL">
 <head>
+
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -89,7 +90,7 @@
 
 
 			<div class="item">
-				<img class="second-slide" src="vw1.jpg" alt="Second slide">
+				<img class="second-slide" src="vw3.jpg" alt="Second slide">
 				<div class="container">
 					<div class="carousel-caption">
 						<h1>Masz już konto?</h1>
@@ -106,7 +107,7 @@
 			</div>
 
 			<div class="item">
-				<img class="third-slide" src="vw1.jpg" alt="Third slide">
+				<img class="third-slide" src="vw4.jpg" alt="Third slide">
 				<div class="container">
 					<div class="carousel-caption">
 						<h1>Szukasz dobrych cen? Dobrze trafiłeś!</h1>
