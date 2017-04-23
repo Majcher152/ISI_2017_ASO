@@ -13,14 +13,6 @@
   </resource-ref>
   
   
-  <servlet>
-  	<servlet-name>adminServlet</servlet-name>
-  	<servlet-class>pl.komp.aso.servlety.AdminServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>adminServlet</servlet-name>
-  	<url-pattern>/PanelAdmina/adminServletpath</url-pattern>
-  </servlet-mapping>
   
   
 </web-app>

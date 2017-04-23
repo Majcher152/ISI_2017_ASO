@@ -47,7 +47,7 @@ $(document).ready(function() {
 		placement : 'right'
 	});
 	
-	$('#rodzaj').popover({
+	$('#rodzaj_konta').popover({
 		container: 'body',
 		trigger : 'focus',
 		placement : 'right'
@@ -192,7 +192,7 @@ $(document).ready(function() {
 });
 	//-------------------ADMIN------------------ 
 	//Walidacja rodzaju konta
-	$('#rodzaj').on('blur', function() {
+	$('#rodzaj_konta').on('blur', function() {
 		var input = $(this);
 		if(input.val() == 'Mechanik' || input.val() == 'Księgowy' || input.val() == 'Administrator'){
 		//	input.next().removeClass("glyphicon-remove").addClass("glyphicon-ok");
@@ -216,21 +216,14 @@ $(document).ready(function() {
 		var login = $('#login');
 		var haslo = $('#haslo');
 		var haslo2 = $('#haslo2');
-		var rodzaj = $('#rodzaj');
+		var rodzaj_konta = $('#rodzaj_konta');
 			
-		if(!(imie.hasClass('valid') && nazwisko.hasClass('valid') && email.hasClass('valid') && numer_telefonu.hasClass('valid') && login.hasClass('valid') && haslo.hasClass('valid') && haslo2.hasClass('valid')&& rodzaj.hasClass('valid'))){
+		if(!(imie.hasClass('valid') && nazwisko.hasClass('valid') && email.hasClass('valid') && numer_telefonu.hasClass('valid') && login.hasClass('valid') && haslo.hasClass('valid') && haslo2.hasClass('valid')&& rodzaj_konta.hasClass('valid'))){
 			event.preventDefault();
+			console.log("hej");
 			if (warning == false) {
 				$('<div class="alert alert-danger"> Wypełnij poprawnie wszystkie pola!</div>').insertBefore(".form-group-last");
 				warning = true;
-			}
-		}
-		
-		if(imie.hasClass('valid') && nazwisko.hasClass('valid') && email.hasClass('valid') && numer_telefonu.hasClass('valid') && login.hasClass('valid') && haslo.hasClass('valid') && haslo2.hasClass('valid')&& rodzaj.hasClass('valid')){
-			event.preventDefault();
-			if (done == false) {
-				$('<div class="alert alert-success"> Zarejestrowano pomyślnie!</div>').insertBefore(".form-group1");
-				done = true;
 			}
 		}
 });
