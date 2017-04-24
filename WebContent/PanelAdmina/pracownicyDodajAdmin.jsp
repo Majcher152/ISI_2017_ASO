@@ -28,6 +28,7 @@
 						</div>
 					</div>
 				</div>
+				
 				<div class="form-group">
 					<label for="name" class="cols-sm-2 control-label">Nazwisko
 						pracownika:</label>
