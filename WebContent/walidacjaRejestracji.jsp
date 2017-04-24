@@ -56,7 +56,7 @@ $(document).ready(function() {
 	//Walidacja imienia
 	$('#imie').on('blur', function() {
 		var input = $(this);
-		var pattern = /^[a-zA-ZąęółżźćĘŹĆŻŁÓĄ-\s]{3,30}$/;
+		var pattern = /^[a-zA-ZąęółżźćśńĘŹĆŻŁÓĄŚŃ-\s]{3,30}$/;
 		var is_name = pattern.test(input.val());
 		if(is_name){
 			input.next().removeClass("glyphicon-remove").addClass("glyphicon-ok");
@@ -73,7 +73,7 @@ $(document).ready(function() {
 	//Walidacja nazwiska
 	$('#nazwisko').on('blur', function() {
 		var input = $(this);
-		var pattern = /^[a-zA-ZąęółżźćĘŹĆŻŁÓĄ-]{3,30}$/;
+		var pattern = /^[a-zA-ZąęółżźćśńĘŹĆŻŁÓĄŚŃ-]{3,30}$/;
 		var is_name = pattern.test(input.val());
 		if(is_name){
 			input.next().removeClass("glyphicon-remove").addClass("glyphicon-ok");
