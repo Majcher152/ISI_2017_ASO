@@ -38,9 +38,9 @@ SELECT * FROM `uzytkownik` where rodzaj_konta != 'Uzytkownik';
   				 <c:forEach var="uzytkownik" items="${result.rows}">
   				 <tr>
                     <td><c:out value="${uzytkownik.imie}  ${uzytkownik.nazwisko}" /></td>
-                    <td><a href="pracownicyWyswietlAdmin.jsp">Wyświetl</a></td>
-					<td><a href="pracownicyEdytujAdmin.jsp">Edytuj</a></td>
-					<td><a href="pracownicyUsunAdmin.jsp">Usuń</a></td>
+                    <td><a href="/ISI_2017_ASO/PanelAdmina/pracownicyWyswietlAdmin.jsp">Wyświetl</a></td>
+					<td><a href="/ISI_2017_ASO/PanelAdmina/pracownicyEdytujAdmin.jsp">Edytuj</a></td>
+					<td><a href="/ISI_2017_ASO/PanelAdmina/pracownicyUsunAdmin.jsp">Usuń</a></td>
                 </tr>
   				  </c:forEach>
 				</table>
@@ -48,7 +48,7 @@ SELECT * FROM `uzytkownik` where rodzaj_konta != 'Uzytkownik';
 
 		</div>
 		<div class=" bottom">
-		<p><a href="pracownicyDodajAdmin.jsp">Nowy pracownik</a></p>
+		<p><a href="/ISI_2017_ASO/PanelAdmina/pracownicyDodajAdmin.jsp">Nowy pracownik</a></p>
 	</div>
 			</div>
 		

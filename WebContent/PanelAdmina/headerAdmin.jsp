@@ -10,20 +10,20 @@
 <title>ASO Admin</title>
 
 <!-- Bootstrap core CSS -->
-<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="/ISI_2017_ASO/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<link href="../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+<link href="/ISI_2017_ASO/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
 <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
 <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-<script src="../js/ie-emulation-modes-warning.js"></script>
+<script src="/ISI_2017_ASO/js/ie-emulation-modes-warning.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 
 <!-- Custom styles for this template -->
-<link href="styleAdmin.css" rel="stylesheet">
+<link href="/ISI_2017_ASO/PanelAdmina/styleAdmin.css" rel="stylesheet">
 
 <!-- Website Font style -->
 <link rel="stylesheet"
@@ -46,12 +46,12 @@
 		<div class="row">
 			<div class="col-sm-3 col-md-2 sidebar">
 				<ul class="nav nav-sidebar">
-					<li><a href="admin.jsp">Strona główna</a></li>
+					<li><a href="/ISI_2017_ASO/PanelAdmina/admin.jsp">Strona główna</a></li>
 				</ul>
 				<ul class="nav nav-sidebar">
-					<li><a href="pracownicyAdmin.jsp">Pracownicy</a></li>
-					<li><a href="uzytkownicyAdmin.jsp">Użytkownicy</a></li>
-					<li><a href="statystykaAdmin.jsp">Statystyki</a></li>
+					<li><a href="/ISI_2017_ASO/PanelAdmina/pracownicyAdmin.jsp">Pracownicy</a></li>
+					<li><a href="/ISI_2017_ASO/PanelAdmina/uzytkownicyAdmin.jsp">Użytkownicy</a></li>
+					<li><a href="/ISI_2017_ASO/PanelAdmina/statystykaAdmin.jsp">Statystyki</a></li>
 					
 				</ul>
 			</div>

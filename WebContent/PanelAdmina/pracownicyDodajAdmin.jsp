@@ -11,7 +11,8 @@
 	<div class="col-sm-10 col-sm-offset-2 col-md-11 col-md-offset-1 main">
 		<h1 class="page-header">Dodaj pracownika</h1>
 
-		<form action="../AdminServletPath" method="post">
+		<form action="/ISI_2017_ASO/AdminServletPath" method="post">
+		
 			<div class="main-login main-center">
 				<div class="form-group1">
 					<label for="name" class="cols-sm-2 control-label">Imię
@@ -27,7 +28,7 @@
 						</div>
 					</div>
 				</div>
-				</br>
+				
 				<div class="form-group">
 					<label for="name" class="cols-sm-2 control-label">Nazwisko
 						pracownika:</label>
@@ -144,7 +145,7 @@
 						class="btn_rej btn-primary btn-sm col-sm-2  col-md-1 ">Rejestruj</button>
 					<button type="button" id="powrot"
 						class="button col-sm-2 col-sm-offset-8 col-md-1 col-md-offset-10">
-						<a href="pracownicyAdmin.jsp">Powrót</a>
+						<a href="/ISI_2017_ASO/PanelAdmina/pracownicyAdmin.jsp">Powrót</a>
 					</button>
 				</div>
 

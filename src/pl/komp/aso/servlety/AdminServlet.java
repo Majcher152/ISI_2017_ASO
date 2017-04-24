@@ -30,7 +30,7 @@ public class AdminServlet extends HttpServlet {
 		String nazwisko = request.getParameter("nazwisko");
 		String rodzaj_konta = request.getParameter("rodzaj_konta");
 		if (rodzaj_konta == null) {
-			rodzaj_konta = "uzytkownik";
+			rodzaj_konta = "Uzytkownik";
 		}
 		String login = request.getParameter("login");
 		String haslo = request.getParameter("haslo");
@@ -48,14 +48,20 @@ public class AdminServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 			break;
 		case 0:
-			if (sr.zaloguj(login, haslo2, imie, nazwisko, email, numer_telefonu, rodzaj_konta))
+			if (sr.zaloguj(login, haslo2, imie, nazwisko, email, numer_telefonu, rodzaj_konta)) {
 				wyswietl = "Zarejestrowano pomyślnie.";
-			else
+				String message = imie + " " + nazwisko;
+				request.setAttribute("msg", message);
+				dispatcher = request.getRequestDispatcher("/PanelAdmina/pracownicyDodanyAdmin.jsp");
+				dispatcher.forward(request, response);
+				break;
+			} else {
 				wyswietl = "Błąd";
-			request.setAttribute("blad", wyswietl);
-			dispatcher = request.getRequestDispatcher("/PanelAdmina/pracownicyDodajAdmin.jsp");
-			dispatcher.forward(request, response);
-			break;
+				request.setAttribute("blad", wyswietl);
+				dispatcher = request.getRequestDispatcher("/PanelAdmina/pracownicyDodajAdmin.jsp");
+				dispatcher.forward(request, response);
+				break;
+			}
 		case 18:
 			wyswietl = "Podaj imię.";
 			request.setAttribute("blad", wyswietl);
@@ -68,7 +74,6 @@ public class AdminServlet extends HttpServlet {
 			dispatcher = request.getRequestDispatcher("/PanelAdmina/pracownicyDodajAdmin.jsp");
 			dispatcher.forward(request, response);
 			break;
-
 		case 19:
 			wyswietl = "Podaj nazwisko.";
 			request.setAttribute("blad", wyswietl);
@@ -154,7 +159,6 @@ public class AdminServlet extends HttpServlet {
 			dispatcher = request.getRequestDispatcher("/PanelAdmina/pracownicyDodajAdmin.jsp");
 			dispatcher.forward(request, response);
 			break;
-
 		case 12:
 			wyswietl = "Hasło za słabe(Musi zawierać co najmniej jeden znak, jedną cyfrę, jedną literę dużą oraz jedną literę małą.";
 			request.setAttribute("blad", wyswietl);
@@ -169,5 +173,4 @@ public class AdminServlet extends HttpServlet {
 			break;
 		}
 	}
-
 }
