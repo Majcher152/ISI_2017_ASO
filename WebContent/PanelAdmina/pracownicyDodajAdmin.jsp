@@ -28,7 +28,6 @@
 						</div>
 					</div>
 				</div>
-				
 				<div class="form-group">
 					<label for="name" class="cols-sm-2 control-label">Nazwisko
 						pracownika:</label>
@@ -138,8 +137,7 @@
 						</div>
 					</div>
 				</div>
-
-
+				<br>
 				<div class="form-group-last">
 					<button type="submit" id="btn_rej"
 						class="btn_rej btn-primary btn-sm col-sm-2  col-md-1 ">Rejestruj</button>

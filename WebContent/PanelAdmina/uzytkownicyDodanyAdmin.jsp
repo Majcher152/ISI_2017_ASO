@@ -24,14 +24,14 @@
 
 		<div class="row main">
 			<div class="alert alert-success">
-				Zarejestrowano pomyślnie pracownika: 
+				Zarejestrowano pomyślnie użytkownika: 
 				<%	String message = (String) request.getAttribute("msg");
 				out.println(" " + message);
 				%>
 				<%
 					// Odswiezanie strony po 5 sekundach 
 					// i powrot do listy pracownikow
-					response.addHeader("Refresh", "5; http://localhost:8080/ISI_2017_ASO/PanelAdmina/pracownicyAdmin.jsp");
+					response.addHeader("Refresh", "5; http://localhost:8080/ISI_2017_ASO/PanelAdmina/uzytkownicyAdmin.jsp");
 				%>
 			</div>
 

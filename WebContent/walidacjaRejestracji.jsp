@@ -227,6 +227,23 @@ $(document).ready(function() {
 			}
 		}
 });
-	
+	$('#btn_rej_uzytkownik').click(function(event){
+		var imie = $('#imie');
+		var nazwisko = $('#nazwisko');
+		var email = $('#email');
+		var numer_telefonu = $('#numer_telefonu');
+		var login = $('#login');
+		var haslo = $('#haslo');
+		var haslo2 = $('#haslo2');
+			
+		if(!(imie.hasClass('valid') && nazwisko.hasClass('valid') && email.hasClass('valid') && numer_telefonu.hasClass('valid') && login.hasClass('valid') && haslo.hasClass('valid') && haslo2.hasClass('valid'))){
+			event.preventDefault();
+			console.log("hej");
+			if (warning == false) {
+				$('<div class="alert alert-danger"> Wypełnij poprawnie wszystkie pola!</div>').insertBefore(".form-group-last");
+				warning = true;
+			}
+		}
+});
 });
 </script>
