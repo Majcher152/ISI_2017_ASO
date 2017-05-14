@@ -236,7 +236,7 @@ ALTER TABLE `zamowienie`
 --
 -- Ograniczenia dla zrzutów tabel
 --
-
+--
 --
 -- Ograniczenia dla tabeli `czesc`
 --
