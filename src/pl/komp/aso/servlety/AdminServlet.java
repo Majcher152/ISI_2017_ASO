@@ -52,7 +52,7 @@ public class AdminServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 			break;
 		case 0:
-			if (sr.zaloguj(login, haslo2, imie, nazwisko, email, numer_telefonu, rodzaj_konta)) {
+			if (sr.zarejestruj(login, haslo2, imie, nazwisko, email, numer_telefonu, rodzaj_konta)) {
 				wyswietl = "Zarejestrowano pomyślnie.";
 				String message = imie + " " + nazwisko+"!";
 				request.setAttribute("msg", message);

@@ -276,6 +276,30 @@ public class SterownikPolBD {
 		return odp;
 	}
 	
+	public boolean czyIstniejeEmailEdycja(String email,String login) {
+		ResultSet rs = null;
+		PreparedStatement stmt = null;
+		boolean odp=true;
+		try {
+			//przygotowanie zapytania
+			stmt = con.prepareStatement("SELECT * FROM `uzytkownik` WHERE email=? and login=?");
+			stmt.setString(1, email);
+			stmt.setString(1, login);
+			//sprawdzenie czy w bazie istnieje podany uzytkownik z podanym email
+			rs = stmt.executeQuery();
+			rs.next();
+			rs.getString("login");
+		} catch (SQLException e) {
+			odp=false;
+			return false;
+			
+		} finally{
+			close(rs);
+			close(stmt);
+		}
+		return odp;
+	}
+	
 	public boolean czyIstniejeNrTelefonu(String nazwa) {
 		ResultSet rs = null;
 		PreparedStatement stmt = null;
@@ -284,10 +308,61 @@ public class SterownikPolBD {
 			//przygotowanie zapytania
 			stmt = con.prepareStatement("SELECT * FROM `uzytkownik` WHERE numer_telefonu=? ");
 			stmt.setString(1, nazwa);		
-			//sprawdzenie czy w bazie istnieje podany uzytkownik z podanym haslem
+			//sprawdzenie czy w bazie istnieje podany uzytkownik z podanym numerem 
 			rs = stmt.executeQuery();
 			rs.next();
 			rs.getString("login");
+		} catch (SQLException e) {
+			odp=false;
+			return false;
+			
+		} finally{
+			close(rs);
+			close(stmt);
+		}
+		return odp;
+	}
+	
+	public boolean czyIstniejeNrTelefonuEdycja(String numer_telefonu, String login) {
+		ResultSet rs = null;
+		PreparedStatement stmt = null;
+		boolean odp=true;
+		try {
+			//przygotowanie zapytania
+			stmt = con.prepareStatement("SELECT * FROM `uzytkownik` WHERE numer_telefonu=? and login=?");
+			stmt.setString(1, numer_telefonu);	
+			stmt.setString(2, login);	
+			//sprawdzenie czy w bazie istnieje podany uzytkownik z podanym numerem i czy nalezy on do danego uzytkownika
+			rs = stmt.executeQuery();
+			rs.next();
+			rs.getString("login");			
+		} catch (SQLException e) {
+			odp=false;
+			return false;
+			
+		} finally{
+			close(rs);
+			close(stmt);
+		}
+		return odp;
+	}
+	
+	//zmiana danych uzytkownika
+	public boolean edytujUstawienia(String haslo2,String imie,String nazwisko,String email,String numer_telefonu,String login){
+		boolean odp=true;
+		ResultSet rs = null;
+		PreparedStatement stmt = null;
+		try {
+			//przygotowanie zapytania
+			stmt = con.prepareStatement("UPDATE Uzytkownik SET haslo = ?, imie= ?,nazwisko=?,email=?,numer_telefonu=? WHERE login = ?");
+			stmt.setString(1, haslo2);	
+			stmt.setString(2, imie);	
+			stmt.setString(3, nazwisko);
+			stmt.setString(4, email);
+			stmt.setString(5, numer_telefonu);
+			stmt.setString(6, login);
+			rs = stmt.executeQuery();
+			rs.next();		
 		} catch (SQLException e) {
 			odp=false;
 			return false;
