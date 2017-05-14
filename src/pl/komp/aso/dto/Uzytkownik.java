@@ -11,29 +11,7 @@ public class Uzytkownik {
 	private Samochod [] samochody;
 	private FormularzNaprawy [] formularze;
 	
-	public void usunKonto() {
-		
-	}
 	
-	public void edytujDane() {
-		
-	}
-	
-	public void sprawdzHistorie() {
-		
-	}
-	
-	public void zarezerwujTermin() {
-		
-	}
-	
-	public void sprawdzStatusNaprawy() {
-		
-	}
-	
-	public void wylogujSie() {
-		
-	}
 	
 	public String getImie() {
 		return imie;
@@ -56,8 +34,8 @@ public class Uzytkownik {
 	public int getNrTelefonu() {
 		return nrTelefonu;
 	}
-	public void setNrTelefonu(int nrTelefonu) {
-		this.nrTelefonu = nrTelefonu;
+	public void setNrTelefonu(int numer_telefonu) {
+		this.nrTelefonu = numer_telefonu;
 	}
 	public String getLogin() {
 		return login;

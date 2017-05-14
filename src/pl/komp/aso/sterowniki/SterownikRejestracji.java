@@ -89,7 +89,7 @@ public class SterownikRejestracji {
 		return 0;
 	}
 
-	private boolean sprawdzZnaki(String wejscie, String ciag) {
+	boolean sprawdzZnaki(String wejscie, String ciag) {
 		boolean czyInna = true;
 		String nazwa = wejscie.toLowerCase();
 		// sprawdzenie imienia
@@ -106,19 +106,19 @@ public class SterownikRejestracji {
 		return true;
 	}
 
-	private boolean maxDlugosc(String wejscie, int max) {
+	boolean maxDlugosc(String wejscie, int max) {
 		if (wejscie.length() > max)
 			return false;
 		return true;
 	}
 
-	private boolean minDlugosc(String wejscie, int min) {
+	boolean minDlugosc(String wejscie, int min) {
 		if (wejscie.length() < min)
 			return false;
 		return true;
 	}
 
-	private boolean silaHasla(String haslo) {
+	boolean silaHasla(String haslo) {
 		String liczby = "1234567890";
 		String znaki = "~`!@#$%^&*()_-+= {}[]|:;'<,>.?";
 		boolean hasUppercase = !haslo.equals(haslo.toLowerCase());
@@ -142,7 +142,7 @@ public class SterownikRejestracji {
 		return false;
 	}
 
-	public boolean zaloguj(String login, String haslo, String imie, String nazwisko, String email,
+	public boolean zarejestruj(String login, String haslo, String imie, String nazwisko, String email,
 			String numer_telefonu, String rodzaj_konta) {
 		boolean odp = spbd.zarejestruj(login, haslo, imie, nazwisko, email, numer_telefonu, rodzaj_konta);
 		return odp;
