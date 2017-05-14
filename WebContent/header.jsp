@@ -21,7 +21,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-<link href="style.css" rel="stylesheet">
+<link href="/ASO/style.css" rel="stylesheet">
 
 <!-- Website Font style -->
 <link rel="stylesheet"
@@ -88,7 +88,6 @@
 				</div>
 			</div>
 
-
 			<div class="item">
 				<img class="second-slide" src="vw3.jpg" alt="Second slide">
 				<div class="container">
@@ -132,3 +131,4 @@
 			class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 			<span class="sr-only">Next</span>
 		</a>
+	</div>
