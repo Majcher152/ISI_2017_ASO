@@ -38,8 +38,8 @@ public class SterownikRejestracji {
 			return 17;
 
 		// email juz istnieje
-		if (spbd.czyIstniejeEmail(email))
-			return 15;
+//		if (spbd.czyIstniejeEmail(email))
+//			return 15;
 
 		// inne znaki niz cyfry w numerze
 		if (!sprawdzZnaki(nrTelefonu, liczby))
@@ -50,8 +50,8 @@ public class SterownikRejestracji {
 			return 11;
 
 		// nr telefonu juz istnieje
-		if (spbd.czyIstniejeNrTelefonu(nrTelefonu))
-			return 16;
+//		if (spbd.czyIstniejeNrTelefonu(nrTelefonu))
+//			return 16;
 
 		// za krotki login
 		if (!minDlugosc(login, 4))
@@ -66,8 +66,8 @@ public class SterownikRejestracji {
 			return 7;
 
 		// login juz istnieje
-		if (spbd.czyIstniejeLogin(login))
-			return 14;
+//		if (spbd.czyIstniejeLogin(login))
+//			return 14;
 
 		// za krotkie haslo
 		if (!minDlugosc(haslo, 8))
