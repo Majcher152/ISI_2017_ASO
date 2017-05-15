@@ -44,11 +44,9 @@ public class UstawieniaServlet extends HttpServlet {
 		String imie = request.getParameter("imie");
 		String nazwisko = request.getParameter("nazwisko");
 		String login = uzytkownik.getLogin();
-		String haslo = request.getParameter("haslo");
 		String numer_telefonu = request.getParameter("numer_telefonu");
 		String email = request.getParameter("email");
-		String haslo2 = request.getParameter("haslo2");
-		int blad = sk.uwierzytelnij(imie, nazwisko, email, numer_telefonu, login, haslo, haslo2);
+		int blad = sk.uwierzytelnij(imie, nazwisko, email, numer_telefonu, login);
 		String wyswietl = "";
 		RequestDispatcher dispatcher;
 		switch (blad) {
@@ -59,7 +57,7 @@ public class UstawieniaServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 			break;
 		case 0:
-			if (sk.edytujDane(haslo2, imie, nazwisko, email, numer_telefonu,uzytkownik))
+			if (sk.edytujDane(imie, nazwisko, email, numer_telefonu,uzytkownik))
 				wyswietl = "Zmieniono ustawienia pomyślnie.";
 			else
 				wyswietl = "Błąd";
@@ -129,30 +127,7 @@ public class UstawieniaServlet extends HttpServlet {
 			dispatcher = request.getRequestDispatcher("PanelKlienta/edytujDaneKlient.jsp");
 			dispatcher.forward(request, response);
 			break;
-		case 9:
-			wyswietl = "Hasło musi zawierać minimalnie 8 znaków.";
-			request.setAttribute("blad", wyswietl);
-			dispatcher = request.getRequestDispatcher("PanelKlienta/edytujDaneKlient.jsp");
-			dispatcher.forward(request, response);
-			break;
-		case 10:
-			wyswietl = "Hasło może zawierać maksymalnie 18 znaków.";
-			request.setAttribute("blad", wyswietl);
-			dispatcher = request.getRequestDispatcher("PanelKlienta/edytujDaneKlient.jsp");
-			dispatcher.forward(request, response);
-			break;
-		case 12:
-			wyswietl = "Hasło za słabe(Musi zawierać co najmniej jeden znak, jedną cyfrę, jedną literę dużą oraz jedną literę małą.";
-			request.setAttribute("blad", wyswietl);
-			dispatcher = request.getRequestDispatcher("PanelKlienta/edytujDaneKlient.jsp");
-			dispatcher.forward(request, response);
-			break;
-		case 13:
-			wyswietl = "Hasła się nie zgadzają.";
-			request.setAttribute("blad", wyswietl);
-			dispatcher = request.getRequestDispatcher("PanelKlienta/edytujDaneKlient.jsp");
-			dispatcher.forward(request, response);
-			break;
+//		
 		}
 	}
 
