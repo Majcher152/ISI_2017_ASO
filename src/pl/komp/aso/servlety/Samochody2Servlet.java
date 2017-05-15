@@ -31,10 +31,10 @@ public class Samochody2Servlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
         try {
-            int model = Integer.parseInt(request.getParameter("model"));
+            String model = request.getParameter("model");
 
             switch (model) {
-                case 1:  
+                case "lupo":  
                 	System.out.println("case1");
                     out.print(
                         "<option value='1'>Product Name 1 For Category 2</option>" +
@@ -42,7 +42,7 @@ public class Samochody2Servlet extends HttpServlet {
                         "<option value='3'>Product Name 3 For Category 2</option>"
                     );
                     break;
-                case 2: 
+                case "garbus": 
                 	System.out.println("case2");
                     out.print(
                         "<option value='1'>Product Name 1 For Category 3</option>" +

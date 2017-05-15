@@ -5,37 +5,45 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 <title>Insert title here</title>
 </head>
 <body>
 <p>Model</p>
 
-<select name="model">
+<select name="model" id="model">
     <c:forEach items="${samochody}" var="samochod">
         <option value="${samochod.model}"><c:out value="${samochod.model}" /></option>
     </c:forEach>
 </select>
 
-<p>Rocznik</p>
-<select name="rocznik">
-</select>
+
 
 <script type="text/javascript">
         $model = $('#model');
-
-        $(document).on('change', 'model', function() {
+        
+        $(document).on("change", $model, function() {
                 $.ajax({
                     type: "GET",
-                    url: "/Samochody2Servlet",
-                    data: {model: $model.attr("selectedIndex") },
+                    url: "Samochody2Servlet",
+                    data: {model: $model.val() },
                     success: function(data){
-                        $("#rocznik").html(data)
+                        $("#rocznik").html(data); 
+                    },
+                    /*Działania wykonywane w przypadku błędu*/
+                    error: function(blad) {
+                        alert( "Wystąpił błąd");
+                        console.log(blad); /*Funkcja wyświetlająca informacje 
+                        o ewentualnym błędzie w konsoli przeglądarki*/
                     }
                 });
             }
         );
     </script>
+    
+   <p>Rocznik</p>
+<select name="rocznik" id="rocznik">
+</select>
 </body>
 </html>
