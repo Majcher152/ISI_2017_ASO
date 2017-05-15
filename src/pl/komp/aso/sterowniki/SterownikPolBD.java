@@ -363,25 +363,24 @@ public class SterownikPolBD {
 	public boolean edytujUstawienia(String imie, String nazwisko, String email, String numer_telefonu,
 			String login) {
 		boolean odp = true;
-		ResultSet rs = null;
 		PreparedStatement stmt = null;
 		try {
 			// przygotowanie zapytania
 			stmt = con.prepareStatement(
-					"UPDATE Uzytkownik SET imie= ?,nazwisko=?,email=?,numer_telefonu=? WHERE login = ?");	
+					"UPDATE `uzytkownik` SET imie= ?,nazwisko=?, email=?, numer_telefonu=? WHERE login = ?");	
 			stmt.setString(1, imie);
 			stmt.setString(2, nazwisko);
 			stmt.setString(3, email);
 			stmt.setString(4, numer_telefonu);
 			stmt.setString(5, login);
-			rs = stmt.executeQuery();
-			rs.next();
+			stmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			odp = false;
+			System.out.println("TU JEST BLAD");
 			return false;
 
 		} finally {
-			close(rs);
 			close(stmt);
 		}
 		return odp;
@@ -578,7 +577,7 @@ public class SterownikPolBD {
 	
 	public boolean edytujHaslo(String login,String haslo) {
 		boolean odp = true;
-		ResultSet rs = null;
+		
 		PreparedStatement stmt = null;
 		try {
 			// przygotowanie zapytania
@@ -586,14 +585,14 @@ public class SterownikPolBD {
 					"UPDATE Uzytkownik SET haslo= ? WHERE login = ?");	
 			stmt.setString(1, haslo);
 			stmt.setString(2, login);
-			rs = stmt.executeQuery();
-			rs.next();
+			stmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			odp = false;
 			return false;
 
 		} finally {
-			close(rs);
+			
 			close(stmt);
 		}
 		return odp;

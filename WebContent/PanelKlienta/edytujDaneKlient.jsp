@@ -19,7 +19,7 @@
 			</div>
 
 			<div class="main-login main-center">
-				<form class="form-horizontal" method="post" action="../UstawieniaServlet">
+				<form class="form-horizontal" method="post" action="/ISI_2017_ASO/UstawieniaServlet">
 
 					<div class="form-group ">
 						<label for="name" class="cols-sm-2 control-label">Twoje
@@ -117,7 +117,7 @@
 			</div>
 
 			<div class="main-login main-center">
-				<form class="form-horizontal" method="post" action="../UstawieniaHasloServlet">
+				<form class="form-horizontal" method="post" action="/ISI_2017_ASO/UstawieniaHasloServlet">
 				
 					<div class="form-group">
 						<label for="password" class="cols-sm-2 control-label">Stare hasło</label>
