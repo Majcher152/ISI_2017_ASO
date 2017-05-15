@@ -73,6 +73,7 @@ public class SterownikRejestracji {
 		if (!minDlugosc(haslo, 8))
 			return 9;
 		
+		
 		// za dlugie haslo
 		if (!maxDlugosc(haslo, 18))
 			return 10;
