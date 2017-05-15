@@ -292,12 +292,13 @@ public class SterownikPolBD {
 			// przygotowanie zapytania
 			stmt = con.prepareStatement("SELECT * FROM `uzytkownik` WHERE email=? and login=?");
 			stmt.setString(1, email);
-			stmt.setString(1, login);
+			stmt.setString(2, login);
 			// sprawdzenie czy w bazie istnieje podany uzytkownik z podanym
 			// email
 			rs = stmt.executeQuery();
 			rs.next();
-			rs.getString("login");
+			
+			System.out.println(rs.getString("login"));
 		} catch (SQLException e) {
 			odp = false;
 			return false;
