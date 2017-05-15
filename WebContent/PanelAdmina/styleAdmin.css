@@ -71,6 +71,16 @@ h2{
   background-color: #428bca;
 }
 
+form-group-last
+{
+	margin-top: 50px;
+	padding-top: 50px;
+}
+.form-group1
+{
+	margin-bottom: 50px;
+	padding-bottom: 50px;
+}
 
 /*
  * Main content

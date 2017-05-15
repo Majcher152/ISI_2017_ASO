@@ -1,5 +1,7 @@
 package pl.komp.aso.dto;
 
+import java.util.ArrayList;
+
 public class Uzytkownik {
 	
 	private String imie;
@@ -8,32 +10,10 @@ public class Uzytkownik {
 	private int nrTelefonu;
 	private String login;
 	private String haslo;
-	private Samochod [] samochody;
-	private FormularzNaprawy [] formularze;
+	private ArrayList<Samochod>samochody=new ArrayList<Samochod>();
+	private ArrayList<FormularzNaprawy> formularze= new ArrayList<FormularzNaprawy>();
 	
-	public void usunKonto() {
-		
-	}
 	
-	public void edytujDane() {
-		
-	}
-	
-	public void sprawdzHistorie() {
-		
-	}
-	
-	public void zarezerwujTermin() {
-		
-	}
-	
-	public void sprawdzStatusNaprawy() {
-		
-	}
-	
-	public void wylogujSie() {
-		
-	}
 	
 	public String getImie() {
 		return imie;
@@ -56,8 +36,8 @@ public class Uzytkownik {
 	public int getNrTelefonu() {
 		return nrTelefonu;
 	}
-	public void setNrTelefonu(int nrTelefonu) {
-		this.nrTelefonu = nrTelefonu;
+	public void setNrTelefonu(int numer_telefonu) {
+		this.nrTelefonu = numer_telefonu;
 	}
 	public String getLogin() {
 		return login;
@@ -72,19 +52,19 @@ public class Uzytkownik {
 		this.haslo = haslo;
 	}
 
-	public Samochod [] getSamochody() {
+	public ArrayList<Samochod> getSamochody() {
 		return samochody;
 	}
 
-	public void setSamochody(Samochod [] samochody) {
+	public void setSamochody(ArrayList<Samochod> samochody) {
 		this.samochody = samochody;
 	}
 
-	public FormularzNaprawy [] getFormularze() {
+	public ArrayList<FormularzNaprawy> getFormularze() {
 		return formularze;
 	}
 
-	public void setFormularze(FormularzNaprawy [] formularze) {
+	public void setFormularze(ArrayList<FormularzNaprawy> formularze) {
 		this.formularze = formularze;
 	}
 }

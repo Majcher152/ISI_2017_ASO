@@ -32,7 +32,7 @@ public class RejServlet extends HttpServlet {
 		
 		String rodzaj_konta = request.getParameter("rodzaj_konta");
 		if (rodzaj_konta == null) {
-			rodzaj_konta = "uzytkownik";
+			rodzaj_konta = "Uzytkownik";
 		}
 		
 		SterownikRejestracji sr = new SterownikRejestracji();
@@ -54,7 +54,7 @@ public class RejServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 			break;
 			case 0 :	
-				if(sr.zaloguj(login, haslo2, imie, nazwisko, email, numer_telefonu, rodzaj_konta))
+				if(sr.zarejestruj(login, haslo2, imie, nazwisko, email, numer_telefonu, rodzaj_konta))
 					wyswietl="Zarejestrowano pomyślnie.";
 				else 
 					wyswietl="Błąd";
@@ -160,7 +160,6 @@ public class RejServlet extends HttpServlet {
 				dispatcher =request.getRequestDispatcher("rejestracja.jsp"); 
 				dispatcher.forward(request, response);
 				break;
-			
 			case 12:
 				wyswietl="Hasło za słabe(Musi zawierać co najmniej jeden znak, jedną cyfrę, jedną literę dużą oraz jedną literę małą.";
 				request.setAttribute("blad", wyswietl);
@@ -173,11 +172,6 @@ public class RejServlet extends HttpServlet {
 				dispatcher =request.getRequestDispatcher("rejestracja.jsp"); 
 				dispatcher.forward(request, response);
 				break;		
-		}
-		
-		
-		
-		
+		}	
 	}
-
 }

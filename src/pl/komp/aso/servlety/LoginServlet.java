@@ -73,7 +73,7 @@ public class LoginServlet extends HttpServlet {
 			System.out.println(",...");
 			Uzytkownik uzytkownik=sterownikLogowania.getUzytkownik(login);
 			request.getSession().setAttribute("uzytkownik", uzytkownik);
-			response.sendRedirect("uzytkownik.jsp");
+			response.sendRedirect("PanelKlienta/indexKlient.jsp");
 		}
 		//jest to mechanik
 		else if(wynik==6) {
