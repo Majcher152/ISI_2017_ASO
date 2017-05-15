@@ -473,6 +473,109 @@ public class SterownikPolBD {
 		}
 		return samochody;
 	}
+	
+	public ArrayList<String> pobierzModele(){
+		ArrayList<String> modele = new ArrayList<String>();
+		ResultSet rs = null;
+		PreparedStatement stmt = null;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement("Select distinct model from samochod");
+			rs = stmt.executeQuery();
+			while(rs.next()) {	
+				
+				modele.add(rs.getString("model"));			
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("brak");
+			return null;
+
+		} finally {
+			close(rs);
+			close(stmt);
+		}
+		return modele;
+	}
+	
+	public ArrayList<String> pobierzRoczniki(String model){
+		ArrayList<String> roczniki = new ArrayList<String>();
+		ResultSet rs = null;
+		PreparedStatement stmt = null;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement("Select distinct rocznik from samochod where model=?");
+			stmt.setString(1, model);
+			rs = stmt.executeQuery();
+			while(rs.next()) {	
+				
+				roczniki.add(rs.getString("rocznik"));			
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("brak");
+			return null;
+
+		} finally {
+			close(rs);
+			close(stmt);
+		}
+		return roczniki;
+	}
+	
+	public ArrayList<String> pobierzTypy(String model,String rocznik){
+		ArrayList<String> typy = new ArrayList<String>();
+		ResultSet rs = null;
+		PreparedStatement stmt = null;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement("Select distinct typ from samochod where model=? and rocznik=?");
+			stmt.setString(1, model);
+			stmt.setString(2, rocznik);
+			rs = stmt.executeQuery();
+			while(rs.next()) {	
+				
+				typy.add(rs.getString("typ"));			
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("brak");
+			return null;
+
+		} finally {
+			close(rs);
+			close(stmt);
+		}
+		return typy;
+	}
+	
+	public ArrayList<String> pobierzSilniki(String model,String rocznik,String typ){
+		ArrayList<String> silniki = new ArrayList<String>();
+		ResultSet rs = null;
+		PreparedStatement stmt = null;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement("Select distinct silnik from samochod where model=? and rocznik=? and typ=?");
+			stmt.setString(1, model);
+			stmt.setString(2, rocznik);
+			stmt.setString(3, typ);
+			rs = stmt.executeQuery();
+			while(rs.next()) {	
+				
+				silniki.add(rs.getString("silnik"));			
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("brak");
+			return null;
+
+		} finally {
+			close(rs);
+			close(stmt);
+		}
+		return silniki;
+	}
+	
 
 	// -----------------------------------------------------------------------------------------------------
 
