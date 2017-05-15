@@ -1,7 +1,9 @@
 package pl.komp.aso.sterowniki;
 
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
+import pl.komp.aso.dto.Samochod;
 import pl.komp.aso.dto.Uzytkownik;
 
 public class SterownikKlienta {
@@ -113,5 +115,25 @@ public class SterownikKlienta {
 
 	public void wylogujSie() {
 
+	}
+	
+	public boolean dodajAuto(Uzytkownik uzytkownik,String model,String rocznik,String typ,String silnik,String vin) {
+		String login=uzytkownik.getLogin();
+		if(!spbd.dodajAuto(model,rocznik,typ,silnik,login,vin))
+			return false;
+		Samochod s = new Samochod();
+		s.setModel(model);
+		s.setRocznik(Integer.parseInt(rocznik));
+		s.setSilnik(silnik);
+		s.setTyp(typ);
+		s.setVin(vin);
+		ArrayList <Samochod> list =uzytkownik.getSamochody();
+		list.add(s);
+		uzytkownik.setSamochody(list);
+		return true;
+	}
+	
+	public boolean usunAuto(Uzytkownik uzytkownik) {
+		return true;
 	}
 }

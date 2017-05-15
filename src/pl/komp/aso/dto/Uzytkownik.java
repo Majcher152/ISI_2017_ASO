@@ -1,5 +1,7 @@
 package pl.komp.aso.dto;
 
+import java.util.ArrayList;
+
 public class Uzytkownik {
 	
 	private String imie;
@@ -8,8 +10,8 @@ public class Uzytkownik {
 	private int nrTelefonu;
 	private String login;
 	private String haslo;
-	private Samochod [] samochody;
-	private FormularzNaprawy [] formularze;
+	private ArrayList<Samochod>samochody=new ArrayList<Samochod>();
+	private ArrayList<FormularzNaprawy> formularze= new ArrayList<FormularzNaprawy>();
 	
 	
 	
@@ -50,19 +52,19 @@ public class Uzytkownik {
 		this.haslo = haslo;
 	}
 
-	public Samochod [] getSamochody() {
+	public ArrayList<Samochod> getSamochody() {
 		return samochody;
 	}
 
-	public void setSamochody(Samochod [] samochody) {
+	public void setSamochody(ArrayList<Samochod> samochody) {
 		this.samochody = samochody;
 	}
 
-	public FormularzNaprawy [] getFormularze() {
+	public ArrayList<FormularzNaprawy> getFormularze() {
 		return formularze;
 	}
 
-	public void setFormularze(FormularzNaprawy [] formularze) {
+	public void setFormularze(ArrayList<FormularzNaprawy> formularze) {
 		this.formularze = formularze;
 	}
 }

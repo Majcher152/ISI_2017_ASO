@@ -59,7 +59,7 @@
 								aria-haspopup="true" aria-expanded="false">Moje Konto<span
 									class="caret"></span></a>
 								<ul class="dropdown-menu">
-									<li><a href="">Edytuj dane</a></li>
+									<li><a href="../SamochodyServlet">Edytuj dane</a></li>
 									<li><a href="../index.jsp">Wyloguj</a></li>
 								</ul></li>
 						</ul>
