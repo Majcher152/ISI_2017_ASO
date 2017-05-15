@@ -5,37 +5,71 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 <title>Insert title here</title>
 </head>
 <body>
 <p>Model</p>
 
-<select name="model">
-    <c:forEach items="${samochody}" var="samochod">
-        <option value="${samochod.model}"><c:out value="${samochod.model}" /></option>
+<select name="model" id="model">
+    <c:forEach items="${modele}" var="model">
+        <option value="${model}"><c:out value="${model}" /></option>
     </c:forEach>
 </select>
 
-<p>Rocznik</p>
-<select name="rocznik">
-</select>
+
 
 <script type="text/javascript">
         $model = $('#model');
-
-        $(document).on('change', 'model', function() {
+        
+        $(document).on("change", $model, function() {
                 $.ajax({
                     type: "GET",
-                    url: "/Samochody2Servlet",
-                    data: {model: $model.attr("selectedIndex") },
-                    success: function(data){
-                        $("#rocznik").html(data)
+                    url: "Samochody2Servlet?method=methodA",
+                    data: {model: $model.val() },
+                    success: function(ret){
+                        $("#rocznik").html(ret);        	
+                    },
+                    /*Działania wykonywane w przypadku błędu*/
+                    error: function(blad) {
+                        alert( "Wystąpił błąd");
+                        console.log(blad); /*Funkcja wyświetlająca informacje 
+                        o ewentualnym błędzie w konsoli przeglądarki*/
                     }
                 });
             }
         );
     </script>
+    
+   <p>Rocznik</p>
+<select name="rocznik" id="rocznik">
+</select>
+
+<script type="text/javascript">
+        $rocznik = $('#rocznik');
+        
+        $(document).on("change", $rocznik, function() {
+                $.ajax({
+                    type: "GET",
+                    url: "Samochody2Servlet?method=methodB",
+                    data: {rocznik: $rocznik.val() },
+                    success: function(ret){
+                        $("#typ").html(ret);        	
+                    },
+                    /*Działania wykonywane w przypadku błędu*/
+                    error: function(blad) {
+                        alert( "Wystąpił błąd");
+                        console.log(blad); /*Funkcja wyświetlająca informacje 
+                        o ewentualnym błędzie w konsoli przeglądarki*/
+                    }
+                });
+            }
+        );
+    </script>
+    
+    <p>Typ</p>
+<select name="typ" id="typ">
+</select>
 </body>
 </html>

@@ -9,8 +9,7 @@ import pl.komp.aso.dto.Uzytkownik;
 public class SterownikKlienta {
 	SterownikPolBD spbd = new SterownikPolBD();
 
-	public int uwierzytelnij(String imie, String nazwisko, String email, String numer_telefonu, String login,
-			String haslo, String haslo2) {
+	public int uwierzytelnij(String imie, String nazwisko, String email, String numer_telefonu, String login) {
 		SterownikRejestracji sr = new SterownikRejestracji();
 		String litery = "abcdefghijklmnopqrstuvxwyząęćźżńół";
 		String liczby = "1234567890";
@@ -62,24 +61,35 @@ public class SterownikKlienta {
 				return 16;
 		}
 
+		// wszystko poprawne
+
+		return 0;
+	}
+	
+	public int uwierzytelnijHaslo(Uzytkownik uzytkownik,String stareHaslo,String noweHaslo,String noweHaslo2){
+		SterownikRejestracji sr = new SterownikRejestracji();
+		String litery = "abcdefghijklmnopqrstuvxwyząęćźżńół";
+		String liczby = "1234567890";
+		String alfanumeryczne = litery + liczby;
+		//stare haslo zle
+		if(!stareHaslo.equals(uzytkownik.getHaslo()))
+			return 1;
+		
 		// za krotkie haslo
-		if (!sr.minDlugosc(haslo, 8))
+		if (!sr.minDlugosc(noweHaslo, 8))
 			return 9;
 
 		// za dlugie haslo
-		if (!sr.maxDlugosc(haslo, 18))
+		if (!sr.maxDlugosc(noweHaslo, 18))
 			return 10;
 
 		// haslo za slabe
-		if (!sr.silaHasla(haslo))
+		if (!sr.silaHasla(noweHaslo))
 			return 12;
 
 		// hasla sie nie zgadzaja
-		if (!haslo.equals(haslo2))
+		if (!noweHaslo.equals(noweHaslo2))
 			return 13;
-
-		// wszystko poprawne
-
 		return 0;
 	}
 
@@ -87,15 +97,22 @@ public class SterownikKlienta {
 
 	}
 
-	public boolean edytujDane(String haslo2, String imie, String nazwisko, String email, String numer_telefonu,
+	public boolean edytujDane(String imie, String nazwisko, String email, String numer_telefonu,
 			Uzytkownik uzytkownik) {
 		String login = uzytkownik.getLogin();
-		if (spbd.edytujUstawienia(haslo2, imie, nazwisko, email, numer_telefonu, login)) {
+		if (spbd.edytujUstawienia(imie, nazwisko, email, numer_telefonu, login)) {
 			uzytkownik.setEmail(email);
 			uzytkownik.setImie(imie);
 			uzytkownik.setNazwisko(nazwisko);
 			uzytkownik.setNrTelefonu(Integer.parseInt(numer_telefonu));
-			uzytkownik.setHaslo(haslo2);
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean edytujHaslo(Uzytkownik u,String haslo) {
+		if(spbd.edytujHaslo(u.getLogin(),haslo)) {
+			u.setHaslo(haslo);
 			return true;
 		}
 		return false;

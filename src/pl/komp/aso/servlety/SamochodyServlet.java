@@ -36,11 +36,12 @@ public class SamochodyServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
 		 SterownikPolBD spbd=new SterownikPolBD();
-		 List<Samochod> samochody = spbd.pobierzSamochody();
-		 for(Samochod s: samochody) {
-			 System.out.println(s.getModel());
-		 }
-	     request.setAttribute("samochody", samochody);
+//		 List<Samochod> samochody = spbd.pobierzSamochody();
+//		 for(Samochod s: samochody) {
+//			 System.out.println(s.getModel());
+//		 }
+		 List<String> modele = spbd.pobierzModele();
+	     request.setAttribute("modele", modele);
 	     request.getRequestDispatcher("PanelKlienta/samochodyKlient.jsp").forward(request, response);
 	     
 	     
