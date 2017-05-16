@@ -99,6 +99,9 @@ form-group-last
   margin-top: 0;
 }
 
+.button23 col-sm-2 col-sm-offset-8 col-md-1 col-md-offset-10{
+	text-align: center;
+}
 
 input,
 input::-webkit-input-placeholder {

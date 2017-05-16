@@ -14,7 +14,7 @@
 		<form action="/ISI_2017_ASO/AdminServletPath" method="post">
 		
 			<div class="main-login main-center">
-				<div class="form-group1">
+				<div class="form-group">
 					<label for="name" class="cols-sm-2 control-label">Imię
 						pracownika:</label>
 					<div class="cols-sm-10">
@@ -141,9 +141,9 @@
 				<br>
 				<div class="form-group-last">
 					<button type="submit" id="btn_rej"
-						class="btn_rej btn-primary btn-sm col-sm-2  col-md-1 ">Rejestruj</button>
+						class="btn_rej btn-primary btn-sm col-sm-2  col-md-2 ">Rejestruj</button>
 					<button type="button" id="powrot"
-						class="button col-sm-2 col-sm-offset-8 col-md-1 col-md-offset-10">
+						class="button23 col-sm-2 col-sm-offset-8 col-md-2 col-md-offset-8">
 						<a href="/ISI_2017_ASO/PanelAdmina/pracownicyAdmin.jsp">Powrót</a>
 					</button>
 				</div>
