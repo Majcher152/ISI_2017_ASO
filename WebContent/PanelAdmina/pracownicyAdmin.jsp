@@ -37,16 +37,7 @@ SELECT * FROM `uzytkownik` where rodzaj_konta != 'Uzytkownik';
 				<table class="table table-hover table-striped table-condensed">
 					<c:forEach var="uzytkownik" items="${result.rows}">
 						<tr>
-							<td><c:out
-									value="${uzytkownik.imie}  ${uzytkownik.nazwisko}" /></td>
-							<!--  <td><form class="form-horizonta12l" method="post"
-									action="wyswietlPracownika">
-									<a href="/ISI_2017_ASO/PanelAdmina/pracownicyWyswietlAdmin.jsp">Wyświetl</a>
-								</form></td> -->
-							<!--  <td><form method="post" action="wyswietlPracownika" class="inline">
-									<input type="hidden" name="email" value="${uzytkownik.email} ">
-									<button type="submit" name="submit_param" value="submit_value" class="link-button">Wyświetl</button>
-								</form></td>  -->
+							<td><c:out value="${uzytkownik.imie}  ${uzytkownik.nazwisko}" /></td>
 								 <td><form method="post" action="/ISI_2017_ASO/PanelAdmina/pracownicyWyswietlAdmin.jsp" class="inline">
 									<input type="hidden" name="email" value="${uzytkownik.email} ">
 									<button type="submit" name="submit_param" value="submit_value" class="link-button">Wyświetl</button>

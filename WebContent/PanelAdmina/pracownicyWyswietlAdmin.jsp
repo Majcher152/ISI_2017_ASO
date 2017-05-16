@@ -63,10 +63,10 @@ SELECT * FROM `uzytkownik` where email = '<%= emailUzytkownika %>';
 		</c:forEach>
 				<div class="form-group-last">
 					<button type="button" id="buttonEdytuj"
-						class="btn_rej btn-primary btn-sm col-sm-2  col-md-2 ">
+						class="btn_rej btn-primary btn-sm col-sm-2  col-md-1 ">
 						<a href="/ISI_2017_ASO/PanelAdmina/pracownicyEdytujAdmin.jsp">Edytuj</a></button>
 					<button type="button" id="powrot"
-						class="button23 col-sm-2 col-sm-offset-8 col-md-2 col-md-offset-8">
+						class="button23 col-sm-2 col-sm-offset-8 col-md-1 col-md-offset-10">
 						<a href="/ISI_2017_ASO/PanelAdmina/pracownicyAdmin.jsp">Powrót</a>
 					</button>
 				</div>
