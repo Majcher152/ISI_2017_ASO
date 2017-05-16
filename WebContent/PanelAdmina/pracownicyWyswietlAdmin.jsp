@@ -31,7 +31,6 @@ SELECT * FROM `uzytkownik` where email = '<%= emailUzytkownika %>';
 		<h1 class="page-header"><c:out value="${uzytkownik.imie} ${uzytkownik.nazwisko}" /></h1>
 
 		<div class="row main">
-
 			<div class="panel panel-default">
 				<!-- Table -->
 				<table class="table table-hover table-striped table-condensed">
