@@ -15,8 +15,11 @@
 }
 </style>
 
+
 <sql:query dataSource="jdbc/aso" var="result">
-SELECT * FROM `uzytkownik` where imie = 'Katarzyna' and nazwisko = 'Klimek' ;
+
+<% String emailUzytkownika = request.getParameter("email"); %>
+SELECT * FROM `uzytkownik` where email = '<%= emailUzytkownika %>';
 </sql:query>
 
 <jsp:include page="headerAdmin.jsp" />
@@ -24,14 +27,15 @@ SELECT * FROM `uzytkownik` where imie = 'Katarzyna' and nazwisko = 'Klimek' ;
 <div class="container marketing">
 
 	<div class="col-sm-10 col-sm-offset-2 col-md-11 col-md-offset-1 main">
-		<h1 class="page-header">Katarzyna Klimek</h1>
+	<c:forEach var="uzytkownik" items="${result.rows}">
+		<h1 class="page-header"><c:out value="${uzytkownik.imie} ${uzytkownik.nazwisko}" /></h1>
 
 		<div class="row main">
 
 			<div class="panel panel-default">
 				<!-- Table -->
 				<table class="table table-hover table-striped table-condensed">
-					<c:forEach var="uzytkownik" items="${result.rows}">
+					
 						<tr>
 							<td>Login:</td>
 							<td><c:out value="${uzytkownik.login}" /></td>
@@ -52,13 +56,14 @@ SELECT * FROM `uzytkownik` where imie = 'Katarzyna' and nazwisko = 'Klimek' ;
 							<td>Rodzaj konta:</td>
 							<td><c:out value="${uzytkownik.rodzaj_konta}" /></td>
 						</tr>
-					</c:forEach>
+					
 				</table>
 			</div>
 
 		</div>
+		</c:forEach>
 				<div class="form-group-last">
-					<button type="buttonEdytuj" id="edytuj"
+					<button type="button" id="buttonEdytuj"
 						class="btn_rej btn-primary btn-sm col-sm-2  col-md-2 ">
 						<a href="/ISI_2017_ASO/PanelAdmina/pracownicyEdytujAdmin.jsp">Edytuj</a></button>
 					<button type="button" id="powrot"

@@ -30,10 +30,9 @@ public class WyswieltPracownikaServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		
-		String imie = request.getParameter("login");
-		String nazwisko = request.getParameter("haslo");
+		String email = request.getParameter("email");
 		RequestDispatcher dispatcher;
-		
+		response.sendRedirect("PanelAdmina/admin.jsp");
 		
 		return;
 	}

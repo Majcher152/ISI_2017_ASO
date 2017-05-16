@@ -141,9 +141,9 @@
 				<br>
 				<div class="form-group-last">
 					<button type="submit" id="btn_rej"
-						class="btn_rej btn-primary btn-sm col-sm-2  col-md-2 ">Rejestruj</button>
+						class="btn_rej btn-primary btn-sm col-sm-2  col-md-1 ">Rejestruj</button>
 					<button type="button" id="powrot"
-						class="button23 col-sm-2 col-sm-offset-8 col-md-2 col-md-offset-8">
+						class="button23 col-sm-2 col-sm-offset-8 col-md-1 col-md-offset-8">
 						<a href="/ISI_2017_ASO/PanelAdmina/pracownicyAdmin.jsp">Powrót</a>
 					</button>
 				</div>

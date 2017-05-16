@@ -28,7 +28,7 @@
 				<%
 				String message = (String) request.getAttribute("msg");
 				out.println(" " + message);
-			%>
+				%>
 				<%
 					// Odswiezanie strony po 5 sekundach 
 					// i powrot do listy pracownikow
