@@ -117,11 +117,11 @@ form-group-last {
 .link-button {
   background: none;
   border: none;
-  color: blue;
-  text-decoration: underline;
+  color: #337ab7;
+  text-decoration: none;
   cursor: pointer;
-  font-size: 1em;
-  font-family: serif;
+  font-size: medium;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 .link-button:focus {
   outline: none;
