@@ -98,7 +98,15 @@ form-group-last
 .main .page-header {
   margin-top: 0;
 }
+.buttonEdytuj
+{
+	color: black;	
+}
 
+
+.form-horizontal{
+	text-align: center;
+}
 
 input,
 input::-webkit-input-placeholder {

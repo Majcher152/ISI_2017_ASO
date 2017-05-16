@@ -38,6 +38,9 @@ SELECT * FROM `uzytkownik` where rodzaj_konta != 'Uzytkownik';
   				 <c:forEach var="uzytkownik" items="${result.rows}">
   				 <tr>
                     <td><c:out value="${uzytkownik.imie}  ${uzytkownik.nazwisko}" /></td>
+                <!--    <td><form class="form-horizontal" method="post" action="wyswietlPracownika">
+                    <a href="/ISI_2017_ASO/PanelAdmina/pracownicyWyswietlAdmin.jsp">Wyświetl</a>
+                    </form></td> --> 
                     <td><a href="/ISI_2017_ASO/PanelAdmina/pracownicyWyswietlAdmin.jsp">Wyświetl</a></td>
 					<td><a href="/ISI_2017_ASO/PanelAdmina/pracownicyEdytujAdmin.jsp">Edytuj</a></td>
 					<td><a href="/ISI_2017_ASO/PanelAdmina/pracownicyUsunAdmin.jsp">Usuń</a></td>
