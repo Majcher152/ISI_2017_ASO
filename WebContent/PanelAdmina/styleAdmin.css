@@ -98,8 +98,13 @@ form-group-last
 .main .page-header {
   margin-top: 0;
 }
+.buttonEdytuj
+{
+	color: black;	
+}
 
-.button23 col-sm-2 col-sm-offset-8 col-md-1 col-md-offset-10{
+
+.form-horizontal{
 	text-align: center;
 }
 
