@@ -21,7 +21,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-<link href="/ASO/style.css" rel="stylesheet">
+<link href="/ISI_2017_ASO/style.css" rel="stylesheet">
 
 <!-- Website Font style -->
 <link rel="stylesheet"
