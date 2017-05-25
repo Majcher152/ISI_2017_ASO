@@ -40,19 +40,19 @@
 					        
 					        $(model).on('change',  function() {
 					                $.ajax({
-					                    type: "GET",
+					                    type: "POST",
 					                    url: "Samochody2Servlet?method=methodA",
 					                    data: {model: $model.val() },
 					                    success: function(ret){
 					                        $("#rocznik").html(ret); 
 					                        $.ajax({
-					                            type: "GET",
+					                            type: "POST",
 					                            url: "Samochody2Servlet?method=methodB",
 					                            data: {model: $model.val(), rocznik: $rocznik.val() },
 					                            success: function(ret){
 					                                $("#typ").html(ret);   
 					                                $.ajax({
-					                                    type: "GET",
+					                                    type: "POST",
 					                                    url: "Samochody2Servlet?method=methodC",
 					                                    data: {model: $model.val(), rocznik: $rocznik.val(), typ: $typ.val() },
 					                                    success: function(ret){
@@ -98,13 +98,13 @@
 					        
 					        $(rocznik).on('change', function() {
 					                $.ajax({
-					                    type: "GET",
+					                    type: "POST",
 					                    url: "Samochody2Servlet?method=methodB",
 					                    data: {model: $model.val(), rocznik: $rocznik.val() },
 					                    success: function(ret){
 					                        $("#typ").html(ret);  
 					                        $.ajax({
-					                            type: "GET",
+					                            type: "POST",
 					                            url: "Samochody2Servlet?method=methodC",
 					                            data: {model: $model.val(), rocznik: $rocznik.val(), typ: $typ.val() },
 					                            success: function(ret){
@@ -141,7 +141,7 @@
 					        
 					        $(typ).on('change', function() {
 					                $.ajax({
-					                    type: "GET",
+					                    type: "POST",
 					                    url: "Samochody2Servlet?method=methodC",
 					                    data: {model: $model.val(), rocznik: $rocznik.val(), typ: $typ.val() },
 					                    success: function(ret){
