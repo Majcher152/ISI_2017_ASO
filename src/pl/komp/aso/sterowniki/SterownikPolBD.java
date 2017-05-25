@@ -420,7 +420,7 @@ public class SterownikPolBD {
 		String odp = "";
 		try {
 			// przygotowanie zapytania
-			String samochod_id = znajdzSamochod(model, rocznik, typ, silnik);
+			//String samochod_id = znajdzSamochod(model, rocznik, typ, silnik);
 			stmt = con.prepareStatement(
 					"Select samochod_id from samochod where model=? and rocznik=? and typ=? and silnik=?");
 			stmt.setString(1, model);

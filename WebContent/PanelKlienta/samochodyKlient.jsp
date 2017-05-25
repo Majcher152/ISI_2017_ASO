@@ -18,7 +18,7 @@
 			</div>
 
 			<div class="main-login main-center">
-				<form class="form-horizontal" method="post" action="Samochody2Servlet?metoda=dodaj">
+				<form class="form-horizontal" method="post" action="Samochody2Servlet?method=dodaj">
 					
 					<div class="form-group">
 						<label for="name" class="cols-sm-2 control-label">Model</label>

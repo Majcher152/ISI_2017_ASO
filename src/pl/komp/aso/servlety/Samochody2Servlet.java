@@ -36,6 +36,10 @@ public class Samochody2Servlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doPost(request,response);
+	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		SterownikPolBD spbd = new SterownikPolBD();
@@ -86,7 +90,7 @@ public class Samochody2Servlet extends HttpServlet {
 				dispatcher = request.getRequestDispatcher("PanelKlienta/samochodyKlient.jsp");
 				dispatcher.forward(request, response);
 			}
-			Uzytkownik u = (Uzytkownik) request.getSession().getAttribute("Uzytkownik");
+			Uzytkownik u = (Uzytkownik) request.getSession().getAttribute("uzytkownik");
 			int odp = sk.dodajAuto(u, model, rocznik, typ, silnik, vin);
 			if (odp == 0) {
 				blad = "Pomyślnie dodano samochód.";
