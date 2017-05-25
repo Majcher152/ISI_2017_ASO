@@ -134,10 +134,12 @@ public class SterownikKlienta {
 
 	}
 	
-	public boolean dodajAuto(Uzytkownik uzytkownik,String model,String rocznik,String typ,String silnik,String vin) {
+	public int dodajAuto(Uzytkownik uzytkownik,String model,String rocznik,String typ,String silnik,String vin) {
 		String login=uzytkownik.getLogin();
+		if(spbd.czyIstniejeVin(vin))
+			return 1;
 		if(!spbd.dodajAuto(model,rocznik,typ,silnik,login,vin))
-			return false;
+			return -1;
 		Samochod s = new Samochod();
 		s.setModel(model);
 		s.setRocznik(Integer.parseInt(rocznik));
@@ -147,7 +149,7 @@ public class SterownikKlienta {
 		ArrayList <Samochod> list =uzytkownik.getSamochody();
 		list.add(s);
 		uzytkownik.setSamochody(list);
-		return true;
+		return 0;
 	}
 	
 	public boolean usunAuto(Uzytkownik uzytkownik) {

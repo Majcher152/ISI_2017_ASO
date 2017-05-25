@@ -598,6 +598,30 @@ public class SterownikPolBD {
 		return odp;
 	}
 	
+	public boolean czyIstniejeVin(String vin) {
+		ResultSet rs = null;
+		PreparedStatement stmt = null;
+		boolean odp = true;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement("SELECT * FROM uzytkownik_samochod WHERE vin=? ");
+			stmt.setString(1, vin);
+			// sprawdzenie czy w bazie istnieje podany uzytkownik z podanym
+			// numerem
+			rs = stmt.executeQuery();
+			rs.next();
+			rs.getString("vin");
+		} catch (SQLException e) {
+			odp = false;
+			return false;
+
+		} finally {
+			close(rs);
+			close(stmt);
+		}
+		return odp;
+	}
+	
 
 	// -----------------------------------------------------------------------------------------------------
 

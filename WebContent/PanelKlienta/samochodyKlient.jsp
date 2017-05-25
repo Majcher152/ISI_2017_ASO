@@ -22,22 +22,54 @@
 
 <script type="text/javascript">
         $model = $('#model');
+        $rocznik = $('#rocznik');
+        $typ = $('#typ');
         
-        $(document).on("change", $model, function() {
+        $(model).on('change',  function() {
                 $.ajax({
                     type: "GET",
                     url: "Samochody2Servlet?method=methodA",
                     data: {model: $model.val() },
                     success: function(ret){
-                        $("#rocznik").html(ret);        	
+                        $("#rocznik").html(ret); 
+                        $.ajax({
+                            type: "GET",
+                            url: "Samochody2Servlet?method=methodB",
+                            data: {model: $model.val(), rocznik: $rocznik.val() },
+                            success: function(ret){
+                                $("#typ").html(ret);   
+                                $.ajax({
+                                    type: "GET",
+                                    url: "Samochody2Servlet?method=methodC",
+                                    data: {model: $model.val(), rocznik: $rocznik.val(), typ: $typ.val() },
+                                    success: function(ret){
+                                        $("#silnik").html(ret);   
+                                    },
+                                    /*Działania wykonywane w przypadku błędu*/
+                                    error: function(blad) {
+                                       // alert( ret);
+                                        console.log(blad); /*Funkcja wyświetlająca informacje 
+                                        o ewentualnym błędzie w konsoli przeglądarki*/
+                                    }
+                                });
+                            },
+                            /*Działania wykonywane w przypadku błędu*/
+                            error: function(blad) {
+                               // alert( ret);
+                                console.log(blad); /*Funkcja wyświetlająca informacje 
+                                o ewentualnym błędzie w konsoli przeglądarki*/
+                            }
+                        });
                     },
                     /*Działania wykonywane w przypadku błędu*/
                     error: function(blad) {
-                        alert( "Wystąpił błąd");
+                       // alert( "Wystąpił błąd");
                         console.log(blad); /*Funkcja wyświetlająca informacje 
                         o ewentualnym błędzie w konsoli przeglądarki*/
                     }
                 });
+                
+              
             }
         );
     </script>
@@ -48,18 +80,61 @@
 
 <script type="text/javascript">
         $rocznik = $('#rocznik');
+        $typ = $('#typ');
         
-        $(document).on("change", $rocznik, function() {
+        $(rocznik).on('change', function() {
                 $.ajax({
                     type: "GET",
                     url: "Samochody2Servlet?method=methodB",
-                    data: {rocznik: $rocznik.val() },
+                    data: {model: $model.val(), rocznik: $rocznik.val() },
                     success: function(ret){
-                        $("#typ").html(ret);        	
+                        $("#typ").html(ret);  
+                        $.ajax({
+                            type: "GET",
+                            url: "Samochody2Servlet?method=methodC",
+                            data: {model: $model.val(), rocznik: $rocznik.val(), typ: $typ.val() },
+                            success: function(ret){
+                                $("#silnik").html(ret);   
+                            },
+                            /*Działania wykonywane w przypadku błędu*/
+                            error: function(blad) {
+                               // alert( ret);
+                                console.log(blad); /*Funkcja wyświetlająca informacje 
+                                o ewentualnym błędzie w konsoli przeglądarki*/
+                            }
+                        });
                     },
                     /*Działania wykonywane w przypadku błędu*/
                     error: function(blad) {
-                        alert( "Wystąpił błąd");
+                       // alert( ret);
+                        console.log(blad); /*Funkcja wyświetlająca informacje 
+                        o ewentualnym błędzie w konsoli przeglądarki*/
+                    }
+                });
+               
+               
+            }
+        );
+    </script>
+    
+    <p>Typ</p>
+<select name="typ" id="typ">
+</select>
+
+<script type="text/javascript">
+        $typ = $('#typ');
+        
+        $(typ).on('change', function() {
+                $.ajax({
+                    type: "GET",
+                    url: "Samochody2Servlet?method=methodC",
+                    data: {model: $model.val(), rocznik: $rocznik.val(), typ: $typ.val() },
+                    success: function(ret){
+                        $("#silnik").html(ret);   
+                    },
+                    /*Działania wykonywane w przypadku błędu*/
+                    error: function(blad) {
+                       // alert( ret);
                         console.log(blad); /*Funkcja wyświetlająca informacje 
                         o ewentualnym błędzie w konsoli przeglądarki*/
                     }
@@ -68,8 +143,8 @@
         );
     </script>
     
-    <p>Typ</p>
-<select name="typ" id="typ">
+    <p>Silnik</p>
+<select name="silnik" id="silnik">
 </select>
 </body>
 </html>
