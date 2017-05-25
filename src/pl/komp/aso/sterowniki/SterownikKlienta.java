@@ -152,7 +152,12 @@ public class SterownikKlienta {
 		return 0;
 	}
 	
-	public boolean usunAuto(Uzytkownik uzytkownik) {
+	public boolean usunAuto(String vin,Uzytkownik u) {
+		if(!spbd.usunSamochod(vin)) {
+			return false;
+		}
+		ArrayList<Samochod> samochody = (ArrayList<Samochod>) spbd.pobierzSamochody(u.getLogin());
+		u.setSamochody(samochody);
 		return true;
 	}
 }

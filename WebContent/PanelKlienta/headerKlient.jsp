@@ -60,7 +60,7 @@
 									class="caret"></span></a>
 								<ul class="dropdown-menu">
 									<li><a href="/ISI_2017_ASO/PanelKlienta/edytujDaneKlient.jsp">Edytuj dane</a></li>
-									<li><a href="/ISI_2017_ASO/SamochodyServlet">Dodaj samochód</a></li>
+									<li><a href="/ISI_2017_ASO/Samochody2Servlet?method=zaladujDodajSamochod">Dodaj samochód</a></li>
 									<li><a href="/ISI_2017_ASO/index.jsp">Wyloguj</a></li>
 								</ul></li>
 						</ul>

@@ -388,7 +388,6 @@ public class SterownikPolBD {
 
 	public boolean dodajAuto(String model, String rocznik, String typ, String silnik, String login, String vin) {
 		boolean odp = true;
-		ResultSet rs = null;
 		PreparedStatement stmt = null;
 		try {
 			// przygotowanie zapytania
@@ -402,8 +401,7 @@ public class SterownikPolBD {
 				stmt.setString(2, samochod_id);
 				stmt.setString(3, vin);
 				stmt.setString(4, null);
-				rs = stmt.executeQuery();
-				rs.next();
+				stmt.executeUpdate();
 			}
 		} catch (SQLException e) {
 			odp = false;
@@ -411,7 +409,6 @@ public class SterownikPolBD {
 			return odp;
 
 		} finally {
-			close(rs);
 			close(stmt);
 		}
 		return odp;
@@ -445,13 +442,14 @@ public class SterownikPolBD {
 		return odp;
 	}
 	
-	public List<Samochod> pobierzSamochody(){
+	public List<Samochod> pobierzSamochody(String login){
 		List<Samochod> samochody = new ArrayList<Samochod>();
 		ResultSet rs = null;
 		PreparedStatement stmt = null;
 		try {
 			// przygotowanie zapytania
-			stmt = con.prepareStatement("Select * from samochod");
+			stmt = con.prepareStatement("Select vin,model,rocznik,typ,silnik from samochod join uzytkownik_samochod on samochod.samochod_id=uzytkownik_samochod.Samochod_if_fk where uzytkownik_samochod.Uzytkownik_login_fk=?");
+			stmt.setString(1, login);
 			rs = stmt.executeQuery();
 			while(rs.next()) {	
 				Samochod s = new Samochod();
@@ -459,6 +457,7 @@ public class SterownikPolBD {
 				s.setRocznik(Integer.parseInt(rs.getString("rocznik")));
 				s.setTyp(rs.getString("typ"));
 				s.setSilnik(rs.getString("silnik"));
+				s.setVin(rs.getString("vin"));
 				samochody.add(s);			
 			}
 			
@@ -617,6 +616,26 @@ public class SterownikPolBD {
 
 		} finally {
 			close(rs);
+			close(stmt);
+		}
+		return odp;
+	}
+	
+	public boolean usunSamochod(String vin) {
+		PreparedStatement stmt = null;
+		boolean odp = true;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement("DELETE from uzytkownik_samochod where vin=? ");
+			stmt.setString(1, vin);
+			// sprawdzenie czy w bazie istnieje podany uzytkownik z podanym
+			// numerem
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			odp = false;
+			return false;
+
+		} finally {
 			close(stmt);
 		}
 		return odp;
