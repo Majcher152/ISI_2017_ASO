@@ -27,6 +27,7 @@
 				<td><b>Silnik</b></td>
 				<td><b>Rocznik</b></td>
 				<td><b>Vin</b></td>
+				<td><b>Usunąć?</b></td>
 				</tr>
 					<c:forEach var="samochod" items="${samochody}">
 						<tr>
