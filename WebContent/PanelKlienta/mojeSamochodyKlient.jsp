@@ -21,6 +21,13 @@
 				
 				<!-- Table -->
 				<table class="table table-hover table-striped table-condensed">
+				<tr>
+				<td><b>Model</b></td>
+				<td><b>Typ</b></td>
+				<td><b>Silnik</b></td>
+				<td><b>Rocznik</b></td>
+				<td><b>Vin</b></td>
+				</tr>
 					<c:forEach var="samochod" items="${samochody}">
 						<tr>
 							<td><c:out value="${samochod.model} " /></td>
