@@ -442,8 +442,8 @@ public class SterownikPolBD {
 		return odp;
 	}
 	
-	public List<Samochod> pobierzSamochody(String login){
-		List<Samochod> samochody = new ArrayList<Samochod>();
+	public ArrayList<Samochod> pobierzSamochody(String login){
+		ArrayList<Samochod> samochody = new ArrayList<Samochod>();
 		ResultSet rs = null;
 		PreparedStatement stmt = null;
 		try {
