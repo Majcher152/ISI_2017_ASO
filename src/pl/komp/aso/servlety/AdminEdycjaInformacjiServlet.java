@@ -40,7 +40,7 @@ public class AdminEdycjaInformacjiServlet extends HttpServlet {
 		if (rodzaj_konta == null) {
 			rodzaj_konta = "Uzytkownik";
 		}
-		String login = request.getParameter("email");
+		String login = request.getParameter("login");
 		String numer_telefonu = request.getParameter("numer_telefonu");
 		String email = request.getParameter("email");
 		String haslo = request.getParameter("haslo");

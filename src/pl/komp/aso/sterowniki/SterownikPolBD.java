@@ -391,21 +391,22 @@ public class SterownikPolBD {
 	// zmiana danych uzytkownika, ADMIN
 	public boolean zapiszEdycjeInformacji(String imie, String nazwisko, String email, String numer_telefonu,
 			String login, String haslo, String rodzaj_konta) {
-		
+		System.out.println(imie + "  " + nazwisko + "  " + email + "  " + numer_telefonu + "  " + login + "  " + haslo + "  " + rodzaj_konta);
 		boolean odp = true;
 		PreparedStatement stmt = null;
 		try {
 			// przygotowanie zapytania
 			stmt = con.prepareStatement(
-					"UPDATE `uzytkownik` SET imie= ?, nazwisko=?, email=?, numer_telefonu=?,  haslo=?, rodzaj_konta=? WHERE login = ?");	
-			stmt.setString(1, imie);
-			stmt.setString(2, nazwisko);
-			stmt.setString(3, email);
-			stmt.setString(4, numer_telefonu);
-			stmt.setString(5, haslo);
+					"UPDATE uzytkownik SET haslo=?, imie= ?, nazwisko=?, email=?, numer_telefonu=?, rodzaj_konta=? WHERE login = ?");	
+			stmt.setString(1, haslo);
+			stmt.setString(2, imie);
+			stmt.setString(3, nazwisko);
+			stmt.setString(4, email);
+			stmt.setString(5, numer_telefonu);
 			stmt.setString(6, rodzaj_konta);
 			stmt.setString(7, login);
-			System.out.println("1");
+			
+			
 			stmt.executeUpdate();
 			System.out.println("2");
 		} catch (SQLException e) {
