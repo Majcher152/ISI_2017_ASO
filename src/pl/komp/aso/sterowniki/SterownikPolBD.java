@@ -645,6 +645,7 @@ public class SterownikPolBD {
 	public ArrayList<Warsztat> pobierzWarsztaty(){
 		ArrayList<Warsztat> warsztaty = new ArrayList<Warsztat>();
 		ResultSet rs = null;
+		
 		PreparedStatement stmt = null;
 		try {
 			// przygotowanie zapytania
