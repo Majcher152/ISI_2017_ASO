@@ -53,6 +53,28 @@ $(document).ready(function() {
 		placement : 'right'
 	});
 	
+	$(document).ready(function() {
+		$('#imie').addClass("valid");
+		$('#imie').next().removeClass("glyphicon-remove").addClass("glyphicon-ok")
+		$('#imie').parent().removeClass("has-error").addClass("has-success");
+		
+		$('#nazwisko').addClass("valid");
+		$('#nazwisko').next().removeClass("glyphicon-remove").addClass("glyphicon-ok")
+		$('#nazwisko').parent().removeClass("has-error").addClass("has-success");
+		
+		$('#email').addClass("valid");
+		$('#email').next().removeClass("glyphicon-remove").addClass("glyphicon-ok")
+		$('#email').parent().removeClass("has-error").addClass("has-success");
+		
+		$('#numer_telefonu').addClass("valid");
+		$('#numer_telefonu').next().removeClass("glyphicon-remove").addClass("glyphicon-ok")
+		$('#numer_telefonu').parent().removeClass("has-error").addClass("has-success");
+		
+		$('#login').addClass("valid");
+		$('#login').next().removeClass("glyphicon-remove").addClass("glyphicon-ok")
+		$('#login').parent().removeClass("has-error").addClass("has-success");
+	});
+	
 	//Walidacja imienia
 	$('#imie').on('blur', function() {
 		var input = $(this);
