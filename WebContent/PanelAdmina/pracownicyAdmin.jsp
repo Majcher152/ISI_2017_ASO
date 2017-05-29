@@ -37,15 +37,26 @@ SELECT * FROM `uzytkownik` where rodzaj_konta != 'Uzytkownik';
 				<table class="table table-hover table-striped table-condensed">
 					<c:forEach var="uzytkownik" items="${result.rows}">
 						<tr>
-							<td><c:out value="${uzytkownik.imie}  ${uzytkownik.nazwisko}" /></td>
-								 <td><form method="post" action="/ISI_2017_ASO/PanelAdmina/pracownicyWyswietlAdmin.jsp" class="inline">
+							<td><c:out
+									value="${uzytkownik.imie}  ${uzytkownik.nazwisko}" /></td>
+							<td><form method="post"
+									action="/ISI_2017_ASO/PanelAdmina/pracownicyWyswietlAdmin.jsp"
+									class="inline">
 									<input type="hidden" name="email" value="${uzytkownik.email} ">
-									<button type="submit" name="submit_param" value="submit_value" class="link-button">Wyświetl</button>
-								</form></td> 
+									<button type="submit" name="submit_param" value="submit_value"
+										class="link-button">Wyświetl</button>
+								</form></td>
 							<!-- <td><a
 								href="/ISI_2017_ASO/PanelAdmina/pracownicyWyswietlAdmin.jsp">Wyświetl</a></td> -->
-							<td><a
-								href="/ISI_2017_ASO/PanelAdmina/pracownicyEdytujAdmin.jsp">Edytuj</a></td>
+							<td><form method="post"
+									action="/ISI_2017_ASO/PanelAdmina/pracownicyEdytujAdmin.jsp"
+									class="inline">
+									<input type="hidden" name="email" value="${uzytkownik.email} ">
+									<button type="submit" name="submit_param" value="submit_value"
+										class="link-button">Edytuj</button>
+								</form></td>
+							<!-- <td><a
+								href="/ISI_2017_ASO/PanelAdmina/pracownicyEdytujAdmin.jsp">Edytuj</a></td> -->
 							<td><a
 								href="/ISI_2017_ASO/PanelAdmina/pracownicyUsunAdmin.jsp">Usuń</a></td>
 						</tr>
