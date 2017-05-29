@@ -27,6 +27,7 @@
 				<td><b>Silnik</b></td>
 				<td><b>Rocznik</b></td>
 				<td><b>Vin</b></td>
+				<td><b>Czy w warsztacie?</b></td>
 				<td><b>Usunąć?</b></td>
 				</tr>
 					<c:forEach var="samochod" items="${samochody}">
@@ -36,6 +37,7 @@
 							<td><c:out value="${samochod.silnik} " /></td>
 							<td><c:out value="${samochod.rocznik} " /></td>
 							<td><c:out value="${samochod.vin} " /></td>
+							<td><c:out value="${samochod.warsztat} " /></td>
 							<td><a
 								href="Samochody2Servlet?method=usun&vin=${samochod.vin}">Usuń</a></td>
 						</tr>

@@ -6,6 +6,15 @@ public class Samochod {
 	private String typ;
 	private String silnik;
 	private String vin;
+	private boolean warsztat;
+	
+	public void setWarsztat(boolean warsztat) {
+		this.warsztat=warsztat;
+	}
+	
+	public boolean isWarsztat() {
+		return warsztat;
+	}
 	
 	public String getVin() {
 		return vin;

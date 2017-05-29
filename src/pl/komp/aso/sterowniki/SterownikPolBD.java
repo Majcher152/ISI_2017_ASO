@@ -15,6 +15,7 @@ import javax.sql.DataSource;
 
 import pl.komp.aso.dto.Samochod;
 import pl.komp.aso.dto.Uzytkownik;
+import pl.komp.aso.dto.Warsztat;
 
 /**
  * Klasa sluzaca do polaczenia z baza danych
@@ -638,6 +639,67 @@ public class SterownikPolBD {
 		} finally {
 			close(stmt);
 		}
+		return odp;
+	}
+	
+	public ArrayList<Warsztat> pobierzWarsztaty(){
+		ArrayList<Warsztat> warsztaty = new ArrayList<Warsztat>();
+		ResultSet rs = null;
+		PreparedStatement stmt = null;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement("Select adres,miasto,numer_telefonu,email,godzina_otwarcia,godzina_zamkniecia,ilosc_stanowisk from warsztat");
+			rs = stmt.executeQuery();
+			while(rs.next()) {	
+				Warsztat w = new Warsztat();
+				w.setAdres(rs.getString("adres"));
+				w.setMiasto(rs.getString("miasto"));
+				w.setNrTelefonu(rs.getString("numer_telefonu"));
+				w.setEmail(rs.getString("email"));
+				w.setGodzinaO(rs.getString("godzina_otwarcia"));
+				w.setGodzinaZ(rs.getString("godzina_zamkniecia"));
+				w.setIloscStanowisk(rs.getInt("ilosc_stanowisk"));
+				warsztaty.add(w);			
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("brak");
+			return null;
+
+		} finally {
+			close(rs);
+			close(stmt);
+		}
+		return warsztaty;
+	}
+	
+	public boolean czyZajetyDzien(String adres) {
+		boolean odp=false;
+		ResultSet rs = null;
+		PreparedStatement stmt = null;
+		try {
+			// przygotowanie zapytania
+			//String samochod_id = znajdzSamochod(model, rocznik, typ, silnik);
+			stmt = con.prepareStatement(
+					"Select ");
+			stmt.setString(1, adres);
+			rs = stmt.executeQuery();
+			rs.next();
+			odp = true;
+		} catch (SQLException e) {
+			odp = false;
+			System.out.println("termin wolny");
+			return odp;
+
+		} finally {
+			close(rs);
+			close(stmt);
+		}
+		return odp;
+	}
+	
+	public boolean czyZajetaGodzina(String adres,String dzien) {
+		boolean odp=false;
 		return odp;
 	}
 	

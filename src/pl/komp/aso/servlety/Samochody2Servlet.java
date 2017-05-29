@@ -46,7 +46,8 @@ public class Samochody2Servlet extends HttpServlet {
 		SterownikKlienta sk = new SterownikKlienta();
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		String blad = "";
+		String blad = request.getParameter("blad");
+		
 		RequestDispatcher dispatcher;
 
 		String metoda = request.getParameter("method");
@@ -64,6 +65,8 @@ public class Samochody2Servlet extends HttpServlet {
 		} else if (metoda.equals("zaladujDodajSamochod")) {
 			List<String> modele = spbd.pobierzModele();
 			request.setAttribute("modele", modele);
+			if(blad!=null)
+				request.setAttribute("blad", blad);
 			request.getRequestDispatcher("PanelKlienta/samochodyKlient.jsp").forward(request, response);
 		}
 
@@ -86,28 +89,19 @@ public class Samochody2Servlet extends HttpServlet {
 			String vin = request.getParameter("vin");
 			if (vin == null || silnik == null || typ == null || rocznik == null) {
 				blad = "Żadne pole nie może być puste.";
-				request.setAttribute("blad", blad);
-				dispatcher = request.getRequestDispatcher("PanelKlienta/samochodyKlient.jsp");
-				dispatcher.forward(request, response);
 			}
 			Uzytkownik u = (Uzytkownik) request.getSession().getAttribute("uzytkownik");
 			int odp = sk.dodajAuto(u, model, rocznik, typ, silnik, vin);
 			if (odp == 0) {
 				blad = "Pomyślnie dodano samochód.";
-				request.setAttribute("blad", blad);
-				dispatcher = request.getRequestDispatcher("PanelKlienta/samochodyKlient.jsp");
-				dispatcher.forward(request, response);
 			} else if (odp == -1) {
 				blad = "Błąd.";
-				request.setAttribute("blad", blad);
-				dispatcher = request.getRequestDispatcher("PanelKlienta/samochodyKlient.jsp");
-				dispatcher.forward(request, response);
 			} else {
 				blad = "Podany vin już istnieje.";
-				request.setAttribute("blad", blad);
-				dispatcher = request.getRequestDispatcher("PanelKlienta/samochodyKlient.jsp");
-				dispatcher.forward(request, response);
 			}
+			request.setAttribute("blad", blad);
+			dispatcher = request.getRequestDispatcher("Samochody2Servlet?method=zaladujDodajSamochod");
+			dispatcher.forward(request, response);
 
 		} else if (metoda.equals("zaladujUsunSamochod")) {
 			Uzytkownik u = (Uzytkownik) request.getSession().getAttribute("uzytkownik");
@@ -120,15 +114,13 @@ public class Samochody2Servlet extends HttpServlet {
 			if (vin != null) {
 				if (!sk.usunAuto(vin, u)) {
 					blad = "Błąd.";
-					request.setAttribute("blad", blad);
-					dispatcher = request.getRequestDispatcher("PanelKlienta/mojeSamochodyKlient.jsp");
-					dispatcher.forward(request, response);
+					
 				} else {
 					blad = "Usunięto samochód.";
-					request.setAttribute("blad", blad);
-					dispatcher = request.getRequestDispatcher("PanelKlienta/mojeSamochodyKlient.jsp");
-					dispatcher.forward(request, response);
 				}
+				request.setAttribute("blad", blad);
+				dispatcher = request.getRequestDispatcher("Samochody2Servlet?method=zaladujUsunSamochod");
+				dispatcher.forward(request, response);
 			}
 		}
 

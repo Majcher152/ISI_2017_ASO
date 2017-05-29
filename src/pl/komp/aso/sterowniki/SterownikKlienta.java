@@ -146,6 +146,7 @@ public class SterownikKlienta {
 		s.setSilnik(silnik);
 		s.setTyp(typ);
 		s.setVin(vin);
+		s.setWarsztat(false);
 		ArrayList <Samochod> list =uzytkownik.getSamochody();
 		list.add(s);
 		uzytkownik.setSamochody(list);

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 14 Maj 2017, 17:18
+-- Czas generowania: 29 Maj 2017, 16:23
 -- Wersja serwera: 10.1.21-MariaDB
 -- Wersja PHP: 5.6.30
 
@@ -52,6 +52,31 @@ CREATE TABLE `formularz_naprawy` (
 -- --------------------------------------------------------
 
 --
+-- Struktura tabeli dla tabeli `mechanik_warsztat`
+--
+
+CREATE TABLE `mechanik_warsztat` (
+  `mechanik_login_fk` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `id_warsztatu_fk` int(7) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `przeglad`
+--
+
+CREATE TABLE `przeglad` (
+  `id_przegladu` int(7) NOT NULL,
+  `id_warsztatu_fk` int(7) NOT NULL,
+  `vin_fk` varchar(17) COLLATE utf8_unicode_ci NOT NULL,
+  `data` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `godzina` varchar(5) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabeli dla tabeli `samochod`
 --
 
@@ -62,6 +87,18 @@ CREATE TABLE `samochod` (
   `typ` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `silnik` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Zrzut danych tabeli `samochod`
+--
+
+INSERT INTO `samochod` (`samochod_id`, `model`, `rocznik`, `typ`, `silnik`) VALUES
+(0, 'lupo', 1999, 'hatchback', '1.4'),
+(100, 'lupo', 2000, 'hasback', '4.4'),
+(200, 'garbus', 1999, 'hasback', '4.4'),
+(20102, 'lupo', 1999, 'hashback', '4.5'),
+(34832, 'lupo', 1999, 'hatchback', '3.0'),
+(392039, 'lupo', 1999, 'hashback', '4.6');
 
 -- --------------------------------------------------------
 
@@ -96,6 +133,7 @@ CREATE TABLE `uzytkownik` (
 
 INSERT INTO `uzytkownik` (`login`, `haslo`, `imie`, `nazwisko`, `email`, `numer_telefonu`, `rodzaj_konta`) VALUES
 ('aaa', 'aaa', 'aaa', 'aaa', 'aaa', 123, 'admin'),
+('kasia', 'kasiakasia', 'kasia', 'klimek', 'katha.ftw@gmail.com', 883431798, 'uzytkownik'),
 ('kasiakasia2', 'Kasiakasia1!', 'Kasia', 'Klimek', 'op2@op.pl', 789789788, 'admin'),
 ('ookaa', 'Ooskaaooskaa1', 'ŁukaszŁukaszNiePoruchasz', 'MożeJednakPoruchaszĘĄŻŹĆ', 'ooskaa@ooskaa.pl', 789456123, 'uzytkownik'),
 ('ooskaa', 'Asdfghjkl1', 'fvrleknbouibwiln', 'kupkowski', 'przyklad@przyplad.pl', 999999999, 'uzytkownik'),
@@ -112,7 +150,7 @@ CREATE TABLE `uzytkownik_samochod` (
   `Samochod_if_fk` int(7) NOT NULL,
   `vin` varchar(17) COLLATE utf8_unicode_ci NOT NULL,
   `warsztat_id_fk` int(7) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
 
 -- --------------------------------------------------------
 
@@ -126,7 +164,9 @@ CREATE TABLE `warsztat` (
   `miasto` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `numer_telefonu` int(9) NOT NULL,
   `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `max_liczba_aut` int(3) NOT NULL
+  `ilosc_stanowisk` int(2) NOT NULL,
+  `godzina_otwarcia` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
+  `godzina_zamkniecia` varchar(5) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -165,6 +205,21 @@ ALTER TABLE `formularz_naprawy`
   ADD KEY `warsztat_id_fk` (`warsztat_id_fk`);
 
 --
+-- Indexes for table `mechanik_warsztat`
+--
+ALTER TABLE `mechanik_warsztat`
+  ADD PRIMARY KEY (`mechanik_login_fk`,`id_warsztatu_fk`),
+  ADD KEY `id_warsztatu_fk` (`id_warsztatu_fk`);
+
+--
+-- Indexes for table `przeglad`
+--
+ALTER TABLE `przeglad`
+  ADD PRIMARY KEY (`id_przegladu`),
+  ADD KEY `id_warsztatu_fk_idx` (`id_warsztatu_fk`),
+  ADD KEY `vin_fk_idx` (`vin_fk`);
+
+--
 -- Indexes for table `samochod`
 --
 ALTER TABLE `samochod`
@@ -189,9 +244,10 @@ ALTER TABLE `uzytkownik`
 -- Indexes for table `uzytkownik_samochod`
 --
 ALTER TABLE `uzytkownik_samochod`
-  ADD PRIMARY KEY (`Uzytkownik_login_fk`,`Samochod_if_fk`),
-  ADD KEY `warsztat_id_fk_idx` (`warsztat_id_fk`),
-  ADD KEY `Samochod_if_fk` (`Samochod_if_fk`);
+  ADD PRIMARY KEY (`vin`),
+  ADD KEY `Uzytkownik_login_fk_idx` (`Uzytkownik_login_fk`),
+  ADD KEY `Samochod_if_fk_idx` (`Samochod_if_fk`),
+  ADD KEY `warsztat_id_fk_idx` (`warsztat_id_fk`);
 
 --
 -- Indexes for table `warsztat`
@@ -224,6 +280,11 @@ ALTER TABLE `czesc`
 ALTER TABLE `formularz_naprawy`
   MODIFY `id` int(7) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT dla tabeli `przeglad`
+--
+ALTER TABLE `przeglad`
+  MODIFY `id_przegladu` int(7) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT dla tabeli `warsztat`
 --
 ALTER TABLE `warsztat`
@@ -236,7 +297,7 @@ ALTER TABLE `zamowienie`
 --
 -- Ograniczenia dla zrzutów tabel
 --
---
+
 --
 -- Ograniczenia dla tabeli `czesc`
 --
@@ -252,6 +313,20 @@ ALTER TABLE `formularz_naprawy`
   ADD CONSTRAINT `formularz_naprawy_ibfk_2` FOREIGN KEY (`warsztat_id_fk`) REFERENCES `warsztat` (`id`);
 
 --
+-- Ograniczenia dla tabeli `mechanik_warsztat`
+--
+ALTER TABLE `mechanik_warsztat`
+  ADD CONSTRAINT `mechanik_warsztat_ibfk_1` FOREIGN KEY (`id_warsztatu_fk`) REFERENCES `warsztat` (`id`),
+  ADD CONSTRAINT `mechanik_warsztat_ibfk_2` FOREIGN KEY (`mechanik_login_fk`) REFERENCES `uzytkownik` (`login`);
+
+--
+-- Ograniczenia dla tabeli `przeglad`
+--
+ALTER TABLE `przeglad`
+  ADD CONSTRAINT `przeglad_ibfk_1` FOREIGN KEY (`vin_fk`) REFERENCES `uzytkownik_samochod` (`Uzytkownik_login_fk`),
+  ADD CONSTRAINT `przeglad_ibfk_2` FOREIGN KEY (`id_warsztatu_fk`) REFERENCES `warsztat` (`id`);
+
+--
 -- Ograniczenia dla tabeli `samochod_czesc`
 --
 ALTER TABLE `samochod_czesc`
@@ -262,9 +337,9 @@ ALTER TABLE `samochod_czesc`
 -- Ograniczenia dla tabeli `uzytkownik_samochod`
 --
 ALTER TABLE `uzytkownik_samochod`
-  ADD CONSTRAINT `uzytkownik_samochod_ibfk_1` FOREIGN KEY (`Samochod_if_fk`) REFERENCES `samochod` (`samochod_id`),
-  ADD CONSTRAINT `uzytkownik_samochod_ibfk_2` FOREIGN KEY (`Uzytkownik_login_fk`) REFERENCES `uzytkownik` (`login`),
-  ADD CONSTRAINT `uzytkownik_samochod_ibfk_3` FOREIGN KEY (`warsztat_id_fk`) REFERENCES `warsztat` (`id`);
+  ADD CONSTRAINT `uzytkownik_samochod_ibfk_1` FOREIGN KEY (`warsztat_id_fk`) REFERENCES `warsztat` (`id`),
+  ADD CONSTRAINT `uzytkownik_samochod_ibfk_2` FOREIGN KEY (`Samochod_if_fk`) REFERENCES `samochod` (`samochod_id`),
+  ADD CONSTRAINT `uzytkownik_samochod_ibfk_3` FOREIGN KEY (`Uzytkownik_login_fk`) REFERENCES `uzytkownik` (`login`);
 
 --
 -- Ograniczenia dla tabeli `zamowienie`
