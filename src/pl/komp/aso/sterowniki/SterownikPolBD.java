@@ -405,6 +405,7 @@ public class SterownikPolBD {
 			stmt.setString(5, haslo);
 			stmt.setString(6, rodzaj_konta);
 			stmt.setString(7, login);
+			
 			System.out.println("1");
 			stmt.executeUpdate();
 			System.out.println("2");
