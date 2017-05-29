@@ -51,7 +51,6 @@ public class PrzegladServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		String blad = request.getParameter("blad");	
-		RequestDispatcher dispatcher;
 		String metoda = request.getParameter("metoda");
 		String adres =request.getParameter("adres");
 		String dzien=request.getParameter("dzien");
@@ -90,8 +89,9 @@ public class PrzegladServlet extends HttpServlet {
 				if(sw.zarezerwuj(vin,adres,dzien,godzina))
 					blad="Zarezerwowano termin.";
 				else 
-					blad="Blad rezerwacji";
+					blad="Błąd rezerwacji";
 			}
+			request.setAttribute("blad", blad);
 			request.getRequestDispatcher("PrzegladServlet?metoda=zaladujPrzeglad").forward(request, response);
 		}
 		else if(metoda.equals("zmiana")) {
