@@ -40,12 +40,6 @@ public class SterownikAdmina {
 				email))
 			return 17;
 
-		// email juz istnieje(chyba ze nalezy do tej osoby)
-		if (spbd.czyIstniejeEmail(email)) {
-			if (!spbd.czyIstniejeEmailEdycja(email, login))
-				return 15;
-		}
-
 		// inne znaki niz cyfry w numerze
 		if (!sr.sprawdzZnaki(numer_telefonu, liczby))
 			return 3;
@@ -54,11 +48,6 @@ public class SterownikAdmina {
 		if (numer_telefonu.length() != 9)
 			return 11;
 
-		// nr telefonu juz istnieje(chyba ze nalezy do tej osoby)
-		if (spbd.czyIstniejeNrTelefonu(numer_telefonu)) {
-			if (!spbd.czyIstniejeNrTelefonuEdycja(numer_telefonu, login))
-				return 16;
-		}
 		// za krotkie haslo
 		if (!sr.minDlugosc(noweHaslo, 8))
 			return 9;
@@ -81,23 +70,9 @@ public class SterownikAdmina {
 
 	public boolean zapiszEdycjeInformacji(String imie, String nazwisko, String email, String numer_telefonu, String login,
 			String haslo, String rodzaj_konta) {
-		if (spbd.edytujUstawienia(imie, nazwisko, email, numer_telefonu, login)) {
-			uzytkownik.setEmail(email);
-			uzytkownik.setImie(imie);
-			uzytkownik.setNazwisko(nazwisko);
-			uzytkownik.setNrTelefonu(Integer.parseInt(numer_telefonu));
-			uzytkownik.setHaslo(haslo);
+		if (spbd.zapiszEdycjeInformacji(imie, nazwisko, email, numer_telefonu, login, haslo, rodzaj_konta)) 
 			return true;
-		}
+		
 		return false;
 	}
-
-	public boolean zapiszEdycjeHasla(Uzytkownik u, String haslo) {
-		if (spbd.edytujHaslo(u.getLogin(), haslo)) {
-			u.setHaslo(haslo);
-			return true;
-		}
-		return false;
-	}
-
 }

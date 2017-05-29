@@ -363,6 +363,7 @@ public class SterownikPolBD {
 	// zmiana danych uzytkownika
 	public boolean edytujUstawienia(String imie, String nazwisko, String email, String numer_telefonu,
 			String login) {
+		
 		boolean odp = true;
 		PreparedStatement stmt = null;
 		try {
@@ -387,6 +388,39 @@ public class SterownikPolBD {
 		return odp;
 	}
 
+	// zmiana danych uzytkownika, ADMIN
+	public boolean zapiszEdycjeInformacji(String imie, String nazwisko, String email, String numer_telefonu,
+			String login, String haslo, String rodzaj_konta) {
+		
+		boolean odp = true;
+		PreparedStatement stmt = null;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement(
+					"UPDATE `uzytkownik` SET imie= ?, nazwisko=?, email=?, numer_telefonu=?,  haslo=?, rodzaj_konta=? WHERE login = ?");	
+			stmt.setString(1, imie);
+			stmt.setString(2, nazwisko);
+			stmt.setString(3, email);
+			stmt.setString(4, numer_telefonu);
+			stmt.setString(5, haslo);
+			stmt.setString(6, rodzaj_konta);
+			stmt.setString(7, login);
+			System.out.println("1");
+			stmt.executeUpdate();
+			System.out.println("2");
+		} catch (SQLException e) {
+			odp = false;
+			System.out.println("TU JEST BLAD");
+			return false;
+
+		} finally {
+			System.out.println("3");
+			close(stmt);
+		}
+		return odp;
+	}
+
+	
 	public boolean dodajAuto(String model, String rocznik, String typ, String silnik, String login, String vin) {
 		boolean odp = true;
 		PreparedStatement stmt = null;

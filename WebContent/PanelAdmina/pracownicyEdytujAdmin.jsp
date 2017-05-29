@@ -21,7 +21,7 @@ SELECT * FROM `uzytkownik` where email = '<%=emailUzytkownika%>';
 		<c:forEach var="uzytkownik" items="${result.rows}">
 			<h1 class="page-header">Edytuj pracownika</h1>
 
-			<form action="/ISI_2017_ASO/AdminServletPath" method="post">
+			<form action="/ISI_2017_ASO/AdminEdycjaInformacjiPath" method="post">
 
 				<div class="main-login main-center">
 					<div class="form-group">
@@ -113,7 +113,7 @@ SELECT * FROM `uzytkownik` where email = '<%=emailUzytkownika%>';
 							<div class="input-group">
 								<span class="input-group-addon"><i
 									class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
-									type="password" class="form-control" name="haslo" id="haslo"
+									type="text" class="form-control" name="haslo" id="haslo"
 									value="<c:out value="${uzytkownik.haslo}" />"
 									data-toggle="popover"
 									data-content="Hasło musi mieć długość od 8 do 18 znaków oraz musi zawierać conajmniej 1 małą literę, 1 wielką literę oraz cyfrę." />
@@ -129,8 +129,8 @@ SELECT * FROM `uzytkownik` where email = '<%=emailUzytkownika%>';
 							<div class="input-group">
 								<span class="input-group-addon"><i
 									class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
-									type="password" class="form-control" name="haslo2" id="haslo2"
-									placeholder="Ponownie wpisz hasło pracownika."
+									type="text" class="form-control" name="haslo2" id="haslo2"
+									value="<c:out value="${uzytkownik.haslo}" />"
 									data-toggle="popover"
 									data-content="Podane hasła muszą być takie same." /> <span
 									class="glyphicon form-control-feedback"></span>
@@ -162,7 +162,7 @@ SELECT * FROM `uzytkownik` where email = '<%=emailUzytkownika%>';
 								<span class="input-group-addon"><i class="fa fa-phone"
 									aria-hidden="true"></i></span> <input type="text" class="form-control"
 									name="numer_telefonu" id="numer_telefonu"
-										value="<c:out value="${uzytkownik.numer_telefonu}" />"
+									value="<c:out value="${uzytkownik.numer_telefonu}" />"
 									data-toggle="popover"
 									data-content="Numer telefonu musi składać się z 9 cyfr." /> <span
 									class="glyphicon form-control-feedback"></span>
@@ -182,6 +182,19 @@ SELECT * FROM `uzytkownik` where email = '<%=emailUzytkownika%>';
 
 
 				</div>
+
+				<%
+					String blad = (String) request.getAttribute("blad");
+				%>
+				<%
+					if (blad != null && !blad.equals("")) {
+				%>
+				<div class="alert alert-danger">
+					<%=blad%>
+				</div>
+				<%
+					}
+				%>
 			</form>
 		</c:forEach>
 	</div>
