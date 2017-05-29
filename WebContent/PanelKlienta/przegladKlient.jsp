@@ -15,7 +15,24 @@
 					<h2 class="title" >Zarezerwuj termin przeglądu:</h2>
 				</div>
 			</div>
-
+			<script type="text/javascript">
+			$( document ).ready(function() {
+				$.ajax({
+                    type: "POST",
+                    url: "PrzegladServlet?metoda=zmiana",
+                    data: {adres: $adres.val(), dzien: $dzien.val() },
+                    success: function(ret){
+                        $("#godzina").html(ret);  
+                    },
+                    /*Działania wykonywane w przypadku błędu*/
+                    error: function(blad) {
+                       // alert( ret);
+                        console.log(blad); /*Funkcja wyświetlająca informacje 
+                        o ewentualnym błędzie w konsoli przeglądarki*/
+                    }
+                });
+    
+});</script>
 			<div class="main-login main-center">
 				<form class="form-horizontal" method="post" action="PrzegladServlet?metoda=zarezerwuj">
 					

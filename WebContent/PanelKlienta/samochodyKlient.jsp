@@ -5,6 +5,52 @@
 <jsp:include page="headerKlient.jsp" />
 <jsp:include page="walidacjaDodawaniaSamochodow.jsp" />
 
+<script type="text/javascript">
+			$( document ).ready(function() {
+				$.ajax({
+                    type: "POST",
+                    url: "Samochody2Servlet?method=methodA",
+                    data: {model: $model.val() },
+                    success: function(ret){
+                        $("#rocznik").html(ret); 
+                        $.ajax({
+                            type: "POST",
+                            url: "Samochody2Servlet?method=methodB",
+                            data: {model: $model.val(), rocznik: $rocznik.val() },
+                            success: function(ret){
+                                $("#typ").html(ret);   
+                                $.ajax({
+                                    type: "POST",
+                                    url: "Samochody2Servlet?method=methodC",
+                                    data: {model: $model.val(), rocznik: $rocznik.val(), typ: $typ.val() },
+                                    success: function(ret){
+                                        $("#silnik").html(ret);   
+                                    },
+                                    /*Działania wykonywane w przypadku błędu*/
+                                    error: function(blad) {
+                                       // alert( ret);
+                                        console.log(blad); /*Funkcja wyświetlająca informacje 
+                                        o ewentualnym błędzie w konsoli przeglądarki*/
+                                    }
+                                });
+                            },
+                            /*Działania wykonywane w przypadku błędu*/
+                            error: function(blad) {
+                               // alert( ret);
+                                console.log(blad); /*Funkcja wyświetlająca informacje 
+                                o ewentualnym błędzie w konsoli przeglądarki*/
+                            }
+                        });
+                    },
+                    /*Działania wykonywane w przypadku błędu*/
+                    error: function(blad) {
+                       // alert( "Wystąpił błąd");
+                        console.log(blad); /*Funkcja wyświetlająca informacje 
+                        o ewentualnym błędzie w konsoli przeglądarki*/
+                    }
+                });
+    
+});</script>
 <div class="container marketing">
 
 	
