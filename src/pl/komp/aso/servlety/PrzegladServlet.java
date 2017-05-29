@@ -52,7 +52,7 @@ public class PrzegladServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String blad = request.getParameter("blad");	
 		RequestDispatcher dispatcher;
-		String metoda = request.getParameter("method");
+		String metoda = request.getParameter("metoda");
 		String adres =request.getParameter("adres");
 		String dzien=request.getParameter("dzien");
 		String godzina=request.getParameter("godzina");

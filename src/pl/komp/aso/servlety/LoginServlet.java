@@ -70,18 +70,21 @@ public class LoginServlet extends HttpServlet {
 		}
 		//jest to zwykly uzytkownik
 		else if(wynik==5) {
-			System.out.println(",...");
 			Uzytkownik uzytkownik=sterownikLogowania.getUzytkownik(login);
 			request.getSession().setAttribute("uzytkownik", uzytkownik);
 			response.sendRedirect("PanelKlienta/indexKlient.jsp");
 		}
 		//jest to mechanik
 		else if(wynik==6) {
-			
+			Uzytkownik uzytkownik=sterownikLogowania.getUzytkownik(login);
+			request.getSession().setAttribute("uzytkownik", uzytkownik);
+			response.sendRedirect("PanelMechanika/mechanik.jsp");
 		}
 		//jest to ksiegowy
 		else if(wynik==7) {
-			
+			Uzytkownik uzytkownik=sterownikLogowania.getUzytkownik(login);
+			request.getSession().setAttribute("uzytkownik", uzytkownik);
+			response.sendRedirect("PanelKsiegowego/ksiegowy.jsp");
 		}
 		//jest to administrator
 		else if(wynik==8) {
