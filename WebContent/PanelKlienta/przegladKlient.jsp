@@ -40,61 +40,52 @@
 				
 					</div>
 					
-					
-					
-					<script type="text/javascript">
-					        $adres = $('#adres');
-					        $dzien = $('#dzien');
-					        $godzina = $('#godzina');
-					        
-					        $(adres).on('change',  function() {
-					                $.ajax({
-					                    type: "POST",
-					                    url: "PrzegladServlet?metoda=zmianaWarsztatu",
-					                    data: {adres: $adres.val() },
-					                    success: function(ret){
-					                        $("#data").html(ret); 
-					                        $.ajax({
-					                            type: "POST",
-					                            url: "PrzegladServlet?metoda=zmianaDnia",
-					                            data: {adres: $adres.val(), dzien: $dzien.val() },
-					                            success: function(ret){
-					                                $("#godzina").html(ret);   
-					                            },
-					                            /*Działania wykonywane w przypadku błędu*/
-					                            error: function(blad) {
-					                               // alert( ret);
-					                                console.log(blad); /*Funkcja wyświetlająca informacje 
-					                                o ewentualnym błędzie w konsoli przeglądarki*/
-					                            }
-					                        });
-					                    },
-					                    /*Działania wykonywane w przypadku błędu*/
-					                    error: function(blad) {
-					                       // alert( "Wystąpił błąd");
-					                        console.log(blad); /*Funkcja wyświetlająca informacje 
-					                        o ewentualnym błędzie w konsoli przeglądarki*/
-					                    }
-					                });
-					                
-					              
-					            }
-					        );
-					    </script>
-					    
-					   <div class="form-group">
+					<div class="form-group">
 						<label for="name" class="cols-sm-2 control-label">Dzień</label>
-						<select name="dzien" id="dzien" class="form-control">
-						</select>
+						
+					<select name="dzien" id="dzien" class="form-control">
+					    <c:forEach items="${dni}" var="dzien">
+					        <option value="${dzien}"><c:out value="${dzien} " /></option>
+					    </c:forEach>
+					</select>
+				
 					</div>
+					
 					<script type="text/javascript">
 					        $dzien = $('#dzien');
 					        $godzina = $('#godzina');
+					        $adres= $('#adres');
 					        
 					        $(dzien).on('change', function() {
 					                $.ajax({
 					                    type: "POST",
-					                    url: "PrzegladServlet?metoda=zmianaDnia",
+					                    url: "PrzegladServlet?metoda=zmiana",
+					                    data: {adres: $adres.val(), dzien: $dzien.val() },
+					                    success: function(ret){
+					                        $("#godzina").html(ret);  
+					                    },
+					                    /*Działania wykonywane w przypadku błędu*/
+					                    error: function(blad) {
+					                       // alert( ret);
+					                        console.log(blad); /*Funkcja wyświetlająca informacje 
+					                        o ewentualnym błędzie w konsoli przeglądarki*/
+					                    }
+					                });
+					               
+					               
+					            }
+					        );
+					    </script>
+					    
+					    <script type="text/javascript">
+					    	$adres= $('#adres');
+					        $dzien = $('#dzien');
+					        $godzina = $('#godzina');
+					        
+					        $(adres).on('change', function() {
+					                $.ajax({
+					                    type: "POST",
+					                    url: "PrzegladServlet?metoda=zmiana",
 					                    data: {adres: $adres.val(), dzien: $dzien.val() },
 					                    success: function(ret){
 					                        $("#godzina").html(ret);  

@@ -10,10 +10,18 @@ public class Warsztat {
 	private int iloscStanowisk;
 	private String godzinaO;
 	private String godzinaZ;
+	private int id;
 	private ArrayList<Samochod>samochody=new ArrayList<Samochod>();
 	private ArrayList<Mechanik> mechanicy=new ArrayList<Mechanik>();
 	private ArrayList<Zamowienie>zamowienia=new ArrayList<Zamowienie>();
 	private ArrayList<Czesc>czesci;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	
 	public String getAdres() {
 		return adres;

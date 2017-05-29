@@ -649,7 +649,7 @@ public class SterownikPolBD {
 		PreparedStatement stmt = null;
 		try {
 			// przygotowanie zapytania
-			stmt = con.prepareStatement("Select adres,miasto,numer_telefonu,email,godzina_otwarcia,godzina_zamkniecia,ilosc_stanowisk from warsztat");
+			stmt = con.prepareStatement("Select id,adres,miasto,numer_telefonu,email,godzina_otwarcia,godzina_zamkniecia,ilosc_stanowisk from warsztat");
 			rs = stmt.executeQuery();
 			while(rs.next()) {	
 				Warsztat w = new Warsztat();
@@ -660,6 +660,7 @@ public class SterownikPolBD {
 				w.setGodzinaO(rs.getString("godzina_otwarcia"));
 				w.setGodzinaZ(rs.getString("godzina_zamkniecia"));
 				w.setIloscStanowisk(rs.getInt("ilosc_stanowisk"));
+				w.setId(rs.getInt("id"));
 				warsztaty.add(w);			
 			}
 			
@@ -674,22 +675,56 @@ public class SterownikPolBD {
 		return warsztaty;
 	}
 	
-	public boolean czyZajetyDzien(String adres) {
-		boolean odp=false;
+	public Warsztat pobierzWarsztat(String adres){
+		
+		ResultSet rs = null;
+		
+		PreparedStatement stmt = null;
+		Warsztat w = new Warsztat();
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement("Select id,adres,miasto,numer_telefonu,email,godzina_otwarcia,godzina_zamkniecia,ilosc_stanowisk from warsztat where adres=?");
+			stmt.setString(1, adres);
+			rs = stmt.executeQuery();
+			rs.next();
+				
+				w.setAdres(rs.getString("adres"));
+				w.setMiasto(rs.getString("miasto"));
+				w.setNrTelefonu(rs.getString("numer_telefonu"));
+				w.setEmail(rs.getString("email"));
+				w.setGodzinaO(rs.getString("godzina_otwarcia"));
+				w.setGodzinaZ(rs.getString("godzina_zamkniecia"));
+				w.setIloscStanowisk(rs.getInt("ilosc_stanowisk"));
+				w.setId(rs.getInt("id"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("brak");
+			return null;
+
+		} finally {
+			close(rs);
+			close(stmt);
+		}
+		return w;
+	}
+	
+	public int czyZajetaGodzina(int id,String dzien,String godzina) {
+		int odp=0;
 		ResultSet rs = null;
 		PreparedStatement stmt = null;
 		try {
 			// przygotowanie zapytania
-			//String samochod_id = znajdzSamochod(model, rocznik, typ, silnik);
-			stmt = con.prepareStatement(
-					"Select ");
-			stmt.setString(1, adres);
+		
+			stmt = con.prepareStatement("Select COUNT(*) as ile from przeglad where id_warsztatu_fk=? and data=? and godzina=? ");
+			stmt.setInt(1, id);
+			stmt.setString(2, dzien);
+			stmt.setString(3, godzina);
 			rs = stmt.executeQuery();
 			rs.next();
-			odp = true;
+			odp = rs.getInt("ile");
 		} catch (SQLException e) {
-			odp = false;
-			System.out.println("termin wolny");
+			e.printStackTrace();
+			odp = -1;
 			return odp;
 
 		} finally {
@@ -699,10 +734,30 @@ public class SterownikPolBD {
 		return odp;
 	}
 	
-	public boolean czyZajetaGodzina(String adres,String dzien) {
-		boolean odp=false;
+	public boolean zarezerwujPrzeglad(String vin, int id, String dzien, String godzina) {
+		boolean odp = true;
+		PreparedStatement stmt = null;
+		try {
+			// przygotowanie zapytania
+				stmt = con.prepareStatement(
+						"INSERT INTO przeglad(id_warsztatu_fk,vin_fk,data,godzina) VALUES (?,?,?,?)");
+				stmt.setInt(1,id);
+				stmt.setString(2, vin);
+				stmt.setString(3, dzien);
+				stmt.setString(4, godzina);
+				stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			odp = false;
+			System.out.println("Nie udalo sie zarezerwowac terminu");
+			return odp;
+
+		} finally {
+			close(stmt);
+		}
 		return odp;
 	}
+	
 	
 
 	// -----------------------------------------------------------------------------------------------------
@@ -738,4 +793,6 @@ public class SterownikPolBD {
 			e.printStackTrace();
 		}
 	}
+
+	
 }

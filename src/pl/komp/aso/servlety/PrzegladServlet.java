@@ -57,8 +57,9 @@ public class PrzegladServlet extends HttpServlet {
 		String dzien=request.getParameter("dzien");
 		String godzina=request.getParameter("godzina");
 		String vin=request.getParameter("samochod");
-		Uzytkownik u= (Uzytkownik) request.getSession().getAttribute("uzytkownik");
+		
 		if(metoda.equals("zaladujPrzeglad")) {
+			Uzytkownik u= (Uzytkownik) request.getSession().getAttribute("uzytkownik");
 			ArrayList<Warsztat> warsztaty = spbd.pobierzWarsztaty();
 			List<Samochod> samochody = u.getSamochody();
 			for(int i=0;i<samochody.size();i++) {
@@ -71,31 +72,40 @@ public class PrzegladServlet extends HttpServlet {
 			for(int i=0;i<warsztaty.size();i++) {
 				adresy.add(warsztaty.get(i).getAdres());
 			}
+			
+			ArrayList<String> dni = sw.sprawdzDni();
 			request.setAttribute("adresy", adresy);
 			request.setAttribute("samochody",samochody);
+			request.setAttribute("dni", dni);
 			if(blad!=null)
 				request.setAttribute("blad", blad);
 			request.getRequestDispatcher("PanelKlienta/przegladKlient.jsp").forward(request, response);
 		}
 		else if(metoda.equals("zarezerwuj")) {
+			if(vin==null || adres==null || dzien==null || godzina==null) {
+				
+				blad="Żadne pole nie może być puste.";
+			}
+			else {
+				if(sw.zarezerwuj(vin,adres,dzien,godzina))
+					blad="Zarezerwowano termin.";
+				else 
+					blad="Blad rezerwacji";
+			}
 			request.getRequestDispatcher("PrzegladServlet?metoda=zaladujPrzeglad").forward(request, response);
 		}
-		else if(metoda.equals("zmianaDnia")) {
-			ArrayList<String> godziny =sw.sprawdzGodziny(adres,dzien);
+		else if(metoda.equals("zmiana")) {
+			ArrayList<String> godziny =sw.sprawdzGodziny(adres);
 			StringBuffer sb = new StringBuffer();
 			for (int i = 0; i < godziny.size(); i++) {
-				sb.append("<option value='" + godziny.get(i) + "'>" + godziny.get(i) + "</option>");
+				if(!sw.sprawdzGodzine(godziny.get(i),adres,dzien))
+					sb.append("<option value='" + godziny.get(i) + "'>" + godziny.get(i) + "</option>");
+				else
+					sb.append("<option disabled=\"true\" value='" + godziny.get(i) + "'><font color=\"red\"><s>" + godziny.get(i) + "</s></font></option>");
 			}
 			out.print(sb);
 		}
-		else if(metoda.equals("zmianaWarsztatu")){
-			ArrayList<String> dni =sw.sprawdzDni(adres);
-			StringBuffer sb = new StringBuffer();
-			for (int i = 0; i < dni.size(); i++) {
-				sb.append("<option value='" + dni.get(i) + "'>" + dni.get(i) + "</option>");
-			}
-			out.print(sb);
-		}
+		
 		out.close();
 	}
 
