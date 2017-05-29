@@ -6,7 +6,7 @@ public class Samochod {
 	private String typ;
 	private String silnik;
 	private String vin;
-	private boolean warsztat;
+	private boolean warsztat=false;
 	
 	public void setWarsztat(boolean warsztat) {
 		this.warsztat=warsztat;
