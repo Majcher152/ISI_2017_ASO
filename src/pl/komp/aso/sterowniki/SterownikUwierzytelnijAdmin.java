@@ -8,6 +8,7 @@ public class SterownikUwierzytelnijAdmin {
 		SterownikRejestracji sr = new SterownikRejestracji();
 		String litery = "abcdefghijklmnopqrstuvxwyząęćźżńół";
 		String liczby = "1234567890";
+		String alfanumeryczne = litery + liczby;
 
 		// brak imienia
 		if (imie == null || imie.equals("") || imie.isEmpty())
@@ -42,7 +43,10 @@ public class SterownikUwierzytelnijAdmin {
 		// bledna ilosc cyfr w numerze telefonu
 		if (numer_telefonu.length() != 9)
 			return 11;
-
+		
+		// bledne znaki w loginie
+		if (!sr.sprawdzZnaki(login, alfanumeryczne))
+			return 4;
 		// wszystko poprawne
 
 		return 0;

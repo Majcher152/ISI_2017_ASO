@@ -42,10 +42,10 @@ public class SterownikKlienta {
 			return 17;
 
 		// email juz istnieje(chyba ze nalezy do tej osoby)
-		if (spbd.czyIstniejeEmail(email)) {
-			if (!spbd.czyIstniejeEmailEdycja(email, login))
-				return 15;
-		}
+	//	if (spbd.czyIstniejeEmail(email)) {
+	//		if (!spbd.czyIstniejeEmailEdycja(email, login))
+	//			return 15;
+	//	}
 
 		// inne znaki niz cyfry w numerze
 		if (!sr.sprawdzZnaki(numer_telefonu, liczby))
@@ -56,11 +56,10 @@ public class SterownikKlienta {
 			return 11;
 
 		// nr telefonu juz istnieje(chyba ze nalezy do tej osoby)
-		if (spbd.czyIstniejeNrTelefonu(numer_telefonu)) {
-			if (!spbd.czyIstniejeNrTelefonuEdycja(numer_telefonu, login))
-				return 16;
-		}
-
+	//	if (spbd.czyIstniejeNrTelefonu(numer_telefonu)) {
+	//		if (!spbd.czyIstniejeNrTelefonuEdycja(numer_telefonu, login))
+	//			return 16;
+	//	}
 		// wszystko poprawne
 
 		return 0;
