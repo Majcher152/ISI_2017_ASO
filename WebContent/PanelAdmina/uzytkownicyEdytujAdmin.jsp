@@ -149,20 +149,25 @@ SELECT * FROM `uzytkownik` where email = '<%=emailUzytkownika%>';
 
 				</div>
 
-				<%
-					String blad = (String) request.getAttribute("blad");
-				%>
-				<%
-					if (blad != null && !blad.equals("")) {
-				%>
-				<div class="alert alert-danger">
-					<%=blad%>
-				</div>
-				<%
-					}
-				%>
+
 			</form>
 		</c:forEach>
+
+		<div
+			class="form-group-last col-sm-6 col-sm-offset-4 col-md-8 col-md-offset-2">
+			<%
+				String blad = (String) request.getAttribute("blad");
+			%>
+			<%
+				if (blad != null && !blad.equals("")) {
+			%>
+			<div class="alert alert-danger">
+				<%=blad%>
+			</div>
+			<%
+				}
+			%>
+		</div>
 	</div>
 </div>
 </div>

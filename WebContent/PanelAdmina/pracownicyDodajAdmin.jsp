@@ -12,7 +12,7 @@
 		<h1 class="page-header">Dodaj pracownika</h1>
 
 		<form action="/ISI_2017_ASO/AdminServletPath" method="post">
-		
+
 			<div class="main-login main-center">
 				<div class="form-group">
 					<label for="name" class="cols-sm-2 control-label">Imię
@@ -28,7 +28,7 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="form-group">
 					<label for="name" class="cols-sm-2 control-label">Nazwisko
 						pracownika:</label>
@@ -50,8 +50,8 @@
 					<div class="cols-sm-10">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-users fa"
-								aria-hidden="true"></i></span> <select name="rodzaj_konta" id="rodzaj_konta"
-								class="form-control" data-toggle="popover"
+								aria-hidden="true"></i></span> <select name="rodzaj_konta"
+								id="rodzaj_konta" class="form-control" data-toggle="popover"
 								data-content="Wybierz jedną z opcji.">
 								<option>Wybierz jedną z opcji.</option>
 								<option>Mechanik</option>
@@ -150,8 +150,25 @@
 
 
 			</div>
+
 		</form>
+		<div class="form-group-last col-sm-6 col-sm-offset-4 col-md-8 col-md-offset-2">
+			<%
+				String blad = (String) request.getAttribute("blad");
+			%>
+			<%
+				if (blad != null && !blad.equals("")) {
+			%>
+			<div class="alert alert-danger">
+				<%=blad%>
+			</div>
+			<%
+				}
+			%>
+		</div>
 	</div>
+
+
 </div>
 </div>
 

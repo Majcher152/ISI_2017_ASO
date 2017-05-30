@@ -12,7 +12,7 @@
 		<h1 class="page-header">Dodaj użytkownika</h1>
 
 		<form action="/ISI_2017_ASO/AdminServletPath" method="post">
-		
+
 			<div class="main-login main-center">
 				<div class="form-group">
 					<label for="name" class="cols-sm-2 control-label">Imię
@@ -42,7 +42,7 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="form-group">
 					<label for="username" class="cols-sm-2 control-label">Login
 						użytkownika:</label>
@@ -132,6 +132,23 @@
 
 			</div>
 		</form>
+
+	</div>
+
+	<div
+		class="form-group-last col-sm-6 col-sm-offset-4 col-md-8 col-md-offset-2">
+		<%
+			String blad = (String) request.getAttribute("blad");
+		%>
+		<%
+			if (blad != null && !blad.equals("")) {
+		%>
+		<div class="alert alert-danger">
+			<%=blad%>
+		</div>
+		<%
+			}
+		%>
 	</div>
 </div>
 </div>
