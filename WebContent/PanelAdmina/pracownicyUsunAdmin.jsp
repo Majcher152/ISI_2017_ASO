@@ -25,13 +25,15 @@ SELECT * FROM `uzytkownik` where email = '<%=emailUzytkownika%>';
 
 				<div class="main-login main-center">
 
-					<div class="usuwanie">
-					</div>
-					
+					<h3>
+						Czy na pewno chcesz usunąć pracownika
+						<b><c:out value="${uzytkownik.imie}  ${uzytkownik.nazwisko}" /></b>?
+					</h3>
+
 					<br>
 					<div class="form-group-last">
 						<button type="submit" id="btn_rej"
-							class="btn_rej btn-primary btn-sm col-sm-2  col-md-1 ">Zapisz</button>
+							class="btn_rej btn-danger btn-sm col-sm-2  col-md-1 ">Usuń</button>
 						<button type="button" id="powrot"
 							class="button23 col-sm-2 col-sm-offset-8 col-md-1 col-md-offset-10">
 							<a href="/ISI_2017_ASO/PanelAdmina/pracownicyAdmin.jsp">Powrót</a>
@@ -43,22 +45,8 @@ SELECT * FROM `uzytkownik` where email = '<%=emailUzytkownika%>';
 
 			</form>
 		</c:forEach>
-		<div
-			class="form-group-last col-sm-6 col-sm-offset-4 col-md-8 col-md-offset-2">
-			<%
-				String blad = (String) request.getAttribute("blad");
-			%>
-			<%
-				if (blad != null && !blad.equals("")) {
-			%>
-			<div class="alert alert-danger">
-				<%=blad%>
-			</div>
-			<%
-				}
-			%>
-		</div>
 	</div>
+</div>
 </div>
 </div>
 
