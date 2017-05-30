@@ -66,10 +66,6 @@ SELECT * FROM `uzytkownik` where email = '<%=emailUzytkownika%>';
 			</div>
 
 			<div class="form-group-last">
-				<!--  <button type="button" id="buttonEdytuj"
-						class="btn_rej btn-primary btn-sm col-sm-2  col-md-1 ">
-						<a href="/ISI_2017_ASO/PanelAdmina/pracownicyEdytujAdmin.jsp">Edytuj</a></button> -->
-
 				<form method="post"
 					action="/ISI_2017_ASO/PanelAdmina/pracownicyEdytujAdmin.jsp"
 					class="inline">

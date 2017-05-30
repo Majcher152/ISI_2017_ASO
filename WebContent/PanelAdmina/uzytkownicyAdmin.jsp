@@ -43,8 +43,13 @@ SELECT * FROM `uzytkownik` where rodzaj_konta = 'Uzytkownik';
 									<button type="submit" name="submit_param" value="submit_value"
 										class="link-button">Wyświetl</button>
 								</form></td>
-							<td><a
-								href="/ISI_2017_ASO/PanelAdmina/uzytkownicyEdytujAdmin.jsp">Edytuj</a></td>
+							<td><form method="post"
+									action="/ISI_2017_ASO/PanelAdmina/uzytkownicyEdytujAdmin.jsp"
+									class="inline">
+									<input type="hidden" name="email" value="${uzytkownik.email} ">
+									<button type="submit" name="submit_param" value="submit_value"
+										class="link-button">Edytuj</button>
+								</form></td>
 							<td><a
 								href=/ISI_2017_ASO/PanelAdmina/uzytkownicyUsunAdmin.jsp">Usuń</a></td>
 						</tr>

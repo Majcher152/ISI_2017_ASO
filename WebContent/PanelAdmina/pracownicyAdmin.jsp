@@ -46,8 +46,6 @@ SELECT * FROM `uzytkownik` where rodzaj_konta != 'Uzytkownik';
 									<button type="submit" name="submit_param" value="submit_value"
 										class="link-button">Wyświetl</button>
 								</form></td>
-							<!-- <td><a
-								href="/ISI_2017_ASO/PanelAdmina/pracownicyWyswietlAdmin.jsp">Wyświetl</a></td> -->
 							<td><form method="post"
 									action="/ISI_2017_ASO/PanelAdmina/pracownicyEdytujAdmin.jsp"
 									class="inline">
@@ -55,8 +53,6 @@ SELECT * FROM `uzytkownik` where rodzaj_konta != 'Uzytkownik';
 									<button type="submit" name="submit_param" value="submit_value"
 										class="link-button">Edytuj</button>
 								</form></td>
-							<!-- <td><a
-								href="/ISI_2017_ASO/PanelAdmina/pracownicyEdytujAdmin.jsp">Edytuj</a></td> -->
 							<td><a
 								href="/ISI_2017_ASO/PanelAdmina/pracownicyUsunAdmin.jsp">Usuń</a></td>
 						</tr>
