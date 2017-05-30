@@ -235,6 +235,5 @@ public class AdminServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 			break;
 		}
-		System.out.println(blad + " " + wyswietl );
 	}
 }
