@@ -13,7 +13,7 @@ SELECT * FROM `uzytkownik` where email = '<%=emailUzytkownika%>';
 
 
 <jsp:include page="headerAdmin.jsp" />
-<jsp:include page="../walidacjaRejestracji.jsp" />
+<jsp:include page="walidacjaEdycji.jsp" />
 
 
 <div class="container marketing">
