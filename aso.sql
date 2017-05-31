@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 30 Maj 2017, 06:00
+-- Czas generowania: 01 Cze 2017, 01:42
 -- Wersja serwera: 10.1.21-MariaDB
 -- Wersja PHP: 5.6.30
 
@@ -73,6 +73,13 @@ CREATE TABLE `przeglad` (
   `data` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `godzina` varchar(5) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
+
+--
+-- Zrzut danych tabeli `przeglad`
+--
+
+INSERT INTO `przeglad` (`id_przegladu`, `id_warsztatu_fk`, `vin_fk`, `data`, `godzina`) VALUES
+(1, 1, '12312312312312314', '2017/05/30', '10:00');
 
 -- --------------------------------------------------------
 
@@ -231,7 +238,7 @@ INSERT INTO `uzytkownik` (`login`, `haslo`, `imie`, `nazwisko`, `email`, `numer_
 ('buleczka', 'Oskaoska1', 'Szymon', 'Bułka', 'bulkibulki@wp.pl', 459965965, 'Uzytkownik'),
 ('ciastko', 'Oskaoska1', 'Faustyna', 'Przezwisko', 'faustyna.przezwisko@gmail.com', 412452412, 'Uzytkownik'),
 ('cium', 'Oskaoska1', 'Dorota', 'Szpiłyk', 'dorotaciumcium@op.pl', 452123659, 'Uzytkownik'),
-('dzik', 'Oskaoska1', 'Ernest', 'Bździk', 'wolololo@op.pl', 745745761, 'Uzytkownik'),
+('dzik', 'Oskaoska1', 'Ernest', 'Bździk', 'wolololo@op.pl', 745745761, 'uzytkownik'),
 ('eminem', 'Oskaoska1', 'Sławomir', 'Dudacz', 'imtherealslimshady@o2.pl', 652223656, 'Uzytkownik'),
 ('filemon', 'Oskaoska1', 'Filip', 'Dzięcioł', 'podrozniksnow@op.pl', 745523658, 'Księgowy'),
 ('grzesiu', 'Oskaoska1', 'Grzegorz', 'Komajda', 'grzech@o2.pl', 452123326, 'Mechanik'),
@@ -261,6 +268,13 @@ CREATE TABLE `uzytkownik_samochod` (
   `warsztat_id_fk` int(7) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
 
+--
+-- Zrzut danych tabeli `uzytkownik_samochod`
+--
+
+INSERT INTO `uzytkownik_samochod` (`Uzytkownik_login_fk`, `Samochod_if_fk`, `vin`, `warsztat_id_fk`) VALUES
+('dzik', 392041, '12312312312312314', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -277,6 +291,13 @@ CREATE TABLE `warsztat` (
   `godzina_otwarcia` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
   `godzina_zamkniecia` varchar(5) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Zrzut danych tabeli `warsztat`
+--
+
+INSERT INTO `warsztat` (`id`, `adres`, `miasto`, `numer_telefonu`, `email`, `ilosc_stanowisk`, `godzina_otwarcia`, `godzina_zamkniecia`) VALUES
+(1, 'Pszona 16/9', 'Kraków', 500100400, 'biuro@koska.pl', 1, '10:00', '18:00');
 
 -- --------------------------------------------------------
 
@@ -392,7 +413,7 @@ ALTER TABLE `formularz_naprawy`
 -- AUTO_INCREMENT dla tabeli `przeglad`
 --
 ALTER TABLE `przeglad`
-  MODIFY `id_przegladu` int(7) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_przegladu` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT dla tabeli `samochod`
 --
@@ -402,7 +423,7 @@ ALTER TABLE `samochod`
 -- AUTO_INCREMENT dla tabeli `warsztat`
 --
 ALTER TABLE `warsztat`
-  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT dla tabeli `zamowienie`
 --
@@ -437,8 +458,8 @@ ALTER TABLE `mechanik_warsztat`
 -- Ograniczenia dla tabeli `przeglad`
 --
 ALTER TABLE `przeglad`
-  ADD CONSTRAINT `przeglad_ibfk_1` FOREIGN KEY (`vin_fk`) REFERENCES `uzytkownik_samochod` (`Uzytkownik_login_fk`),
-  ADD CONSTRAINT `przeglad_ibfk_2` FOREIGN KEY (`id_warsztatu_fk`) REFERENCES `warsztat` (`id`);
+  ADD CONSTRAINT `przeglad_ibfk_2` FOREIGN KEY (`id_warsztatu_fk`) REFERENCES `warsztat` (`id`),
+  ADD CONSTRAINT `przeglad_ibfk_3` FOREIGN KEY (`vin_fk`) REFERENCES `uzytkownik_samochod` (`vin`);
 
 --
 -- Ograniczenia dla tabeli `samochod_czesc`
