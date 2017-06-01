@@ -21,16 +21,23 @@ SELECT * FROM `uzytkownik` where email = '<%=emailUzytkownika%>';
 		<c:forEach var="uzytkownik" items="${result.rows}">
 			<h1 class="page-header">Usun pracownika</h1>
 
-			<form action="/ISI_2017_ASO/AdminEdycjaInformacjiPath" method="post">
-
+			<form action="/ISI_2017_ASO/AdminUsuwaniePath" method="post">
 				<div class="main-login main-center">
 
 					<h3>
-						Czy na pewno chcesz usunąć pracownika
-						<b><c:out value="${uzytkownik.imie}  ${uzytkownik.nazwisko}" /></b>?
+						Czy na pewno chcesz usunąć pracownika <b><c:out
+								value="${uzytkownik.imie}  ${uzytkownik.nazwisko}" /></b>?
 					</h3>
 
-					<br>
+					<br> <input type="hidden" class="form-control" name="imie"
+						id="imie" value="<c:out value="${uzytkownik.imie}" />" /> <input
+						type="hidden" class="form-control" name="nazwisko" id="nazwisko"
+						value="<c:out value="${uzytkownik.nazwisko}" />" /> <input
+						type="hidden" class="form-control" name="email" id="email"
+						value="<c:out value="${uzytkownik.email}" />" /><input
+						type="hidden" class="form-control" name="rodzaj_konta" id="rodzaj_konta"
+						value="<c:out value="${uzytkownik.rodzaj_konta}" />" />
+						
 					<div class="form-group-last">
 						<button type="submit" id="btn_rej"
 							class="btn_rej btn-danger btn-sm col-sm-2  col-md-1 ">Usuń</button>

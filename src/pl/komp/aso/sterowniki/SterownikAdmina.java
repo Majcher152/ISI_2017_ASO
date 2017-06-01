@@ -37,5 +37,11 @@ public class SterownikAdmina extends SterownikUwierzytelnijAdmin implements Uwie
 
 		return false;
 	}
+	
+	public boolean usunUzytkownikaPracownika(String imie, String nazwisko, String email) {
+		if (spbd.usunUzytkownikaPracownika(imie, nazwisko, email))
+			return true;
+		return false;
+	}
 
 }

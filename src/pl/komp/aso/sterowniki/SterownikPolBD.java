@@ -391,7 +391,6 @@ public class SterownikPolBD {
 	// zmiana danych uzytkownika, ADMIN
 	public boolean zapiszEdycjeInformacji(String imie, String nazwisko, String email, String numer_telefonu,
 			String login, String haslo, String rodzaj_konta) {
-		System.out.println(imie + "  " + nazwisko + "  " + email + "  " + numer_telefonu + "  " + login + "  " + haslo + "  " + rodzaj_konta);
 		boolean odp = true;
 		PreparedStatement stmt = null;
 		try {
@@ -405,22 +404,40 @@ public class SterownikPolBD {
 			stmt.setString(5, numer_telefonu);
 			stmt.setString(6, rodzaj_konta);
 			stmt.setString(7, login);
-			
-			
 			stmt.executeUpdate();
-			System.out.println("2");
 		} catch (SQLException e) {
 			odp = false;
 			System.out.println("TU JEST BLAD");
 			return false;
-
 		} finally {
-			System.out.println("3");
 			close(stmt);
 		}
 		return odp;
 	}
 
+	
+	public boolean usunUzytkownikaPracownika(String imie, String nazwisko, String email) {
+		boolean odp = true;
+		PreparedStatement stmt = null;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement(
+					"DELETE FROM uzytkownik WHERE imie = ? AND nazwisko = ? AND email = ?");
+			stmt.setString(1, imie);
+			stmt.setString(2, nazwisko);
+			stmt.setString(3, email);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			odp = false;
+			System.out.println("TU JEST BLAD usunUzytkownikaPracownika");
+			return false;
+		} finally {
+			close(stmt);
+		}
+		return odp;
+	}
+
+	
 	
 	public boolean dodajAuto(String model, String rocznik, String typ, String silnik, String login, String vin) {
 		boolean odp = true;

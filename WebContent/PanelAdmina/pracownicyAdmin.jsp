@@ -28,7 +28,21 @@ SELECT * FROM `uzytkownik` where rodzaj_konta != 'Uzytkownik';
 
 	<div class="col-sm-10 col-sm-offset-2 col-md-11 col-md-offset-1 main">
 		<h1 class="page-header">Pracownicy</h1>
-
+		<div
+			class="form-group-last col-sm-6 col-sm-offset-4 col-md-8 col-md-offset-2">
+			<%
+				String blad = (String) request.getAttribute("blad");
+			%>
+			<%
+				if (blad != null && !blad.equals("")) {
+			%>
+			<div class="alert alert-danger">
+				<%=blad%>
+			</div>
+			<%
+				}
+			%>
+		</div>
 		<div class="row main">
 			<!--  request get parameter  -->
 
