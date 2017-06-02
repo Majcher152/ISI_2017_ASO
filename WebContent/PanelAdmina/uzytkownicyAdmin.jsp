@@ -26,7 +26,21 @@ SELECT * FROM `uzytkownik` where rodzaj_konta = 'Uzytkownik';
 
 	<div class="col-sm-10 col-sm-offset-2 col-md-11 col-md-offset-1 main">
 		<h1 class="page-header">Użytkownicy</h1>
-
+		<div
+			class="form-group-last col-sm-6 col-sm-offset-4 col-md-8 col-md-offset-2">
+			<%
+				String blad = (String) request.getAttribute("blad");
+			%>
+			<%
+				if (blad != null && !blad.equals("")) {
+			%>
+			<div class="alert alert-danger">
+				<%=blad%>
+			</div>
+			<%
+				}
+			%>
+		</div>
 		<div class="row main">
 
 			<div class="panel panel-default">
@@ -43,10 +57,20 @@ SELECT * FROM `uzytkownik` where rodzaj_konta = 'Uzytkownik';
 									<button type="submit" name="submit_param" value="submit_value"
 										class="link-button">Wyświetl</button>
 								</form></td>
-							<td><a
-								href="/ISI_2017_ASO/PanelAdmina/uzytkownicyEdytujAdmin.jsp">Edytuj</a></td>
-							<td><a
-								href=/ISI_2017_ASO/PanelAdmina/uzytkownicyUsunAdmin.jsp">Usuń</a></td>
+							<td><form method="post"
+									action="/ISI_2017_ASO/PanelAdmina/uzytkownicyEdytujAdmin.jsp"
+									class="inline">
+									<input type="hidden" name="email" value="${uzytkownik.email} ">
+									<button type="submit" name="submit_param" value="submit_value"
+										class="link-button">Edytuj</button>
+								</form></td>
+							<td><form method="post"
+									action="/ISI_2017_ASO/PanelAdmina/uzytkownicyUsunAdmin.jsp"
+									class="inline">
+									<input type="hidden" name="email" value="${uzytkownik.email} ">
+									<button type="submit" name="submit_param" value="submit_value"
+										class="link-button">Usuń</button>
+								</form></td>
 						</tr>
 					</c:forEach>
 				</table>

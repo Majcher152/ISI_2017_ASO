@@ -29,6 +29,7 @@
 				String message = (String) request.getAttribute("msg");
 				out.println(" " + message);
 				%>
+				<br> Odczekaj 5 sekund lub naciśnij przycisk poniżej.
 				<%
 					// Odswiezanie strony po 5 sekundach 
 					// i powrot do listy pracownikow

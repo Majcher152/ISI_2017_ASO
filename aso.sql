@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 29 Maj 2017, 20:58
+-- Czas generowania: 02 Cze 2017, 20:32
 -- Wersja serwera: 10.1.21-MariaDB
 -- Wersja PHP: 5.6.30
 
@@ -46,7 +46,8 @@ CREATE TABLE `formularz_naprawy` (
   `opis` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `koszt_naprawy` double(7,2) NOT NULL,
   `uzytkownik_login_fk` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `warsztat_id_fk` int(7) NOT NULL
+  `warsztat_id_fk` int(7) NOT NULL,
+  `vin_fk` varchar(17) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -299,7 +300,8 @@ ALTER TABLE `czesc`
 ALTER TABLE `formularz_naprawy`
   ADD PRIMARY KEY (`id`),
   ADD KEY `uzytkownik_login_fk` (`uzytkownik_login_fk`),
-  ADD KEY `warsztat_id_fk` (`warsztat_id_fk`);
+  ADD KEY `warsztat_id_fk` (`warsztat_id_fk`),
+  ADD KEY `vin_fk_idx` (`vin_fk`);
 
 --
 -- Indexes for table `mechanik_warsztat`
@@ -412,7 +414,8 @@ ALTER TABLE `czesc`
 --
 ALTER TABLE `formularz_naprawy`
   ADD CONSTRAINT `formularz_naprawy_ibfk_1` FOREIGN KEY (`uzytkownik_login_fk`) REFERENCES `uzytkownik` (`login`),
-  ADD CONSTRAINT `formularz_naprawy_ibfk_2` FOREIGN KEY (`warsztat_id_fk`) REFERENCES `warsztat` (`id`);
+  ADD CONSTRAINT `formularz_naprawy_ibfk_2` FOREIGN KEY (`warsztat_id_fk`) REFERENCES `warsztat` (`id`),
+  ADD CONSTRAINT `formularz_naprawy_ibfk_3` FOREIGN KEY (`vin_fk`) REFERENCES `uzytkownik_samochod` (`vin`);
 
 --
 -- Ograniczenia dla tabeli `mechanik_warsztat`
