@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 02 Cze 2017, 21:08
+-- Czas generowania: 02 Cze 2017, 21:38
 -- Wersja serwera: 10.1.21-MariaDB
 -- Wersja PHP: 5.6.30
 
@@ -47,7 +47,9 @@ CREATE TABLE `formularz_naprawy` (
   `koszt_naprawy` double(7,2) NOT NULL,
   `uzytkownik_login_fk` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `warsztat_id_fk` int(7) NOT NULL,
-  `vin_fk` varchar(17) COLLATE utf8_unicode_ci NOT NULL
+  `vin_fk` varchar(17) COLLATE utf8_unicode_ci NOT NULL,
+  `dataoddania` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `dataodebrania` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
