@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 01 Cze 2017, 01:42
+-- Czas generowania: 02 Cze 2017, 20:32
 -- Wersja serwera: 10.1.21-MariaDB
 -- Wersja PHP: 5.6.30
 
@@ -46,7 +46,8 @@ CREATE TABLE `formularz_naprawy` (
   `opis` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `koszt_naprawy` double(7,2) NOT NULL,
   `uzytkownik_login_fk` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `warsztat_id_fk` int(7) NOT NULL
+  `warsztat_id_fk` int(7) NOT NULL,
+  `vin_fk` varchar(17) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -73,13 +74,6 @@ CREATE TABLE `przeglad` (
   `data` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `godzina` varchar(5) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
-
---
--- Zrzut danych tabeli `przeglad`
---
-
-INSERT INTO `przeglad` (`id_przegladu`, `id_warsztatu_fk`, `vin_fk`, `data`, `godzina`) VALUES
-(1, 1, '12312312312312314', '2017/05/30', '10:00');
 
 -- --------------------------------------------------------
 
@@ -233,27 +227,15 @@ CREATE TABLE `uzytkownik` (
 --
 
 INSERT INTO `uzytkownik` (`login`, `haslo`, `imie`, `nazwisko`, `email`, `numer_telefonu`, `rodzaj_konta`) VALUES
-('aga234', 'Oskaoska1', 'Agnieszka', 'Kozłowska', 'teczowymis@wp.pl', 456563256, 'Uzytkownik'),
-('amil', 'Amilamil1', 'Kamil', 'Płaczek', 'amil@op.pl', 651234589, 'Mechanik'),
-('buleczka', 'Oskaoska1', 'Szymon', 'Bułka', 'bulkibulki@wp.pl', 459965965, 'Uzytkownik'),
-('ciastko', 'Oskaoska1', 'Faustyna', 'Przezwisko', 'faustyna.przezwisko@gmail.com', 412452412, 'Uzytkownik'),
-('cium', 'Oskaoska1', 'Dorota', 'Szpiłyk', 'dorotaciumcium@op.pl', 452123659, 'Uzytkownik'),
-('dzik', 'Oskaoska1', 'Ernest', 'Bździk', 'wolololo@op.pl', 745745761, 'uzytkownik'),
-('eminem', 'Oskaoska1', 'Sławomir', 'Dudacz', 'imtherealslimshady@o2.pl', 652223656, 'Uzytkownik'),
-('filemon', 'Oskaoska1', 'Filip', 'Dzięcioł', 'podrozniksnow@op.pl', 745523658, 'Księgowy'),
-('grzesiu', 'Oskaoska1', 'Grzegorz', 'Komajda', 'grzech@o2.pl', 452123326, 'Mechanik'),
-('janosik', 'Oskaoska1', 'Jan', 'Teatr', 'filmjanosik@o2.pl', 452632512, 'Uzytkownik'),
-('justus', 'Oskaoska1', 'Justyna', 'Strojek', 'jstroj@op.pl', 412412412, 'Uzytkownik'),
-('kasia', 'Oskaoska1', 'Katarzyna', 'Klimek', 'kasiaftw@gmail.com', 789562364, 'Administrator'),
-('krzysiu', 'Oskaoska1', 'Krzysztof', 'Domagała', 'kdd@gmail.com', 123569965, 'Mechanik'),
-('marloeve', 'Oskaoska1', 'Jakub', 'Bożek', 'maryn@gmail.com', 565523526, 'Uzytkownik'),
-('miszcz', 'Oskaoska1', 'Przemysław', 'Gałka', 'miszczuplis@op.pl', 564236879, 'Uzytkownik'),
-('niechcesz', 'Oskaoska1', 'Jan', 'Stańko', 'jedenzerojeden@o2.pl', 456456654, 'Uzytkownik'),
-('oska', 'Oskaoska1', 'Piotr', 'Osiewicz', 'piotr.osie@op.pl', 985645236, 'Księgowy'),
-('stass', 'Oskaoska1', 'Marcin', 'Stahoń', 'stssts@op.pl', 745745745, 'Uzytkownik'),
-('uechy', 'Oskaoska1', 'Eustachy', 'Warzywo', 'euchy@op.pl', 745745767, 'Uzytkownik'),
-('ukasz', 'Oskaoska1', 'Łukasz', 'Majcher', 'ukasz.maj@wp.pl', 654452236, 'Księgowy'),
-('zgadnijfilm', 'Oskaoska1', 'Grzegorz', 'Brzęczyszczykiewicz', 'lalal@gmail.com', 965965854, 'Uzytkownik');
+('aaa', 'aaa', 'aaa', 'aaa', 'aaa', 123, 'admin'),
+('bbb', 'bbb', 'bbb', 'bbb', 'bbb@bbb.pl', 456789123, 'uzytkownik'),
+('ccc', 'ccc', 'ccc', 'ccc', 'ccc@ccc.pl', 789456143, 'ksiegowy'),
+('ddd', 'ddd', 'ddd', 'ddd', 'ddd@ddd.pl', 987456321, 'mechanik'),
+('kasia', 'kasiakasia', 'kasia', 'klimek', 'katha.ftw@gmail.com', 883431798, 'uzytkownik'),
+('kasiakasia2', 'Kasiakasia1!', 'Kasia', 'Klimek', 'op2@op.pl', 789789788, 'admin'),
+('ookaa', 'Ooskaaooskaa1', 'ŁukaszŁukaszNiePoruchasz', 'MożeJednakPoruchaszĘĄŻŹĆ', 'ooskaa@ooskaa.pl', 789456123, 'uzytkownik'),
+('ooskaa', 'Asdfghjkl1', 'fvrleknbouibwiln', 'kupkowski', 'przyklad@przyplad.pl', 999999999, 'uzytkownik'),
+('oskaoska', 'Oskaoska1!', 'Piotr', 'Osiewicz', 'opop2@op.pl', 789789787, 'uzytkownik');
 
 -- --------------------------------------------------------
 
@@ -267,13 +249,6 @@ CREATE TABLE `uzytkownik_samochod` (
   `vin` varchar(17) COLLATE utf8_unicode_ci NOT NULL,
   `warsztat_id_fk` int(7) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
-
---
--- Zrzut danych tabeli `uzytkownik_samochod`
---
-
-INSERT INTO `uzytkownik_samochod` (`Uzytkownik_login_fk`, `Samochod_if_fk`, `vin`, `warsztat_id_fk`) VALUES
-('dzik', 392041, '12312312312312314', NULL);
 
 -- --------------------------------------------------------
 
@@ -291,13 +266,6 @@ CREATE TABLE `warsztat` (
   `godzina_otwarcia` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
   `godzina_zamkniecia` varchar(5) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Zrzut danych tabeli `warsztat`
---
-
-INSERT INTO `warsztat` (`id`, `adres`, `miasto`, `numer_telefonu`, `email`, `ilosc_stanowisk`, `godzina_otwarcia`, `godzina_zamkniecia`) VALUES
-(1, 'Pszona 16/9', 'Kraków', 500100400, 'biuro@koska.pl', 1, '10:00', '18:00');
 
 -- --------------------------------------------------------
 
@@ -332,7 +300,8 @@ ALTER TABLE `czesc`
 ALTER TABLE `formularz_naprawy`
   ADD PRIMARY KEY (`id`),
   ADD KEY `uzytkownik_login_fk` (`uzytkownik_login_fk`),
-  ADD KEY `warsztat_id_fk` (`warsztat_id_fk`);
+  ADD KEY `warsztat_id_fk` (`warsztat_id_fk`),
+  ADD KEY `vin_fk_idx` (`vin_fk`);
 
 --
 -- Indexes for table `mechanik_warsztat`
@@ -413,7 +382,7 @@ ALTER TABLE `formularz_naprawy`
 -- AUTO_INCREMENT dla tabeli `przeglad`
 --
 ALTER TABLE `przeglad`
-  MODIFY `id_przegladu` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_przegladu` int(7) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT dla tabeli `samochod`
 --
@@ -423,7 +392,7 @@ ALTER TABLE `samochod`
 -- AUTO_INCREMENT dla tabeli `warsztat`
 --
 ALTER TABLE `warsztat`
-  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT dla tabeli `zamowienie`
 --
@@ -445,7 +414,8 @@ ALTER TABLE `czesc`
 --
 ALTER TABLE `formularz_naprawy`
   ADD CONSTRAINT `formularz_naprawy_ibfk_1` FOREIGN KEY (`uzytkownik_login_fk`) REFERENCES `uzytkownik` (`login`),
-  ADD CONSTRAINT `formularz_naprawy_ibfk_2` FOREIGN KEY (`warsztat_id_fk`) REFERENCES `warsztat` (`id`);
+  ADD CONSTRAINT `formularz_naprawy_ibfk_2` FOREIGN KEY (`warsztat_id_fk`) REFERENCES `warsztat` (`id`),
+  ADD CONSTRAINT `formularz_naprawy_ibfk_3` FOREIGN KEY (`vin_fk`) REFERENCES `uzytkownik_samochod` (`vin`);
 
 --
 -- Ograniczenia dla tabeli `mechanik_warsztat`
@@ -458,8 +428,8 @@ ALTER TABLE `mechanik_warsztat`
 -- Ograniczenia dla tabeli `przeglad`
 --
 ALTER TABLE `przeglad`
-  ADD CONSTRAINT `przeglad_ibfk_2` FOREIGN KEY (`id_warsztatu_fk`) REFERENCES `warsztat` (`id`),
-  ADD CONSTRAINT `przeglad_ibfk_3` FOREIGN KEY (`vin_fk`) REFERENCES `uzytkownik_samochod` (`vin`);
+  ADD CONSTRAINT `przeglad_ibfk_1` FOREIGN KEY (`vin_fk`) REFERENCES `uzytkownik_samochod` (`Uzytkownik_login_fk`),
+  ADD CONSTRAINT `przeglad_ibfk_2` FOREIGN KEY (`id_warsztatu_fk`) REFERENCES `warsztat` (`id`);
 
 --
 -- Ograniczenia dla tabeli `samochod_czesc`
