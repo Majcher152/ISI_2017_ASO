@@ -142,11 +142,11 @@ public class SterownikPolBD {
 			rs.next();
 			rs.getString("login");
 
-			if (rs.getString("rodzaj_konta").equals("uzytkownik")) {
+			if (rs.getString("rodzaj_konta").equals("Uzytkownik")) {
 				odp = 5;
-			} else if (rs.getString("rodzaj_konta").equals("mechanik")) {
+			} else if (rs.getString("rodzaj_konta").equals("Mechanik")) {
 				odp = 6;
-			} else if (rs.getString("rodzaj_konta").equals("ksiegowy")) {
+			} else if (rs.getString("rodzaj_konta").equals("Ksiegowy")) {
 				odp = 7;
 			} else {
 				odp = 8;

@@ -32,13 +32,20 @@
 				<td><b>Usunąć?</b></td>
 				</tr>
 					<c:forEach var="samochod" items="${samochody}">
+					
+						<c:if test = "${samochod.warsztat==false}">
+							<c:set var = "warsztat" value = "${'nie'}"/>
+						 </c:if>
+						 <c:if test = "${samochod.warsztat==true}">
+							<c:set var = "warsztat" value = "${'tak'}"/>
+						 </c:if>
 						<tr>
 							<td><c:out value="${samochod.model} " /></td>
 							<td><c:out value="${samochod.typ} " /></td>
 							<td><c:out value="${samochod.silnik} " /></td>
 							<td><c:out value="${samochod.rocznik} " /></td>
 							<td><c:out value="${samochod.vin} " /></td>
-							<td><c:out value="${samochod.warsztat} " /></td>
+							<td><c:out value="${warsztat} " /></td>
 							<td><a
 								href="Samochody2Servlet?method=usun&vin=${samochod.vin}">Usuń</a></td>
 						</tr>
