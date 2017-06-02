@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 02 Cze 2017, 20:47
+-- Czas generowania: 02 Cze 2017, 20:56
 -- Wersja serwera: 10.1.21-MariaDB
 -- Wersja PHP: 5.6.30
 
@@ -227,10 +227,10 @@ CREATE TABLE `uzytkownik` (
 --
 
 INSERT INTO `uzytkownik` (`login`, `haslo`, `imie`, `nazwisko`, `email`, `numer_telefonu`, `rodzaj_konta`) VALUES
-('aaa', 'aaa', 'aaa', 'aaa', 'aaa', 123, 'ADMIN'),
-('bbb', 'bbb', 'bbb', 'bbb', 'bbb@bbb.pl', 456789123, 'UZYTKOWNIK'),
-('ccc', 'ccc', 'ccc', 'ccc', 'ccc@ccc.pl', 789456143, 'KSIEGOWY'),
-('ddd', 'ddd', 'ddd', 'ddd', 'ddd@ddd.pl', 987456321, 'MECHANIK');
+('aaa', 'aaa', 'aaa', 'aaa', 'aaa', 123, 'Admin'),
+('bbb', 'bbb', 'bbb', 'bbb', 'bbb@bbb.pl', 456789123, 'Uzytkownik'),
+('ccc', 'ccc', 'ccc', 'ccc', 'ccc@ccc.pl', 789456143, 'Ksiegowy'),
+('ddd', 'ddd', 'ddd', 'ddd', 'ddd@ddd.pl', 987456321, 'Mechanik');
 
 -- --------------------------------------------------------
 
