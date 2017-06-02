@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 02 Cze 2017, 20:32
+-- Czas generowania: 02 Cze 2017, 20:47
 -- Wersja serwera: 10.1.21-MariaDB
 -- Wersja PHP: 5.6.30
 
@@ -227,15 +227,10 @@ CREATE TABLE `uzytkownik` (
 --
 
 INSERT INTO `uzytkownik` (`login`, `haslo`, `imie`, `nazwisko`, `email`, `numer_telefonu`, `rodzaj_konta`) VALUES
-('aaa', 'aaa', 'aaa', 'aaa', 'aaa', 123, 'admin'),
-('bbb', 'bbb', 'bbb', 'bbb', 'bbb@bbb.pl', 456789123, 'uzytkownik'),
-('ccc', 'ccc', 'ccc', 'ccc', 'ccc@ccc.pl', 789456143, 'ksiegowy'),
-('ddd', 'ddd', 'ddd', 'ddd', 'ddd@ddd.pl', 987456321, 'mechanik'),
-('kasia', 'kasiakasia', 'kasia', 'klimek', 'katha.ftw@gmail.com', 883431798, 'uzytkownik'),
-('kasiakasia2', 'Kasiakasia1!', 'Kasia', 'Klimek', 'op2@op.pl', 789789788, 'admin'),
-('ookaa', 'Ooskaaooskaa1', 'ŁukaszŁukaszNiePoruchasz', 'MożeJednakPoruchaszĘĄŻŹĆ', 'ooskaa@ooskaa.pl', 789456123, 'uzytkownik'),
-('ooskaa', 'Asdfghjkl1', 'fvrleknbouibwiln', 'kupkowski', 'przyklad@przyplad.pl', 999999999, 'uzytkownik'),
-('oskaoska', 'Oskaoska1!', 'Piotr', 'Osiewicz', 'opop2@op.pl', 789789787, 'uzytkownik');
+('aaa', 'aaa', 'aaa', 'aaa', 'aaa', 123, 'ADMIN'),
+('bbb', 'bbb', 'bbb', 'bbb', 'bbb@bbb.pl', 456789123, 'UZYTKOWNIK'),
+('ccc', 'ccc', 'ccc', 'ccc', 'ccc@ccc.pl', 789456143, 'KSIEGOWY'),
+('ddd', 'ddd', 'ddd', 'ddd', 'ddd@ddd.pl', 987456321, 'MECHANIK');
 
 -- --------------------------------------------------------
 
