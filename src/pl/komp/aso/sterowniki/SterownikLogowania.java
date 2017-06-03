@@ -2,6 +2,7 @@ package pl.komp.aso.sterowniki;
 
 import java.util.ArrayList;
 
+import pl.komp.aso.dto.FormularzNaprawy;
 import pl.komp.aso.dto.Samochod;
 import pl.komp.aso.dto.Uzytkownik;
 
@@ -34,7 +35,9 @@ public class SterownikLogowania {
 	public Uzytkownik getUzytkownik(String login) {
 		Uzytkownik uzytkownik = spbd.pobierzUzytkownika(login);
 		ArrayList<Samochod> samochody=spbd.pobierzSamochody(login);
+		ArrayList<FormularzNaprawy> formularze = spbd.pobierzFormularze(login);
 		uzytkownik.setSamochody(samochody);
+		uzytkownik.setFormularze(formularze);
 		return uzytkownik;
 	}
 }

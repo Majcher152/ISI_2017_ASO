@@ -8,12 +8,12 @@ public class FormularzNaprawy {
 	private Warsztat warsztat;
 	private Samochod samochod;
 	private String status;
-	private String przewidywany_czas;
+	private int przewidywany_czas;
 	
-	public String getPrzewidywany_czas() {
+	public int getPrzewidywany_czas() {
 		return przewidywany_czas;
 	}
-	public void setPrzewidywany_czas(String przewidywany_czas) {
+	public void setPrzewidywany_czas(int przewidywany_czas) {
 		this.przewidywany_czas = przewidywany_czas;
 	}
 	public String getStatus() {

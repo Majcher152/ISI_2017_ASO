@@ -13,6 +13,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import pl.komp.aso.dto.FormularzNaprawy;
 import pl.komp.aso.dto.Samochod;
 import pl.komp.aso.dto.Uzytkownik;
 import pl.komp.aso.dto.Warsztat;
@@ -39,39 +40,7 @@ public class SterownikPolBD {
 		}
 	}
 
-	// -----------------------------------------------------------------------------------------------------
-	// /**
-	// * Metoda rejestrujaca uzytkownika
-	// * @return -1 jesli wystapil blad rejestracji (zajety login), 1 jesli
-	// udalo sie zarejestrowac
-	// */
-	// public int zarejestruj(String login, String haslo, String imie, String
-	// nazwisko, String email, int nr_telefonu) {
-	// PreparedStatement pstmt = null;
-	// try {
-	// //przygotowanie zapytania
-	// pstmt = con.prepareStatement("INSERT INTO uzytkownik(login, haslo, imie,
-	// nazwisko, email, nr_telefonu) VALUES (?,?,?,?,?,?)");
-	// pstmt.setString(1, login);
-	// pstmt.setString(2, haslo);
-	// pstmt.setString(3, imie);
-	// pstmt.setString(4, nazwisko);
-	// pstmt.setString(5, email);
-	// pstmt.setInt(6, nr_telefonu);
-	// //wykonanie zapytania
-	// pstmt.executeUpdate();
-	// } catch (java.sql.SQLIntegrityConstraintViolationException e) {
-	// System.out.println("zduplikowane dane w bazie");
-	// return -1;
-	// } catch (SQLException e) {
-	// e.printStackTrace();
-	// return -1;
-	// } finally{
-	// close(pstmt);
-	// }
-	// return 1;
-	// }
-	//
+	
 
 	/**
 	 * 
@@ -810,7 +779,101 @@ public class SterownikPolBD {
 		return odp;
 	}
 	
+	public ArrayList<FormularzNaprawy> pobierzFormularze(String login){
+		ArrayList<FormularzNaprawy> formularze= new ArrayList<FormularzNaprawy>();
+		ResultSet rs = null;
+		
+		PreparedStatement stmt = null;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement("Select * from formularz_naprawy where uzytkownik_login_fk=?");
+			stmt.setString(1, login);
+			rs = stmt.executeQuery();
+			while(rs.next()) {	
+				FormularzNaprawy f = new FormularzNaprawy();
+				f.setDataOddania(rs.getString("dataoddania"));
+				f.setDataOdebrania(rs.getString("dataodebrania"));
+				f.setKoszt(rs.getDouble("koszt_naprawy"));
+				f.setOpis(rs.getString("opis"));
+				f.setPrzewidywany_czas(rs.getInt("przewid_czas_trwania"));
+				f.setStatus(rs.getString("status"));
+				f.setSamochod(pobierzSamochodVin(rs.getString("vin_fk")));
+				f.setWarsztat(pobierzWarsztatId(rs.getString("warsztat_id_fk")));
+				formularze.add(f);			
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+
+		} finally {
+			close(rs);
+			close(stmt);
+		}
+		return formularze;
+	}
 	
+public Warsztat pobierzWarsztatId(String id){
+		
+		ResultSet rs = null;
+		
+		PreparedStatement stmt = null;
+		Warsztat w = new Warsztat();
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement("Select * from warsztat where id=?");
+			stmt.setString(1,id);
+			rs = stmt.executeQuery();
+			rs.next();
+				
+				w.setAdres(rs.getString("adres"));
+				w.setMiasto(rs.getString("miasto"));
+				w.setNrTelefonu(rs.getString("numer_telefonu"));
+				w.setEmail(rs.getString("email"));
+				w.setGodzinaO(rs.getString("godzina_otwarcia"));
+				w.setGodzinaZ(rs.getString("godzina_zamkniecia"));
+				w.setIloscStanowisk(rs.getInt("ilosc_stanowisk"));
+				w.setId(rs.getInt("id"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("brak");
+			return null;
+
+		} finally {
+			close(rs);
+			close(stmt);
+		}
+		return w;
+	}
+
+public Samochod pobierzSamochodVin(String vin){
+	
+	ResultSet rs = null;
+	
+	PreparedStatement stmt = null;
+	Samochod s = new Samochod();
+	try {
+		// przygotowanie zapytania
+		stmt = con.prepareStatement("Select vin,model,rocznik,typ,silnik from samochod join uzytkownik_samochod on samochod.samochod_id=uzytkownik_samochod.Samochod_if_fk where uzytkownik_samochod.vin=?");
+		stmt.setString(1, vin);
+		rs = stmt.executeQuery();
+		rs.next();
+		s.setModel(rs.getString("model"));
+		s.setRocznik(Integer.parseInt(rs.getString("rocznik")));
+		s.setTyp(rs.getString("typ"));
+		s.setSilnik(rs.getString("silnik"));
+		s.setVin(rs.getString("vin"));
+	} catch (SQLException e) {
+		e.printStackTrace();
+		System.out.println("brak");
+		return null;
+
+	} finally {
+		close(rs);
+		close(stmt);
+	}
+	return s;
+}
 
 	// -----------------------------------------------------------------------------------------------------
 
