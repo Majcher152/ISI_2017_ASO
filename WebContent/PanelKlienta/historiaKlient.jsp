@@ -24,30 +24,21 @@
 				<table class="table table-hover table-striped table-condensed">
 				<tr>
 				<td><b>Model</b></td>
-				<td><b>Typ</b></td>
-				<td><b>Silnik</b></td>
-				<td><b>Rocznik</b></td>
 				<td><b>Vin</b></td>
-				<td><b>Czy w warsztacie?</b></td>
-				<td><b>Usunąć?</b></td>
+				<td><b>Data oddania</b></td>
+				<td><b>Data odebrania</b></td>
+				<td><b>Szczegóły</b></td>
 				</tr>
-					<c:forEach var="naprawa" items="${naprawy}">
+					<c:forEach var="formularz" items="${formularze}">
 					
-						<c:if test = "${samochod.warsztat==false}">
-							<c:set var = "warsztat" value = "${'nie'}"/>
-						 </c:if>
-						 <c:if test = "${samochod.warsztat==true}">
-							<c:set var = "warsztat" value = "${'tak'}"/>
-						 </c:if>
+						
 						<tr>
-							<td><c:out value="${samochod.model} " /></td>
-							<td><c:out value="${samochod.typ} " /></td>
-							<td><c:out value="${samochod.silnik} " /></td>
-							<td><c:out value="${samochod.rocznik} " /></td>
-							<td><c:out value="${samochod.vin} " /></td>
-							<td><c:out value="${warsztat} " /></td>
+							<td><c:out value="${formularz.samochod.model} " /></td>
+							<td><c:out value="${formularz.samochod.vin} " /></td>
+							<td><c:out value="${formularz.dataOddania} " /></td>
+							<td><c:out value="${formularz.dataOdebrania} " /></td>
 							<td><a
-								href="Samochody2Servlet?method=usun&vin=${samochod.vin}">Usuń</a></td>
+								href="HistoriaSzczegolyKlient?formularze=${formularze}">Zobacz</a></td>
 						</tr>
 					</c:forEach>
 				</table>

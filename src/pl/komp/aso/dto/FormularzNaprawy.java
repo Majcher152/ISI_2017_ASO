@@ -7,6 +7,21 @@ public class FormularzNaprawy {
 	private String dataOdebrania;
 	private Warsztat warsztat;
 	private Samochod samochod;
+	private String status;
+	private String przewidywany_czas;
+	
+	public String getPrzewidywany_czas() {
+		return przewidywany_czas;
+	}
+	public void setPrzewidywany_czas(String przewidywany_czas) {
+		this.przewidywany_czas = przewidywany_czas;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public String getOpis() {
 		return opis;
 	}
