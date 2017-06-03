@@ -49,9 +49,18 @@
 									<li><a href="/ISI_2017_ASO/PanelKlienta/cennikKlient.jsp">Cennik podstawowy</a></li>
 									<li><a href="">Cennik rozszerzony</a></li>
 								</ul></li>
-								<li><a href="/ISI_2017_ASO/PrzegladServlet?metoda=zaladujPrzeglad">Przegląd</a></li>
+								
+								<li class="dropdown"><a href="/ISI_2017_ASO/index.jsp"
+								class="dropdown-toggle" data-toggle="dropdown" role="button"
+								aria-haspopup="true" aria-expanded="false">Rezerwacja<span
+									class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="/ISI_2017_ASO/PrzegladServlet?metoda=zaladujPrzeglad">Przeglad</a></li>
+									<li><a href="/ISI_2017_ASO/PrzegladServlet?metoda=zaladujNaprawa">Naprawa</a></li>
+								</ul></li>
+								
 								<li><a href="">Historia Serwisowania</a></li>
-							<li><a href="/ISI_2017_ASO/PanelKlienta/oNasKlient.jsp">O nas</a></li>
+							<!-- <li><a href="/ISI_2017_ASO/PanelKlienta/oNasKlient.jsp">O nas</a></li> -->
 							<li><a href="/ISI_2017_ASO/PanelKlienta/kontaktKlient.jsp">Kontakt</a></li>
 
 							<li class="dropdown"><a href="/ISI_2017_ASO/index.jsp"
