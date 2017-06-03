@@ -26,18 +26,19 @@ SELECT * FROM `uzytkownik` where email = '<%=emailUzytkownika%>';
 
 					<h3>
 						Czy na pewno chcesz usunąć użytkownika <b><c:out
-								value="${uzytkownik.imie}  ${uzytkownik.nazwisko}" /></b>?
+								value="${uzytkownik.imie}  ${uzytkownik.nazwisko}" /></b>? <input
+							type="hidden" class="form-control" name="imie" id="imie"
+							value="<c:out value="${uzytkownik.imie}" />" /> <input
+							type="hidden" class="form-control" name="nazwisko" id="nazwisko"
+							value="<c:out value="${uzytkownik.nazwisko}" />" /> <input
+							type="hidden" class="form-control" name="email" id="email"
+							value="<c:out value="${uzytkownik.email}" />" /><input
+							type="hidden" class="form-control" name="rodzaj_konta"
+							id="rodzaj_konta"
+							value="<c:out value="${uzytkownik.rodzaj_konta}" />" />
 					</h3>
 
-					<br> <input type="hidden" class="form-control" name="imie"
-						id="imie" value="<c:out value="${uzytkownik.imie}" />" /> <input
-						type="hidden" class="form-control" name="nazwisko" id="nazwisko"
-						value="<c:out value="${uzytkownik.nazwisko}" />" /> <input
-						type="hidden" class="form-control" name="email" id="email"
-						value="<c:out value="${uzytkownik.email}" />" /><input
-						type="hidden" class="form-control" name="rodzaj_konta"
-						id="rodzaj_konta"
-						value="<c:out value="${uzytkownik.rodzaj_konta}" />" />
+					<br>
 
 					<div class="form-group-last">
 						<button type="submit" id="btn_rej"
