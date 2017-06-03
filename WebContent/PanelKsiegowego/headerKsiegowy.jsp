@@ -49,6 +49,7 @@
 					<li><a href="/ISI_2017_ASO/PanelKsiegowego/ksiegowy.jsp">Strona główna</a></li>
 				</ul>
 				<ul class="nav nav-sidebar">
+					<li><a href="/ISI_2017_ASO/PanelKsiegowego/akceptacjaNapraw.jsp">Akceptacja terminów napraw</a></li>
 					<li><a href="/ISI_2017_ASO/PanelKsiegowego/ksiegowy.jsp">Stan magazynu</a></li>
 					<li><a href="/ISI_2017_ASO/PanelKsiegowego/ksiegowy.jsp">Złóż zamówienie na części</a></li>
 					<li><a href="/ISI_2017_ASO/PanelKsiegowego/ksiegowy.jsp">Historia zamówień</a></li>
