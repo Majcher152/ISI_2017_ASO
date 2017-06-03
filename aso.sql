@@ -3,13 +3,12 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 03 Cze 2017, 10:37
+-- Czas generowania: 03 Cze 2017, 10:53
 -- Wersja serwera: 10.1.21-MariaDB
 -- Wersja PHP: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -51,18 +50,16 @@ CREATE TABLE `formularz_naprawy` (
   `vin_fk` varchar(17) COLLATE utf8_unicode_ci NOT NULL,
   `dataoddania` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
   `dataodebrania` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `czy_zatwierdzone` int(1) DEFAULT '0',
-  `czy_w_warsztacie` int(1) DEFAULT '0',
-  `czy_zakonczone` int(11) DEFAULT '0',
-  `przewid_czas_trwania` int(11) DEFAULT NULL
+  `przewid_czas_trwania` int(2) DEFAULT NULL,
+  `status` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Zrzut danych tabeli `formularz_naprawy`
 --
 
-INSERT INTO `formularz_naprawy` (`id`, `opis`, `koszt_naprawy`, `uzytkownik_login_fk`, `warsztat_id_fk`, `vin_fk`, `dataoddania`, `dataodebrania`, `czy_zatwierdzone`, `czy_w_warsztacie`, `czy_zakonczone`, `przewid_czas_trwania`) VALUES
-(1, NULL, NULL, 'bbb', 1, '123456789qqqqqqqq', '07/06/2017', NULL, 0, 0, 0, NULL);
+INSERT INTO `formularz_naprawy` (`id`, `opis`, `koszt_naprawy`, `uzytkownik_login_fk`, `warsztat_id_fk`, `vin_fk`, `dataoddania`, `dataodebrania`, `przewid_czas_trwania`, `status`) VALUES
+(1, NULL, NULL, 'bbb', 1, '123456789qqqqqqqq', '07/06/2017', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
