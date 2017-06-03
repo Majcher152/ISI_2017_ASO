@@ -49,6 +49,7 @@
 									<li><a href="/ISI_2017_ASO/PanelKlienta/cennikKlient.jsp">Cennik podstawowy</a></li>
 									<li><a href="">Cennik rozszerzony</a></li>
 								</ul></li>
+<<<<<<< HEAD
 								
 								<li class="dropdown"><a href="/ISI_2017_ASO/index.jsp"
 								class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -61,6 +62,11 @@
 								
 								<li><a href="">Historia Serwisowania</a></li>
 							<!-- <li><a href="/ISI_2017_ASO/PanelKlienta/oNasKlient.jsp">O nas</a></li> -->
+=======
+								<li><a href="/ISI_2017_ASO/PrzegladServlet?metoda=zaladujPrzeglad">Przegląd</a></li>
+								<li><a href="/ISI_2017_ASO/HistoriaSerwisowaniaServlet?metoda=zaladujHistorie">Historia Serwisowania</a></li>
+							<li><a href="/ISI_2017_ASO/PanelKlienta/oNasKlient.jsp">O nas</a></li>
+>>>>>>> branch 'master' of https://github.com/Majcher152/ISI_2017_ASO.git
 							<li><a href="/ISI_2017_ASO/PanelKlienta/kontaktKlient.jsp">Kontakt</a></li>
 
 							<li class="dropdown"><a href="/ISI_2017_ASO/index.jsp"
