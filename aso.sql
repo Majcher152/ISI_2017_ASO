@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 02 Cze 2017, 21:38
+-- Czas generowania: 03 Cze 2017, 09:54
 -- Wersja serwera: 10.1.21-MariaDB
 -- Wersja PHP: 5.6.30
 
@@ -43,13 +43,15 @@ CREATE TABLE `czesc` (
 
 CREATE TABLE `formularz_naprawy` (
   `id` int(7) NOT NULL,
-  `opis` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `koszt_naprawy` double(7,2) NOT NULL,
+  `opis` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `koszt_naprawy` double(7,2) DEFAULT NULL,
   `uzytkownik_login_fk` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `warsztat_id_fk` int(7) NOT NULL,
   `vin_fk` varchar(17) COLLATE utf8_unicode_ci NOT NULL,
   `dataoddania` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `dataodebrania` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL
+  `dataodebrania` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `czy_zatwierdzone` int(1) DEFAULT '0',
+  `czy_w_warsztacie` int(1) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -230,9 +232,30 @@ CREATE TABLE `uzytkownik` (
 
 INSERT INTO `uzytkownik` (`login`, `haslo`, `imie`, `nazwisko`, `email`, `numer_telefonu`, `rodzaj_konta`) VALUES
 ('aaa', 'aaa', 'aaa', 'aaa', 'aaa', 123, 'Admin'),
+('aga234', 'Oskaoska1', 'Agnieszka', 'Kozłowska', 'teczowymis@wp.pl', 456563256, 'Uzytkownik'),
+('amil', 'Amilamil1', 'Kamil', 'Płaczek', 'amil@op.pl', 651234589, 'Mechanik'),
 ('bbb', 'bbb', 'bbb', 'bbb', 'bbb@bbb.pl', 456789123, 'Uzytkownik'),
+('buleczka', 'Oskaoska1', 'Szymon', 'Bułka', 'bulkibulki@wp.pl', 459965965, 'Uzytkownik'),
 ('ccc', 'ccc', 'ccc', 'ccc', 'ccc@ccc.pl', 789456143, 'Ksiegowy'),
-('ddd', 'ddd', 'ddd', 'ddd', 'ddd@ddd.pl', 987456321, 'Mechanik');
+('ciastko', 'Oskaoska1', 'Faustyna', 'Przezwisko', 'faustyna.przezwisko@gmail.com', 412452412, 'Uzytkownik'),
+('cium', 'Oskaoska1', 'Dorota', 'Szpiłyk', 'dorotaciumcium@op.pl', 452123659, 'Uzytkownik'),
+('ddd', 'ddd', 'ddd', 'ddd', 'ddd@ddd.pl', 987456321, 'Mechanik'),
+('dzik', 'Oskaoska1', 'Ernest', 'Bździk', 'wolololo@op.pl', 745745761, 'uzytkownik'),
+('eminem', 'Oskaoska1', 'Sławomir', 'Dudacz', 'imtherealslimshady@o2.pl', 652223656, 'Uzytkownik'),
+('filemon', 'Oskaoska1', 'Filip', 'Dzięcioł', 'podrozniksnow@op.pl', 745523658, 'Księgowy'),
+('grzesiu', 'Oskaoska1', 'Grzegorz', 'Komajda', 'grzech@o2.pl', 452123326, 'Mechanik'),
+('janosik', 'Oskaoska1', 'Jan', 'Teatr', 'filmjanosik@o2.pl', 452632512, 'Uzytkownik'),
+('justus', 'Oskaoska1', 'Justyna', 'Strojek', 'jstroj@op.pl', 412412412, 'Uzytkownik'),
+('kasia', 'Oskaoska1', 'Katarzyna', 'Klimek', 'kasiaftw@gmail.com', 789562364, 'Administrator'),
+('krzysiu', 'Oskaoska1', 'Krzysztof', 'Domagała', 'kdd@gmail.com', 123569965, 'Mechanik'),
+('marloeve', 'Oskaoska1', 'Jakub', 'Bożek', 'maryn@gmail.com', 565523526, 'Uzytkownik'),
+('miszcz', 'Oskaoska1', 'Przemysław', 'Gałka', 'miszczuplis@op.pl', 564236879, 'Uzytkownik'),
+('niechcesz', 'Oskaoska1', 'Jan', 'Stańko', 'jedenzerojeden@o2.pl', 456456654, 'Uzytkownik'),
+('oska', 'Oskaoska1', 'Piotr', 'Osiewicz', 'piotr.osie@op.pl', 985645236, 'Księgowy'),
+('stass', 'Oskaoska1', 'Marcin', 'Stahoń', 'stssts@op.pl', 745745745, 'Uzytkownik'),
+('uechy', 'Oskaoska1', 'Eustachy', 'Warzywo', 'euchy@op.pl', 745745767, 'Uzytkownik'),
+('ukasz', 'Oskaoska1', 'Łukasz', 'Majcher', 'ukasz.maj@wp.pl', 654452236, 'Księgowy'),
+('zgadnijfilm', 'Oskaoska1', 'Grzegorz', 'Brzęczyszczykiewicz', 'lalal@gmail.com', 965965854, 'Uzytkownik');
 
 -- --------------------------------------------------------
 
@@ -394,7 +417,7 @@ ALTER TABLE `formularz_naprawy`
 -- AUTO_INCREMENT dla tabeli `przeglad`
 --
 ALTER TABLE `przeglad`
-  MODIFY `id_przegladu` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_przegladu` int(7) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT dla tabeli `samochod`
 --
