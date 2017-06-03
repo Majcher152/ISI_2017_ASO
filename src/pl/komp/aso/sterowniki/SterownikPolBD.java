@@ -786,10 +786,11 @@ public class SterownikPolBD {
 		PreparedStatement stmt = null;
 		try {
 			// przygotowanie zapytania
-			stmt = con.prepareStatement("Select * from formularz_naprawy where uzytkownik_login_fk=?");
+			stmt = con.prepareStatement("Select * from formularz_naprawy where uzytkownik_login_fk=? order by id desc");
 			stmt.setString(1, login);
 			rs = stmt.executeQuery();
-			while(rs.next()) {	
+			while(rs.next()) {
+				
 				FormularzNaprawy f = new FormularzNaprawy();
 				f.setDataOddania(rs.getString("dataoddania"));
 				f.setDataOdebrania(rs.getString("dataodebrania"));

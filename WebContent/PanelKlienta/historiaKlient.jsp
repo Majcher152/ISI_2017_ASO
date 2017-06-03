@@ -14,7 +14,7 @@
 
 			<div class="panel-heading">
 				<div class="panel-title text-center">
-					<h2 class="title">Twoje samochody:</h2>
+					<h2 class="title">Historia serwisowania:</h2>
 				</div>
 			</div>
 
@@ -36,11 +36,17 @@
 							<td><c:out value="${formularz.samochod.model} " /></td>
 							<td><c:out value="${formularz.samochod.vin} " /></td>
 							<td><c:out value="${formularz.status} " /></td>
-							<td><c:out value="${formularz.przewidywany_czas} " /></td>
-				
 							<c:choose>
-								<c:when test="${samochod.status=='zakonczone'}">			
-									<td><a href="HistoriaSzczegolyKlient?formularze=${formularze}">Zobacz</a></td>
+								<c:when test="${formularz.przewidywany_czas==0}">			
+									<td><c:out value="${'brak'} " /></td>
+  								</c:when>
+								<c:otherwise>
+    									<td><c:out value="${formularz.przewidywany_czas} " /></td>
+  								</c:otherwise>
+							</c:choose>
+							<c:choose>
+								<c:when test="${formularz.status=='zakonczone'}">			
+									<td><a href="/ISI_2017_ASO/PanelKlienta/historiaSzczegolyKlient.jsp?opis=${formularz.opis}&dataOddania=${formularz.dataOddania}&dataOdebrania=${formularz.dataOdebrania}&koszt=${formularz.koszt}">Zobacz</a></td>
   								</c:when>
 								<c:otherwise>
     									<td><c:out value="${'brak'} " /></td>
