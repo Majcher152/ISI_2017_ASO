@@ -49,7 +49,7 @@
 					<li><a href="/ISI_2017_ASO/PanelMechanika/mechanik.jsp">Strona główna</a></li>
 				</ul>
 				<ul class="nav nav-sidebar">
-					<li><a href="/ISI_2017_ASO/PanelMechanika/mechanik.jsp">Zadania do realizacji</a></li>
+					<li><a href="/ISI_2017_ASO/PanelMechanika/zadania.jsp">Zadania do realizacji</a></li>
 					<li><a href="/ISI_2017_ASO/PanelMechanika/mechanik.jsp">Zadania w trakcie</a></li>
 					<li><a href="/ISI_2017_ASO/PanelMechanika/mechanik.jsp">Aktualizuj stan magazynu</a></li>
 				</ul>

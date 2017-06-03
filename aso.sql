@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 03 Cze 2017, 09:54
+-- Czas generowania: 03 Cze 2017, 10:37
 -- Wersja serwera: 10.1.21-MariaDB
 -- Wersja PHP: 5.6.30
 
@@ -51,8 +51,17 @@ CREATE TABLE `formularz_naprawy` (
   `dataoddania` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
   `dataodebrania` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
   `czy_zatwierdzone` int(1) DEFAULT '0',
-  `czy_w_warsztacie` int(1) DEFAULT '0'
+  `czy_w_warsztacie` int(1) DEFAULT '0',
+  `czy_zakonczone` int(11) DEFAULT '0',
+  `przewid_czas_trwania` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Zrzut danych tabeli `formularz_naprawy`
+--
+
+INSERT INTO `formularz_naprawy` (`id`, `opis`, `koszt_naprawy`, `uzytkownik_login_fk`, `warsztat_id_fk`, `vin_fk`, `dataoddania`, `dataodebrania`, `czy_zatwierdzone`, `czy_w_warsztacie`, `czy_zakonczone`, `przewid_czas_trwania`) VALUES
+(1, NULL, NULL, 'bbb', 1, '123456789qqqqqqqq', '07/06/2017', NULL, 0, 0, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -213,6 +222,20 @@ CREATE TABLE `samochod_czesc` (
 -- --------------------------------------------------------
 
 --
+-- Struktura tabeli dla tabeli `terminarz`
+--
+
+CREATE TABLE `terminarz` (
+  `id` int(7) NOT NULL,
+  `id_warsztatu_fk` int(7) NOT NULL,
+  `data` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `opis` int(250) NOT NULL,
+  `przewid_czas_trwania` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabeli dla tabeli `uzytkownik`
 --
 
@@ -367,6 +390,13 @@ ALTER TABLE `samochod_czesc`
   ADD KEY `samochod_id_fk` (`samochod_id_fk`);
 
 --
+-- Indexes for table `terminarz`
+--
+ALTER TABLE `terminarz`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_warsztatu_fk_idx` (`id_warsztatu_fk`);
+
+--
 -- Indexes for table `uzytkownik`
 --
 ALTER TABLE `uzytkownik`
@@ -412,7 +442,7 @@ ALTER TABLE `czesc`
 -- AUTO_INCREMENT dla tabeli `formularz_naprawy`
 --
 ALTER TABLE `formularz_naprawy`
-  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT dla tabeli `przeglad`
 --
@@ -423,6 +453,11 @@ ALTER TABLE `przeglad`
 --
 ALTER TABLE `samochod`
   MODIFY `samochod_id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=392141;
+--
+-- AUTO_INCREMENT dla tabeli `terminarz`
+--
+ALTER TABLE `terminarz`
+  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT dla tabeli `warsztat`
 --
@@ -472,6 +507,12 @@ ALTER TABLE `przeglad`
 ALTER TABLE `samochod_czesc`
   ADD CONSTRAINT `samochod_czesc_ibfk_1` FOREIGN KEY (`czesc_id_fk`) REFERENCES `czesc` (`id`),
   ADD CONSTRAINT `samochod_czesc_ibfk_2` FOREIGN KEY (`samochod_id_fk`) REFERENCES `samochod` (`samochod_id`);
+
+--
+-- Ograniczenia dla tabeli `terminarz`
+--
+ALTER TABLE `terminarz`
+  ADD CONSTRAINT `terminarz_ibfk_1` FOREIGN KEY (`id_warsztatu_fk`) REFERENCES `warsztat` (`id`);
 
 --
 -- Ograniczenia dla tabeli `uzytkownik_samochod`
