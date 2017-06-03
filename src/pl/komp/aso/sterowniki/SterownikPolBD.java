@@ -40,8 +40,6 @@ public class SterownikPolBD {
 		}
 	}
 
-	
-
 	/**
 	 * 
 	 * @param login
@@ -267,7 +265,7 @@ public class SterownikPolBD {
 			// email
 			rs = stmt.executeQuery();
 			rs.next();
-			
+
 			System.out.println(rs.getString("login"));
 		} catch (SQLException e) {
 			odp = false;
@@ -330,22 +328,21 @@ public class SterownikPolBD {
 	}
 
 	// zmiana danych uzytkownika
-	public boolean edytujUstawienia(String imie, String nazwisko, String email, String numer_telefonu,
-			String login) {
-		
+	public boolean edytujUstawienia(String imie, String nazwisko, String email, String numer_telefonu, String login) {
+
 		boolean odp = true;
 		PreparedStatement stmt = null;
 		try {
 			// przygotowanie zapytania
 			stmt = con.prepareStatement(
-					"UPDATE `uzytkownik` SET imie= ?,nazwisko=?, email=?, numer_telefonu=? WHERE login = ?");	
+					"UPDATE `uzytkownik` SET imie= ?,nazwisko=?, email=?, numer_telefonu=? WHERE login = ?");
 			stmt.setString(1, imie);
 			stmt.setString(2, nazwisko);
 			stmt.setString(3, email);
 			stmt.setString(4, numer_telefonu);
 			stmt.setString(5, login);
 			stmt.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			odp = false;
 			System.out.println("TU JEST BLAD");
@@ -365,7 +362,7 @@ public class SterownikPolBD {
 		try {
 			// przygotowanie zapytania
 			stmt = con.prepareStatement(
-					"UPDATE uzytkownik SET haslo=?, imie= ?, nazwisko=?, email=?, numer_telefonu=?, rodzaj_konta=? WHERE login = ?");	
+					"UPDATE uzytkownik SET haslo=?, imie= ?, nazwisko=?, email=?, numer_telefonu=?, rodzaj_konta=? WHERE login = ?");
 			stmt.setString(1, haslo);
 			stmt.setString(2, imie);
 			stmt.setString(3, nazwisko);
@@ -384,14 +381,12 @@ public class SterownikPolBD {
 		return odp;
 	}
 
-	
 	public boolean usunUzytkownikaPracownika(String imie, String nazwisko, String email) {
 		boolean odp = true;
 		PreparedStatement stmt = null;
 		try {
 			// przygotowanie zapytania
-			stmt = con.prepareStatement(
-					"DELETE FROM uzytkownik WHERE imie = ? AND nazwisko = ? AND email = ?");
+			stmt = con.prepareStatement("DELETE FROM uzytkownik WHERE imie = ? AND nazwisko = ? AND email = ?");
 			stmt.setString(1, imie);
 			stmt.setString(2, nazwisko);
 			stmt.setString(3, email);
@@ -406,8 +401,6 @@ public class SterownikPolBD {
 		return odp;
 	}
 
-	
-	
 	public boolean dodajAuto(String model, String rocznik, String typ, String silnik, String login, String vin) {
 		boolean odp = true;
 		PreparedStatement stmt = null;
@@ -442,7 +435,7 @@ public class SterownikPolBD {
 		String odp = "";
 		try {
 			// przygotowanie zapytania
-			//String samochod_id = znajdzSamochod(model, rocznik, typ, silnik);
+			// String samochod_id = znajdzSamochod(model, rocznik, typ, silnik);
 			stmt = con.prepareStatement(
 					"Select samochod_id from samochod where model=? and rocznik=? and typ=? and silnik=?");
 			stmt.setString(1, model);
@@ -463,26 +456,27 @@ public class SterownikPolBD {
 		}
 		return odp;
 	}
-	
-	public ArrayList<Samochod> pobierzSamochody(String login){
+
+	public ArrayList<Samochod> pobierzSamochody(String login) {
 		ArrayList<Samochod> samochody = new ArrayList<Samochod>();
 		ResultSet rs = null;
 		PreparedStatement stmt = null;
 		try {
 			// przygotowanie zapytania
-			stmt = con.prepareStatement("Select vin,model,rocznik,typ,silnik from samochod join uzytkownik_samochod on samochod.samochod_id=uzytkownik_samochod.Samochod_if_fk where uzytkownik_samochod.Uzytkownik_login_fk=?");
+			stmt = con.prepareStatement(
+					"Select vin,model,rocznik,typ,silnik from samochod join uzytkownik_samochod on samochod.samochod_id=uzytkownik_samochod.Samochod_if_fk where uzytkownik_samochod.Uzytkownik_login_fk=?");
 			stmt.setString(1, login);
 			rs = stmt.executeQuery();
-			while(rs.next()) {	
+			while (rs.next()) {
 				Samochod s = new Samochod();
 				s.setModel(rs.getString("model"));
 				s.setRocznik(Integer.parseInt(rs.getString("rocznik")));
 				s.setTyp(rs.getString("typ"));
 				s.setSilnik(rs.getString("silnik"));
 				s.setVin(rs.getString("vin"));
-				samochody.add(s);			
+				samochody.add(s);
 			}
-			
+
 		} catch (SQLException e) {
 			System.out.println("brak");
 			return null;
@@ -493,8 +487,8 @@ public class SterownikPolBD {
 		}
 		return samochody;
 	}
-	
-	public ArrayList<String> pobierzModele(){
+
+	public ArrayList<String> pobierzModele() {
 		ArrayList<String> modele = new ArrayList<String>();
 		ResultSet rs = null;
 		PreparedStatement stmt = null;
@@ -502,11 +496,11 @@ public class SterownikPolBD {
 			// przygotowanie zapytania
 			stmt = con.prepareStatement("Select distinct model from samochod");
 			rs = stmt.executeQuery();
-			while(rs.next()) {	
-				
-				modele.add(rs.getString("model"));			
+			while (rs.next()) {
+
+				modele.add(rs.getString("model"));
 			}
-			
+
 		} catch (SQLException e) {
 			System.out.println("brak");
 			return null;
@@ -517,8 +511,8 @@ public class SterownikPolBD {
 		}
 		return modele;
 	}
-	
-	public ArrayList<String> pobierzRoczniki(String model){
+
+	public ArrayList<String> pobierzRoczniki(String model) {
 		ArrayList<String> roczniki = new ArrayList<String>();
 		ResultSet rs = null;
 		PreparedStatement stmt = null;
@@ -527,11 +521,11 @@ public class SterownikPolBD {
 			stmt = con.prepareStatement("Select distinct rocznik from samochod where model=?");
 			stmt.setString(1, model);
 			rs = stmt.executeQuery();
-			while(rs.next()) {	
-				
-				roczniki.add(rs.getString("rocznik"));			
+			while (rs.next()) {
+
+				roczniki.add(rs.getString("rocznik"));
 			}
-			
+
 		} catch (SQLException e) {
 			System.out.println("brak");
 			return null;
@@ -542,8 +536,8 @@ public class SterownikPolBD {
 		}
 		return roczniki;
 	}
-	
-	public ArrayList<String> pobierzTypy(String model,String rocznik){
+
+	public ArrayList<String> pobierzTypy(String model, String rocznik) {
 		ArrayList<String> typy = new ArrayList<String>();
 		ResultSet rs = null;
 		PreparedStatement stmt = null;
@@ -553,11 +547,11 @@ public class SterownikPolBD {
 			stmt.setString(1, model);
 			stmt.setString(2, rocznik);
 			rs = stmt.executeQuery();
-			while(rs.next()) {	
-				
-				typy.add(rs.getString("typ"));			
+			while (rs.next()) {
+
+				typy.add(rs.getString("typ"));
 			}
-			
+
 		} catch (SQLException e) {
 			System.out.println("brak");
 			return null;
@@ -568,8 +562,8 @@ public class SterownikPolBD {
 		}
 		return typy;
 	}
-	
-	public ArrayList<String> pobierzSilniki(String model,String rocznik,String typ){
+
+	public ArrayList<String> pobierzSilniki(String model, String rocznik, String typ) {
 		ArrayList<String> silniki = new ArrayList<String>();
 		ResultSet rs = null;
 		PreparedStatement stmt = null;
@@ -580,11 +574,11 @@ public class SterownikPolBD {
 			stmt.setString(2, rocznik);
 			stmt.setString(3, typ);
 			rs = stmt.executeQuery();
-			while(rs.next()) {	
-				
-				silniki.add(rs.getString("silnik"));			
+			while (rs.next()) {
+
+				silniki.add(rs.getString("silnik"));
 			}
-			
+
 		} catch (SQLException e) {
 			System.out.println("brak");
 			return null;
@@ -595,30 +589,29 @@ public class SterownikPolBD {
 		}
 		return silniki;
 	}
-	
-	public boolean edytujHaslo(String login,String haslo) {
+
+	public boolean edytujHaslo(String login, String haslo) {
 		boolean odp = true;
-		
+
 		PreparedStatement stmt = null;
 		try {
 			// przygotowanie zapytania
-			stmt = con.prepareStatement(
-					"UPDATE Uzytkownik SET haslo= ? WHERE login = ?");	
+			stmt = con.prepareStatement("UPDATE Uzytkownik SET haslo= ? WHERE login = ?");
 			stmt.setString(1, haslo);
 			stmt.setString(2, login);
 			stmt.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			odp = false;
 			return false;
 
 		} finally {
-			
+
 			close(stmt);
 		}
 		return odp;
 	}
-	
+
 	public boolean czyIstniejeVin(String vin) {
 		ResultSet rs = null;
 		PreparedStatement stmt = null;
@@ -642,7 +635,7 @@ public class SterownikPolBD {
 		}
 		return odp;
 	}
-	
+
 	public boolean usunSamochod(String vin) {
 		PreparedStatement stmt = null;
 		boolean odp = true;
@@ -662,17 +655,18 @@ public class SterownikPolBD {
 		}
 		return odp;
 	}
-	
-	public ArrayList<Warsztat> pobierzWarsztaty(){
+
+	public ArrayList<Warsztat> pobierzWarsztaty() {
 		ArrayList<Warsztat> warsztaty = new ArrayList<Warsztat>();
 		ResultSet rs = null;
-		
+
 		PreparedStatement stmt = null;
 		try {
 			// przygotowanie zapytania
-			stmt = con.prepareStatement("Select id,adres,miasto,numer_telefonu,email,godzina_otwarcia,godzina_zamkniecia,ilosc_stanowisk from warsztat");
+			stmt = con.prepareStatement(
+					"Select id,adres,miasto,numer_telefonu,email,godzina_otwarcia,godzina_zamkniecia,ilosc_stanowisk from warsztat");
 			rs = stmt.executeQuery();
-			while(rs.next()) {	
+			while (rs.next()) {
 				Warsztat w = new Warsztat();
 				w.setAdres(rs.getString("adres"));
 				w.setMiasto(rs.getString("miasto"));
@@ -682,9 +676,9 @@ public class SterownikPolBD {
 				w.setGodzinaZ(rs.getString("godzina_zamkniecia"));
 				w.setIloscStanowisk(rs.getInt("ilosc_stanowisk"));
 				w.setId(rs.getInt("id"));
-				warsztaty.add(w);			
+				warsztaty.add(w);
 			}
-			
+
 		} catch (SQLException e) {
 			System.out.println("brak");
 			return null;
@@ -695,28 +689,29 @@ public class SterownikPolBD {
 		}
 		return warsztaty;
 	}
-	
-	public Warsztat pobierzWarsztat(String adres){
-		
+
+	public Warsztat pobierzWarsztat(String adres) {
+
 		ResultSet rs = null;
-		
+
 		PreparedStatement stmt = null;
 		Warsztat w = new Warsztat();
 		try {
 			// przygotowanie zapytania
-			stmt = con.prepareStatement("Select id,adres,miasto,numer_telefonu,email,godzina_otwarcia,godzina_zamkniecia,ilosc_stanowisk from warsztat where adres=?");
+			stmt = con.prepareStatement(
+					"Select id,adres,miasto,numer_telefonu,email,godzina_otwarcia,godzina_zamkniecia,ilosc_stanowisk from warsztat where adres=?");
 			stmt.setString(1, adres);
 			rs = stmt.executeQuery();
 			rs.next();
-				
-				w.setAdres(rs.getString("adres"));
-				w.setMiasto(rs.getString("miasto"));
-				w.setNrTelefonu(rs.getString("numer_telefonu"));
-				w.setEmail(rs.getString("email"));
-				w.setGodzinaO(rs.getString("godzina_otwarcia"));
-				w.setGodzinaZ(rs.getString("godzina_zamkniecia"));
-				w.setIloscStanowisk(rs.getInt("ilosc_stanowisk"));
-				w.setId(rs.getInt("id"));
+
+			w.setAdres(rs.getString("adres"));
+			w.setMiasto(rs.getString("miasto"));
+			w.setNrTelefonu(rs.getString("numer_telefonu"));
+			w.setEmail(rs.getString("email"));
+			w.setGodzinaO(rs.getString("godzina_otwarcia"));
+			w.setGodzinaZ(rs.getString("godzina_zamkniecia"));
+			w.setIloscStanowisk(rs.getInt("ilosc_stanowisk"));
+			w.setId(rs.getInt("id"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("brak");
@@ -728,15 +723,16 @@ public class SterownikPolBD {
 		}
 		return w;
 	}
-	
-	public int czyZajetaGodzina(int id,String dzien,String godzina) {
-		int odp=0;
+
+	public int czyZajetaGodzina(int id, String dzien, String godzina) {
+		int odp = 0;
 		ResultSet rs = null;
 		PreparedStatement stmt = null;
 		try {
 			// przygotowanie zapytania
-		
-			stmt = con.prepareStatement("Select COUNT(*) as ile from przeglad where id_warsztatu_fk=? and data=? and godzina=? ");
+
+			stmt = con.prepareStatement(
+					"Select COUNT(*) as ile from przeglad where id_warsztatu_fk=? and data=? and godzina=? ");
 			stmt.setInt(1, id);
 			stmt.setString(2, dzien);
 			stmt.setString(3, godzina);
@@ -754,19 +750,18 @@ public class SterownikPolBD {
 		}
 		return odp;
 	}
-	
+
 	public boolean zarezerwujPrzeglad(String vin, int id, String dzien, String godzina) {
 		boolean odp = true;
 		PreparedStatement stmt = null;
 		try {
 			// przygotowanie zapytania
-				stmt = con.prepareStatement(
-						"INSERT INTO przeglad(id_warsztatu_fk,vin_fk,data,godzina) VALUES (?,?,?,?)");
-				stmt.setInt(1,id);
-				stmt.setString(2, vin);
-				stmt.setString(3, dzien);
-				stmt.setString(4, godzina);
-				stmt.executeUpdate();
+			stmt = con.prepareStatement("INSERT INTO przeglad(id_warsztatu_fk,vin_fk,data,godzina) VALUES (?,?,?,?)");
+			stmt.setInt(1, id);
+			stmt.setString(2, vin);
+			stmt.setString(3, dzien);
+			stmt.setString(4, godzina);
+			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			odp = false;
@@ -778,19 +773,19 @@ public class SterownikPolBD {
 		}
 		return odp;
 	}
-	
-	public ArrayList<FormularzNaprawy> pobierzFormularze(String login){
-		ArrayList<FormularzNaprawy> formularze= new ArrayList<FormularzNaprawy>();
+
+	public ArrayList<FormularzNaprawy> pobierzFormularze(String login) {
+		ArrayList<FormularzNaprawy> formularze = new ArrayList<FormularzNaprawy>();
 		ResultSet rs = null;
-		
+
 		PreparedStatement stmt = null;
 		try {
 			// przygotowanie zapytania
 			stmt = con.prepareStatement("Select * from formularz_naprawy where uzytkownik_login_fk=? order by id desc");
 			stmt.setString(1, login);
 			rs = stmt.executeQuery();
-			while(rs.next()) {
-				
+			while (rs.next()) {
+
 				FormularzNaprawy f = new FormularzNaprawy();
 				f.setDataOddania(rs.getString("dataoddania"));
 				f.setDataOdebrania(rs.getString("dataodebrania"));
@@ -800,9 +795,9 @@ public class SterownikPolBD {
 				f.setStatus(rs.getString("status"));
 				f.setSamochod(pobierzSamochodVin(rs.getString("vin_fk")));
 				f.setWarsztat(pobierzWarsztatId(rs.getString("warsztat_id_fk")));
-				formularze.add(f);			
+				formularze.add(f);
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
@@ -813,28 +808,28 @@ public class SterownikPolBD {
 		}
 		return formularze;
 	}
-	
-public Warsztat pobierzWarsztatId(String id){
-		
+
+	public Warsztat pobierzWarsztatId(String id) {
+
 		ResultSet rs = null;
-		
+
 		PreparedStatement stmt = null;
 		Warsztat w = new Warsztat();
 		try {
 			// przygotowanie zapytania
 			stmt = con.prepareStatement("Select * from warsztat where id=?");
-			stmt.setString(1,id);
+			stmt.setString(1, id);
 			rs = stmt.executeQuery();
 			rs.next();
-				
-				w.setAdres(rs.getString("adres"));
-				w.setMiasto(rs.getString("miasto"));
-				w.setNrTelefonu(rs.getString("numer_telefonu"));
-				w.setEmail(rs.getString("email"));
-				w.setGodzinaO(rs.getString("godzina_otwarcia"));
-				w.setGodzinaZ(rs.getString("godzina_zamkniecia"));
-				w.setIloscStanowisk(rs.getInt("ilosc_stanowisk"));
-				w.setId(rs.getInt("id"));
+
+			w.setAdres(rs.getString("adres"));
+			w.setMiasto(rs.getString("miasto"));
+			w.setNrTelefonu(rs.getString("numer_telefonu"));
+			w.setEmail(rs.getString("email"));
+			w.setGodzinaO(rs.getString("godzina_otwarcia"));
+			w.setGodzinaZ(rs.getString("godzina_zamkniecia"));
+			w.setIloscStanowisk(rs.getInt("ilosc_stanowisk"));
+			w.setId(rs.getInt("id"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("brak");
@@ -847,34 +842,66 @@ public Warsztat pobierzWarsztatId(String id){
 		return w;
 	}
 
-public Samochod pobierzSamochodVin(String vin){
-	
-	ResultSet rs = null;
-	
-	PreparedStatement stmt = null;
-	Samochod s = new Samochod();
-	try {
-		// przygotowanie zapytania
-		stmt = con.prepareStatement("Select vin,model,rocznik,typ,silnik from samochod join uzytkownik_samochod on samochod.samochod_id=uzytkownik_samochod.Samochod_if_fk where uzytkownik_samochod.vin=?");
-		stmt.setString(1, vin);
-		rs = stmt.executeQuery();
-		rs.next();
-		s.setModel(rs.getString("model"));
-		s.setRocznik(Integer.parseInt(rs.getString("rocznik")));
-		s.setTyp(rs.getString("typ"));
-		s.setSilnik(rs.getString("silnik"));
-		s.setVin(rs.getString("vin"));
-	} catch (SQLException e) {
-		e.printStackTrace();
-		System.out.println("brak");
-		return null;
+	public Samochod pobierzSamochodVin(String vin) {
 
-	} finally {
-		close(rs);
-		close(stmt);
+		ResultSet rs = null;
+
+		PreparedStatement stmt = null;
+		Samochod s = new Samochod();
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement(
+					"Select vin,model,rocznik,typ,silnik from samochod join uzytkownik_samochod on samochod.samochod_id=uzytkownik_samochod.Samochod_if_fk where uzytkownik_samochod.vin=?");
+			stmt.setString(1, vin);
+			rs = stmt.executeQuery();
+			rs.next();
+			s.setModel(rs.getString("model"));
+			s.setRocznik(Integer.parseInt(rs.getString("rocznik")));
+			s.setTyp(rs.getString("typ"));
+			s.setSilnik(rs.getString("silnik"));
+			s.setVin(rs.getString("vin"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("brak");
+			return null;
+
+		} finally {
+			close(rs);
+			close(stmt);
+		}
+		return s;
 	}
-	return s;
-}
+	
+	/**
+	 * Zatwierdzenie rezerwacji naprawy samochodu przez ksiegowego
+	 * @param vin
+	 * @param dataoddania
+	 * @param przewid_czas_trwania
+	 * @return
+	 */
+	public boolean zatwierdzRezerwacjeNaprawy(String vin, String dataoddania, String przewid_czas_trwania) {
+
+		PreparedStatement stmt = null;
+
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement(
+					"UPDATE `formularz_naprawy` SET `dataoddania` = ?, `przewid_czas_trwania` = ?, `status` = 'potwierdzenie' WHERE `formularz_naprawy`.`vin_fk` = ?");
+			stmt.setString(1, dataoddania);
+			stmt.setString(2, przewid_czas_trwania);
+			stmt.setString(3, vin);
+			stmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("blad");
+			return false;
+
+		} finally {
+			close(stmt);
+		}
+		return true;
+	}
 
 	// -----------------------------------------------------------------------------------------------------
 
@@ -910,5 +937,4 @@ public Samochod pobierzSamochodVin(String vin){
 		}
 	}
 
-	
 }

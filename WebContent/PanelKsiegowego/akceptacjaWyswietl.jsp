@@ -25,6 +25,8 @@ SELECT * FROM `formularz_naprawy` where vin_fk = '<%=vin%>';
 
 <jsp:include page="headerKsiegowy.jsp" />
 
+	
+
 <div class="container marketing">
 
 <div class="col-sm-10 col-sm-offset-2 col-md-11 col-md-offset-1 main">
@@ -33,14 +35,20 @@ SELECT * FROM `formularz_naprawy` where vin_fk = '<%=vin%>';
 				Akceptacja naprawy: <c:out value="${vin.vin_fk}" />
 			</h1>
 
-			<form action="/ISI_2017_ASO/AdminEdycjaInformacjiPath" method="post">
+			<form action="/ISI_2017_ASO/KsiegowyRezerwacjaNaprawy" method="post">
 
 				<div class="main-login main-center">
-					<fieldset disabled>
+					
+					<%String blad =(String) request.getAttribute("blad"); %>
+						<%if(blad!=null && !blad.equals("")){ %>
+						<div class="alert alert-danger"> <%=blad %> 
+						</div>
+						<%} %>
+					
 					<div class="form-group">
     					<label class="control-label">Login użytkownika</label>
     					<div>
-    						<input class="form-control" type="text" name="login" value="<c:out value="${vin.uzytkownik_login_fk}" />">
+    						 <input readonly="readonly" class="form-control" type="text" name="login" value="<c:out value="${vin.uzytkownik_login_fk}" />">
     					</div>
  					</div>
  					
@@ -51,7 +59,7 @@ SELECT * FROM `formularz_naprawy` where vin_fk = '<%=vin%>';
  					<div class="form-group">
     					<label class="control-label">Imie i nazwisko użytkownika</label>
     					<div>
-      						<input class="form-control" type="text" name="uzytkownik" value="<c:out value="${uzytkownik.imie}" /> <c:out value="${uzytkownik.nazwisko}" />">
+      						<input readonly="readonly" class="form-control" type="text" name="uzytkownik" value="<c:out value="${uzytkownik.imie}" /> <c:out value="${uzytkownik.nazwisko}" />">
     					</div>
     					
  					</div>
@@ -59,7 +67,7 @@ SELECT * FROM `formularz_naprawy` where vin_fk = '<%=vin%>';
  					<div class="form-group">
     					<label class="control-label">Numer telefonu</label>
     					<div>
-      						<input class="form-control" type="text" name="nr_tel" value="<c:out value="${uzytkownik.numer_telefonu}" />">
+      						<input readonly="readonly" class="form-control" type="text" name="nr_tel" value="<c:out value="${uzytkownik.numer_telefonu}" />">
     					</div>
     					
  					</div>
@@ -69,7 +77,7 @@ SELECT * FROM `formularz_naprawy` where vin_fk = '<%=vin%>';
  					<div class="form-group">
     					<label class="control-label">VIN samochodu</label>
     					<div>
-      						<input class="form-control" type="text" name="vin" value="<c:out value="${vin.vin_fk}" />">
+      						<input readonly="readonly" class="form-control" type="text" name="vin" value="<c:out value="${vin.vin_fk}" />">
     					</div>
  					</div>
  					
@@ -80,7 +88,7 @@ SELECT * FROM `formularz_naprawy` where vin_fk = '<%=vin%>';
 						</sql:query>
 						<c:forEach var="warsztat" items="${warsztat.rows}">
     					<div>
-      						<input class="form-control" type="text" name="adres" value="<c:out value="${warsztat.miasto}" />, <c:out value="${warsztat.adres}" />">
+      						<input readonly="readonly" class="form-control" type="text" name="adres" value="<c:out value="${warsztat.miasto}" />, <c:out value="${warsztat.adres}" />">
     					</div>
     					</c:forEach>
  					</div>
@@ -88,23 +96,22 @@ SELECT * FROM `formularz_naprawy` where vin_fk = '<%=vin%>';
  					<div class="form-group">
  						<label class="control-label">Opis usterki</label>
 	 					<div class="form-group">
-	 						<input class="form-control" type="text" name="opis" value="<c:out value="${vin.opis}" />">
+	 						<input readonly="readonly" class="form-control" type="text" name="opis" value="<c:out value="${vin.opis}" />">
 						</div>
 					</div>
 					
-					</fieldset>
 					
 					<div class="form-group">
  						<label class="control-label">Data oddania</label>
 	 					<div class="form-group">
-	 						<input class="form-control" type="text" name="opis" value="<c:out value="${vin.dataoddania}" />">
+	 						<input class="form-control" type="text" name="dataoddania" value="<c:out value="${vin.dataoddania}" />">
 						</div>
 					</div>
 					
 					<div class="form-group">
  						<label class="control-label">Przewidywany czas trwania naprawy</label>
 	 					<div class="form-group">
-	 						<input class="form-control" type="text" name="opis">
+	 						<input class="form-control" type="text" name="przewid_czas_trwania">
 						</div>
 					</div>
 					
