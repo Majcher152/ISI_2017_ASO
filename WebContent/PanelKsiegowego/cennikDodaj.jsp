@@ -3,27 +3,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
-<sql:query dataSource="jdbc/aso" var="result">
-
-	<%
-		String idCennika = request.getParameter("id");
-	%>
-SELECT * FROM `cennik_podstawowy` where id = '<%=idCennika%>';
-</sql:query>
-
 
 <jsp:include page="headerKsiegowy.jsp" />
-<jsp:include page="walidacjaEdycjiCennika.jsp" />
+<jsp:include page="walidacjaDodaniaCennika.jsp" />
 
 <div class="container marketing">
 	<div class="col-sm-10 col-sm-offset-2 col-md-11 col-md-offset-1 main">
-		<c:forEach var="cennik" items="${result.rows}">
-			<h1 class="page-header">Edytuj cennik</h1>
+			<h1 class="page-header">Dodaj do cennika</h1>
 
-			<form action="/ISI_2017_ASO/EdycjaCennikaServlet" method="post">
+			<form action="/ISI_2017_ASO/DodanieCennikaServlet" method="post">
 
-					
-					<input type="hidden" name="id" value="<c:out value="${cennik.id}" />">
 					
 					<div class="form-group">
 						<label for="name" class="cols-sm-2 control-label">Nazwa usługi</label>
@@ -31,7 +20,6 @@ SELECT * FROM `cennik_podstawowy` where id = '<%=idCennika%>';
 							<div class="input-group col-xs-5">
 								 <input type="text" class="form-control"
 									name="nazwa" id="nazwa"
-									value="<c:out value="${cennik.nazwa}" />"
 									data-toggle="popover"
 									data-content="Nazwa musi się składać z 3 do 80 znaków" /> <span
 									class="glyphicon form-control-feedback"></span>
@@ -45,7 +33,6 @@ SELECT * FROM `cennik_podstawowy` where id = '<%=idCennika%>';
 							<div class="input-group col-xs-5">
 							 <input type="text" class="form-control"
 									name="cena" id="cena"
-									value="<c:out value="${cennik.cena}" />"
 									data-toggle="popover"
 									data-content="Cena musi się składać z 3 do 15 znaków" /> <span
 									class="glyphicon form-control-feedback"></span>
@@ -65,8 +52,7 @@ SELECT * FROM `cennik_podstawowy` where id = '<%=idCennika%>';
 
 
 			</form>
-		</c:forEach>
-
+	<br><br><br>
 		<div
 			class="form-group-last col-sm-6 col-sm-offset-4 col-md-8 col-md-offset-2">
 			<%
@@ -81,7 +67,7 @@ SELECT * FROM `cennik_podstawowy` where id = '<%=idCennika%>';
 			<%
 				}
 			%>
-			<br><br><br>
+			
 			<div class="blad"></div>
 		</div>
 	</div>

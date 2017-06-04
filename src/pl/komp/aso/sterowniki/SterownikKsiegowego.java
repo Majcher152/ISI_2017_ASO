@@ -20,4 +20,10 @@ public class SterownikKsiegowego {
 			return 0;
 		else return -1;
 	}
+	
+	public int dodajCennik(String nazwa, String cena) {
+		if(spbd.dodajCennik(nazwa, cena))
+			return 0;
+		else return -1;
+	}
 }

@@ -1102,6 +1102,35 @@ public class SterownikPolBD {
 		return true;
 	}
 
+	/**
+	 * Metoda dodajaca pozycje do cennika w bazie danych
+	 * @param nazwa
+	 * @param cena
+	 * @return
+	 */
+	public boolean dodajCennik(String nazwa, String cena) {
+
+		PreparedStatement stmt = null;
+
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement(
+					"insert into `cennik_podstawowy` (`nazwa`, `cena`) values(?,?)");
+			stmt.setString(1, nazwa);
+			stmt.setString(2, cena);
+			stmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("blad");
+			return false;
+
+		} finally {
+			close(stmt);
+		}
+		return true;
+	}
+	
 	// -----------------------------------------------------------------------------------------------------
 
 	/**

@@ -24,20 +24,44 @@ SELECT * FROM `cennik_podstawowy`;
 					<td><c:out value="${cennik.nazwa} " /></td>
 					<td><c:out value="${cennik.cena} " /></td>
 					<td><form method="post"
-									action="/ISI_2017_ASO/PanelKsiegowego/cennikEdytuj.jsp"
-									class="inline">
-									<input type="hidden" name="id" value="${cennik.id} ">
-									<button type="submit" name="submit_param" value="submit_value"
-										class="link-button">Edytuj</button>
-								</form></td>
+							action="/ISI_2017_ASO/PanelKsiegowego/cennikEdytuj.jsp"
+							class="inline">
+							<input type="hidden" name="id" value="${cennik.id} ">
+							<button type="submit" name="submit_param" value="submit_value"
+								class="link-button">Edytuj</button>
+						</form></td>
 				</tr>
 			</c:forEach>
 		</table>
-		<br>
-		<a href="">Dodaj do cennika</a>
+		<br> <a href="cennikDodaj.jsp">Dodaj do cennika</a>
 
+
+	<br>
+	<br>
+	<%
+		String blad = (String) request.getAttribute("blad");
+	%>
+	<%
+		if (blad != null && ((blad.equals("Dodano do cennika.")) || (blad.equals("Zedytowano cennik.")))) {
+	%>
+	<div class="alert alert-success">
+		<p style="text-align: center"><%=blad%></p>
 	</div>
+	<%
+		} else if (blad != null && !blad.equals("")) {
+	%>
+	<div class="alert alert-danger">
+		<p style="text-align: center"><%=blad%></p>
+	</div>
+	<%
+		}
+	%>
+	</div>
+	
+
 </div>
+
+
 
 </div>
 
