@@ -50,8 +50,8 @@
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fa fa-calendar"
 									aria-hidden="true"></i></span> <input type="text" class="form-control"
-									name="data" id="data" placeholder="dd/MM/yyyy." 
-									data-toggle="popover" data-content="Wymagany format daty: dd/MM/yyyy."/>
+									name="data" id="data" placeholder="dd/mm/yyyy" 
+									data-toggle="popover" data-content="Wymagany format daty: dd/mm/yyyy."/>
 									<span class="glyphicon form-control-feedback"></span>
 							</div>
 							

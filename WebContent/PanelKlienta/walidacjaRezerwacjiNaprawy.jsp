@@ -38,7 +38,7 @@ $(document).ready(function() {
 	$('#btn_zarezerwuj_termin').click(function(event){
 		var data = $('#data');
 		
-		if(!(vin.hasClass('valid'))){
+		if(!(data.hasClass('valid'))){
 			event.preventDefault();
 			if (warning == false) {
 				$('<div class="alert alert-danger"> Podaj poprawny format daty!</div>').insertBefore(".blad");
