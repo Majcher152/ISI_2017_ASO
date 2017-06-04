@@ -8,20 +8,16 @@
 
 <div class="container marketing">
 
-
-	<div class="container marketing">
-		<div class="row main">
+		<div class="row main">  
 
 			<div class="panel-heading">
 				<div class="panel-title text-center">
 					<h2 class="title">Historia serwisowania:</h2>
 				</div>
 			</div>
-
-			<div class="main-login main-center">
-
+			<div class="panel-body">
 				<!-- Table -->
-				<table class="table table-hover table-striped table-condensed">
+				<table class="table table-hover table-striped table-condensed table-bordered">
 					<tr>
 						<td><b>Model</b></td>
 						<td><b>Vin</b></td>
@@ -56,9 +52,9 @@
 						</tr>
 					</c:forEach>
 				</table>
-
-			</div>
-		</div>
+</div>
+			
+		</div>  
 
 
 

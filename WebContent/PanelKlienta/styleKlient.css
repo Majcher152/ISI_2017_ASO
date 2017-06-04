@@ -180,7 +180,7 @@ input::-webkit-input-placeholder {
 
 <!-- TABELA========================================= -->
 table{
-	width: 500px;
+	width: 800px;
 }
 
 tr:hover {
@@ -188,7 +188,7 @@ tr:hover {
 }
 
 .panel-default{
-	width: 600px;
+	width: 800px;
 	text-align: center;
 	background: #d0d3d5;
 }
