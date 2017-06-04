@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Czas generowania: 03 Cze 2017, 10:53
--- Wersja serwera: 10.1.21-MariaDB
--- Wersja PHP: 5.6.30
+-- Czas generowania: 04 Cze 2017, 14:50
+-- Wersja serwera: 10.1.19-MariaDB
+-- Wersja PHP: 5.6.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -53,13 +53,6 @@ CREATE TABLE `formularz_naprawy` (
   `przewid_czas_trwania` int(2) DEFAULT NULL,
   `status` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Zrzut danych tabeli `formularz_naprawy`
---
-
-INSERT INTO `formularz_naprawy` (`id`, `opis`, `koszt_naprawy`, `uzytkownik_login_fk`, `warsztat_id_fk`, `vin_fk`, `dataoddania`, `dataodebrania`, `przewid_czas_trwania`, `status`) VALUES
-(1, NULL, NULL, 'bbb', 1, '123456789qqqqqqqq', '07/06/2017', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -252,15 +245,11 @@ CREATE TABLE `uzytkownik` (
 --
 
 INSERT INTO `uzytkownik` (`login`, `haslo`, `imie`, `nazwisko`, `email`, `numer_telefonu`, `rodzaj_konta`) VALUES
-('aaa', 'aaa', 'aaa', 'aaa', 'aaa', 123, 'Admin'),
 ('aga234', 'Oskaoska1', 'Agnieszka', 'Kozłowska', 'teczowymis@wp.pl', 456563256, 'Uzytkownik'),
 ('amil', 'Amilamil1', 'Kamil', 'Płaczek', 'amil@op.pl', 651234589, 'Mechanik'),
-('bbb', 'bbb', 'bbb', 'bbb', 'bbb@bbb.pl', 456789123, 'Uzytkownik'),
 ('buleczka', 'Oskaoska1', 'Szymon', 'Bułka', 'bulkibulki@wp.pl', 459965965, 'Uzytkownik'),
-('ccc', 'ccc', 'ccc', 'ccc', 'ccc@ccc.pl', 789456143, 'Ksiegowy'),
 ('ciastko', 'Oskaoska1', 'Faustyna', 'Przezwisko', 'faustyna.przezwisko@gmail.com', 412452412, 'Uzytkownik'),
 ('cium', 'Oskaoska1', 'Dorota', 'Szpiłyk', 'dorotaciumcium@op.pl', 452123659, 'Uzytkownik'),
-('ddd', 'ddd', 'ddd', 'ddd', 'ddd@ddd.pl', 987456321, 'Mechanik'),
 ('dzik', 'Oskaoska1', 'Ernest', 'Bździk', 'wolololo@op.pl', 745745761, 'uzytkownik'),
 ('eminem', 'Oskaoska1', 'Sławomir', 'Dudacz', 'imtherealslimshady@o2.pl', 652223656, 'Uzytkownik'),
 ('filemon', 'Oskaoska1', 'Filip', 'Dzięcioł', 'podrozniksnow@op.pl', 745523658, 'Księgowy'),
@@ -290,13 +279,6 @@ CREATE TABLE `uzytkownik_samochod` (
   `vin` varchar(17) COLLATE utf8_unicode_ci NOT NULL,
   `warsztat_id_fk` int(7) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
-
---
--- Zrzut danych tabeli `uzytkownik_samochod`
---
-
-INSERT INTO `uzytkownik_samochod` (`Uzytkownik_login_fk`, `Samochod_if_fk`, `vin`, `warsztat_id_fk`) VALUES
-('bbb', 392041, '123456789qqqqqqqq', NULL);
 
 -- --------------------------------------------------------
 
