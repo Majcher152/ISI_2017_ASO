@@ -60,7 +60,7 @@
 									<li><a href="/ISI_2017_ASO/PrzegladServlet?metoda=zaladujNaprawa">Naprawa</a></li>
 								</ul></li>
 								
-								<li><a href="">Historia Serwisowania</a></li>
+								<li><a href="/ISI_2017_ASO/HistoriaSerwisowaniaServlet?metoda=zaladujHistorie">Historia Serwisowania</a></li>
 							<li><a href="/ISI_2017_ASO/PanelKlienta/oNasKlient.jsp">O nas</a></li>
 							<li><a href="/ISI_2017_ASO/PanelKlienta/kontaktKlient.jsp">Kontakt</a></li>
 
