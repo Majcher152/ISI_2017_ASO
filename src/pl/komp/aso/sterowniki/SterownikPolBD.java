@@ -793,8 +793,9 @@ public class SterownikPolBD {
 				f.setOpis(rs.getString("opis"));
 				f.setPrzewidywany_czas(rs.getInt("przewid_czas_trwania"));
 				f.setStatus(rs.getString("status"));
+				f.setId(rs.getInt("id"));
 				f.setSamochod(pobierzSamochodVin(rs.getString("vin_fk")));
-				f.setWarsztat(pobierzWarsztatId(rs.getString("warsztat_id_fk")));
+				f.setWarsztat(pobierzWarsztatId(rs.getInt("warsztat_id_fk")));
 				formularze.add(f);
 			}
 
@@ -809,7 +810,7 @@ public class SterownikPolBD {
 		return formularze;
 	}
 
-	public Warsztat pobierzWarsztatId(String id) {
+	public Warsztat pobierzWarsztatId(int id) {
 
 		ResultSet rs = null;
 
@@ -818,7 +819,7 @@ public class SterownikPolBD {
 		try {
 			// przygotowanie zapytania
 			stmt = con.prepareStatement("Select * from warsztat where id=?");
-			stmt.setString(1, id);
+			stmt.setInt(1, id);
 			rs = stmt.executeQuery();
 			rs.next();
 
@@ -926,6 +927,148 @@ public class SterownikPolBD {
 			close(stmt);
 		}
 		return odp;
+	}
+	
+	public boolean edytujStatusNaprawy(int id) {
+		boolean odp = true;
+
+		PreparedStatement stmt = null;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement("UPDATE formularz_naprawy SET status='warsztat' WHERE id = ?");
+			stmt.setInt(1, id);
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			odp = false;
+			return false;
+
+		} finally {
+
+			close(stmt);
+		}
+		return odp;
+	}
+	
+	public boolean uzupelnijFormularzNaprawy(int id,String opis,String dataodebrania,double koszt) {
+		boolean odp = true;
+
+		PreparedStatement stmt = null;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement("UPDATE formularz_naprawy SET status='zakonczone',opis=?,dataodebrania=?,koszt_naprawy=? WHERE id = ?");
+			stmt.setString(1, opis);
+			stmt.setString(2, dataodebrania);
+			stmt.setDouble(3, koszt);
+			stmt.setInt(4, id);
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			odp = false;
+			return false;
+
+		} finally {
+
+			close(stmt);
+		}
+		return odp;
+	}
+	
+	public int pobierzIdWarsztatu(String login) {
+
+		ResultSet rs = null;
+
+		PreparedStatement stmt = null;
+		int id=-1;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement("Select id_warsztatu_fk from mechanik_warsztat where mechanik_login_fk=?");
+			stmt.setString(1, login);
+			rs = stmt.executeQuery();
+			rs.next();
+			id=rs.getInt("id_warsztatu_fk");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("brak");
+			return id;
+
+		} finally {
+			close(rs);
+			close(stmt);
+		}
+		return id;
+	}
+	
+	public ArrayList<FormularzNaprawy> pobierzFormularzeMechanika(int id,String status) {
+		ArrayList<FormularzNaprawy> formularze = new ArrayList<FormularzNaprawy>();
+		ResultSet rs = null;
+
+		PreparedStatement stmt = null;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement("Select * from formularz_naprawy where warsztat_id_fk=? and status=? order by id desc");
+			stmt.setInt(1, id);
+			stmt.setString(2, status);
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+
+				FormularzNaprawy f = new FormularzNaprawy();
+				f.setDataOddania(rs.getString("dataoddania"));
+				f.setDataOdebrania(rs.getString("dataodebrania"));
+				f.setKoszt(rs.getDouble("koszt_naprawy"));
+				f.setOpis(rs.getString("opis"));
+				f.setPrzewidywany_czas(rs.getInt("przewid_czas_trwania"));
+				f.setStatus(rs.getString("status"));
+				f.setId(rs.getInt("id"));
+				f.setSamochod(pobierzSamochodVin(rs.getString("vin_fk")));
+				f.setWarsztat(pobierzWarsztatId(rs.getInt("warsztat_id_fk")));
+				formularze.add(f);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+
+		} finally {
+			close(rs);
+			close(stmt);
+		}
+		return formularze;
+	}
+	
+	public FormularzNaprawy pobierzFormularz(int id) {
+		
+		ResultSet rs = null;
+		FormularzNaprawy f = new FormularzNaprawy();
+		PreparedStatement stmt = null;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement("Select * from formularz_naprawy where id=?");
+			stmt.setInt(1, id);
+			rs = stmt.executeQuery();
+			rs.next();
+
+				
+				f.setDataOddania(rs.getString("dataoddania"));
+				f.setDataOdebrania(rs.getString("dataodebrania"));
+				f.setKoszt(rs.getDouble("koszt_naprawy"));
+				f.setOpis(rs.getString("opis"));
+				f.setPrzewidywany_czas(rs.getInt("przewid_czas_trwania"));
+				f.setStatus(rs.getString("status"));
+				f.setId(rs.getInt("id"));
+				f.setSamochod(pobierzSamochodVin(rs.getString("vin_fk")));
+				f.setWarsztat(pobierzWarsztatId(rs.getInt("warsztat_id_fk")));
+				
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+
+		} finally {
+			close(rs);
+			close(stmt);
+		}
+		return f;
 	}
 
 	// -----------------------------------------------------------------------------------------------------

@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 import pl.komp.aso.dto.Samochod;
 import pl.komp.aso.dto.Uzytkownik;
+import pl.komp.aso.dto.Warsztat;
 
 public class SterownikKlienta {
 	SterownikPolBD spbd = new SterownikPolBD();
@@ -116,22 +117,27 @@ public class SterownikKlienta {
 		}
 		return false;
 	}
-
-	public void sprawdzHistorie() {
-
+	
+	public boolean zarezerwujPrzeglad(String vin,String adres,String dzien,String godzina) {
+		boolean odp=false;
+		Warsztat w= spbd.pobierzWarsztat(adres);
+		if(spbd.zarezerwujPrzeglad(vin,w.getId(),dzien,godzina)) {
+			odp=true;
+		}
+		return odp;
 	}
-
-	public void zarezerwujTermin() {
-
+	
+	public boolean zarezerwujNaprawe(String vin,String adres,String dzien,String opis,Uzytkownik u) {
+		boolean odp=false;
+		Warsztat w= spbd.pobierzWarsztat(adres);
+		if(spbd.zarezerwujNaprawe(vin,w.getId(),dzien,opis,u.getLogin())) {
+			odp=true;
+			u.setFormularze(spbd.pobierzFormularze(u.getLogin()));
+		}
+		return odp;
 	}
+	
 
-	public void sprawdzStatusNaprawy() {
-
-	}
-
-	public void wylogujSie() {
-
-	}
 	
 	public int dodajAuto(Uzytkownik uzytkownik,String model,String rocznik,String typ,String silnik,String vin) {
 		String login=uzytkownik.getLogin();

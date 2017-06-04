@@ -86,7 +86,7 @@ public class PrzegladServlet extends HttpServlet {
 				blad="Żadne pole nie może być puste.";
 			}
 			else {
-				if(sw.zarezerwujPrzeglad(vin,adres,dzien,godzina))
+				if(sk.zarezerwujPrzeglad(vin,adres,dzien,godzina))
 					blad="Zarezerwowano termin.";
 				else 
 					blad="Błąd rezerwacji";

@@ -46,6 +46,7 @@ public class NaprawaServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		SterownikPolBD spbd = new SterownikPolBD();
 		SterownikWarsztatu sw=new SterownikWarsztatu();
+		SterownikKlienta sk=new SterownikKlienta();
 		response.setContentType("text/html;charset=UTF-8");
 		String blad = request.getParameter("blad");	
 		String metoda = request.getParameter("metoda");
@@ -84,7 +85,7 @@ public class NaprawaServlet extends HttpServlet {
 				blad="Żadne pole nie może być puste.";
 			}
 			else {
-				if(sw.zarezerwujNaprawe(vin,adres,dzien,opis,u))
+				if(sk.zarezerwujNaprawe(vin,adres,dzien,opis,u))
 					blad="Zarezerwowano termin.";
 				else 
 					blad="Błąd rezerwacji";

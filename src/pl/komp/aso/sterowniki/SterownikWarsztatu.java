@@ -14,25 +14,7 @@ public class SterownikWarsztatu {
 	SterownikPolBD spbd = new SterownikPolBD();
 	SterownikKlienta sk= new SterownikKlienta();
 	
-	public boolean zarezerwujPrzeglad(String vin,String adres,String dzien,String godzina) {
-		boolean odp=false;
-		Warsztat w= spbd.pobierzWarsztat(adres);
-		if(spbd.zarezerwujPrzeglad(vin,w.getId(),dzien,godzina)) {
-			odp=true;
-		}
-		return odp;
-	}
-	
-	public boolean zarezerwujNaprawe(String vin,String adres,String dzien,String opis,Uzytkownik u) {
-		boolean odp=false;
-		Warsztat w= spbd.pobierzWarsztat(adres);
-		if(spbd.zarezerwujNaprawe(vin,w.getId(),dzien,opis,u.getLogin())) {
-			odp=true;
-			u.setFormularze(spbd.pobierzFormularze(u.getLogin()));
-		}
-		return odp;
-	}
-	
+
 	
 	public ArrayList<String> sprawdzDni() {
 		ArrayList<String> dni=new ArrayList<String>();

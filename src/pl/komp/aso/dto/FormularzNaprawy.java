@@ -9,7 +9,14 @@ public class FormularzNaprawy {
 	private Samochod samochod;
 	private String status;
 	private int przewidywany_czas;
+	private int id;
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public int getPrzewidywany_czas() {
 		return przewidywany_czas;
 	}

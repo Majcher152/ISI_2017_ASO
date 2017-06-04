@@ -15,9 +15,8 @@
 }
 </style>
 
-<sql:query dataSource="jdbc/aso" var="result">
-SELECT * FROM `formularz_naprawy` where czy_zatwierdzone = 0;
-</sql:query>
+
+
 
 <jsp:include page="headerMechanik.jsp" />
 
@@ -25,7 +24,7 @@ SELECT * FROM `formularz_naprawy` where czy_zatwierdzone = 0;
 
 
 	<div class="col-sm-10 col-sm-offset-2 col-md-11 col-md-offset-1 main">
-		<h1 class="page-header">Naprawy do zatwierdzenia</h1>
+		<h1 class="page-header">Zadania w trakcie realizacji</h1>
 		<div
 			class="form-group-last col-sm-6 col-sm-offset-4 col-md-8 col-md-offset-2">
 			<%
@@ -46,30 +45,23 @@ SELECT * FROM `formularz_naprawy` where czy_zatwierdzone = 0;
 			<div class="panel panel-default">
 				<!-- Table -->
 				<table class="table table-hover table-striped table-condensed">
-					<c:forEach var="do_realizacji" items="${result.rows}">
+				<tr>
+				<td><b>VIN</b></td>
+				<td><b>Data</b></td>
+				<td><b>Zmiana statusu</b></td>
+				</tr>
+					<c:forEach var="formularz" items="${formularze}">
 						<tr>
 							<td><c:out
-									value="${formularz_naprawy.uzytkownik_login_fk}" /></td>
+									value="${formularz.samochod.vin}" /></td>
+							<td><c:out
+									value="${formularz.dataOddania}" /></td>
 							<td><form method="post"
-									action="/ISI_2017_ASO/PanelAdmina/uzytkownicyWyswietlAdmin.jsp"
+									action="MechanikNaprawaServlet?metoda=zmienStatusNaprawy"
 									class="inline">
-									<input type="hidden" name="email" value="${uzytkownik.email} ">
+									<input type="hidden" name="id" value="${formularz.id} ">
 									<button type="submit" name="submit_param" value="submit_value"
-										class="link-button">Wyświetl</button>
-								</form></td>
-							<td><form method="post"
-									action="/ISI_2017_ASO/PanelAdmina/uzytkownicyEdytujAdmin.jsp"
-									class="inline">
-									<input type="hidden" name="email" value="${uzytkownik.email} ">
-									<button type="submit" name="submit_param" value="submit_value"
-										class="link-button">Edytuj</button>
-								</form></td>
-							<td><form method="post"
-									action="/ISI_2017_ASO/PanelAdmina/uzytkownicyUsunAdmin.jsp"
-									class="inline">
-									<input type="hidden" name="email" value="${uzytkownik.email} ">
-									<button type="submit" name="submit_param" value="submit_value"
-										class="link-button">Usuń</button>
+										class="link-button">Zmień</button>
 								</form></td>
 						</tr>
 					</c:forEach>
