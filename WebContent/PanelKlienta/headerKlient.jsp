@@ -57,7 +57,7 @@
 									class="caret"></span></a>
 								<ul class="dropdown-menu">
 									<li><a href="/ISI_2017_ASO/PrzegladServlet?metoda=zaladujPrzeglad">Przeglad</a></li>
-									<li><a href="/ISI_2017_ASO/PrzegladServlet?metoda=zaladujNaprawa">Naprawa</a></li>
+									<li><a href="/ISI_2017_ASO/NaprawaServlet?metoda=zaladujNaprawe">Naprawa</a></li>
 								</ul></li>
 								
 								<li><a href="/ISI_2017_ASO/HistoriaSerwisowaniaServlet?metoda=zaladujHistorie">Historia Serwisowania</a></li>

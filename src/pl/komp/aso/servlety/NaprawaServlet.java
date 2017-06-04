@@ -47,11 +47,10 @@ public class NaprawaServlet extends HttpServlet {
 		SterownikPolBD spbd = new SterownikPolBD();
 		SterownikWarsztatu sw=new SterownikWarsztatu();
 		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();
 		String blad = request.getParameter("blad");	
 		String metoda = request.getParameter("metoda");
 		String adres =request.getParameter("adres");
-		String dzien=request.getParameter("dzien");
+		String dzien=request.getParameter("data");
 		String opis=request.getParameter("opis");
 		String vin=request.getParameter("samochod");
 		Uzytkownik u= (Uzytkownik) request.getSession().getAttribute("uzytkownik");
@@ -77,7 +76,8 @@ public class NaprawaServlet extends HttpServlet {
 			request.getRequestDispatcher("PanelKlienta/naprawaKlient.jsp").forward(request, response);
 		}
 		else if(metoda.equals("zarezerwuj")) {
-			if(vin==null || adres==null || dzien==null || opis==null) {
+			System.out.println("dzien:"+dzien);
+			if(vin==null || adres==null || dzien==null || opis==null ||dzien.equals("")||opis.equals("")) {
 				
 				blad="Żadne pole nie może być puste.";
 			}

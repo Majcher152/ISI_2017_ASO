@@ -914,7 +914,7 @@ public class SterownikPolBD {
 				stmt.setString(2, vin);
 				stmt.setString(3, dzien);
 				stmt.setString(4, opis);
-				stmt.setString(4, login);
+				stmt.setString(5, login);
 				stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
