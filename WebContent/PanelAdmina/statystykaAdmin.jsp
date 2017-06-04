@@ -16,10 +16,14 @@
 </style>
 
 <sql:query dataSource="jdbc/aso" var="resultPracownik">
-SELECT * FROM `uzytkownik` where rodzaj_konta != 'Uzytkownik';
-</sql:query>
-<sql:query dataSource="jdbc/aso" var="resultUzytkownik">
-SELECT * FROM `uzytkownik` where rodzaj_konta = 'Uzytkownik';
+SELECT COUNT(*) as liczba ,
+ (SELECT COUNT(*) FROM `uzytkownik` where rodzaj_konta = 'Administrator') as liczbaAdmin,
+ (SELECT COUNT(*) as liczba FROM `uzytkownik` where rodzaj_konta = 'Uzytkownik') as liczbaUzytkownik,
+ (SELECT COUNT(*) FROM `uzytkownik` where rodzaj_konta = 'Ksiegowy') as liczbaKsiegowy,
+ (SELECT COUNT(*) FROM `uzytkownik` where rodzaj_konta = 'Mechanik') as liczbaMechanik,
+ (SELECT COUNT(*) FROM `warsztat`) as liczbaWarsztat
+    FROM `uzytkownik` where rodzaj_konta != 'Uzytkownik';
+
 </sql:query>
 
 
@@ -34,16 +38,33 @@ SELECT * FROM `uzytkownik` where rodzaj_konta = 'Uzytkownik';
 			<div class="panel panel-default">
 				<!-- Table -->
 				<table class="table table-hover table-striped table-condensed">
+
+					<c:forEach var="row" items="${resultPracownik.rows}">
 						<tr>
 							<td>Ilość pracowników:</td>
-							<td><c:out value="resultPracownik.imie"></c:out></td>
-							
+							<td><c:out value="${row.liczba}"></c:out></td>
 						</tr>
-												<tr>
-							<td>Ilość uzytkowników:</td>
-							<td><c:out value="${resultUzytkownik.rows.}"></c:out></td>
-							
+						<tr>
+							<td>Ilość administratorów:</td>
+							<td><c:out value="${row.liczbaAdmin}"></c:out></td>
 						</tr>
+						<tr>
+							<td>Ilość księgowych:</td>
+							<td><c:out value="${row.liczbaKsiegowy}"></c:out></td>
+						</tr>
+						<tr>
+							<td>Ilość mechaników:</td>
+							<td><c:out value="${row.liczbaMechanik}"></c:out></td>
+						</tr>
+						<tr>
+							<td>Ilość użytkowników:</td>
+							<td><c:out value="${row.liczbaUzytkownik}"></c:out></td>
+						</tr>
+						<tr>
+							<td>Ilość warsztatów:</td>
+							<td><c:out value="${row.liczbaWarsztat}"></c:out></td>
+						</tr>
+					</c:forEach>
 				</table>
 			</div>
 

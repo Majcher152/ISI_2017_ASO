@@ -55,7 +55,7 @@
 								data-content="Wybierz jedną z opcji.">
 								<option>Wybierz jedną z opcji.</option>
 								<option>Mechanik</option>
-								<option>Księgowy</option>
+								<option>Ksiegowy</option>
 								<option>Administrator</option>
 							</select> <span class="glyphicon form-control-feedback"></span>
 						</div>
