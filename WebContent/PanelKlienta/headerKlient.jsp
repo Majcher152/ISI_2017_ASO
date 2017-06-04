@@ -47,7 +47,7 @@
 									class="caret"></span></a>
 								<ul class="dropdown-menu">
 									<li><a href="/ISI_2017_ASO/PanelKlienta/cennikKlient.jsp">Cennik podstawowy</a></li>
-									<li><a href="">Cennik rozszerzony</a></li>
+									<li><a href="/ISI_2017_ASO/PanelKlienta/cennikKlientRozsz.jsp">Cennik rozszerzony</a></li>
 								</ul></li>
 
 								
