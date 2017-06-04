@@ -902,6 +902,31 @@ public class SterownikPolBD {
 		}
 		return true;
 	}
+	
+	public boolean zarezerwujNaprawe(String vin, int id, String dzien, String opis,String login) {
+		boolean odp = true;
+		PreparedStatement stmt = null;
+		try {
+			// przygotowanie zapytania
+				stmt = con.prepareStatement(
+						"INSERT INTO formularz_naprawy(warsztat_id_fk,vin_fk,dataoddania,opis,uzytkownik_login_fk,status) VALUES (?,?,?,?,?,'oczekiwanie')");
+				stmt.setInt(1,id);
+				stmt.setString(2, vin);
+				stmt.setString(3, dzien);
+				stmt.setString(4, opis);
+				stmt.setString(4, login);
+				stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			odp = false;
+			System.out.println("Nie udalo sie zarezerwowac terminu");
+			return odp;
+
+		} finally {
+			close(stmt);
+		}
+		return odp;
+	}
 
 	// -----------------------------------------------------------------------------------------------------
 

@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,16 +19,16 @@ import pl.komp.aso.sterowniki.SterownikPolBD;
 import pl.komp.aso.sterowniki.SterownikWarsztatu;
 
 /**
- * Servlet implementation class PrzegladServlet
+ * Servlet implementation class NaprawaServlet
  */
-@WebServlet("/PrzegladServlet")
-public class PrzegladServlet extends HttpServlet {
+@WebServlet("/NaprawaServlet")
+public class NaprawaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PrzegladServlet() {
+    public NaprawaServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,7 +37,7 @@ public class PrzegladServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request,response);
+		doPost(request, response);
 	}
 
 	/**
@@ -46,7 +45,6 @@ public class PrzegladServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		SterownikPolBD spbd = new SterownikPolBD();
-		SterownikKlienta sk = new SterownikKlienta();
 		SterownikWarsztatu sw=new SterownikWarsztatu();
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -54,11 +52,11 @@ public class PrzegladServlet extends HttpServlet {
 		String metoda = request.getParameter("metoda");
 		String adres =request.getParameter("adres");
 		String dzien=request.getParameter("dzien");
-		String godzina=request.getParameter("godzina");
+		String opis=request.getParameter("opis");
 		String vin=request.getParameter("samochod");
-		
-		if(metoda.equals("zaladujPrzeglad")) {
-			Uzytkownik u= (Uzytkownik) request.getSession().getAttribute("uzytkownik");
+		Uzytkownik u= (Uzytkownik) request.getSession().getAttribute("uzytkownik");
+
+		if(metoda.equals("zaladujNaprawe")) {
 			ArrayList<Warsztat> warsztaty = spbd.pobierzWarsztaty();
 			List<Samochod> samochody = u.getSamochody();
 			for(int i=0;i<samochody.size();i++) {
@@ -72,41 +70,27 @@ public class PrzegladServlet extends HttpServlet {
 				adresy.add(warsztaty.get(i).getAdres());
 			}
 			
-			ArrayList<String> dni = sw.sprawdzDni();
 			request.setAttribute("adresy", adresy);
 			request.setAttribute("samochody",samochody);
-			request.setAttribute("dni", dni);
 			if(blad!=null)
 				request.setAttribute("blad", blad);
-			request.getRequestDispatcher("PanelKlienta/przegladKlient.jsp").forward(request, response);
+			request.getRequestDispatcher("PanelKlienta/naprawaKlient.jsp").forward(request, response);
 		}
 		else if(metoda.equals("zarezerwuj")) {
-			if(vin==null || adres==null || dzien==null || godzina==null) {
+			if(vin==null || adres==null || dzien==null || opis==null) {
 				
 				blad="Żadne pole nie może być puste.";
 			}
 			else {
-				if(sw.zarezerwujPrzeglad(vin,adres,dzien,godzina))
+				if(sw.zarezerwujNaprawe(vin,adres,dzien,opis,u))
 					blad="Zarezerwowano termin.";
 				else 
 					blad="Błąd rezerwacji";
 			}
 			request.setAttribute("blad", blad);
-			request.getRequestDispatcher("PrzegladServlet?metoda=zaladujPrzeglad").forward(request, response);
-		}
-		else if(metoda.equals("zmiana")) {
-			ArrayList<String> godziny =sw.sprawdzGodziny(adres);
-			StringBuffer sb = new StringBuffer();
-			for (int i = 0; i < godziny.size(); i++) {
-				if(!sw.sprawdzGodzine(godziny.get(i),adres,dzien))
-					sb.append("<option value='" + godziny.get(i) + "'>" + godziny.get(i) + "</option>");
-				else
-					sb.append("<option disabled=\"true\" value='" + godziny.get(i) + "'><font color=\"red\"><s>" + godziny.get(i) + "</s></font></option>");
-			}
-			out.print(sb);
+			request.getRequestDispatcher("NaprawaServlet?metoda=zaladujNaprawe").forward(request, response);
 		}
 		
-		out.close();
 	}
 
 }
