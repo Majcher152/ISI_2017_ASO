@@ -1070,6 +1070,37 @@ public class SterownikPolBD {
 		}
 		return f;
 	}
+	
+	/**
+	 * Metoda zmieniajaca cennik dla podanego id 
+	 * @param id
+	 * @param nazwa
+	 * @param cena
+	 * @return
+	 */
+	public boolean zmienCennik(String id, String nazwa, String cena) {
+
+		PreparedStatement stmt = null;
+
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement(
+					"UPDATE `cennik_podstawowy` SET `nazwa` = ?, `cena` = ? WHERE `id` = ?");
+			stmt.setString(1, nazwa);
+			stmt.setString(2, cena);
+			stmt.setString(3, id);
+			stmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("blad");
+			return false;
+
+		} finally {
+			close(stmt);
+		}
+		return true;
+	}
 
 	// -----------------------------------------------------------------------------------------------------
 

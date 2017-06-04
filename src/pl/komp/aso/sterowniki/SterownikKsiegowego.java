@@ -14,4 +14,10 @@ public class SterownikKsiegowego {
 			return 0;
 		else return -1;
 	}
+	
+	public int edytujCennik(String id, String nazwa, String cena) {
+		if(spbd.zmienCennik(id, nazwa, cena))
+			return 0;
+		else return -1;
+	}
 }

@@ -1,49 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ page import="java.io.*,java.sql.*" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+
+
+<sql:query dataSource="jdbc/aso" var="result">
+SELECT * FROM `cennik_podstawowy`;
+</sql:query>
 
 <jsp:include page="headerKlient.jsp" />
 	<div class="container marketing">
 		<div class="row main">
-			<br> <br>
-			<div class="panel panel-default">
-				<!-- Default panel contents -->
-				<div class="panel-heading">Cennik.</div>
-
-				<!-- Table -->
-				<table class="table" border="1">
-					<tr>
-						<td>Przegląd samochodu</td>
-						<td>100zł</td>
-
-					</tr>
-					<tr>
-						<td>Wymiana olejów i filtrów</td>
-						<td>Od 249zł</td>
-					</tr>
-					<tr>
-						<td>Wymiana kół/opon na letnie/zimowe</td>
-						<td>Od 49zł</td>
-					</tr>
-					<tr>
-						<td>Dezynfekcja/nabicie klimatyzacji</td>
-						<td>Od 149zł</td>
-					</tr>
-					<tr>
-						<td>Wymiana klocków hamulcowych</td>
-						<td>Od 99zł</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td>Od 99zł</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td>Od 99zł</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td>Od 99zł</td>
-					</tr>
+			<div class="main main-center">
+			<br><br>
+			<!-- Table -->
+				<table style="text-align: center" class="col-lg-3 table table-hover table-striped table-condensed table-bordered">
+				<tr>
+				<td colspan="2"><b>Cennik</b></td>
+				</tr>
+					<c:forEach var="cennik" items="${result.rows}">
+						<tr>
+							<td><c:out value="${cennik.nazwa} " /></td>
+							<td><c:out value="${cennik.cena} " /></td>
+						</tr>
+					</c:forEach>
 				</table>
 			</div>
 
