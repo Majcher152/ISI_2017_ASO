@@ -48,7 +48,7 @@
 						<label for="name" class="cols-sm-2 control-label">Preferowana data</label>
 						<div class="cols-sm-10">
 							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-car"
+								<span class="input-group-addon"><i class="fa fa-calendar"
 									aria-hidden="true"></i></span> <input type="text" class="form-control"
 									name="data" id="data" placeholder="dd/MM/yyyy." 
 									data-toggle="popover" data-content="Wymagany format daty: dd/MM/yyyy."/>
@@ -61,7 +61,7 @@
 					<div class="form-horizontal">
 						<div class="form-group">
 							<label for="name" class="cols-sm-2 control-label">Opis usterki</label>
-								<textarea  name="opis" class="form-control" rows="5" style="width:100%;overflow:auto;resize:none" data-toggle="popover" data-content="Makymalnie 200 znaków."  
+								<textarea  id="opis" name="opis" class="form-control" maxlength="200" rows="5" style="width:100%;overflow:auto;resize:none" data-toggle="popover" data-content="Makymalnie 200 znaków."  
 									required></textarea>
 							
 						</div>

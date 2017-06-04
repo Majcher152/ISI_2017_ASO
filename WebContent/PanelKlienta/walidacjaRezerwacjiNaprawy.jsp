@@ -11,6 +11,11 @@ $(document).ready(function() {
 		placement : 'right'
 	});
 	
+	$('#opis').popover({
+		container: 'body',
+		trigger : 'focus',
+		placement : 'right'
+	});
 	
 	//Walidacja daty
 	$('#data').on('blur', function() {

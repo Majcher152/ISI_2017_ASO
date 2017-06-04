@@ -68,7 +68,9 @@ public class NaprawaServlet extends HttpServlet {
 			for(int i=0;i<warsztaty.size();i++) {
 				adresy.add(warsztaty.get(i).getAdres());
 			}
-			
+			if(dzien==null)
+				dzien="";
+			request.setAttribute("data", dzien);
 			request.setAttribute("adresy", adresy);
 			request.setAttribute("samochody",samochody);
 			if(blad!=null)
