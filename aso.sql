@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 04 Cze 2017, 15:10
+-- Czas generowania: 04 Cze 2017, 20:57
 -- Wersja serwera: 10.1.21-MariaDB
--- Wersja PHP: 5.6.30
+-- Wersja PHP: 7.0.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,29 @@ SET time_zone = "+00:00";
 --
 -- Baza danych: `aso`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `cennik_podstawowy`
+--
+
+CREATE TABLE `cennik_podstawowy` (
+  `id` int(7) NOT NULL,
+  `nazwa` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  `cena` varchar(15) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
+
+--
+-- Zrzut danych tabeli `cennik_podstawowy`
+--
+
+INSERT INTO `cennik_podstawowy` (`id`, `nazwa`, `cena`) VALUES
+(1, 'Przegląd samochodu', '120 zł'),
+(2, 'Wymiana olejów i filtrów', 'Od 249 zł'),
+(3, 'Wymiana kół/opon na zimowe/letnich', 'od 49 zł'),
+(4, 'Dezynfekcja/nabicie klimatyzacji', 'Od 149 zł'),
+(5, 'Wymiana klocków hamulcowych', 'Od 99 zł');
 
 -- --------------------------------------------------------
 
@@ -78,6 +101,13 @@ CREATE TABLE `przeglad` (
   `data` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `godzina` varchar(5) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
+
+--
+-- Zrzut danych tabeli `przeglad`
+--
+
+INSERT INTO `przeglad` (`id_przegladu`, `id_warsztatu_fk`, `vin_fk`, `data`, `godzina`) VALUES
+(1, 1, '0123456789ABCDEFG', '2017/06/05', '10:00');
 
 -- --------------------------------------------------------
 
@@ -253,8 +283,10 @@ INSERT INTO `uzytkownik` (`login`, `haslo`, `imie`, `nazwisko`, `email`, `numer_
 ('dzik', 'Oskaoska1', 'Ernest', 'Bździk', 'wolololo@op.pl', 745745761, 'Uzytkownik'),
 ('eminem', 'Oskaoska1', 'Sławomir', 'Dudacz', 'imtherealslimshady@o2.pl', 652223656, 'Uzytkownik'),
 ('filemon', 'Oskaoska1', 'Filip', 'Dzięcioł', 'podrozniksnow@op.pl', 745523658, 'Ksiegowy'),
+('goryl', 'Oskaoska1', 'Jan', 'Kowalski', 'goryl.to.wielka@interia.pl', 555777888, 'Uzytkownik'),
 ('grzesiu', 'Oskaoska1', 'Grzegorz', 'Komajda', 'grzech@o2.pl', 452123326, 'Mechanik'),
 ('janosik', 'Oskaoska1', 'Jan', 'Teatr', 'filmjanosik@o2.pl', 452632512, 'Uzytkownik'),
+('joecocemba', 'Oskaoska1', 'Joe', 'Cocemba', 'jc_46@wp.pl', 506795367, 'Uzytkownik'),
 ('justus', 'Oskaoska1', 'Justyna', 'Strojek', 'jstroj@op.pl', 412412412, 'Uzytkownik'),
 ('kasia', 'Oskaoska1', 'Katarzyna', 'Klimek', 'kasiaftw@gmail.com', 789562364, 'Administrator'),
 ('krzysiu', 'Oskaoska1', 'Krzysztof', 'Domagała', 'kdd@gmail.com', 123569965, 'Mechanik'),
@@ -330,6 +362,12 @@ CREATE TABLE `zamowienie` (
 --
 -- Indeksy dla zrzutów tabel
 --
+
+--
+-- Indexes for table `cennik_podstawowy`
+--
+ALTER TABLE `cennik_podstawowy`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `czesc`
@@ -422,6 +460,11 @@ ALTER TABLE `zamowienie`
 --
 
 --
+-- AUTO_INCREMENT dla tabeli `cennik_podstawowy`
+--
+ALTER TABLE `cennik_podstawowy`
+  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
 -- AUTO_INCREMENT dla tabeli `czesc`
 --
 ALTER TABLE `czesc`
@@ -430,12 +473,12 @@ ALTER TABLE `czesc`
 -- AUTO_INCREMENT dla tabeli `formularz_naprawy`
 --
 ALTER TABLE `formularz_naprawy`
-  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT dla tabeli `przeglad`
 --
 ALTER TABLE `przeglad`
-  MODIFY `id_przegladu` int(7) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_przegladu` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT dla tabeli `samochod`
 --
