@@ -78,13 +78,20 @@
 						String blad = (String) request.getAttribute("blad");
 					%>
 					<%
-						if (blad != null && !blad.equals("")) {
+						if (blad != null && blad.equals("Zarezerwowano termin.")) {
 					%>
-					<div class="alert alert-danger">
-						<%=blad%>
+					<div class="alert alert-success">
+						<p style="text-align:center"><%=blad%></p>
 					</div>
 					<%
 						}
+					else if (blad != null && !blad.equals("")) { 
+					%>
+					<div class="alert alert-danger">
+						<p style="text-align:center"><%=blad%></p>
+					</div>
+					<%
+					}
 					%>
 
 					<div class="blad"></div>

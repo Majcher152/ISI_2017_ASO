@@ -125,11 +125,25 @@
 							class="btn btn-primary btn-lg btn-block login-button">Zarejestruj</button>
 					</div>
 					
-						<%String blad =(String) request.getAttribute("blad"); %>
-						<%if(blad!=null && !blad.equals("")){ %>
-						<div class="alert alert-danger"> <%=blad %> 
-						</div>
-						<%} %>
+					<%
+						String blad = (String) request.getAttribute("blad");
+					%>
+					<%
+						if (blad != null && blad.equals("Zarejestrowano pomyślnie.")) {
+					%>
+					<div class="alert alert-success">
+						<p style="text-align:center"><%=blad%></p>
+					</div>
+					<%
+						}
+					else if (blad != null && !blad.equals("")) { 
+					%>
+					<div class="alert alert-danger">
+						<p style="text-align:center"><%=blad%></p>
+					</div>
+					<%
+					}
+					%>
 					
 					<div class="login-register">
 						<a href="logowanie.jsp">Zaloguj się</a>
