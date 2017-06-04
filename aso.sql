@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 04 Cze 2017, 14:50
--- Wersja serwera: 10.1.19-MariaDB
--- Wersja PHP: 5.6.28
+-- Czas generowania: 04 Cze 2017, 15:10
+-- Wersja serwera: 10.1.21-MariaDB
+-- Wersja PHP: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -250,9 +250,9 @@ INSERT INTO `uzytkownik` (`login`, `haslo`, `imie`, `nazwisko`, `email`, `numer_
 ('buleczka', 'Oskaoska1', 'Szymon', 'Bułka', 'bulkibulki@wp.pl', 459965965, 'Uzytkownik'),
 ('ciastko', 'Oskaoska1', 'Faustyna', 'Przezwisko', 'faustyna.przezwisko@gmail.com', 412452412, 'Uzytkownik'),
 ('cium', 'Oskaoska1', 'Dorota', 'Szpiłyk', 'dorotaciumcium@op.pl', 452123659, 'Uzytkownik'),
-('dzik', 'Oskaoska1', 'Ernest', 'Bździk', 'wolololo@op.pl', 745745761, 'uzytkownik'),
+('dzik', 'Oskaoska1', 'Ernest', 'Bździk', 'wolololo@op.pl', 745745761, 'Uzytkownik'),
 ('eminem', 'Oskaoska1', 'Sławomir', 'Dudacz', 'imtherealslimshady@o2.pl', 652223656, 'Uzytkownik'),
-('filemon', 'Oskaoska1', 'Filip', 'Dzięcioł', 'podrozniksnow@op.pl', 745523658, 'Księgowy'),
+('filemon', 'Oskaoska1', 'Filip', 'Dzięcioł', 'podrozniksnow@op.pl', 745523658, 'Ksiegowy'),
 ('grzesiu', 'Oskaoska1', 'Grzegorz', 'Komajda', 'grzech@o2.pl', 452123326, 'Mechanik'),
 ('janosik', 'Oskaoska1', 'Jan', 'Teatr', 'filmjanosik@o2.pl', 452632512, 'Uzytkownik'),
 ('justus', 'Oskaoska1', 'Justyna', 'Strojek', 'jstroj@op.pl', 412412412, 'Uzytkownik'),
@@ -261,10 +261,10 @@ INSERT INTO `uzytkownik` (`login`, `haslo`, `imie`, `nazwisko`, `email`, `numer_
 ('marloeve', 'Oskaoska1', 'Jakub', 'Bożek', 'maryn@gmail.com', 565523526, 'Uzytkownik'),
 ('miszcz', 'Oskaoska1', 'Przemysław', 'Gałka', 'miszczuplis@op.pl', 564236879, 'Uzytkownik'),
 ('niechcesz', 'Oskaoska1', 'Jan', 'Stańko', 'jedenzerojeden@o2.pl', 456456654, 'Uzytkownik'),
-('oska', 'Oskaoska1', 'Piotr', 'Osiewicz', 'piotr.osie@op.pl', 985645236, 'Księgowy'),
+('oska', 'Oskaoska1', 'Piotr', 'Osiewicz', 'piotr.osie@op.pl', 985645236, 'Ksiegowy'),
 ('stass', 'Oskaoska1', 'Marcin', 'Stahoń', 'stssts@op.pl', 745745745, 'Uzytkownik'),
 ('uechy', 'Oskaoska1', 'Eustachy', 'Warzywo', 'euchy@op.pl', 745745767, 'Uzytkownik'),
-('ukasz', 'Oskaoska1', 'Łukasz', 'Majcher', 'ukasz.maj@wp.pl', 654452236, 'Księgowy'),
+('ukasz', 'Oskaoska1', 'Łukasz', 'Majcher', 'ukasz.maj@wp.pl', 654452236, 'Ksiegowy'),
 ('zgadnijfilm', 'Oskaoska1', 'Grzegorz', 'Brzęczyszczykiewicz', 'lalal@gmail.com', 965965854, 'Uzytkownik');
 
 -- --------------------------------------------------------
@@ -279,6 +279,14 @@ CREATE TABLE `uzytkownik_samochod` (
   `vin` varchar(17) COLLATE utf8_unicode_ci NOT NULL,
   `warsztat_id_fk` int(7) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
+
+--
+-- Zrzut danych tabeli `uzytkownik_samochod`
+--
+
+INSERT INTO `uzytkownik_samochod` (`Uzytkownik_login_fk`, `Samochod_if_fk`, `vin`, `warsztat_id_fk`) VALUES
+('aga234', 392044, '0123456789ABCDEFG', NULL),
+('aga234', 392057, 'ABCDEFG0123456789', NULL);
 
 -- --------------------------------------------------------
 
@@ -478,8 +486,8 @@ ALTER TABLE `mechanik_warsztat`
 -- Ograniczenia dla tabeli `przeglad`
 --
 ALTER TABLE `przeglad`
-  ADD CONSTRAINT `przeglad_ibfk_1` FOREIGN KEY (`vin_fk`) REFERENCES `uzytkownik_samochod` (`Uzytkownik_login_fk`),
-  ADD CONSTRAINT `przeglad_ibfk_2` FOREIGN KEY (`id_warsztatu_fk`) REFERENCES `warsztat` (`id`);
+  ADD CONSTRAINT `przeglad_ibfk_2` FOREIGN KEY (`id_warsztatu_fk`) REFERENCES `warsztat` (`id`),
+  ADD CONSTRAINT `przeglad_ibfk_3` FOREIGN KEY (`vin_fk`) REFERENCES `uzytkownik_samochod` (`vin`);
 
 --
 -- Ograniczenia dla tabeli `samochod_czesc`
