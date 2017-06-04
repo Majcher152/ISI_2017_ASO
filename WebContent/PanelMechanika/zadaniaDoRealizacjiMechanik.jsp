@@ -24,7 +24,7 @@
 
 
 	<div class="col-sm-10 col-sm-offset-2 col-md-11 col-md-offset-1 main">
-		<h1 class="page-header">Zadania w trakcie realizacji</h1>
+		<h1 class="page-header">Zadania do realizacji</h1>
 		<div
 			class="form-group-last col-sm-6 col-sm-offset-4 col-md-8 col-md-offset-2">
 			<%
@@ -56,13 +56,21 @@
 									value="${formularz.samochod.vin}" /></td>
 							<td><c:out
 									value="${formularz.dataOddania}" /></td>
-							<td><form method="post"
+									
+							<c:choose>
+								<c:when test="${formularz.zmien==true}">			
+									<td><form method="post"
 									action="MechanikNaprawaServlet?metoda=zmienStatusNaprawy"
 									class="inline">
-									<input type="hidden" name="id" value="${formularz.id} ">
+									<input type="hidden" name="id" value="${formularz.id}">
 									<button type="submit" name="submit_param" value="submit_value"
 										class="link-button">Zmień</button>
 								</form></td>
+  								</c:when>
+								<c:otherwise>
+    									<td><c:out value="" /></td>
+  								</c:otherwise>
+							</c:choose>		
 						</tr>
 					</c:forEach>
 				</table>

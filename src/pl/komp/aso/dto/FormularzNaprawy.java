@@ -10,7 +10,14 @@ public class FormularzNaprawy {
 	private String status;
 	private int przewidywany_czas;
 	private int id;
+	private boolean zmien;
 	
+	public boolean isZmien() {
+		return zmien;
+	}
+	public void setZmien(boolean zmien) {
+		this.zmien = zmien;
+	}
 	public int getId() {
 		return id;
 	}

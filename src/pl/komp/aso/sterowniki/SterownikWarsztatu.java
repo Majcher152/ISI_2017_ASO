@@ -21,7 +21,7 @@ public class SterownikWarsztatu {
 		DateTime dzisiaj = new DateTime();
 		DateTime doKiedy = dzisiaj.plusWeeks(2);
 		DateTime dzien = dzisiaj;
-		DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy/MM/dd");
+		DateTimeFormatter fmt = DateTimeFormat.forPattern("dd/MM/yyyy");
 		
 		while(dzien.isBefore(doKiedy)) {
 			if(!(dzien.dayOfWeek().get()==DateTimeConstants.SATURDAY || dzien.dayOfWeek().get()==DateTimeConstants.SUNDAY))

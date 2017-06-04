@@ -49,8 +49,8 @@
 					<li><a href="/ISI_2017_ASO/PanelMechanika/mechanik.jsp">Strona główna</a></li>
 				</ul>
 				<ul class="nav nav-sidebar">
-					<li><a href="/ISI_2017_ASO/PanelMechanika/zadania.jsp">Zadania do realizacji</a></li>
-					<li><a href="/ISI_2017_ASO/PanelMechanika/mechanik.jsp">Zadania w trakcie</a></li>
+					<li><a href="/ISI_2017_ASO/MechanikNaprawaServlet?metoda=zaladujZadaniaDoRealizacji">Zadania do realizacji</a></li>
+					<li><a href="/ISI_2017_ASO/MechanikNaprawaServlet?metoda=zaladujZadaniaWTrakcie">Zadania w trakcie</a></li>
 					<li><a href="/ISI_2017_ASO/PanelMechanika/mechanik.jsp">Aktualizuj stan magazynu</a></li>
 					<br>
 					<li><a href="/ISI_2017_ASO/index.jsp">Wyloguj się</a></li>

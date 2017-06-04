@@ -54,7 +54,8 @@ public class MechanikNaprawaServlet extends HttpServlet {
 		Uzytkownik u= (Uzytkownik) request.getSession().getAttribute("uzytkownik");
 
 		if(metoda.equals("zaladujZadaniaDoRealizacji")) {
-			ArrayList<FormularzNaprawy> formularze = sm.pobierzFormularze(u,"potwierdzone");
+			ArrayList<FormularzNaprawy> formularze = sm.pobierzFormularze(u,"potwierdzenie");
+			formularze=sm.sortujFormularze(formularze);
 			request.setAttribute("formularze", formularze);
 			if(blad!=null)
 				request.setAttribute("blad", blad);
@@ -74,10 +75,21 @@ public class MechanikNaprawaServlet extends HttpServlet {
 			request.setAttribute("formularze", formularze);
 			if(blad!=null)
 				request.setAttribute("blad", blad);
-			request.getRequestDispatcher("PanelMechanika/zadaniaWTrakcieRealizacjiMechanik.jsp").forward(request, response);
+			request.getRequestDispatcher("PanelMechanika/zadaniaWTrakcieMechanik.jsp").forward(request, response);
+		}
+		else if(metoda.equals("zaladujUzupelnij")) {
+			FormularzNaprawy f = spbd.pobierzFormularz(Integer.parseInt(id));
+			request.setAttribute("formularz", f);
+			if(blad!=null)
+				request.setAttribute("blad", blad);
+			request.getRequestDispatcher("PanelMechanika/zadaniaWTrakcieWyswietlMechanik.jsp").forward(request, response);
 		}
 		else if(metoda.equals("zakoncz")) {
-			if(sm.zakonczNaprawe(Integer.parseInt(id))) {
+			String koszt= request.getParameter("koszt");
+			//System.out.println(koszt);
+			String opis= request.getParameter("opis");
+			String dataodebrania= request.getParameter("dataodebrania");
+			if(sm.zakonczNaprawe(Integer.parseInt(id),opis,dataodebrania,Double.parseDouble(koszt))) {
 				blad="Zakończono zadanie.";
 			}else {
 				blad="Błąd zakończenia zadania.";
