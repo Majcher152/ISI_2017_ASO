@@ -54,7 +54,6 @@
 					<li><a href="/ISI_2017_ASO/PanelKsiegowego/ksiegowy.jsp">Złóż zamówienie na części</a></li>
 					<li><a href="/ISI_2017_ASO/PanelKsiegowego/ksiegowy.jsp">Historia zamówień</a></li>
 					<li><a href="/ISI_2017_ASO/PanelKsiegowego/ksiegowy.jsp">Aktualizuj treść</a></li>
-					<br>
-					<li><a href="/ISI_2017_ASO/index.jsp">Wyloguj się</a></li>
+
 				</ul>
 			</div>
