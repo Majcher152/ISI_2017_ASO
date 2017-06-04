@@ -29,12 +29,6 @@ $(document).ready(function() {
 		placement : 'right'
 	});
 	
-	$('#login').popover({
-		container: 'body',
-		trigger : 'focus',
-		placement : 'right'
-	});
-	
 	$('#haslo').popover({
 		container: 'body',
 		trigger : 'focus',
@@ -69,10 +63,6 @@ $(document).ready(function() {
 		$('#numer_telefonu').addClass("valid");
 		$('#numer_telefonu').next().removeClass("glyphicon-remove").addClass("glyphicon-ok")
 		$('#numer_telefonu').parent().removeClass("has-error").addClass("has-success");
-		
-		$('#login').addClass("valid");
-		$('#login').next().removeClass("glyphicon-remove").addClass("glyphicon-ok")
-		$('#login').parent().removeClass("has-error").addClass("has-success");
 	});
 	
 	//Walidacja imienia
@@ -130,23 +120,6 @@ $(document).ready(function() {
 	$('#numer_telefonu').on('blur', function() {
 		var input = $(this);
 		var pattern = /^[0-9]{9}$/;
-		var is_email = pattern.test(input.val());
-		if(is_email){
-			input.next().removeClass("glyphicon-remove").addClass("glyphicon-ok");
-			input.parent().removeClass("has-error").addClass("has-success");
-			input.removeClass("invalid").addClass("valid");
-		}
-		else{
-			input.next().removeClass("glyphicon-ok").addClass("glyphicon-remove");
-			input.parent().removeClass("has-success").addClass("has-error");
-			input.removeClass("valid").addClass("invalid");
-		}
-	});
-	
-	//Walidacja loginu
-	$('#login').on('blur', function() {
-		var input = $(this);
-		var pattern = /^[a-z0-9]{4,16}$/;
 		var is_email = pattern.test(input.val());
 		if(is_email){
 			input.next().removeClass("glyphicon-remove").addClass("glyphicon-ok");
@@ -219,7 +192,7 @@ $(document).ready(function() {
 		var numer_telefonu = $('#numer_telefonu');
 		var login = $('#login');
 		
-		if(!(imie.hasClass('valid') && nazwisko.hasClass('valid') && email.hasClass('valid') && numer_telefonu.hasClass('valid') && login.hasClass('valid'))){
+		if(!(imie.hasClass('valid') && nazwisko.hasClass('valid') && email.hasClass('valid') && numer_telefonu.hasClass('valid') )){
 			event.preventDefault();
 			if (warning == false) {
 				$('<div class="alert alert-danger"> Wypełnij poprawnie wszystkie pola!</div>').insertBefore(".login-register");

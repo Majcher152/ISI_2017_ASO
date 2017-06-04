@@ -82,29 +82,30 @@
 						</div>
 					</div>
 
-					<div class="form-group">
-						<label for="username" class="cols-sm-2 control-label">Login</label>
-						<div class="cols-sm-10">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-users fa"
-									aria-hidden="true"></i></span> <input type="text" class="form-control"
-									name="login" id="login" 
-									value="<%=uzytkownik.getLogin()%>"
-									data-toggle="popover" data-content="Login musi składać się z 4 do 16 liter lub cyfr."/>
-									<span class="glyphicon form-control-feedback"></span>
-							</div>
-						</div>
-					</div>
 					<div class="form-group ">
 						<button type="submit" id="btn_edytuj_dane"
 							class="btn btn-primary btn-lg btn-block login-button">Zapisz dane</button>
 					</div>
 					
-						<%String blad =(String) request.getAttribute("blad"); %>
-						<%if(blad!=null && !blad.equals("")){ %>
-						<div class="alert alert-danger"> <%=blad %> 
-						</div>
-						<%} %>
+						<%
+						String blad = (String) request.getAttribute("blad");
+					%>
+					<%
+						if (blad != null && blad.equals("Zmieniono ustawienia pomyślnie.")) {
+					%>
+					<div class="alert alert-success">
+						<p style="text-align:center"><%=blad%></p>
+					</div>
+					<%
+						}
+					else if (blad != null && !blad.equals("")) { 
+					%>
+					<div class="alert alert-danger">
+						<p style="text-align:center"><%=blad%></p>
+					</div>
+					<%
+					}
+					%>
 					
 				</form>
 			</div>
@@ -167,11 +168,25 @@
 							class="btn btn-primary btn-lg btn-block login-button">Zapisz hasło</button>
 					</div>
 					
-						<%String bladHaslo =(String) request.getAttribute("bladHaslo"); %>
-						<%if(bladHaslo!=null && !bladHaslo.equals("")){ %>
-						<div class="alert alert-danger"> <%=bladHaslo %> 
-						</div>
-						<%} %>
+						<%
+						String bladHaslo = (String) request.getAttribute("bladHaslo");
+					%>
+					<%
+						if (bladHaslo != null && bladHaslo.equals("Zmieniono hasło pomyślnie.")) {
+					%>
+					<div class="alert alert-success">
+						<p style="text-align:center"><%=bladHaslo%></p>
+					</div>
+					<%
+						}
+					else if (bladHaslo != null && !bladHaslo.equals("")) { 
+					%>
+					<div class="alert alert-danger">
+						<p style="text-align:center"><%=bladHaslo%></p>
+					</div>
+					<%
+					}
+					%>
 					
 				</form>
 			</div>

@@ -18,10 +18,10 @@
 				</div>
 			</div>
 
-			<div class="main-login main-center">
+			
 				
 				<!-- Table -->
-				<table class="table table-hover table-striped table-condensed">
+				<table class="table table-hover table-striped table-condensed table-bordered">
 				<tr>
 				<td><b>Model</b></td>
 				<td><b>Typ</b></td>
@@ -52,7 +52,7 @@
 					</c:forEach>
 				</table>
 				
-			</div>
+		
 		</div>
 	
 	
