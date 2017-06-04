@@ -52,6 +52,8 @@
 					<li><a href="/ISI_2017_ASO/PanelAdmina/pracownicyAdmin.jsp">Pracownicy</a></li>
 					<li><a href="/ISI_2017_ASO/PanelAdmina/uzytkownicyAdmin.jsp">Użytkownicy</a></li>
 					<li><a href="/ISI_2017_ASO/PanelAdmina/statystykaAdmin.jsp">Statystyki</a></li>
+					<br>
+					<li><a href="/ISI_2017_ASO/index.jsp">Wyloguj się</a></li>
 					
 				</ul>
 			</div>
