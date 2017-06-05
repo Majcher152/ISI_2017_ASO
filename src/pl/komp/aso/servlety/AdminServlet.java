@@ -49,6 +49,7 @@ public class AdminServlet extends HttpServlet {
 		String miasto = request.getParameter("miasto");
 		String warsztat = request.getParameter("warsztat");
 		String warsztat_id = null;
+		
 		if (warsztat != null) {
 			String[] parts = warsztat.split("\\.");
 			warsztat_id = parts[0];
