@@ -47,7 +47,13 @@ public class AdminServlet extends HttpServlet {
 		String godzina_otwarcia = request.getParameter("godzina_otwarcia");
 		String numer_budynku = request.getParameter("numer_budynku");
 		String miasto = request.getParameter("miasto");
-		
+		String warsztat = request.getParameter("warsztat");
+		String warsztat_id = null;
+		if (warsztat != null) {
+			String[] parts = warsztat.split("\\.");
+			warsztat_id = parts[0];
+			String warsztat_adres_miasto = parts[1];
+		}
 		if (ilosc_stanowisk == null) {
 			int blad = sr.uwierzytelnij(imie, nazwisko, email, numer_telefonu, login, haslo, haslo2);
 			String wyswietl = "";
@@ -63,7 +69,7 @@ public class AdminServlet extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			case 0:
-				if (sr.zarejestruj(login, haslo2, imie, nazwisko, email, numer_telefonu, rodzaj_konta)) {
+				if (sr.zarejestruj(login, haslo2, imie, nazwisko, email, numer_telefonu, rodzaj_konta, warsztat_id)) {
 					wyswietl = "Zarejestrowano pomyślnie.";
 					String message = imie + " " + nazwisko + "!";
 					request.setAttribute("msg", message);
@@ -284,8 +290,8 @@ public class AdminServlet extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			case 0:
-				if (sr.zarejestrujWarsztat(ulica, ilosc_stanowisk, minuta_zamkniecia, godzina_zamkniecia, numer_telefonu, email,
-						minuta_otwarcia, godzina_otwarcia, numer_budynku, miasto)) {
+				if (sr.zarejestrujWarsztat(ulica, ilosc_stanowisk, minuta_zamkniecia, godzina_zamkniecia,
+						numer_telefonu, email, minuta_otwarcia, godzina_otwarcia, numer_budynku, miasto)) {
 					wyswietl = "Zarejestrowano pomyślnie.";
 					String message = ulica + " " + numer_budynku + ", " + miasto + "!";
 					request.setAttribute("msg", message);

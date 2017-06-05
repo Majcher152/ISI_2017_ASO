@@ -3,6 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
+
+<sql:query dataSource="jdbc/aso" var="result">
+SELECT * FROM `warsztat`;
+</sql:query>
+
 <jsp:include page="headerAdmin.jsp" />
 <jsp:include page="../walidacjaRejestracji.jsp" />
 
@@ -62,6 +67,27 @@
 					</div>
 				</div>
 
+				<div class="form-group">
+					<label for="warsztat" class="cols-sm-2 control-label">Który
+						warsztat:<c:out value="${rodzaj_konta}" />
+					</label>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-users fa"
+								aria-hidden="true"></i></span> <select name="warsztat" id="warsztat"
+								class="form-control" data-toggle="popover"
+								data-content="Wybierz jedną z opcji." disabled>
+								<c:forEach var="warsztat" items="${result.rows}">
+									<option>
+										<c:out value="${warsztat.id}. ${warsztat.adres}, ${warsztat.miasto}" />
+									</option>
+								</c:forEach>
+							</select> <span class="glyphicon form-control-feedback"></span>
+						</div>
+					</div>
+				</div>
+								<!-- <input type="hidden" name="id_warsztatu" id="id_warsztatu"
+										value="<c:out value="${warsztat.id}" />" />  -->	
 				<div class="form-group">
 					<label for="username" class="cols-sm-2 control-label">Login
 						pracownika:</label>
@@ -152,7 +178,8 @@
 			</div>
 
 		</form>
-		<div class="form-group-last col-sm-6 col-sm-offset-4 col-md-8 col-md-offset-2">
+		<div
+			class="form-group-last col-sm-6 col-sm-offset-4 col-md-8 col-md-offset-2">
 			<%
 				String blad = (String) request.getAttribute("blad");
 			%>

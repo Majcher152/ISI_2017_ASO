@@ -53,8 +53,9 @@ public class SterownikPolBD {
 	 */
 
 	public boolean zarejestruj(String login, String haslo, String imie, String nazwisko, String email,
-			String numer_telefonu, String rodzaj) {
+			String numer_telefonu, String rodzaj, String id_warsztatu) {
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
 		try {
 			// przygotowanie zapytania
 			pstmt = con.prepareStatement(
@@ -68,6 +69,15 @@ public class SterownikPolBD {
 			pstmt.setString(7, rodzaj);
 			// wykonanie zapytania
 			pstmt.executeUpdate();
+			if (id_warsztatu != null) {
+				// przygotowanie zapytania
+				pstmt2 = con.prepareStatement(
+						"INSERT INTO mechanik_warsztat(mechanik_login_fk, id_warsztatu_fk) VALUES (?,?)");
+				pstmt2.setString(1, login);
+				pstmt2.setString(2, id_warsztatu);
+				// wykonanie zapytania
+				pstmt2.executeUpdate();
+			}
 		} catch (java.sql.SQLIntegrityConstraintViolationException e) {
 			e.printStackTrace();
 
@@ -77,6 +87,8 @@ public class SterownikPolBD {
 			return false;
 		} finally {
 			close(pstmt);
+			if (id_warsztatu != null)
+				close(pstmt2);
 		}
 		return true;
 	}

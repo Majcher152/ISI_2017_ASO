@@ -124,6 +124,20 @@ public class SterownikRejestracji {
 		return 0;
 	}
 
+	public boolean zarejestruj(String login, String haslo, String imie, String nazwisko, String email,
+			String numer_telefonu, String rodzaj_konta, String id_warsztatu) {
+		boolean odp = spbd.zarejestruj(login, haslo, imie, nazwisko, email, numer_telefonu, rodzaj_konta, id_warsztatu);
+		return odp;
+	}
+
+	public boolean zarejestrujWarsztat(String ulica, String ilosc_stanowisk, String minuta_zamkniecia,
+			String godzina_zamkniecia, String numer_telefonu, String email, String minuta_otwarcia,
+			String godzina_otwarcia, String numer_budynku, String miasto) {
+		boolean odp = spbd.zarejestrujWarsztat(ulica, ilosc_stanowisk, minuta_zamkniecia, godzina_zamkniecia, numer_telefonu,
+				email, minuta_otwarcia, godzina_otwarcia, numer_budynku, miasto);
+		return odp;
+	}
+	
 	boolean sprawdzZnaki(String wejscie, String ciag) {
 		boolean czyInna = true;
 		String nazwa = wejscie.toLowerCase();
@@ -177,18 +191,6 @@ public class SterownikRejestracji {
 		return false;
 	}
 
-	public boolean zarejestruj(String login, String haslo, String imie, String nazwisko, String email,
-			String numer_telefonu, String rodzaj_konta) {
-		boolean odp = spbd.zarejestruj(login, haslo, imie, nazwisko, email, numer_telefonu, rodzaj_konta);
-		return odp;
-	}
-
-	public boolean zarejestrujWarsztat(String ulica, String ilosc_stanowisk, String minuta_zamkniecia,
-			String godzina_zamkniecia, String numer_telefonu, String email, String minuta_otwarcia,
-			String godzina_otwarcia, String numer_budynku, String miasto) {
-		boolean odp = spbd.zarejestrujWarsztat(ulica, ilosc_stanowisk, minuta_zamkniecia, godzina_zamkniecia, numer_telefonu,
-				email, minuta_otwarcia, godzina_otwarcia, numer_budynku, miasto);
-		return odp;
-	}
+	
 
 }

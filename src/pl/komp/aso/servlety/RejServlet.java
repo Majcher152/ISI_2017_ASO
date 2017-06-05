@@ -54,7 +54,7 @@ public class RejServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 			break;
 			case 0 :	
-				if(sr.zarejestruj(login, haslo2, imie, nazwisko, email, numer_telefonu, rodzaj_konta))
+				if(sr.zarejestruj(login, haslo2, imie, nazwisko, email, numer_telefonu, rodzaj_konta, null))
 					wyswietl="Zarejestrowano pomyślnie.";
 				else 
 					wyswietl="Błąd";

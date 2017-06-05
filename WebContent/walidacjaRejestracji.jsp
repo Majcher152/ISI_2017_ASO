@@ -101,6 +101,12 @@ $(document).ready(function() {
 		placement : 'right'
 	});
 	
+	$('#warsztat').popover({
+		container: 'body',
+		trigger : 'focus',
+		placement : 'right'
+	});
+	
 	//Walidacja imienia
 	$('#imie').on('blur', function() {
 		var input = $(this);
@@ -245,7 +251,11 @@ $(document).ready(function() {
 	//Walidacja rodzaju konta
 	$('#rodzaj_konta').on('blur', function() {
 		var input = $(this);
-		if(input.val() == 'Mechanik' || input.val() == 'Księgowy' || input.val() == 'Administrator'){
+		if(input.val() == 'Mechanik' || input.val() == 'Ksiegowy' || input.val() == 'Administrator'){
+			if(input.val() == 'Mechanik' )
+				$('#warsztat').prop('disabled', false);
+			else
+				$('#warsztat').prop('disabled', true);
 		//	input.next().removeClass("glyphicon-remove").addClass("glyphicon-ok");
 			input.parent().removeClass("has-error").addClass("has-success");
 			input.removeClass("invalid").addClass("valid");
@@ -392,6 +402,14 @@ $(document).ready(function() {
 			input.parent().removeClass("has-success").addClass("has-error");
 			input.removeClass("valid").addClass("invalid");
 		}
+	});
+	
+	//Walidacja warsztatu
+	$('#warsztat').on('blur', function() {
+		var input = $(this);
+		//	input.next().removeClass("glyphicon-remove").addClass("glyphicon-ok");
+			input.parent().removeClass("has-error").addClass("has-success");
+			input.removeClass("invalid").addClass("valid");
 	});
 	
 	var done = false;
