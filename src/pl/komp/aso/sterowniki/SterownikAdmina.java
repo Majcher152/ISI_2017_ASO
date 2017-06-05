@@ -73,12 +73,6 @@ public class SterownikAdmina extends SterownikUwierzytelnijAdmin implements Uwie
 		return false;
 	}
 
-	public boolean usunUzytkownikaPracownika(String imie, String nazwisko, String email) {
-		if (spbd.usunUzytkownikaPracownika(imie, nazwisko, email))
-			return true;
-		return false;
-	}
-
 	public boolean zapiszEdycjeWarsztat(String adres, String ilosc_stanowisk, String godzina_zamkniecia,
 			String nrTelefonu, String email, String godzina_otwarcia, String miasto, String id) {
 		
@@ -86,6 +80,18 @@ public class SterownikAdmina extends SterownikUwierzytelnijAdmin implements Uwie
 				godzina_otwarcia, miasto, id))
 			return true;
 
+		return false;
+	}
+	
+	public boolean usunUzytkownikaPracownika(String imie, String nazwisko, String email) {
+		if (spbd.usunUzytkownikaPracownika(imie, nazwisko, email))
+			return true;
+		return false;
+	}
+	
+	public boolean usunWarszat(String adres, String miasto, String id_warszatatu) {
+		if (spbd.usunWarsztat(adres, miasto, id_warszatatu))
+			return true;
 		return false;
 	}
 }

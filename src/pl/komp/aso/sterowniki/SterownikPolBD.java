@@ -81,7 +81,6 @@ public class SterownikPolBD {
 		return true;
 	}
 
-	
 	/**
 	 * 
 	 * @param ulica
@@ -130,7 +129,7 @@ public class SterownikPolBD {
 		}
 		return true;
 	}
-	
+
 	public Connection getCon() {
 		return con;
 	}
@@ -430,7 +429,7 @@ public class SterownikPolBD {
 		}
 		return odp;
 	}
-	
+
 	// zmiana danych warsztatu, ADMIN
 	public boolean zapiszEdycjeWarsztatu(String adres, String ilosc_stanowisk, String godzina_zamkniecia,
 			String nrTelefonu, String email, String godzina_otwarcia, String miasto, String id) {
@@ -459,7 +458,6 @@ public class SterownikPolBD {
 		return odp;
 	}
 
-	
 	public boolean usunUzytkownikaPracownika(String imie, String nazwisko, String email) {
 		boolean odp = true;
 		PreparedStatement stmt = null;
@@ -473,6 +471,26 @@ public class SterownikPolBD {
 		} catch (SQLException e) {
 			odp = false;
 			System.out.println("TU JEST BLAD usunUzytkownikaPracownika");
+			return false;
+		} finally {
+			close(stmt);
+		}
+		return odp;
+	}
+
+	public boolean usunWarsztat(String adres, String miasto, String id) {
+		boolean odp = true;
+		PreparedStatement stmt = null;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement("DELETE FROM warsztat WHERE adres = ? AND miasto = ? AND id = ?");
+			stmt.setString(1, adres);
+			stmt.setString(2, miasto);
+			stmt.setString(3, id);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			odp = false;
+			System.out.println("TU JEST BLAD usunWarsztat");
 			return false;
 		} finally {
 			close(stmt);
@@ -951,9 +969,10 @@ public class SterownikPolBD {
 		}
 		return s;
 	}
-	
+
 	/**
 	 * Zatwierdzenie rezerwacji naprawy samochodu przez ksiegowego
+	 * 
 	 * @param vin
 	 * @param dataoddania
 	 * @param przewid_czas_trwania
@@ -971,7 +990,7 @@ public class SterownikPolBD {
 			stmt.setString(2, przewid_czas_trwania);
 			stmt.setString(3, vin);
 			stmt.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("blad");
@@ -982,20 +1001,20 @@ public class SterownikPolBD {
 		}
 		return true;
 	}
-	
-	public boolean zarezerwujNaprawe(String vin, int id, String dzien, String opis,String login) {
+
+	public boolean zarezerwujNaprawe(String vin, int id, String dzien, String opis, String login) {
 		boolean odp = true;
 		PreparedStatement stmt = null;
 		try {
 			// przygotowanie zapytania
-				stmt = con.prepareStatement(
-						"INSERT INTO formularz_naprawy(warsztat_id_fk,vin_fk,dataoddania,opis,uzytkownik_login_fk,status) VALUES (?,?,?,?,?,'oczekiwanie')");
-				stmt.setInt(1,id);
-				stmt.setString(2, vin);
-				stmt.setString(3, dzien);
-				stmt.setString(4, opis);
-				stmt.setString(5, login);
-				stmt.executeUpdate();
+			stmt = con.prepareStatement(
+					"INSERT INTO formularz_naprawy(warsztat_id_fk,vin_fk,dataoddania,opis,uzytkownik_login_fk,status) VALUES (?,?,?,?,?,'oczekiwanie')");
+			stmt.setInt(1, id);
+			stmt.setString(2, vin);
+			stmt.setString(3, dzien);
+			stmt.setString(4, opis);
+			stmt.setString(5, login);
+			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			odp = false;
@@ -1007,7 +1026,7 @@ public class SterownikPolBD {
 		}
 		return odp;
 	}
-	
+
 	public boolean edytujStatusNaprawy(int id) {
 		boolean odp = true;
 
@@ -1028,14 +1047,15 @@ public class SterownikPolBD {
 		}
 		return odp;
 	}
-	
-	public boolean uzupelnijFormularzNaprawy(int id,String opis,String dataodebrania,double koszt) {
+
+	public boolean uzupelnijFormularzNaprawy(int id, String opis, String dataodebrania, double koszt) {
 		boolean odp = true;
 
 		PreparedStatement stmt = null;
 		try {
 			// przygotowanie zapytania
-			stmt = con.prepareStatement("UPDATE formularz_naprawy SET status='zakonczone',opis=?,dataodebrania=?,koszt_naprawy=? WHERE id = ?");
+			stmt = con.prepareStatement(
+					"UPDATE formularz_naprawy SET status='zakonczone',opis=?,dataodebrania=?,koszt_naprawy=? WHERE id = ?");
 			stmt.setString(1, opis);
 			stmt.setString(2, dataodebrania);
 			stmt.setDouble(3, koszt);
@@ -1052,20 +1072,20 @@ public class SterownikPolBD {
 		}
 		return odp;
 	}
-	
+
 	public int pobierzIdWarsztatu(String login) {
 
 		ResultSet rs = null;
 
 		PreparedStatement stmt = null;
-		int id=-1;
+		int id = -1;
 		try {
 			// przygotowanie zapytania
 			stmt = con.prepareStatement("Select id_warsztatu_fk from mechanik_warsztat where mechanik_login_fk=?");
 			stmt.setString(1, login);
 			rs = stmt.executeQuery();
 			rs.next();
-			id=rs.getInt("id_warsztatu_fk");
+			id = rs.getInt("id_warsztatu_fk");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("brak");
@@ -1077,15 +1097,16 @@ public class SterownikPolBD {
 		}
 		return id;
 	}
-	
-	public ArrayList<FormularzNaprawy> pobierzFormularzeMechanika(int id,String status) {
+
+	public ArrayList<FormularzNaprawy> pobierzFormularzeMechanika(int id, String status) {
 		ArrayList<FormularzNaprawy> formularze = new ArrayList<FormularzNaprawy>();
 		ResultSet rs = null;
 
 		PreparedStatement stmt = null;
 		try {
 			// przygotowanie zapytania
-			stmt = con.prepareStatement("Select * from formularz_naprawy where warsztat_id_fk=? and status=? order by id desc");
+			stmt = con.prepareStatement(
+					"Select * from formularz_naprawy where warsztat_id_fk=? and status=? order by id desc");
 			stmt.setInt(1, id);
 			stmt.setString(2, status);
 			rs = stmt.executeQuery();
@@ -1114,9 +1135,9 @@ public class SterownikPolBD {
 		}
 		return formularze;
 	}
-	
+
 	public FormularzNaprawy pobierzFormularz(int id) {
-		
+
 		ResultSet rs = null;
 		FormularzNaprawy f = new FormularzNaprawy();
 		PreparedStatement stmt = null;
@@ -1127,17 +1148,15 @@ public class SterownikPolBD {
 			rs = stmt.executeQuery();
 			rs.next();
 
-				
-				f.setDataOddania(rs.getString("dataoddania"));
-				f.setDataOdebrania(rs.getString("dataodebrania"));
-				f.setKoszt(rs.getDouble("koszt_naprawy"));
-				f.setOpis(rs.getString("opis"));
-				f.setPrzewidywany_czas(rs.getInt("przewid_czas_trwania"));
-				f.setStatus(rs.getString("status"));
-				f.setId(rs.getInt("id"));
-				f.setSamochod(pobierzSamochodVin(rs.getString("vin_fk")));
-				f.setWarsztat(pobierzWarsztatId(rs.getInt("warsztat_id_fk")));
-				
+			f.setDataOddania(rs.getString("dataoddania"));
+			f.setDataOdebrania(rs.getString("dataodebrania"));
+			f.setKoszt(rs.getDouble("koszt_naprawy"));
+			f.setOpis(rs.getString("opis"));
+			f.setPrzewidywany_czas(rs.getInt("przewid_czas_trwania"));
+			f.setStatus(rs.getString("status"));
+			f.setId(rs.getInt("id"));
+			f.setSamochod(pobierzSamochodVin(rs.getString("vin_fk")));
+			f.setWarsztat(pobierzWarsztatId(rs.getInt("warsztat_id_fk")));
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1149,9 +1168,10 @@ public class SterownikPolBD {
 		}
 		return f;
 	}
-	
+
 	/**
-	 * Metoda zmieniajaca cennik dla podanego id 
+	 * Metoda zmieniajaca cennik dla podanego id
+	 * 
 	 * @param id
 	 * @param nazwa
 	 * @param cena
@@ -1163,13 +1183,12 @@ public class SterownikPolBD {
 
 		try {
 			// przygotowanie zapytania
-			stmt = con.prepareStatement(
-					"UPDATE `cennik_podstawowy` SET `nazwa` = ?, `cena` = ? WHERE `id` = ?");
+			stmt = con.prepareStatement("UPDATE `cennik_podstawowy` SET `nazwa` = ?, `cena` = ? WHERE `id` = ?");
 			stmt.setString(1, nazwa);
 			stmt.setString(2, cena);
 			stmt.setString(3, id);
 			stmt.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("blad");
@@ -1183,6 +1202,7 @@ public class SterownikPolBD {
 
 	/**
 	 * Metoda dodajaca pozycje do cennika w bazie danych
+	 * 
 	 * @param nazwa
 	 * @param cena
 	 * @return
@@ -1193,12 +1213,11 @@ public class SterownikPolBD {
 
 		try {
 			// przygotowanie zapytania
-			stmt = con.prepareStatement(
-					"insert into `cennik_podstawowy` (`nazwa`, `cena`) values(?,?)");
+			stmt = con.prepareStatement("insert into `cennik_podstawowy` (`nazwa`, `cena`) values(?,?)");
 			stmt.setString(1, nazwa);
 			stmt.setString(2, cena);
 			stmt.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("blad");
@@ -1209,7 +1228,7 @@ public class SterownikPolBD {
 		}
 		return true;
 	}
-	
+
 	// -----------------------------------------------------------------------------------------------------
 
 	/**

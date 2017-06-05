@@ -41,22 +41,35 @@ public class AdminUsuwanieServlet extends HttpServlet {
 		String nazwisko = request.getParameter("nazwisko");
 		String email = request.getParameter("email");
 		String rodzaj_konta = request.getParameter("rodzaj_konta");
+
+		String adres = request.getParameter("adres");
+		String miasto = request.getParameter("miasto");
+		String id_warsztatu = request.getParameter("id_warsztatu");
+
 		String wyswietl = "";
 		RequestDispatcher dispatcher;
 
-		boolean blad = sa.usunUzytkownikaPracownika(imie, nazwisko, email);
+		if (id_warsztatu == null) {
+			boolean blad = sa.usunUzytkownikaPracownika(imie, nazwisko, email);
+			if (blad)
+				wyswietl = "Usunięto użytkownika pomyślnie.";
+			else
+				wyswietl = "Uzytkownik nie istnieje.";
 
-		if (blad)
-			wyswietl = "Usunięto użytkownika pomyślnie.";
-		else
-			wyswietl = "Uzytkownik nie istnieje.";
-
-		request.setAttribute("blad", wyswietl);
-		if (rodzaj_konta.equals("Uzytkownik"))
-			dispatcher = request.getRequestDispatcher("PanelAdmina/uzytkownicyAdmin.jsp");
-		else
-			dispatcher = request.getRequestDispatcher("PanelAdmina/pracownicyAdmin.jsp");
-
+			request.setAttribute("blad", wyswietl);
+			if (rodzaj_konta.equals("Uzytkownik"))
+				dispatcher = request.getRequestDispatcher("PanelAdmina/uzytkownicyAdmin.jsp");
+			else
+				dispatcher = request.getRequestDispatcher("PanelAdmina/pracownicyAdmin.jsp");
+		} else {
+			boolean blad = sa.usunWarszat(adres, miasto, id_warsztatu);
+			if (blad)
+				wyswietl = "Usunięto warsztat pomyślnie.";
+			else
+				wyswietl = "Warsztat nie istnieje.";
+			request.setAttribute("blad", wyswietl);
+			dispatcher = request.getRequestDispatcher("PanelAdmina/warsztatyAdmin.jsp");
+		}
 		dispatcher.forward(request, response);
 	}
 }
