@@ -81,6 +81,53 @@ public class SterownikPolBD {
 		return true;
 	}
 
+	
+	/**
+	 * 
+	 * @param login
+	 * @param haslo
+	 * @param imie
+	 * @param nazwisko
+	 * @param email
+	 * @param nrtel
+	 * @param rodzaj
+	 * @return
+	 */
+
+	public boolean zarejestrujWarsztat(String ulica, String ilosc_stanowisk, String minuta_zamkniecia_tmp,
+			String godzina_zamkniecia_tmp, String numer_telefonu, String email, String minuta_otwarcia_tmp,
+			String godzina_otwarcia_tmp, String numer_budynku, String miasto) {
+		PreparedStatement pstmt = null;
+		String adres = ulica + " " + numer_budynku;
+		String godzina_otwarcia = godzina_otwarcia_tmp + ":" + minuta_otwarcia_tmp;
+		String godzina_zamkniecia = godzina_zamkniecia_tmp + ":" + minuta_zamkniecia_tmp;
+
+		try {
+			// przygotowanie zapytania
+			pstmt = con.prepareStatement(
+					"INSERT INTO warsztat(adres, miasto, numer_telefonu, email, ilosc_stanowisk, godzina_otwarcia, godzina_zamkniecia) VALUES (?,?,?,?,?,?,?)");
+			pstmt.setString(1, adres);
+			pstmt.setString(2, miasto);
+			pstmt.setString(3, numer_telefonu);
+			pstmt.setString(4, email);
+			pstmt.setString(5, ilosc_stanowisk);
+			pstmt.setString(6, godzina_otwarcia);
+			pstmt.setString(7, godzina_zamkniecia);
+			// wykonanie zapytania
+			pstmt.executeUpdate();
+		} catch (java.sql.SQLIntegrityConstraintViolationException e) {
+			e.printStackTrace();
+
+			return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			close(pstmt);
+		}
+		return true;
+	}
+	
 	public Connection getCon() {
 		return con;
 	}

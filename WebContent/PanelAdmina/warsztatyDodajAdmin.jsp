@@ -23,7 +23,7 @@
 								aria-hidden="true"></i></span> <input type="text" class="form-control"
 								name="ulica" id="ulica" placeholder="Podaj nazwe ulicy."
 								data-toggle="popover"
-								data-content="Nazwa ulicy musi składać się z 3 do 40 liter, liczb lub znaków." />
+								data-content="Nazwa ulicy musi składać się z 3 do 40 liter lub liczb" />
 							<span class="glyphicon form-control-feedback"></span>
 						</div>
 					</div>
@@ -39,6 +39,21 @@
 								name="numer_budynku" id="numer_budynku"
 								placeholder="Podaj numer budynku." data-toggle="popover"
 								data-content="Numer budynku musi składać się z 1 do 4 cyfr" />
+							<span class="glyphicon form-control-feedback"></span>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="name" class="cols-sm-2 control-label">Nazwa
+						miasta:</label>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-user fa"
+								aria-hidden="true"></i></span> <input type="text" class="form-control"
+								name="miasto" id="miasto" placeholder="Podaj nazwe ulicy."
+								data-toggle="popover"
+								data-content="Nazwa miasta musi składać się z 3 do 20 liter." />
 							<span class="glyphicon form-control-feedback"></span>
 						</div>
 					</div>
@@ -84,7 +99,8 @@
 							<span class="input-group-addon"><i
 								class="fa fa-envelope fa" aria-hidden="true"></i></span> <input
 								type="text" class="form-control" name="godzina_otwarcia"
-								id="email" placeholder="Podaj godzinę otwarcia warsztatu."
+								id="godzina_otwarcia"
+								placeholder="Podaj godzinę otwarcia warsztatu."
 								data-toggle="popover"
 								data-content="Godzina otwarcia musi być liczbą z przedziału 00-23." />
 							<span class="glyphicon form-control-feedback"></span> <span
@@ -111,16 +127,14 @@
 								placeholder="Podaj godzinę otwarcia warsztatu."
 								data-toggle="popover"
 								data-content="Godzina otwarcia musi być liczbą z przedziału 00-23." />
-								
 							<span class="glyphicon form-control-feedback"></span> <span
 								class="input-group-addon"><i class="fa fa-envelope fa"
 								aria-hidden="true"></i></span> <input type="text" class="form-control"
 								name="minuta_zamkniecia" id="minuta_zamkniecia"
-								placeholder="Podaj minutę zamknięcia warsztatu."
+								placeholder="Podaj minutę otwarcia warsztatu."
 								data-toggle="popover"
-								data-content="Minuta zamknięcia musi być liczbą z przedziału 00-59." />
+								data-content="Minuta otwarcia musi być liczbą z przedziału 00-59." />
 							<span class="glyphicon form-control-feedback"></span>
-
 						</div>
 					</div>
 				</div>
@@ -133,17 +147,16 @@
 							<span class="input-group-addon"><i class="fa fa-phone"
 								aria-hidden="true"></i></span> <input type="text" class="form-control"
 								name="ilosc_stanowisk" id="ilosc_stanowisk"
-								placeholder="Podaj ilość stanowisk."
-								data-toggle="popover"
-								data-content="Ilość stanowisk musi posiadać od 1 do 4 cyfr." /> <span
-								class="glyphicon form-control-feedback"></span>
+								placeholder="Podaj ilość stanowisk." data-toggle="popover"
+								data-content="Ilość stanowisk musi posiadać od 1 do 4 cyfr." />
+							<span class="glyphicon form-control-feedback"></span>
 						</div>
 					</div>
 				</div>
 				<br>
 				<div class="form-group-last">
-					<button type="submit" id="btn_rej"
-						class="btn_rej btn-primary btn-sm col-sm-2  col-md-1 ">Rejestruj</button>
+					<button type="submit" id="btn_rej_war"
+						class="btn_rej_war btn-primary btn-sm col-sm-2  col-md-1 ">Rejestruj</button>
 					<button type="button" id="powrot"
 						class="button23 col-sm-2 col-sm-offset-8 col-md-1 col-md-offset-10">
 						<a href="/ISI_2017_ASO/PanelAdmina/warsztatyAdmin.jsp">Powrót</a>
@@ -154,21 +167,6 @@
 			</div>
 
 		</form>
-		<div
-			class="form-group-last col-sm-6 col-sm-offset-4 col-md-8 col-md-offset-2">
-			<%
-				String blad = (String) request.getAttribute("blad");
-			%>
-			<%
-				if (blad != null && !blad.equals("")) {
-			%>
-			<div class="alert alert-danger">
-				<%=blad%>
-			</div>
-			<%
-				}
-			%>
-		</div>
 	</div>
 
 

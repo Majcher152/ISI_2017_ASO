@@ -87,9 +87,15 @@ $(document).ready(function() {
 		container: 'body',
 		trigger : 'focus',
 		placement : 'right'
-	});
+	}); 
 	
 	$('#ulica').popover({
+		container: 'body',
+		trigger : 'focus',
+		placement : 'right'
+	});
+	
+	$('#miasto').popover({
 		container: 'body',
 		trigger : 'focus',
 		placement : 'right'
@@ -273,7 +279,7 @@ $(document).ready(function() {
 	$('#godzina_otwarcia').on('blur', function() {
 		var input = $(this);
 		var pattern = /^[0-9]{1,2}$/;
-		var is_name = pattern.test(input.val());
+		var is_name = pattern.test(input.val()) ;
 		if(is_name){
 			input.next().removeClass("glyphicon-remove").addClass("glyphicon-ok");
 			input.parent().removeClass("has-error").addClass("has-success");
@@ -340,7 +346,7 @@ $(document).ready(function() {
 	//Walidacja nazwy ulicy
 	$('#ulica').on('blur', function() {
 		var input = $(this);
-		var pattern =  /^[a-zA-ZąęółżźćśńĘŹĆŻŁÓĄŚŃ-]{3,40}$/;
+		var pattern =  /^[a-zA-Z0-9ąęółżźćśńĘŹĆŻŁÓĄŚŃ\s]{3,40}$/;
 		var is_name = pattern.test(input.val());
 		if(is_name){
 			input.next().removeClass("glyphicon-remove").addClass("glyphicon-ok");
@@ -371,6 +377,22 @@ $(document).ready(function() {
 		}
 	});
 	
+	//Walidacja miasta
+	$('#miasto').on('blur', function() {
+		var input = $(this);
+		var pattern = /^[a-zA-Z0-9ąęółżźćśńĘŹĆŻŁÓĄŚŃ\s]{3,20}$/;
+		var is_name = pattern.test(input.val());
+		if(is_name){
+			input.next().removeClass("glyphicon-remove").addClass("glyphicon-ok");
+			input.parent().removeClass("has-error").addClass("has-success");
+			input.removeClass("invalid").addClass("valid");
+		}
+		else{
+			input.next().removeClass("glyphicon-ok").addClass("glyphicon-remove");
+			input.parent().removeClass("has-success").addClass("has-error");
+			input.removeClass("valid").addClass("invalid");
+		}
+	});
 	
 	var done = false;
 	
@@ -411,5 +433,28 @@ $(document).ready(function() {
 			}
 		}
 });
+	
+	$('#btn_rej_war').click(function(event){
+		var email = $('#email');
+		var numer_telefonu = $('#numer_telefonu');
+		var ulica = $('#ulica');
+		var ilosc_stanowisk = $('#ilosc_stanowisk');
+		var minuta_zamkniecia = $('#minuta_zamkniecia');
+		var godzina_zamkniecia = $('#godzina_zamkniecia');
+		var minuta_otwarcia = $('#minuta_otwarcia');
+		var godzina_otwarcia = $('#godzina_otwarcia');
+		var numer_budynku = $('#numer_budynku')
+		var miasto = $('#miasto')
+		
+		if(!(email.hasClass('valid') && numer_telefonu.hasClass('valid') && ulica.hasClass('valid') && ilosc_stanowisk.hasClass('valid') && minuta_zamkniecia.hasClass('valid') && godzina_zamkniecia.hasClass('valid') && minuta_otwarcia.hasClass('valid') && godzina_otwarcia.hasClass('valid') && numer_budynku.hasClass('valid') && miasto.hasClass('valid'))){		
+			event.preventDefault();
+			console.log("hej");
+			if (warning == false) {
+				$('<div class="alert alert-danger"> Wypełnij poprawnie wszystkie pola!</div>').insertBefore(".form-group-last");
+				warning = true;
+			}
+		}
+});
+	
 });
 </script>
