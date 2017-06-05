@@ -53,31 +53,14 @@ $(document).ready(function() {
 		placement : 'right'
 	});
 	
-	$('#numer_budynku').popover({
-		container: 'body',
-		trigger : 'focus',
-		placement : 'right'
-	});
-	
 	$('#godzina_otwarcia').popover({
 		container: 'body',
 		trigger : 'focus',
 		placement : 'right'
 	});
 	
-	$('#minuta_otwarcia').popover({
-		container: 'body',
-		trigger : 'focus',
-		placement : 'right'
-	});
 	
 	$('#godzina_zamkniecia').popover({
-		container: 'body',
-		trigger : 'focus',
-		placement : 'right'
-	});
-	
-	$('#minuta_zamkniecia').popover({
 		container: 'body',
 		trigger : 'focus',
 		placement : 'right'
@@ -89,11 +72,18 @@ $(document).ready(function() {
 		placement : 'right'
 	});
 	
-	$('#ulica').popover({
+	$('#adres').popover({
+		container: 'body',
+		trigger : 'focus',
+		placement : 'right'
+	});	
+	
+	$('#miasto').popover({
 		container: 'body',
 		trigger : 'focus',
 		placement : 'right'
 	});
+
 	
 	$(document).ready(function() {
 		$('#imie').addClass("valid");
@@ -127,6 +117,26 @@ $(document).ready(function() {
 		$('#rodzaj_konta').addClass("valid");
 		$('#rodzaj_konta').next().removeClass("glyphicon-remove").addClass("glyphicon-ok")
 		$('#rodzaj_konta').parent().removeClass("has-error").addClass("has-success");
+		
+		$('#godzina_otwarcia').addClass("valid");
+		$('#godzina_otwarcia').next().removeClass("glyphicon-remove").addClass("glyphicon-ok")
+		$('#godzina_otwarcia').parent().removeClass("has-error").addClass("has-success");
+		
+		$('#godzina_zamkniecia').addClass("valid");
+		$('#godzina_zamkniecia').next().removeClass("glyphicon-remove").addClass("glyphicon-ok")
+		$('#godzina_zamkniecia').parent().removeClass("has-error").addClass("has-success");
+		
+		$('#ilosc_stanowisk').addClass("valid");
+		$('#ilosc_stanowisk').next().removeClass("glyphicon-remove").addClass("glyphicon-ok")
+		$('#ilosc_stanowisk').parent().removeClass("has-error").addClass("has-success");
+		
+		$('#adres').addClass("valid");
+		$('#adres').next().removeClass("glyphicon-remove").addClass("glyphicon-ok")
+		$('#adres').parent().removeClass("has-error").addClass("has-success");
+		
+		$('#miasto').addClass("valid");
+		$('#miasto').next().removeClass("glyphicon-remove").addClass("glyphicon-ok")
+		$('#miasto').parent().removeClass("has-error").addClass("has-success");
 	});
 	
 	//Walidacja imienia
@@ -264,6 +274,92 @@ $(document).ready(function() {
 	});
 	
 
+	//Walidacja godzin otwarcia
+	$('#godzina_otwarcia').on('blur', function() {
+		var input = $(this);
+		var pattern = /^[0-9]{1,2}\u003A[0-9]{1,2}$/;
+		var is_email = pattern.test(input.val());
+		if(is_email){
+			input.next().removeClass("glyphicon-remove").addClass("glyphicon-ok");
+			input.parent().removeClass("has-error").addClass("has-success");
+			input.removeClass("invalid").addClass("valid");
+		}
+		else{
+			input.next().removeClass("glyphicon-ok").addClass("glyphicon-remove");
+			input.parent().removeClass("has-success").addClass("has-error");
+			input.removeClass("valid").addClass("invalid");
+		}
+	});
+
+	//Walidacja godzin zamkniecia
+	$('#godzina_zamkniecia').on('blur', function() {
+		var input = $(this);
+		var pattern = /^[0-9]{1,2}\u003A[0-9]{1,2}$/;
+		var is_email = pattern.test(input.val());
+		if(is_email){
+			input.next().removeClass("glyphicon-remove").addClass("glyphicon-ok");
+			input.parent().removeClass("has-error").addClass("has-success");
+			input.removeClass("invalid").addClass("valid");
+		}
+		else{
+			input.next().removeClass("glyphicon-ok").addClass("glyphicon-remove");
+			input.parent().removeClass("has-success").addClass("has-error");
+			input.removeClass("valid").addClass("invalid");
+		}
+	});
+
+	//Walidacja ilości stanowisk
+	$('#ilosc_stanowisk').on('blur', function() {
+		var input = $(this);
+		var pattern = /^[0-9]{1,3}$/;
+		var is_email = pattern.test(input.val());
+		if(is_email){
+			input.next().removeClass("glyphicon-remove").addClass("glyphicon-ok");
+			input.parent().removeClass("has-error").addClass("has-success");
+			input.removeClass("invalid").addClass("valid");
+		}
+		else{
+			input.next().removeClass("glyphicon-ok").addClass("glyphicon-remove");
+			input.parent().removeClass("has-success").addClass("has-error");
+			input.removeClass("valid").addClass("invalid");
+		}
+	});
+	
+
+	//Walidacja miasta
+	$('#miasto').on('blur', function() {
+		var input = $(this);
+		var pattern =  /^[a-zA-ZąęółżźćśńĘŹĆŻŁÓĄŚŃ\s]{3,15}$/;
+		var is_email = pattern.test(input.val());
+		if(is_email){
+			input.next().removeClass("glyphicon-remove").addClass("glyphicon-ok");
+			input.parent().removeClass("has-error").addClass("has-success");
+			input.removeClass("invalid").addClass("valid");
+		}
+		else{
+			input.next().removeClass("glyphicon-ok").addClass("glyphicon-remove");
+			input.parent().removeClass("has-success").addClass("has-error");
+			input.removeClass("valid").addClass("invalid");
+		}
+	});
+	
+	//Walidacja adresu
+	$('#adres').on('blur', function() {
+		var input = $(this);
+		var pattern =  /^[a-zA-Z0-9ąęółżźćśńĘŹĆŻŁÓĄŚŃ\s]{3,40}$/;
+		var is_email = pattern.test(input.val());
+		if(is_email){
+			input.next().removeClass("glyphicon-remove").addClass("glyphicon-ok");
+			input.parent().removeClass("has-error").addClass("has-success");
+			input.removeClass("invalid").addClass("valid");
+		}
+		else{
+			input.next().removeClass("glyphicon-ok").addClass("glyphicon-remove");
+			input.parent().removeClass("has-success").addClass("has-error");
+			input.removeClass("valid").addClass("invalid");
+		}
+	});
+
 	var warning = false;
 	
 	$('#btn_edytuj_dane').click(function(event){
@@ -284,6 +380,20 @@ $(document).ready(function() {
 		
 	});
 	$('#btn_edytuj_haslo').click(function(event){
+		var stareHaslo = $('#stareHaslo');
+		var noweHaslo = $('#noweHaslo');
+		var noweHaslo2 = $('#noweHaslo2');
+		
+		if(!(imie.hasClass('valid') && nazwisko.hasClass('valid') && email.hasClass('valid') && numer_telefonu.hasClass('valid') && login.hasClass('valid'))){
+			event.preventDefault();
+			if (warning == false) {
+				$('<div class="alert alert-danger"> Wypełnij poprawnie wszystkie pola!</div>').insertBefore(".login-register");
+				warning = true;
+			}
+		}
+	});
+	
+	$('#btn_edytuj_warsztat').click(function(event){
 		var stareHaslo = $('#stareHaslo');
 		var noweHaslo = $('#noweHaslo');
 		var noweHaslo2 = $('#noweHaslo2');

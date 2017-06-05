@@ -84,13 +84,16 @@ public class SterownikPolBD {
 	
 	/**
 	 * 
-	 * @param login
-	 * @param haslo
-	 * @param imie
-	 * @param nazwisko
+	 * @param ulica
+	 * @param ilosc_stanowisk
+	 * @param minuta_zamkniecia_tmp
+	 * @param godzina_zamkniecia_tmp
+	 * @param numer_telefonu
 	 * @param email
-	 * @param nrtel
-	 * @param rodzaj
+	 * @param minuta_otwarcia_tmp
+	 * @param godzina_otwarcia_tmp
+	 * @param numer_budynku
+	 * @param miasto
 	 * @return
 	 */
 
@@ -427,7 +430,36 @@ public class SterownikPolBD {
 		}
 		return odp;
 	}
+	
+	// zmiana danych warsztatu, ADMIN
+	public boolean zapiszEdycjeWarsztatu(String adres, String ilosc_stanowisk, String godzina_zamkniecia,
+			String nrTelefonu, String email, String godzina_otwarcia, String miasto, String id) {
+		boolean odp = true;
+		PreparedStatement stmt = null;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement(
+					"UPDATE warsztat SET adres=?, ilosc_stanowisk= ?, godzina_zamkniecia=?, numer_telefonu=?, email=?, godzina_otwarcia=?, miasto=? WHERE id = ?");
+			stmt.setString(1, adres);
+			stmt.setString(2, ilosc_stanowisk);
+			stmt.setString(3, godzina_zamkniecia);
+			stmt.setString(4, nrTelefonu);
+			stmt.setString(5, email);
+			stmt.setString(6, godzina_otwarcia);
+			stmt.setString(7, miasto);
+			stmt.setString(8, id);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			odp = false;
+			System.out.println("TU JEST BLAD");
+			return false;
+		} finally {
+			close(stmt);
+		}
+		return odp;
+	}
 
+	
 	public boolean usunUzytkownikaPracownika(String imie, String nazwisko, String email) {
 		boolean odp = true;
 		PreparedStatement stmt = null;

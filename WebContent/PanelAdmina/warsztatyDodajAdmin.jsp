@@ -53,7 +53,7 @@
 								aria-hidden="true"></i></span> <input type="text" class="form-control"
 								name="miasto" id="miasto" placeholder="Podaj nazwe ulicy."
 								data-toggle="popover"
-								data-content="Nazwa miasta musi składać się z 3 do 20 liter." />
+								data-content="Nazwa miasta musi składać się z 3 do 15 liter." />
 							<span class="glyphicon form-control-feedback"></span>
 						</div>
 					</div>
