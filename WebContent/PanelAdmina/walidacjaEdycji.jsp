@@ -53,6 +53,48 @@ $(document).ready(function() {
 		placement : 'right'
 	});
 	
+	$('#numer_budynku').popover({
+		container: 'body',
+		trigger : 'focus',
+		placement : 'right'
+	});
+	
+	$('#godzina_otwarcia').popover({
+		container: 'body',
+		trigger : 'focus',
+		placement : 'right'
+	});
+	
+	$('#minuta_otwarcia').popover({
+		container: 'body',
+		trigger : 'focus',
+		placement : 'right'
+	});
+	
+	$('#godzina_zamkniecia').popover({
+		container: 'body',
+		trigger : 'focus',
+		placement : 'right'
+	});
+	
+	$('#minuta_zamkniecia').popover({
+		container: 'body',
+		trigger : 'focus',
+		placement : 'right'
+	});
+	
+	$('#ilosc_stanowisk').popover({
+		container: 'body',
+		trigger : 'focus',
+		placement : 'right'
+	});
+	
+	$('#ulica').popover({
+		container: 'body',
+		trigger : 'focus',
+		placement : 'right'
+	});
+	
 	$(document).ready(function() {
 		$('#imie').addClass("valid");
 		$('#imie').next().removeClass("glyphicon-remove").addClass("glyphicon-ok")

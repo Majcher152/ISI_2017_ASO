@@ -53,6 +53,48 @@ $(document).ready(function() {
 		placement : 'right'
 	});
 	
+	$('#numer_budynku').popover({
+		container: 'body',
+		trigger : 'focus',
+		placement : 'right'
+	});
+	
+	$('#godzina_otwarcia').popover({
+		container: 'body',
+		trigger : 'focus',
+		placement : 'right'
+	});
+	
+	$('#minuta_otwarcia').popover({
+		container: 'body',
+		trigger : 'focus',
+		placement : 'right'
+	});
+	
+	$('#godzina_zamkniecia').popover({
+		container: 'body',
+		trigger : 'focus',
+		placement : 'right'
+	});
+	
+	$('#minuta_zamkniecia').popover({
+		container: 'body',
+		trigger : 'focus',
+		placement : 'right'
+	});
+	
+	$('#ilosc_stanowisk').popover({
+		container: 'body',
+		trigger : 'focus',
+		placement : 'right'
+	});
+	
+	$('#ulica').popover({
+		container: 'body',
+		trigger : 'focus',
+		placement : 'right'
+	});
+	
 	//Walidacja imienia
 	$('#imie').on('blur', function() {
 		var input = $(this);
@@ -171,6 +213,9 @@ $(document).ready(function() {
 	});
 	
 
+	
+	
+	
 	var warning = false;
 	
 	$('#btn_loguj').click(function(event){
@@ -205,6 +250,127 @@ $(document).ready(function() {
 			input.removeClass("valid").addClass("invalid");
 		}
 	});
+	
+	//Walidacja numeru budynku
+	$('#numer_budynku').on('blur', function() {
+		var input = $(this);
+		var pattern = /^[0-9]{1,4}$/;
+		var is_name = pattern.test(input.val());
+		if(is_name){
+			input.next().removeClass("glyphicon-remove").addClass("glyphicon-ok");
+			input.parent().removeClass("has-error").addClass("has-success");
+			input.removeClass("invalid").addClass("valid");
+		}
+		else{
+			input.next().removeClass("glyphicon-ok").addClass("glyphicon-remove");
+			input.parent().removeClass("has-success").addClass("has-error");
+			input.removeClass("valid").addClass("invalid");
+		}
+	});
+	
+	
+	//Walidacja godziny otwarcia 
+	$('#godzina_otwarcia').on('blur', function() {
+		var input = $(this);
+		var pattern = /^[0-9]{1,2}$/;
+		var is_name = pattern.test(input.val());
+		if(is_name){
+			input.next().removeClass("glyphicon-remove").addClass("glyphicon-ok");
+			input.parent().removeClass("has-error").addClass("has-success");
+			input.removeClass("invalid").addClass("valid");
+		}
+		else{
+			input.next().removeClass("glyphicon-ok").addClass("glyphicon-remove");
+			input.parent().removeClass("has-success").addClass("has-error");
+			input.removeClass("valid").addClass("invalid");
+		}
+	});
+	
+	//Walidacja minuty otwarcia 
+	$('#minuta_otwarcia').on('blur', function() {
+		var input = $(this);
+		var pattern = /^[0-9]{1,2}$/;
+		var is_name = pattern.test(input.val());
+		if(is_name){
+			input.next().removeClass("glyphicon-remove").addClass("glyphicon-ok");
+			input.parent().removeClass("has-error").addClass("has-success");
+			input.removeClass("invalid").addClass("valid");
+		}
+		else{
+			input.next().removeClass("glyphicon-ok").addClass("glyphicon-remove");
+			input.parent().removeClass("has-success").addClass("has-error");
+			input.removeClass("valid").addClass("invalid");
+		}
+	});
+	
+	//Walidacja godzin zamkniecia
+	$('#godzina_zamkniecia').on('blur', function() {
+		var input = $(this);
+		var pattern = /^[0-9]{1,2}$/;
+		var is_name = pattern.test(input.val());
+		if(is_name){
+			input.next().removeClass("glyphicon-remove").addClass("glyphicon-ok");
+			input.parent().removeClass("has-error").addClass("has-success");
+			input.removeClass("invalid").addClass("valid");
+		}
+		else{
+			input.next().removeClass("glyphicon-ok").addClass("glyphicon-remove");
+			input.parent().removeClass("has-success").addClass("has-error");
+			input.removeClass("valid").addClass("invalid");
+		}
+	});
+	
+	//Walidacja minuty zamknięcia 
+	$('#minuta_zamkniecia').on('blur', function() {
+		var input = $(this);
+		var pattern = /^[0-9]{1,2}$/;
+		var is_name = pattern.test(input.val());
+		if(is_name){
+			input.next().removeClass("glyphicon-remove").addClass("glyphicon-ok");
+			input.parent().removeClass("has-error").addClass("has-success");
+			input.removeClass("invalid").addClass("valid");
+		}
+		else{
+			input.next().removeClass("glyphicon-ok").addClass("glyphicon-remove");
+			input.parent().removeClass("has-success").addClass("has-error");
+			input.removeClass("valid").addClass("invalid");
+		}
+	});
+	
+	//Walidacja nazwy ulicy
+	$('#ulica').on('blur', function() {
+		var input = $(this);
+		var pattern =  /^[a-zA-ZąęółżźćśńĘŹĆŻŁÓĄŚŃ-]{3,40}$/;
+		var is_name = pattern.test(input.val());
+		if(is_name){
+			input.next().removeClass("glyphicon-remove").addClass("glyphicon-ok");
+			input.parent().removeClass("has-error").addClass("has-success");
+			input.removeClass("invalid").addClass("valid");
+		}
+		else{
+			input.next().removeClass("glyphicon-ok").addClass("glyphicon-remove");
+			input.parent().removeClass("has-success").addClass("has-error");
+			input.removeClass("valid").addClass("invalid");
+		}
+	});
+	
+	//Walidacja ilości stanowisk
+	$('#ilosc_stanowisk').on('blur', function() {
+		var input = $(this);
+		var pattern = /^[0-9]{1,2}$/;
+		var is_name = pattern.test(input.val());
+		if(is_name){
+			input.next().removeClass("glyphicon-remove").addClass("glyphicon-ok");
+			input.parent().removeClass("has-error").addClass("has-success");
+			input.removeClass("invalid").addClass("valid");
+		}
+		else{
+			input.next().removeClass("glyphicon-ok").addClass("glyphicon-remove");
+			input.parent().removeClass("has-success").addClass("has-error");
+			input.removeClass("valid").addClass("invalid");
+		}
+	});
+	
 	
 	var done = false;
 	
