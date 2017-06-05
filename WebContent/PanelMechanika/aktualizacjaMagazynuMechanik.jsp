@@ -98,35 +98,154 @@
 					        <option value="${model}"><c:out value="${model}" /></option>
 					    </c:forEach>
 					</select>
-			
+					
+					
+					<script type="text/javascript">
+					        $model = $('#model');
+					        $rocznik = $('#rocznik');
+					        $typ = $('#typ');
+					        
+					        $(model).on('change',  function() {
+					                $.ajax({
+					                    type: "POST",
+					                    url: "MagazynMechanikServlet?metoda=zaladujRoczniki",
+					                    data: {model: $model.val() },
+					                    success: function(ret){
+					                        $("#rocznik").html(ret); 
+					                        $.ajax({
+					                            type: "POST",
+					                            url: "MagazynMechanikServlet?metoda=zaladujTypy",
+					                            data: {model: $model.val(), rocznik: $rocznik.val() },
+					                            success: function(ret){
+					                                $("#typ").html(ret);   
+					                                $.ajax({
+					                                    type: "POST",
+					                                    url: "MagazynMechanikServlet?metoda=zaladujSilniki",
+					                                    data: {model: $model.val(), rocznik: $rocznik.val(), typ: $typ.val() },
+					                                    success: function(ret){
+					                                        $("#silnik").html(ret);   
+					                                    },
+					                                    /*Działania wykonywane w przypadku błędu*/
+					                                    error: function(blad) {
+					                                       // alert( ret);
+					                                        console.log(blad); /*Funkcja wyświetlająca informacje 
+					                                        o ewentualnym błędzie w konsoli przeglądarki*/
+					                                    }
+					                                });
+					                            },
+					                            /*Działania wykonywane w przypadku błędu*/
+					                            error: function(blad) {
+					                               // alert( ret);
+					                                console.log(blad); /*Funkcja wyświetlająca informacje 
+					                                o ewentualnym błędzie w konsoli przeglądarki*/
+					                            }
+					                        });
+					                    },
+					                    /*Działania wykonywane w przypadku błędu*/
+					                    error: function(blad) {
+					                       // alert( "Wystąpił błąd");
+					                        console.log(blad); /*Funkcja wyświetlająca informacje 
+					                        o ewentualnym błędzie w konsoli przeglądarki*/
+					                    }
+					                });
+					                
+					              
+					            }
+					        );
+					    </script>
+				<b>Rocznik</b>
+				<select name="rocznik" id="rocznik" class="form-control">
+						</select>
+					<script type="text/javascript">
+					        $rocznik = $('#rocznik');
+					        $typ = $('#typ');
+					        
+					        $(rocznik).on('change', function() {
+					                $.ajax({
+					                    type: "POST",
+					                    url: "MagazynMechanikServlet?metoda=zaladujTypy",
+					                    data: {model: $model.val(), rocznik: $rocznik.val() },
+					                    success: function(ret){
+					                        $("#typ").html(ret);  
+					                        $.ajax({
+					                            type: "POST",
+					                            url: "MagazynMechanikServlet?metoda=zaladujSilniki",
+					                            data: {model: $model.val(), rocznik: $rocznik.val(), typ: $typ.val() },
+					                            success: function(ret){
+					                                $("#silnik").html(ret);   
+					                            },
+					                            /*Działania wykonywane w przypadku błędu*/
+					                            error: function(blad) {
+					                               // alert( ret);
+					                                console.log(blad); /*Funkcja wyświetlająca informacje 
+					                                o ewentualnym błędzie w konsoli przeglądarki*/
+					                            }
+					                        });
+					                    },
+					                    /*Działania wykonywane w przypadku błędu*/
+					                    error: function(blad) {
+					                       // alert( ret);
+					                        console.log(blad); /*Funkcja wyświetlająca informacje 
+					                        o ewentualnym błędzie w konsoli przeglądarki*/
+					                    }
+					                });
+					               
+					               
+					            }
+					        );
+					    </script>
+					    <b>Typ</b>
+					    <select name="typ" id="typ" class="form-control">
+					</select>
+					<script type="text/javascript">
+					        $typ = $('#typ');
+					        
+					        $(typ).on('change', function() {
+					                $.ajax({
+					                    type: "POST",
+					                    url: "MagazynMechanikServlet?metoda=zaladujSilniki",
+					                    data: {model: $model.val(), rocznik: $rocznik.val(), typ: $typ.val() },
+					                    success: function(ret){
+					                        $("#silnik").html(ret);   
+					                    },
+					                    /*Działania wykonywane w przypadku błędu*/
+					                    error: function(blad) {
+					                       // alert( ret);
+					                        console.log(blad); /*Funkcja wyświetlająca informacje 
+					                        o ewentualnym błędzie w konsoli przeglądarki*/
+					                    }
+					                });
+					            }
+					        );
+					    </script>
+					    
+					    <div class="form-group">
+						<b>Silnik</b>
+						<select name="silnik" id="silnik" class="form-control">
+						</select>
+						</div>
 				<!-- Table -->
 				<table class="table table-hover table-striped table-condensed">
 				<tr>
 				<td><b>Nazwa</b></td>
 				<td><b>Ilość</b></td>
-				<td><b></b></td>
+				<td><b>Aktualizuj</b></td>
 				</tr>
 					<c:forEach var="czesc" items="${czesci}">
 						<tr>
 							<td><c:out
-									value="${czesc.samochod.vin}" /></td>
+									value="${czesc.nazwa}" /></td>
 							<td><c:out
-									value="${formularz.dataOddania}" /></td>
+									value="${czesc.ilosc}" /></td>
 									
-							<c:choose>
-								<c:when test="${formularz.zmien==true}">			
-									<td><form method="post"
-									action="MechanikNaprawaServlet?metoda=zmienStatusNaprawy"
+								<td><form method="post"
+									action="MagazynMechanikServlet?metoda=aktualizuj"
 									class="inline">
 									<input type="hidden" name="id" value="${formularz.id}">
 									<button type="submit" name="submit_param" value="submit_value"
-										class="link-button">Zmień</button>
+										class="link-button">Zmniejsz</button>
 								</form></td>
-  								</c:when>
-								<c:otherwise>
-    									<td><c:out value="" /></td>
-  								</c:otherwise>
-							</c:choose>		
+  								
 						</tr>
 					</c:forEach>
 				</table>
