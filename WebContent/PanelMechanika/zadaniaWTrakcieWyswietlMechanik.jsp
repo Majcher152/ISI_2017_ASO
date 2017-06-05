@@ -19,6 +19,7 @@
 
 
 <jsp:include page="headerMechanik.jsp" />
+<jsp:include page="walidacjaFormularzaMechanik.jsp" />
 
 <div class="container marketing">
 
@@ -37,21 +38,21 @@
 						<div class="alert alert-danger"> <%=blad %> 
 						</div>
 						<%} %>
-					
+					<div class="blad"></div>
 					
 					
 					
 					<div class="form-group">
  						<label class="control-label">Data odebrania</label>
 	 					<div class="form-group">
-	 						<input class="form-control" type="text" name="dataodebrania" >
+	 						<input class="form-control" type="text" name="dataodebrania" id="dataodebrania" data-toggle="popover" data-content="Data w formacie dd/MM/yyyy">
 						</div>
 					</div>
 					
 					<div class="form-group">
  						<label class="control-label">Koszt naprawy</label>
 	 					<div class="form-group">
-	 						<input class="form-control" type="text" name="koszt">
+	 						<input class="form-control" type="text" name="koszt" id="koszt" data-toggle="popover" data-content="Liczba z maksymalnie jedną kropką.">
 						</div>
 					</div>
 					
