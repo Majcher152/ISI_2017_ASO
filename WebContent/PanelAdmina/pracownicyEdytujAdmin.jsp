@@ -91,6 +91,30 @@ SELECT * FROM `uzytkownik` where email = '<%=emailUzytkownika%>';
 					</div>
 
 					<div class="form-group">
+						<label for="ktory_warsztat" class="cols-sm-2 control-label">Który
+							warsztat:</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-users fa"
+									aria-hidden="true"></i></span> <select name="warsztat" id="warsztat"
+									class="form-control" data-toggle="popover"
+									data-content="Wybierz jedną z opcji.">
+									<option>
+											<c:out
+												value="${warsztat.id}. ${warsztat.adres}, ${warsztat.miasto}" />
+										</option>
+									<c:forEach var="warsztat" items="${result.rows}">
+										<option>
+											<c:out
+												value="${warsztat.id}. ${warsztat.adres}, ${warsztat.miasto}" />
+										</option>
+									</c:forEach>
+								</select> <span class="glyphicon form-control-feedback"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
 						<label for="username" class="cols-sm-2 control-label">Login
 							pracownika:</label>
 						<div class="cols-sm-10">
