@@ -4,6 +4,14 @@ public class Czesc {
 	private String nazwa;
 	private int id;
 	private int ilosc;
+	private double cena;
+	
+	public double getCena() {
+		return cena;
+	}
+	public void setCena(double cena) {
+		this.cena = cena;
+	}
 	public String getNazwa() {
 		return nazwa;
 	}

@@ -13,6 +13,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import pl.komp.aso.dto.Czesc;
 import pl.komp.aso.dto.FormularzNaprawy;
 import pl.komp.aso.dto.Samochod;
 import pl.komp.aso.dto.Uzytkownik;
@@ -1239,6 +1240,40 @@ public class SterownikPolBD {
 			close(stmt);
 		}
 		return true;
+	}
+	
+	public ArrayList<Czesc> pobierzCzesci(String model,String rocznik,String typ,String silnik,int id) {
+		ArrayList<Czesc> czesci = new ArrayList<Czesc>();
+		ResultSet rs = null;
+
+		PreparedStatement stmt = null;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement("Select * from czesc where warsztat_id_fk=?");
+			stmt.setString(1, model);
+			stmt.setString(2, rocznik);
+			stmt.setString(3, typ);
+			stmt.setString(4,silnik);
+			stmt.setInt(5, id);
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+
+				Czesc c = new Czesc();
+				c.setId(rs.getInt("id"));
+				c.setIlosc(rs.getInt("ilosc"));
+				c.setNazwa(rs.getString("dostepnych_w_warsztacie"));
+				czesci.add(c);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+
+		} finally {
+			close(rs);
+			close(stmt);
+		}
+		return czesci;
 	}
 
 	// -----------------------------------------------------------------------------------------------------

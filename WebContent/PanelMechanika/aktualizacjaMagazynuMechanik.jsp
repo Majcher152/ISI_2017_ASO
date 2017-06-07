@@ -61,7 +61,23 @@
                                     url: "MagazynMechanikServlet?metoda=zaladujSilniki",
                                     data: {model: $model.val(), rocznik: $rocznik.val(), typ: $typ.val() },
                                     success: function(ret){
-                                        $("#silnik").html(ret);   
+                                    	
+                                        $("#silnik").html(ret); 
+                                        $.ajax({
+						                    type: "POST",
+						                    url: "MagazynMechanikServlet?metoda=zaladujCzesci",
+						                    data: {model: $model.val(), rocznik: $rocznik.val(), typ: $typ.val(),silnik: $silnik.val() },
+						                    success: function(ret){
+						                    	alert(ret);
+						                        $("#czesc").html(ret);   
+						                    },
+						                    /*Działania wykonywane w przypadku błędu*/
+						                    error: function(blad) {
+						                        alert( ret);
+						                        console.log(blad); /*Funkcja wyświetlająca informacje 
+						                        o ewentualnym błędzie w konsoli przeglądarki*/
+						                    }
+						                });
                                     },
                                     /*Działania wykonywane w przypadku błędu*/
                                     error: function(blad) {
@@ -123,7 +139,21 @@
 					                                    url: "MagazynMechanikServlet?metoda=zaladujSilniki",
 					                                    data: {model: $model.val(), rocznik: $rocznik.val(), typ: $typ.val() },
 					                                    success: function(ret){
-					                                        $("#silnik").html(ret);   
+					                                        $("#silnik").html(ret); 
+					                                        $.ajax({
+											                    type: "POST",
+											                    url: "MagazynMechanikServlet?metoda=zaladujCzesci",
+											                    data: {model: $model.val(), rocznik: $rocznik.val(), typ: $typ.val(),silnik: $silnik.val() },
+											                    success: function(ret){
+											                        $("#czesc").html(ret);   
+											                    },
+											                    /*Działania wykonywane w przypadku błędu*/
+											                    error: function(blad) {
+											                       // alert( ret);
+											                        console.log(blad); /*Funkcja wyświetlająca informacje 
+											                        o ewentualnym błędzie w konsoli przeglądarki*/
+											                    }
+											                });
 					                                    },
 					                                    /*Działania wykonywane w przypadku błędu*/
 					                                    error: function(blad) {
@@ -172,7 +202,21 @@
 					                            url: "MagazynMechanikServlet?metoda=zaladujSilniki",
 					                            data: {model: $model.val(), rocznik: $rocznik.val(), typ: $typ.val() },
 					                            success: function(ret){
-					                                $("#silnik").html(ret);   
+					                                $("#silnik").html(ret); 
+					                                $.ajax({
+									                    type: "POST",
+									                    url: "MagazynMechanikServlet?metoda=zaladujCzesci",
+									                    data: {model: $model.val(), rocznik: $rocznik.val(), typ: $typ.val(),silnik: $silnik.val() },
+									                    success: function(ret){
+									                        $("#czesc").html(ret);   
+									                    },
+									                    /*Działania wykonywane w przypadku błędu*/
+									                    error: function(blad) {
+									                       // alert( ret);
+									                        console.log(blad); /*Funkcja wyświetlająca informacje 
+									                        o ewentualnym błędzie w konsoli przeglądarki*/
+									                    }
+									                });
 					                            },
 					                            /*Działania wykonywane w przypadku błędu*/
 					                            error: function(blad) {
@@ -206,7 +250,22 @@
 					                    url: "MagazynMechanikServlet?metoda=zaladujSilniki",
 					                    data: {model: $model.val(), rocznik: $rocznik.val(), typ: $typ.val() },
 					                    success: function(ret){
-					                        $("#silnik").html(ret);   
+					                        $("#silnik").html(ret);  
+					                        $.ajax({
+							                    type: "POST",
+							                    url: "MagazynMechanikServlet?metoda=zaladujCzesci",
+							                    data: {model: $model.val(), rocznik: $rocznik.val(), typ: $typ.val(),silnik: $silnik.val() },
+							                    success: function(ret){
+							                    	alert('hehe');
+							                        $("#czesc").html(ret);   
+							                    },
+							                    /*Działania wykonywane w przypadku błędu*/
+							                    error: function(blad) {
+							                        alert( ret);
+							                        console.log(blad); /*Funkcja wyświetlająca informacje 
+							                        o ewentualnym błędzie w konsoli przeglądarki*/
+							                    }
+							                });
 					                    },
 					                    /*Działania wykonywane w przypadku błędu*/
 					                    error: function(blad) {
@@ -225,29 +284,7 @@
 						</select>
 						</div>
 				<!-- Table -->
-				<table class="table table-hover table-striped table-condensed">
-				<tr>
-				<td><b>Nazwa</b></td>
-				<td><b>Ilość</b></td>
-				<td><b>Aktualizuj</b></td>
-				</tr>
-					<c:forEach var="czesc" items="${czesci}">
-						<tr>
-							<td><c:out
-									value="${czesc.nazwa}" /></td>
-							<td><c:out
-									value="${czesc.ilosc}" /></td>
-									
-								<td><form method="post"
-									action="MagazynMechanikServlet?metoda=aktualizuj"
-									class="inline">
-									<input type="hidden" name="id" value="${formularz.id}">
-									<button type="submit" name="submit_param" value="submit_value"
-										class="link-button">Zmniejsz</button>
-								</form></td>
-  								
-						</tr>
-					</c:forEach>
+				<table class="table table-hover table-striped table-condensed"  id="czesc">
 				</table>
 			</div>
 

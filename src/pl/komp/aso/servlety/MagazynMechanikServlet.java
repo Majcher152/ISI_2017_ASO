@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import pl.komp.aso.dto.Czesc;
 import pl.komp.aso.dto.Uzytkownik;
 import pl.komp.aso.sterowniki.SterownikKlienta;
 import pl.komp.aso.sterowniki.SterownikMechanika;
@@ -56,6 +57,7 @@ public class MagazynMechanikServlet extends HttpServlet {
 		String model = request.getParameter("model");
 		String rocznik = request.getParameter("rocznik");
 		String typ = request.getParameter("typ");
+		String silnik = request.getParameter("silnik");
 		Uzytkownik u = (Uzytkownik) request.getSession().getAttribute("uzytkownik");
 		
 		if (metoda.equals("zaladujRoczniki")) {
@@ -88,6 +90,31 @@ public class MagazynMechanikServlet extends HttpServlet {
 			}
 			out.print(sb);
 		}
+		else if (metoda.equals("zaladujCzesci")) {
+		//ArrayList<Czesc> czesci = sm.pobierzCzesci(model, rocznik, typ,silnik,u);
+			System.out.println("no siema");
+			ArrayList<Czesc> czesci = new ArrayList<Czesc>();
+			Czesc c1= new Czesc();
+			c1.setId(1);
+			c1.setIlosc(12);
+			c1.setNazwa("wtf");
+			
+			Czesc c2= new Czesc();
+			c2.setId(2);
+			c2.setIlosc(120);
+			c2.setNazwa("hehe");
+			czesci.add(c1);
+			czesci.add(c2);
+		StringBuffer sb = new StringBuffer();
+		sb.append("<tr><td><b>Nazwa</b></td><td><b>Ilość</b></td><td><b>Aktualizuj</b></td></tr>");
+		for (int i = 0; i < czesci.size(); i++) {
+			sb.append("<tr><td>value=\""+czesci.get(i).getNazwa()+"\"</td>");
+			sb.append("<td>value=\""+czesci.get(i).getIlosc()+"\"</td>");
+			sb.append("<td><form method=\"post\" action=\"MagazynMechanikServlet?metoda=aktualizuj\" class=\"inline\"> <input type=\"hidden\" name=\"id\" value=\""+czesci.get(i).getId()+"\"> <button type=\"submit\" name=\"submit_param\" value=\"submit_value\" class=\"link-button\">Zmniejsz</button> </form></td> </tr>");
+		}
+		
+		out.print(sb);
+	}
 		else if(metoda.equals("aktualizuj")) {
 			
 		}

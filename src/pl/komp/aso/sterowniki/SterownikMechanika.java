@@ -6,6 +6,7 @@ import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
+import pl.komp.aso.dto.Czesc;
 import pl.komp.aso.dto.FormularzNaprawy;
 import pl.komp.aso.dto.Uzytkownik;
 import pl.komp.aso.dto.Warsztat;
@@ -62,6 +63,12 @@ public class SterownikMechanika {
 		}
 		 
 		return formularze;
+	}
+	
+	public ArrayList<Czesc> pobierzCzesci(String model,String rocznik,String typ,String silnik,Uzytkownik u){
+		Warsztat w = pobierzWarsztat(u);
+		ArrayList<Czesc> czesci = spbd.pobierzCzesci(model,rocznik,typ,silnik,w.getId());
+		return czesci;
 	}
 	
 }
