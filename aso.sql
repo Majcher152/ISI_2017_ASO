@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 04 Cze 2017, 20:57
+-- Czas generowania: 07 Cze 2017, 23:26
 -- Wersja serwera: 10.1.21-MariaDB
--- Wersja PHP: 7.0.15
+-- Wersja PHP: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -41,7 +41,8 @@ INSERT INTO `cennik_podstawowy` (`id`, `nazwa`, `cena`) VALUES
 (2, 'Wymiana olejów i filtrów', 'Od 249 zł'),
 (3, 'Wymiana kół/opon na zimowe/letnich', 'od 49 zł'),
 (4, 'Dezynfekcja/nabicie klimatyzacji', 'Od 149 zł'),
-(5, 'Wymiana klocków hamulcowych', 'Od 99 zł');
+(5, 'Wymiana klocków hamulcowych', 'Od 99 zł'),
+(6, 'Wymiana tłumika', 'Od 299 zł');
 
 -- --------------------------------------------------------
 
@@ -52,10 +53,8 @@ INSERT INTO `cennik_podstawowy` (`id`, `nazwa`, `cena`) VALUES
 CREATE TABLE `czesc` (
   `id` int(7) NOT NULL,
   `nazwa` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `dostepnych_w_warsztacie` int(5) NOT NULL,
-  `cena_za_sztuke` double(7,2) NOT NULL,
-  `zamowienie_id_fk` int(7) DEFAULT NULL,
-  `warsztat_id_fk` int(7) DEFAULT NULL
+  `dostepnych_w_magazynie` int(5) NOT NULL,
+  `cena_za_sztuke` double(7,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -348,6 +347,18 @@ INSERT INTO `warsztat` (`id`, `adres`, `miasto`, `numer_telefonu`, `email`, `ilo
 -- --------------------------------------------------------
 
 --
+-- Struktura tabeli dla tabeli `warsztat_czesc`
+--
+
+CREATE TABLE `warsztat_czesc` (
+  `warsztat_id_fk` int(7) NOT NULL,
+  `czesc_id_fk` int(7) NOT NULL,
+  `ilosc` int(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabeli dla tabeli `zamowienie`
 --
 
@@ -357,6 +368,18 @@ CREATE TABLE `zamowienie` (
   `rodzaj_czesci` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `koszt` double(7,2) NOT NULL,
   `warsztat_id_fk` int(7) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `zamowienie_czesc`
+--
+
+CREATE TABLE `zamowienie_czesc` (
+  `zamowienie_id_fk` int(7) NOT NULL,
+  `czesc_id_fk` int(7) NOT NULL,
+  `ilosc` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -374,9 +397,7 @@ ALTER TABLE `cennik_podstawowy`
 --
 ALTER TABLE `czesc`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `nazwa` (`nazwa`),
-  ADD KEY `zamowienie_id_fk` (`zamowienie_id_fk`),
-  ADD KEY `warsztat_id_fk` (`warsztat_id_fk`);
+  ADD UNIQUE KEY `nazwa` (`nazwa`);
 
 --
 -- Indexes for table `formularz_naprawy`
@@ -448,12 +469,26 @@ ALTER TABLE `warsztat`
   ADD UNIQUE KEY `email_u_idx` (`email`);
 
 --
+-- Indexes for table `warsztat_czesc`
+--
+ALTER TABLE `warsztat_czesc`
+  ADD PRIMARY KEY (`warsztat_id_fk`,`czesc_id_fk`),
+  ADD KEY `czesc_id_fk` (`czesc_id_fk`);
+
+--
 -- Indexes for table `zamowienie`
 --
 ALTER TABLE `zamowienie`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `rodzaj_czesci_u_idx` (`rodzaj_czesci`),
   ADD KEY `warsztat_id_fk` (`warsztat_id_fk`);
+
+--
+-- Indexes for table `zamowienie_czesc`
+--
+ALTER TABLE `zamowienie_czesc`
+  ADD PRIMARY KEY (`zamowienie_id_fk`,`czesc_id_fk`),
+  ADD KEY `czesc_id_fk` (`czesc_id_fk`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -463,7 +498,7 @@ ALTER TABLE `zamowienie`
 -- AUTO_INCREMENT dla tabeli `cennik_podstawowy`
 --
 ALTER TABLE `cennik_podstawowy`
-  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT dla tabeli `czesc`
 --
@@ -502,13 +537,6 @@ ALTER TABLE `zamowienie`
 --
 -- Ograniczenia dla zrzutów tabel
 --
-
---
--- Ograniczenia dla tabeli `czesc`
---
-ALTER TABLE `czesc`
-  ADD CONSTRAINT `czesc_ibfk_1` FOREIGN KEY (`warsztat_id_fk`) REFERENCES `warsztat` (`id`),
-  ADD CONSTRAINT `czesc_ibfk_2` FOREIGN KEY (`zamowienie_id_fk`) REFERENCES `zamowienie` (`id`);
 
 --
 -- Ograniczenia dla tabeli `formularz_naprawy`
@@ -554,10 +582,24 @@ ALTER TABLE `uzytkownik_samochod`
   ADD CONSTRAINT `uzytkownik_samochod_ibfk_4` FOREIGN KEY (`Samochod_if_fk`) REFERENCES `samochod` (`samochod_id`);
 
 --
+-- Ograniczenia dla tabeli `warsztat_czesc`
+--
+ALTER TABLE `warsztat_czesc`
+  ADD CONSTRAINT `warsztat_czesc_ibfk_1` FOREIGN KEY (`warsztat_id_fk`) REFERENCES `warsztat` (`id`),
+  ADD CONSTRAINT `warsztat_czesc_ibfk_2` FOREIGN KEY (`czesc_id_fk`) REFERENCES `czesc` (`id`);
+
+--
 -- Ograniczenia dla tabeli `zamowienie`
 --
 ALTER TABLE `zamowienie`
   ADD CONSTRAINT `zamowienie_ibfk_1` FOREIGN KEY (`warsztat_id_fk`) REFERENCES `warsztat` (`id`);
+
+--
+-- Ograniczenia dla tabeli `zamowienie_czesc`
+--
+ALTER TABLE `zamowienie_czesc`
+  ADD CONSTRAINT `zamowienie_czesc_ibfk_1` FOREIGN KEY (`czesc_id_fk`) REFERENCES `czesc` (`id`),
+  ADD CONSTRAINT `zamowienie_czesc_ibfk_2` FOREIGN KEY (`zamowienie_id_fk`) REFERENCES `zamowienie` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
