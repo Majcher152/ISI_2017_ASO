@@ -68,7 +68,7 @@
 						                    url: "MagazynMechanikServlet?metoda=zaladujCzesci",
 						                    data: {model: $model.val(), rocznik: $rocznik.val(), typ: $typ.val(),silnik: $silnik.val() },
 						                    success: function(ret){
-						                    	alert(ret);
+						                    	
 						                        $("#czesc").html(ret);   
 						                    },
 						                    /*Działania wykonywane w przypadku błędu*/
@@ -120,6 +120,7 @@
 					        $model = $('#model');
 					        $rocznik = $('#rocznik');
 					        $typ = $('#typ');
+					        $silnik=$('#silnik');
 					        
 					        $(model).on('change',  function() {
 					                $.ajax({
@@ -256,7 +257,7 @@
 							                    url: "MagazynMechanikServlet?metoda=zaladujCzesci",
 							                    data: {model: $model.val(), rocznik: $rocznik.val(), typ: $typ.val(),silnik: $silnik.val() },
 							                    success: function(ret){
-							                    	alert('hehe');
+							                    	
 							                        $("#czesc").html(ret);   
 							                    },
 							                    /*Działania wykonywane w przypadku błędu*/

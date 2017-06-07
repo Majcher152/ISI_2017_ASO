@@ -108,8 +108,8 @@ public class MagazynMechanikServlet extends HttpServlet {
 		StringBuffer sb = new StringBuffer();
 		sb.append("<tr><td><b>Nazwa</b></td><td><b>Ilość</b></td><td><b>Aktualizuj</b></td></tr>");
 		for (int i = 0; i < czesci.size(); i++) {
-			sb.append("<tr><td>value=\""+czesci.get(i).getNazwa()+"\"</td>");
-			sb.append("<td>value=\""+czesci.get(i).getIlosc()+"\"</td>");
+			sb.append("<tr><td>"+czesci.get(i).getNazwa()+"</td>");
+			sb.append("<td>"+czesci.get(i).getIlosc()+"</td>");
 			sb.append("<td><form method=\"post\" action=\"MagazynMechanikServlet?metoda=aktualizuj\" class=\"inline\"> <input type=\"hidden\" name=\"id\" value=\""+czesci.get(i).getId()+"\"> <button type=\"submit\" name=\"submit_param\" value=\"submit_value\" class=\"link-button\">Zmniejsz</button> </form></td> </tr>");
 		}
 		
