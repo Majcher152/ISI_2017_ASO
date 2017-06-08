@@ -79,4 +79,11 @@ public class SterownikMechanika {
 		return czesc;
 	}
 	
+	public boolean aktualizuj(int ilosc,int id_czesci,int ile,Uzytkownik u) {
+		Warsztat w = pobierzWarsztat(u);
+		ile=ilosc-ile;
+		boolean odp=spbd.aktualizujStanWarsztatu(w.getId(), id_czesci, ile);
+		return odp;
+	}
+	
 }

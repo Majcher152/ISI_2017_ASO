@@ -26,6 +26,7 @@
 
 
 	<div class="col-sm-10 col-sm-offset-2 col-md-11 col-md-offset-1 main">
+		
 		<h1 class="page-header">Stan magazynu</h1>
 		<div
 			class="form-group-last col-sm-6 col-sm-offset-4 col-md-8 col-md-offset-2">
@@ -43,9 +44,12 @@
 			%>
 		</div>
 		<div class="blad"></div>
-		
 		<script type="text/javascript">
 			$( document ).ready(function() {
+				 $model = $('#model');
+			        $rocznik = $('#rocznik');
+			        $typ = $('#typ');
+			        $silnik=$('#silnik');
 				$.ajax({
                     type: "POST",
                     url: "MagazynMechanikServlet?metoda=zaladujRoczniki",

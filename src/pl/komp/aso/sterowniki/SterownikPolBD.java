@@ -679,7 +679,7 @@ public class SterownikPolBD {
 		PreparedStatement stmt = null;
 		try {
 			// przygotowanie zapytania
-			stmt = con.prepareStatement("Select distinct silnik from samochod where model=? and rocznik=? and typ=?");
+			stmt = con.prepareStatement("Select  silnik from samochod where model=? and rocznik=? and typ=?");
 			stmt.setString(1, model);
 			stmt.setString(2, rocznik);
 			stmt.setString(3, typ);
@@ -1249,7 +1249,7 @@ public class SterownikPolBD {
 		PreparedStatement stmt = null;
 		try {
 			// przygotowanie zapytania
-			stmt = con.prepareStatement("Select c.id,c.nazwa,wc.ilosc from czesc as c join samochod_czesc as sc on c.id=sc.czesc_id_fk join warsztat_czesc as wc on c.id=wc.czesc_id_wk where wc.warsztat_id_fk=? and sc.samochod_id_fk=?");
+			stmt = con.prepareStatement("Select c.id,c.nazwa,wc.ilosc from czesc as c join samochod_czesc as sc on c.id=sc.czesc_id_fk join warsztat_czesc as wc on c.id=wc.czesc_id_fk where wc.warsztat_id_fk=? and sc.samochod_id_fk=?");
 			stmt.setInt(1, id_warsztatu);
 			stmt.setInt(2, id_samochodu);
 			rs = stmt.executeQuery();

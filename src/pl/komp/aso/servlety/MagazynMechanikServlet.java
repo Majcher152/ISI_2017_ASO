@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pl.komp.aso.dto.Czesc;
+import pl.komp.aso.dto.Samochod;
 import pl.komp.aso.dto.Uzytkownik;
 import pl.komp.aso.sterowniki.SterownikKlienta;
 import pl.komp.aso.sterowniki.SterownikMechanika;
@@ -60,6 +61,7 @@ public class MagazynMechanikServlet extends HttpServlet {
 		String silnik = request.getParameter("silnik");
 		Uzytkownik u = (Uzytkownik) request.getSession().getAttribute("uzytkownik");
 		String id = request.getParameter("id");
+		String ile = request.getParameter("ile");
 		
 		if (metoda.equals("zaladujRoczniki")) {
 			ArrayList<String> roczniki = spbd.pobierzRoczniki(model);
@@ -92,6 +94,8 @@ public class MagazynMechanikServlet extends HttpServlet {
 			out.print(sb);
 		}
 		else if (metoda.equals("zaladujCzesci")) {
+			//System.out.println(model+" "+rocznik+ " "+typ+" " +silnik);
+
 		ArrayList<Czesc> czesci = sm.pobierzCzesci(model, rocznik, typ,silnik,u);
 		StringBuffer sb = new StringBuffer();
 		sb.append("<tr><td><b>Nazwa</b></td><td><b>Ilość</b></td><td><b>Aktualizuj</b></td></tr>");
@@ -99,8 +103,13 @@ public class MagazynMechanikServlet extends HttpServlet {
 			sb.append("<tr><td>"+czesci.get(i).getNazwa()+"</td>");
 			sb.append("<td>"+czesci.get(i).getIlosc()+"</td>");
 			sb.append("<td><form method=\"post\" action=\"MagazynMechanikServlet?metoda=zaladujAktualizuj\" class=\"inline\">");
-			sb.append("<input type=\"hidden\" name=\"id\" value=\""+czesci.get(i).getId()+"\">");
-			sb.append("<input type=\"text\" name=\"ile\" class=\"ile\" data-toggle=\"popover\" data-content=\"Ile części użyłeś.\">");
+			sb.append("<input type=\"hidden\" id=\"id\" name=\"id\" value=\""+czesci.get(i).getId()+"\">");
+			System.out.println(czesci.get(i).getId());
+			sb.append("<input type=\"hidden\" name=\"model\" value=\""+model+"\">");
+			sb.append("<input type=\"hidden\" name=\"rocznik\" value=\""+rocznik+"\">");
+			sb.append("<input type=\"hidden\" name=\"typ\" value=\""+typ+"\">");
+			sb.append("<input type=\"hidden\" name=\"silnik\" value=\""+silnik+"\">");
+
 			sb.append("<button type=\"submit\" id=\"btn_zmniejsz\" name=\"submit_param\" value=\"submit_value\" class=\"link-button\">Zmniejsz</button> </form></td> </tr>");
 			
 		}
@@ -108,11 +117,27 @@ public class MagazynMechanikServlet extends HttpServlet {
 		out.print(sb);
 	}
 		else if(metoda.equals("zaladujAktualizuj")) {
+			//System.out.println(id);
 			Czesc czesc = sm.pobierzCzesc(Integer.parseInt(id), u);
 			request.setAttribute("czesc", czesc);
+			Samochod samochod=spbd.pobierzSamochodId(model, rocznik, typ, silnik);
+			request.setAttribute("samochod",samochod);
 			if(blad!=null)
 				request.setAttribute("blad", blad);
 			request.getRequestDispatcher("PanelMechanika/aktualizacjaMagazynuZmniejszMechanik.jsp").forward(request, response);
+		}
+		
+		else if(metoda.equals("aktualizuj")) {
+			//System.out.println(id);
+			Czesc czesc = sm.pobierzCzesc(Integer.parseInt(id), u);
+			boolean odp=sm.aktualizuj(czesc.getIlosc(),Integer.parseInt(id),Integer.parseInt(ile),u);
+			if(odp==false)
+				blad="Nie udało sie zaktualizować.";
+			else
+				blad="Zaktualizowano.";
+			if(blad!=null)
+				request.setAttribute("blad", blad);
+			request.getRequestDispatcher("MagazynMechanikServlet?metoda=zaladujAktualizacje").forward(request, response);
 		}
 	}
 

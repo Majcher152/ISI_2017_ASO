@@ -35,7 +35,7 @@ $(document).ready(function() {
 	
 	var warning = false;
 	
-	$('#btn_zmniejsz').click(function(event){
+	$('#btn_aktualizuj').click(function(event){
 		var ile = $('#ile');
 		
 		
