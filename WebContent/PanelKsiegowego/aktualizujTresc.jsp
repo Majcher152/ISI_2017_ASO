@@ -11,6 +11,7 @@
 				<h1 class="page-header">Aktualizacja treści strony - księgowy</h1>
 				<ul>
 				<li><a href="aktualizujCennikPodstawowy.jsp">Cennik podstawowy</a></li>
+				<li><a href="aktualizujONas.jsp">Strona "O nas"</a></li>
 				</ul>
 
 			</div>

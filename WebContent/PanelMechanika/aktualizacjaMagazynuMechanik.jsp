@@ -30,18 +30,7 @@
 		<h1 class="page-header">Stan magazynu</h1>
 		<div
 			class="form-group-last col-sm-6 col-sm-offset-4 col-md-8 col-md-offset-2">
-			<%
-				String blad = (String) request.getAttribute("blad");
-			%>
-			<%
-				if (blad != null && !blad.equals("")) {
-			%>
-			<div class="alert alert-danger">
-				<%=blad%>
-			</div>
-			<%
-				}
-			%>
+			
 		</div>
 		<div class="blad"></div>
 		<script type="text/javascript">
@@ -294,8 +283,27 @@
 				
 				<table class="table table-hover table-striped table-condensed"  id="czesc">
 				</table>
+				
+			
 			</div>
-
+			<%
+		String blad = (String) request.getAttribute("blad");
+	%>
+	<%
+		if (blad != null && ((blad.equals("Zaktualizowano.")))) {
+	%>
+	<div class="alert alert-success">
+		<p style="text-align: center"><%=blad%></p>
+	</div>
+	<%
+		} else if (blad != null && !blad.equals("")) {
+	%>
+	<div class="alert alert-danger">
+		<p style="text-align: center"><%=blad%></p>
+	</div>
+	<%
+		}
+	%>
 		</div>
 		
 	</div>
