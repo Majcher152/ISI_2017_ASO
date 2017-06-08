@@ -28,6 +28,24 @@
 	<div class="col-sm-10 col-sm-offset-2 col-md-11 col-md-offset-1 main">
 		
 		<h1 class="page-header">Stan magazynu</h1>
+		<%
+		String blad = (String) request.getAttribute("blad");
+	%>
+	<%
+		if (blad != null && ((blad.equals("Zaktualizowano.")))) {
+	%>
+	<div class="alert alert-success">
+		<p style="text-align: center"><%=blad%></p>
+	</div>
+	<%
+		} else if (blad != null && !blad.equals("")) {
+	%>
+	<div class="alert alert-danger">
+		<p style="text-align: center"><%=blad%></p>
+	</div>
+	<%
+		}
+	%>
 		<div
 			class="form-group-last col-sm-6 col-sm-offset-4 col-md-8 col-md-offset-2">
 			
@@ -286,24 +304,7 @@
 				
 			
 			</div>
-			<%
-		String blad = (String) request.getAttribute("blad");
-	%>
-	<%
-		if (blad != null && ((blad.equals("Zaktualizowano.")))) {
-	%>
-	<div class="alert alert-success">
-		<p style="text-align: center"><%=blad%></p>
-	</div>
-	<%
-		} else if (blad != null && !blad.equals("")) {
-	%>
-	<div class="alert alert-danger">
-		<p style="text-align: center"><%=blad%></p>
-	</div>
-	<%
-		}
-	%>
+			
 		</div>
 		
 	</div>
