@@ -7,7 +7,16 @@ public class Samochod {
 	private String silnik;
 	private String vin;
 	private boolean warsztat=false;
+	private int id;
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public void setWarsztat(boolean warsztat) {
 		this.warsztat=warsztat;
 	}

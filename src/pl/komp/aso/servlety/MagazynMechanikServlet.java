@@ -92,20 +92,7 @@ public class MagazynMechanikServlet extends HttpServlet {
 			out.print(sb);
 		}
 		else if (metoda.equals("zaladujCzesci")) {
-		//ArrayList<Czesc> czesci = sm.pobierzCzesci(model, rocznik, typ,silnik,u);
-			System.out.println("no siema");
-			ArrayList<Czesc> czesci = new ArrayList<Czesc>();
-			Czesc c1= new Czesc();
-			c1.setId(1);
-			c1.setIlosc(12);
-			c1.setNazwa("wtf");
-			
-			Czesc c2= new Czesc();
-			c2.setId(2);
-			c2.setIlosc(120);
-			c2.setNazwa("hehe");
-			czesci.add(c1);
-			czesci.add(c2);
+		ArrayList<Czesc> czesci = sm.pobierzCzesci(model, rocznik, typ,silnik,u);
 		StringBuffer sb = new StringBuffer();
 		sb.append("<tr><td><b>Nazwa</b></td><td><b>Ilość</b></td><td><b>Aktualizuj</b></td></tr>");
 		for (int i = 0; i < czesci.size(); i++) {
@@ -121,8 +108,8 @@ public class MagazynMechanikServlet extends HttpServlet {
 		out.print(sb);
 	}
 		else if(metoda.equals("zaladujAktualizuj")) {
-			//Czesc czesc = sm.pobierzCzesc(id, u);
-			//request.setAttribute("czesc", czesc);
+			Czesc czesc = sm.pobierzCzesc(Integer.parseInt(id), u);
+			request.setAttribute("czesc", czesc);
 			if(blad!=null)
 				request.setAttribute("blad", blad);
 			request.getRequestDispatcher("PanelMechanika/aktualizacjaMagazynuZmniejszMechanik.jsp").forward(request, response);

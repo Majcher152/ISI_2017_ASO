@@ -6,7 +6,7 @@
 
 $(document).ready(function() {
 	//wyswietlanie dymku z informacja
-	$('.ile').popover({
+	$('#ile').popover({
 		container: 'body',
 		trigger : 'focus',
 		placement : 'right'
@@ -16,7 +16,7 @@ $(document).ready(function() {
 	
 	
 	//Walidacja liczby
-	$('.ile').on('blur', function() {
+	$('#ile').on('blur', function() {
 		var input = $(this);
 		var pattern = /^[0-9]{1,5}$/;
 		var is_data = pattern.test(input.val());
@@ -36,7 +36,7 @@ $(document).ready(function() {
 	var warning = false;
 	
 	$('#btn_zmniejsz').click(function(event){
-		var ile = $('.ile');
+		var ile = $('#ile');
 		
 		
 		if(!(ile.hasClass('valid'))){

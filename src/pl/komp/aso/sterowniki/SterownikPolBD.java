@@ -1242,26 +1242,23 @@ public class SterownikPolBD {
 		return true;
 	}
 	
-	public ArrayList<Czesc> pobierzCzesci(String model,String rocznik,String typ,String silnik,int id) {
+	public ArrayList<Czesc> pobierzCzesci(int id_warsztatu,int id_samochodu) {
 		ArrayList<Czesc> czesci = new ArrayList<Czesc>();
 		ResultSet rs = null;
 
 		PreparedStatement stmt = null;
 		try {
 			// przygotowanie zapytania
-			stmt = con.prepareStatement("Select * from czesc where warsztat_id_fk=?");
-			stmt.setString(1, model);
-			stmt.setString(2, rocznik);
-			stmt.setString(3, typ);
-			stmt.setString(4,silnik);
-			stmt.setInt(5, id);
+			stmt = con.prepareStatement("Select c.id,c.nazwa,wc.ilosc from czesc as c join samochod_czesc as sc on c.id=sc.czesc_id_fk join warsztat_czesc as wc on c.id=wc.czesc_id_wk where wc.warsztat_id_fk=? and sc.samochod_id_fk=?");
+			stmt.setInt(1, id_warsztatu);
+			stmt.setInt(2, id_samochodu);
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 
 				Czesc c = new Czesc();
-				c.setId(rs.getInt("id"));
-				c.setIlosc(rs.getInt("ilosc"));
-				c.setNazwa(rs.getString("dostepnych_w_warsztacie"));
+				c.setId(rs.getInt("c.id"));
+				c.setIlosc(rs.getInt("wc.ilosc"));
+				c.setNazwa(rs.getString("c.nazwa"));
 				czesci.add(c);
 			}
 
@@ -1274,6 +1271,67 @@ public class SterownikPolBD {
 			close(stmt);
 		}
 		return czesci;
+	}
+	
+	
+	public Czesc pobierzCzesc(int id_czesci, int id_warsztatu) {
+
+		ResultSet rs = null;
+		Czesc c = new Czesc();
+		PreparedStatement stmt = null;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement("Select id,ilosc,nazwa from czesc join warsztat_czesc on czesc.id=warsztat_czesc.czesc_id_fk where id=? and warsztat_id_fk=?");
+			stmt.setInt(1, id_czesci);
+			stmt.setInt(2, id_warsztatu);
+			rs = stmt.executeQuery();
+			rs.next();
+
+			c.setId(rs.getInt("id"));
+			c.setIlosc(rs.getInt("ilosc"));
+			c.setNazwa(rs.getString("nazwa"));
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+
+		} finally {
+			close(rs);
+			close(stmt);
+		}
+		return c;
+	}
+	
+	public Samochod pobierzSamochodId(String model,String rocznik,String typ,String silnik) {
+
+		ResultSet rs = null;
+		Samochod s = new Samochod();
+		PreparedStatement stmt = null;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement("Select * from samochod where model=? and rocznik=? and typ=? and silnik=?");
+			stmt.setString(1, model);
+			stmt.setString(2,rocznik);
+			stmt.setString(3,typ);
+			stmt.setString(4,silnik);
+			rs = stmt.executeQuery();
+			rs.next();
+
+			s.setId(rs.getInt("samochod_id"));
+			s.setModel(model);
+			s.setRocznik(Integer.parseInt(rocznik));
+			s.setSilnik(silnik);
+			s.setTyp(typ);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+
+		} finally {
+			close(rs);
+			close(stmt);
+		}
+		return s;
 	}
 
 	
