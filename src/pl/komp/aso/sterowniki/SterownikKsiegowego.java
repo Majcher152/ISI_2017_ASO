@@ -26,4 +26,10 @@ public class SterownikKsiegowego {
 			return 0;
 		else return -1;
 	}
+	
+	public int dodajSamochod(String model, String rocznik, String typ, String silnik) {
+		if(spbd.dodajSamochod(model, rocznik, typ, silnik))
+			return 0;
+		else return -1;
+	}
 }

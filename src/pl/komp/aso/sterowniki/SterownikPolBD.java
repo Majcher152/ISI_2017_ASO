@@ -1276,6 +1276,39 @@ public class SterownikPolBD {
 		return czesci;
 	}
 
+	
+	/**
+	 * Metoda dodajaca pozycje do bazy samochodow
+	 * 
+	 * @param model
+	 * @param rocznik
+	 * @param typ
+	 * @param silnik
+	 * @return
+	 */
+	public boolean dodajSamochod(String model, String rocznik, String typ, String silnik) {
+
+		PreparedStatement stmt = null;
+
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement("insert into `samochod` (`model`, `rocznik`, `typ`, `silnik`) values(?,?,?,?)");
+			stmt.setString(1, model);
+			stmt.setString(2, rocznik);
+			stmt.setString(3, typ);
+			stmt.setString(4, silnik);
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("blad");
+			return false;
+
+		} finally {
+			close(stmt);
+		}
+		return true;
+	}
 	// -----------------------------------------------------------------------------------------------------
 
 	/**
