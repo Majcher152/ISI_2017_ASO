@@ -55,8 +55,11 @@ public class MechanikNaprawaServlet extends HttpServlet {
 
 		if(metoda.equals("zaladujZadaniaDoRealizacji")) {
 			ArrayList<FormularzNaprawy> formularze = sm.pobierzFormularze(u,"potwierdzenie");
-			formularze=sm.sortujFormularze(formularze);
-			request.setAttribute("formularze", formularze);
+			
+				formularze=sm.sortujFormularze(formularze);
+				request.setAttribute("formularze", formularze);
+			
+			
 			if(blad!=null)
 				request.setAttribute("blad", blad);
 			request.getRequestDispatcher("PanelMechanika/zadaniaDoRealizacjiMechanik.jsp").forward(request, response);

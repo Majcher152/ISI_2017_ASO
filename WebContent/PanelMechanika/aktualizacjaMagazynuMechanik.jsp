@@ -19,6 +19,8 @@
 
 
 <jsp:include page="headerMechanik.jsp" />
+<jsp:include page="walidacjaAktualizacjiMechanik.jsp" />
+
 
 <div class="container marketing">
 
@@ -285,6 +287,7 @@
 						</select>
 						</div>
 				<!-- Table -->
+				
 				<table class="table table-hover table-striped table-condensed"  id="czesc">
 				</table>
 			</div>
