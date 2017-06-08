@@ -50,9 +50,10 @@
 				</ul>
 				<ul class="nav nav-sidebar">
 					<li><a href="/ISI_2017_ASO/PanelKsiegowego/akceptacjaNapraw.jsp">Akceptacja terminów napraw</a></li>
-					<li><a href="/ISI_2017_ASO/PanelKsiegowego/ksiegowy.jsp">Stan magazynu</a></li>
-					<li><a href="/ISI_2017_ASO/PanelKsiegowego/ksiegowy.jsp">Złóż zamówienie na części</a></li>
-					<li><a href="/ISI_2017_ASO/PanelKsiegowego/ksiegowy.jsp">Historia zamówień</a></li>
+					<li><a href="/ISI_2017_ASO/PanelKsiegowego/czesciMagazyn.jsp">Stan części w magazynie</a></li>
+					<li><a href="/ISI_2017_ASO/PanelKsiegowego/czesciWarsztaty.jsp">Stan części w watsztacie</a></li>
+					<li><a href="/ISI_2017_ASO/PanelKsiegowego/zamowCzesci.jsp">Złóż zamówienie na części</a></li>
+					<li><a href="/ISI_2017_ASO/PanelKsiegowego/historiaZamowien.jsp">Historia zamówień</a></li>
 					<li><a href="/ISI_2017_ASO/PanelKsiegowego/aktualizujTresc.jsp">Aktualizuj treść</a></li>
 					<br/>
 					<li><a href="/ISI_2017_ASO/index.jsp">Wyloguj się</a></li>
