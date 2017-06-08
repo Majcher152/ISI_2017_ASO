@@ -1367,6 +1367,31 @@ public class SterownikPolBD {
 		}
 		return true;
 	}
+	
+	public boolean aktualizujStanWarsztatu(int id_warsztatu, int id_czesci, int ile) {
+		boolean odp = true;
+
+		PreparedStatement stmt = null;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement(
+					"UPDATE warsztat_czesc SET ilosc=? WHERE warsztat_id_fk=? and czesc_id_fk=?");
+			stmt.setInt(1, ile);
+			stmt.setInt(2, id_warsztatu);
+			stmt.setInt(3, id_czesci);
+			
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			odp = false;
+			return false;
+
+		} finally {
+
+			close(stmt);
+		}
+		return odp;
+	}
 	// -----------------------------------------------------------------------------------------------------
 
 	/**
