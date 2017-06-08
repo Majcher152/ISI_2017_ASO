@@ -1,5 +1,12 @@
 package pl.komp.aso.sterowniki;
 
+import java.util.ArrayList;
+
+import pl.komp.aso.dto.Czesc;
+import pl.komp.aso.dto.Samochod;
+import pl.komp.aso.dto.Uzytkownik;
+import pl.komp.aso.dto.Warsztat;
+
 public class SterownikKsiegowego {
 	SterownikPolBD spbd = new SterownikPolBD();
 	
@@ -31,5 +38,17 @@ public class SterownikKsiegowego {
 		if(spbd.dodajSamochod(model, rocznik, typ, silnik))
 			return 0;
 		else return -1;
+	}
+	
+	public ArrayList<Czesc> pobierzCzesciMagazyn(String model,String rocznik,String typ,String silnik){
+		Samochod s = spbd.pobierzSamochodId(model,rocznik,typ,silnik);
+		ArrayList<Czesc> czesci = spbd.pobierzCzesciMagazyn(s.getId());
+		return czesci;
+	}
+	
+	public ArrayList<Czesc> pobierzCzesciWarsztat(String model,String rocznik,String typ,String silnik,int id_warsztatu){
+		Samochod s = spbd.pobierzSamochodId(model,rocznik,typ,silnik);
+		ArrayList<Czesc> czesci = spbd.pobierzCzesci(id_warsztatu,s.getId());
+		return czesci;
 	}
 }

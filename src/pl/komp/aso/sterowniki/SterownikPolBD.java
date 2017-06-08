@@ -1273,6 +1273,36 @@ public class SterownikPolBD {
 		return czesci;
 	}
 	
+	public ArrayList<Czesc> pobierzCzesciMagazyn(int id_samochodu) {
+		ArrayList<Czesc> czesci = new ArrayList<Czesc>();
+		ResultSet rs = null;
+
+		PreparedStatement stmt = null;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement("Select * from czesc join samochod_czesc on czesc.id=samochod_czesc.czesc_id_fk where samochod_id_fk=?");
+			stmt.setInt(1, id_samochodu);
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+
+				Czesc c = new Czesc();
+				c.setId(rs.getInt("id"));
+				c.setIlosc(rs.getInt("dostepnych_w_magazynie"));
+				c.setNazwa(rs.getString("nazwa"));
+				czesci.add(c);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+
+		} finally {
+			close(rs);
+			close(stmt);
+		}
+		return czesci;
+	}
+	
 	
 	public Czesc pobierzCzesc(int id_czesci, int id_warsztatu) {
 
