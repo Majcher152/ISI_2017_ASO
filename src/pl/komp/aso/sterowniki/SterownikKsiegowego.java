@@ -51,4 +51,10 @@ public class SterownikKsiegowego {
 		ArrayList<Czesc> czesci = spbd.pobierzCzesci(id_warsztatu,s.getId());
 		return czesci;
 	}
+	
+	public int aktualizujONas(String tresc) {
+		if(spbd.aktualizujONas(tresc))
+			return 0;
+		else return -1;
+	}
 }

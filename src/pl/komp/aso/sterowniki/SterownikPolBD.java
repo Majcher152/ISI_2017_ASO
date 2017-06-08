@@ -1422,6 +1422,30 @@ public class SterownikPolBD {
 		}
 		return odp;
 	}
+	
+	public boolean aktualizujONas(String tresc) {
+		boolean odp = true;
+
+		PreparedStatement stmt = null;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement(
+					"UPDATE informacje SET tresc=? WHERE typ_informacji='o_nas'");
+			stmt.setString(1, tresc);
+			
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			odp = false;
+			e.printStackTrace();
+			return false;
+			
+		} finally {
+
+			close(stmt);
+		}
+		return odp;
+	}
 	// -----------------------------------------------------------------------------------------------------
 
 	/**
