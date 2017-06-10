@@ -83,7 +83,12 @@ $(document).ready(function() {
 		trigger : 'focus',
 		placement : 'right'
 	});
-
+	
+	$('#warsztat').popover({
+		container: 'body',
+		trigger : 'focus',
+		placement : 'right'
+	});
 	
 	$(document).ready(function() {
 		$('#imie').addClass("valid");
@@ -115,7 +120,7 @@ $(document).ready(function() {
 		$('#haslo2').parent().removeClass("has-error").addClass("has-success");
 		
 		$('#rodzaj_konta').addClass("valid");
-		$('#rodzaj_konta').next().removeClass("glyphicon-remove").addClass("glyphicon-ok")
+		// $('#rodzaj_konta').next().removeClass("glyphicon-remove").addClass("glyphicon-ok")
 		$('#rodzaj_konta').parent().removeClass("has-error").addClass("has-success");
 		
 		$('#godzina_otwarcia').addClass("valid");
@@ -137,7 +142,19 @@ $(document).ready(function() {
 		$('#miasto').addClass("valid");
 		$('#miasto').next().removeClass("glyphicon-remove").addClass("glyphicon-ok")
 		$('#miasto').parent().removeClass("has-error").addClass("has-success");
+		
+		$('#warsztat').addClass("valid");
+	//	$('#warsztat').next().removeClass("glyphicon-remove").addClass("glyphicon-ok")
+		$('#warsztat').parent().removeClass("has-error").addClass("has-success");
+	
+			if($('#rodzaj_konta').val() == 'Mechanik' )
+				$('#warsztat').prop('disabled', false);
+			else
+				$('#warsztat').prop('disabled', true);
 	});
+	
+	
+
 	
 	//Walidacja imienia
 	$('#imie').on('blur', function() {
@@ -359,6 +376,34 @@ $(document).ready(function() {
 			input.removeClass("valid").addClass("invalid");
 		}
 	});
+	
+	//Walidacja rodzaju konta
+	$('#rodzaj_konta').on('blur', function() {
+		var input = $(this);
+		if(input.val() == 'Mechanik' || input.val() == 'Ksiegowy' || input.val() == 'Administrator'){
+			if(input.val() == 'Mechanik' )
+				$('#warsztat').prop('disabled', false);
+			else
+				$('#warsztat').prop('disabled', true);
+		//	input.next().removeClass("glyphicon-remove").addClass("glyphicon-ok");
+			input.parent().removeClass("has-error").addClass("has-success");
+			input.removeClass("invalid").addClass("valid");
+		}
+		else{
+		//	input.next().removeClass("glyphicon-ok").addClass("glyphicon-remove");
+			input.parent().removeClass("has-success").addClass("has-error");
+			input.removeClass("valid").addClass("invalid");
+		}
+	});
+	
+	//Walidacja warsztatu
+	$('#warsztat').on('blur', function() {
+		var input = $(this);
+		//	input.next().removeClass("glyphicon-remove").addClass("glyphicon-ok");
+			input.parent().removeClass("has-error").addClass("has-success");
+			input.removeClass("invalid").addClass("valid");
+	});
+	
 
 	var warning = false;
 	

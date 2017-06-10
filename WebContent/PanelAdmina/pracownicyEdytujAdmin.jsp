@@ -4,13 +4,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
 <sql:query dataSource="jdbc/aso" var="result">
-
-	<%
-		String emailUzytkownika = request.getParameter("email");
-	%>
+	<%		String emailUzytkownika = request.getParameter("email");%>
 SELECT * FROM `uzytkownik` where email = '<%=emailUzytkownika%>';
 </sql:query>
-
+<sql:query dataSource="jdbc/aso" var="resultWarsztat">
+SELECT * FROM `warsztat`;
+</sql:query>
 
 <jsp:include page="headerAdmin.jsp" />
 <jsp:include page="walidacjaEdycji.jsp" />
@@ -68,19 +67,19 @@ SELECT * FROM `uzytkownik` where email = '<%=emailUzytkownika%>';
 									<c:choose>
 										<c:when test="${uzytkownik.rodzaj_konta=='Administrator'}">
 											<option>Mechanik</option>
-											<option>Księgowy</option>
+											<option>Ksiegowy</option>
 											<option selected>Administrator</option>
 											<br />
 										</c:when>
 										<c:when test="${uzytkownik.rodzaj_konta=='Mechanik'}">
 											<option selected>Mechanik</option>
-											<option>Księgowy</option>
+											<option>Ksiegowy</option>
 											<option>Administrator</option>
 											<br />
 										</c:when>
-										<c:when test="${uzytkownik.rodzaj_konta=='Księgowy'}">
+										<c:when test="${uzytkownik.rodzaj_konta=='Ksiegowy'}">
 											<option>Mechanik</option>
-											<option selected>Księgowy</option>
+											<option selected>Ksiegowy</option>
 											<option>Administrator</option>
 											<br />
 										</c:when>
@@ -99,11 +98,7 @@ SELECT * FROM `uzytkownik` where email = '<%=emailUzytkownika%>';
 									aria-hidden="true"></i></span> <select name="warsztat" id="warsztat"
 									class="form-control" data-toggle="popover"
 									data-content="Wybierz jedną z opcji.">
-									<option>
-											<c:out
-												value="${warsztat.id}. ${warsztat.adres}, ${warsztat.miasto}" />
-										</option>
-									<c:forEach var="warsztat" items="${result.rows}">
+									<c:forEach var="warsztat" items="${resultWarsztat.rows}">
 										<option>
 											<c:out
 												value="${warsztat.id}. ${warsztat.adres}, ${warsztat.miasto}" />
