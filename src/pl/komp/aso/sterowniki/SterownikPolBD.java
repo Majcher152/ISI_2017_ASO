@@ -18,6 +18,7 @@ import pl.komp.aso.dto.FormularzNaprawy;
 import pl.komp.aso.dto.Samochod;
 import pl.komp.aso.dto.Uzytkownik;
 import pl.komp.aso.dto.Warsztat;
+import pl.komp.aso.dto.Zamowienie;
 
 /**
  * Klasa sluzaca do polaczenia z baza danych
@@ -1559,6 +1560,99 @@ public class SterownikPolBD {
 		}
 		return true;
 	}
+	
+	public ArrayList<Zamowienie> pobierzZamowienia() {
+		ArrayList<Zamowienie> zamowienia = new ArrayList<Zamowienie>();
+		ResultSet rs = null;
+
+		PreparedStatement stmt = null;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement("Select * from zamowienie");
+			rs = stmt.executeQuery();
+			Zamowienie z;
+			while (rs.next()) {
+
+				z=new Zamowienie();
+				z.setId(rs.getInt("id"));
+				z.setKoszt(rs.getDouble("koszt"));
+				z.setData(rs.getString("data"));
+				zamowienia.add(z);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+
+		} finally {
+			close(rs);
+			close(stmt);
+		}
+		return zamowienia;
+	}
+	
+	public Zamowienie pobierzZamowienie(int id) {
+		ResultSet rs = null;
+		Zamowienie z;
+		PreparedStatement stmt = null;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement("Select * from zamowienie where id=?");
+			stmt.setInt(1, id);
+			rs = stmt.executeQuery();
+			
+			rs.next();
+
+				z=new Zamowienie();
+				z.setId(rs.getInt("id"));
+				z.setKoszt(rs.getDouble("koszt"));
+				z.setData(rs.getString("data"));
+				
+			
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+
+		} finally {
+			close(rs);
+			close(stmt);
+		}
+		return z;
+	}
+	
+	public ArrayList<Czesc> pobierzCzesciZamowienie(int id) {
+		ArrayList<Czesc> czesci = new ArrayList<Czesc>();
+		ResultSet rs = null;
+
+		PreparedStatement stmt = null;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement("Select ilosc,nazwa,cena_za_sztuke from zamowienie_czesc join czesc on zamowienie_czesc.czesc_id_fk=czesc.id where zamowienie_id_fk=?");
+			stmt.setInt(1, id);
+			rs = stmt.executeQuery();
+			Czesc c;
+			while (rs.next()) {
+
+				c=new Czesc();
+				c.setCena(rs.getDouble("cena_za_sztuke"));
+				c.setNazwa(rs.getString("nazwa"));
+				c.setIlosc(rs.getInt("ilosc"));
+				czesci.add(c);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+
+		} finally {
+			close(rs);
+			close(stmt);
+		}
+		return czesci;
+	}
+	
+	
 	// -----------------------------------------------------------------------------------------------------
 
 	/**

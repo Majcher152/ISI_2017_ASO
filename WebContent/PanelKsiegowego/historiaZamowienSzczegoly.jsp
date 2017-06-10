@@ -8,20 +8,20 @@
 
 <div class="container marketing">
 	<div class="col-sm-10 col-sm-offset-2 col-md-11 col-md-offset-1 main">
-			<h1 class="page-header">Historia zamówień</h1>
+			<h1 class="page-header">Zamówienie z dnia ${zamowienie.data}, łączny koszt ${zamowienie.koszt} zł</h1>
 
-						
+		
 	<table class="table table-hover table-striped table-condensed table-bordered" id="zamowienie">
 		<tr>
-			<td><b>Data</b></td>
-			<td><b>Koszt</b></td>
-			<td><b>Szczegóły</b></td>
+			<td><b>Nazwa</b></td>
+			<td><b>Cena</b></td>
+			<td><b>Ilość</b></td>
 		</tr>
-		<c:forEach var="zamowienie" items="${zamowienia}">
+		<c:forEach var="czesc" items="${zamowienie.czesci}">
 			<tr>
-				<td><c:out value="${zamowienie.data} " /></td>
-				<td><c:out value="${zamowienie.koszt} zł" /></td>
-				<td><a href="KsiegowyHistoriaServlet?metoda=zaladujZamowieniaSzczegoly&id=${zamowienie.id}">Zobacz</a></td>
+				<td><c:out value="${czesc.nazwa} " /></td>
+				<td><c:out value="${czesc.cena} zł" /></td>
+				<td><c:out value="${czesc.ilosc} " /></td>	
 			</tr>
 		</c:forEach>
 	</table>	
