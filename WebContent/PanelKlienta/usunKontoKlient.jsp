@@ -12,7 +12,7 @@
 
 		<div class="panel-heading">
 			<div class="panel-title text-center">
-				<h2 class="title">Usun Konto:</h2>
+				<h2 class="title">Usuń konto:</h2>
 			</div>
 		</div>
 
@@ -20,7 +20,7 @@
 			<form class="form-horizontal" method="post"
 				action="/ISI_2017_ASO/UsunUzytkownikPath">
 				<div class="form-group ">
-					<h3 align="center">Czy na pewno chcesz usunać swoje konto?</h3>
+					<h3 align="center">Czy na pewno chcesz usunąć swoje konto?</h3>
 					<br>
 					<div class="col-xs-3">
 						<br> <label> <input type="checkbox"
