@@ -92,8 +92,9 @@ public class MechanikNaprawaServlet extends HttpServlet {
 			//System.out.println(koszt);
 			String opis= request.getParameter("opis");
 			String dataodebrania= request.getParameter("dataodebrania");
+			sm.wyslijMail(Integer.parseInt(id));
 			if(sm.zakonczNaprawe(Integer.parseInt(id),opis,dataodebrania,Double.parseDouble(koszt))) {
-				blad="Zakończono zadanie.";
+				blad="Zakończono zadanie. Wysłano wiadomość email do klienta.";
 			}else {
 				blad="Błąd zakończenia zadania.";
 			}

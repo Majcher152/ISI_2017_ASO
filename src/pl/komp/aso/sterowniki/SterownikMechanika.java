@@ -11,6 +11,7 @@ import pl.komp.aso.dto.FormularzNaprawy;
 import pl.komp.aso.dto.Samochod;
 import pl.komp.aso.dto.Uzytkownik;
 import pl.komp.aso.dto.Warsztat;
+import pl.komp.aso.email.TLSEmail;
 
 public class SterownikMechanika {
 	SterownikPolBD spbd = new SterownikPolBD();
@@ -84,6 +85,13 @@ public class SterownikMechanika {
 		ile=ilosc-ile;
 		boolean odp=spbd.aktualizujStanWarsztatu(w.getId(), id_czesci, ile);
 		return odp;
+	}
+	
+	public void wyslijMail(int id) {
+		FormularzNaprawy f=spbd.pobierzFormularz(id);
+		Uzytkownik u=spbd.pobierzUzytkownika(f.getLogin());
+		String email=u.getEmail();
+		TLSEmail.utworzMaila(email,"Zakończenie serwisowania","Witam, \nSamochód jest gotowy do odbioru. \n\nPozdrawiamy,\nASO KOŚKA");
 	}
 	
 }

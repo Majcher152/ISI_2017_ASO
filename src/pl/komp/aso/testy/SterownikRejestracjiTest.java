@@ -1,5 +1,6 @@
 package pl.komp.aso.testy;
 
+import org.apache.catalina.core.ApplicationContext;
 import org.junit.Assert;
 import org.junit.Test;
 

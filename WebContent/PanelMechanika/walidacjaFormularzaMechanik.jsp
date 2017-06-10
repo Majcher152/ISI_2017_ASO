@@ -61,7 +61,7 @@ $(document).ready(function() {
 	//Walidacja daty
 	$('#opis').on('blur', function() {
 		var input = $(this);
-		var pattern = /^[^<>%\$]$/;
+		var pattern = /[^<>%\$]/;
 		var is_data = pattern.test(input.val());
 		if(is_data){
 			input.next().removeClass("glyphicon-remove").addClass("glyphicon-ok");

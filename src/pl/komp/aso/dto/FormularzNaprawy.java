@@ -11,7 +11,14 @@ public class FormularzNaprawy {
 	private int przewidywany_czas;
 	private int id;
 	private boolean zmien;
+	private String login;
 	
+	public String getLogin() {
+		return login;
+	}
+	public void setLogin(String login) {
+		this.login = login;
+	}
 	public boolean isZmien() {
 		return zmien;
 	}

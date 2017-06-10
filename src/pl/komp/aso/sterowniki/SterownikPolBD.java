@@ -1170,6 +1170,7 @@ public class SterownikPolBD {
 			f.setId(rs.getInt("id"));
 			f.setSamochod(pobierzSamochodVin(rs.getString("vin_fk")));
 			f.setWarsztat(pobierzWarsztatId(rs.getInt("warsztat_id_fk")));
+			f.setLogin(rs.getString("uzytkownik_login_fk"));
 
 		} catch (SQLException e) {
 			e.printStackTrace();
