@@ -118,4 +118,11 @@ public class SterownikKsiegowego {
 		 
 		return zamowienia;
 	}
+	
+	public Zamowienie pobierzZamowienie(int id) {
+		Zamowienie z=spbd.pobierzZamowienie(id);
+		ArrayList<Czesc>czesci=spbd.pobierzCzesciZamowienie(id);
+		z.setCzesci(czesci);
+		return z;
+	}
 }

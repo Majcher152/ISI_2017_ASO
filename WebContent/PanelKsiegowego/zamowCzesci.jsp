@@ -36,7 +36,7 @@
 		<label class="control-label">Całkowity koszt</label>
 	<div>
 		<input readonly="readonly" class="form-control" type="text"
-			name="koszt" value="${koszt}" />
+			name="koszt" value="${koszt} zł" />
 	</div>
 	</br>
 	<table class="table table-hover table-striped table-condensed table-bordered" id="zamowienie">
@@ -49,7 +49,7 @@
 		<c:forEach var="czesc" items="${czesci}">
 			<tr>
 				<td><c:out value="${czesc.nazwa} " /></td>
-				<td><c:out value="${czesc.cena} " /></td>
+				<td><c:out value="${czesc.cena} zł" /></td>
 				<td><c:out value="${czesc.ilosc} " /></td>
 
 				<td><a href="KsiegowyMagazynServlet?metoda=usun&id_czesc=${czesc.id}">Usuń</a></td>

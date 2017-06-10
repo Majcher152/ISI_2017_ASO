@@ -50,13 +50,10 @@ public class KsiegowyMagazynServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		SterownikPolBD spbd = new SterownikPolBD();
 		SterownikKsiegowego sk = new SterownikKsiegowego();
-		SterownikMechanika sm= new SterownikMechanika();
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		String blad = request.getParameter("blad");
 		
-		RequestDispatcher dispatcher;
-
 		String metoda = request.getParameter("metoda");
 		String model = request.getParameter("model");
 		String rocznik = request.getParameter("rocznik");
