@@ -16,12 +16,6 @@
 <!-- Bootstrap core CSS -->
 <link href="/ISI_2017_ASO/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<link href="/ISI_2017_ASO/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-<script src="/ISI_2017_ASO/js/ie-emulation-modes-warning.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
@@ -54,9 +48,8 @@
 				</ul>
 				<ul class="nav nav-sidebar">
 					<li><a href="/ISI_2017_ASO/PanelKsiegowego/akceptacjaNapraw.jsp">Akceptacja terminów napraw</a></li>
-					<li><a href="/ISI_2017_ASO/KsiegowyMagazynServlet?metoda=zaladujMagazyn">Stan części w magazynie</a></li>
 					<li><a href="/ISI_2017_ASO/KsiegowyWarsztatServlet?metoda=zaladujWarsztat">Stan części w watsztacie</a></li>
-					<li><a href="/ISI_2017_ASO/PanelKsiegowego/zamowCzesci.jsp">Złóż zamówienie na części</a></li>
+					<li><a href="/ISI_2017_ASO/KsiegowyMagazynServlet?metoda=zaladujMagazyn"">Złóż zamówienie na części</a></li>
 					<li><a href="/ISI_2017_ASO/PanelKsiegowego/historiaZamowien.jsp">Historia zamówień</a></li>
 					<li><a href="/ISI_2017_ASO/PanelKsiegowego/aktualizujTresc.jsp">Aktualizuj treść</a></li>
 					<li><a href="/ISI_2017_ASO/PanelKsiegowego/dodajSamochod.jsp">Dodaj samochód</a></li>

@@ -31,7 +31,7 @@
 		String blad = (String) request.getAttribute("blad");
 	%>
 	<%
-		if (blad != null && ((blad.equals("Zaktualizowano.")))) {
+		if (blad != null && ((blad.equals("Złożono zamówienie.") ) || blad.equals("Dodano do zamówienia."))) {
 	%>
 	<div class="alert alert-success">
 		<p style="text-align: center"><%=blad%></p>
@@ -117,8 +117,10 @@
     
 });</script>
 		<div class="row main">
-
+							<a href="KsiegowyMagazynServlet?metoda=zaladujZamowienie">Zamówienie</a>
+			</br>
 			<div class="panel panel-default">
+			
 				<b>Model</b>
 				
 				<select name="model" id="model" class="form-control">
