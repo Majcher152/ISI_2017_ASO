@@ -1559,7 +1559,6 @@ public class SterownikPolBD {
 		}
 		return true;
 	}
->>>>>>> branch 'master' of https://github.com/Majcher152/ISI_2017_ASO.git
 	// -----------------------------------------------------------------------------------------------------
 
 	/**
