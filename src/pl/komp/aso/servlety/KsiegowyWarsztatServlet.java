@@ -38,8 +38,7 @@ public class KsiegowyWarsztatServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		doPost(request,response);
 	}
 
 	/**
@@ -62,6 +61,8 @@ public class KsiegowyWarsztatServlet extends HttpServlet {
 		String silnik = request.getParameter("silnik");
 		String id_warsztat= request.getParameter("id_warsztat");
 		String id_czesc=request.getParameter("id_czesc");
+		String ile = request.getParameter("ile");
+
 		
 		
 		if (metoda.equals("zaladujRoczniki")) {
@@ -78,7 +79,7 @@ public class KsiegowyWarsztatServlet extends HttpServlet {
 			request.setAttribute("modele", modele);
 			if(blad!=null)
 				request.setAttribute("blad", blad);
-			request.getRequestDispatcher("/ISI_2017_ASO/WebContent/PanelKsiegowego/czesciWarsztaty.jsp").forward(request, response);
+			request.getRequestDispatcher("PanelKsiegowego/czesciWarsztaty.jsp").forward(request, response);
 		}
 
 		else if (metoda.equals("zaladujTypy")) {
@@ -101,10 +102,22 @@ public class KsiegowyWarsztatServlet extends HttpServlet {
 
 		ArrayList<Czesc> czesci = sk.pobierzCzesciWarsztat(model, rocznik, typ,silnik,Integer.parseInt(id_warsztat));
 		StringBuffer sb = new StringBuffer();
-		sb.append("<tr><td><b>Nazwa</b></td><td><b>Ilość</b></td></tr>");
+		sb.append("<tr><td><b>Nazwa</b></td><td><b>Ilość</b></td><td><b>Aktualizuj</b></td></tr>");
 		for (int i = 0; i < czesci.size(); i++) {
+			
 			sb.append("<tr><td>"+czesci.get(i).getNazwa()+"</td>");
-			sb.append("<td>"+czesci.get(i).getIlosc()+"</td>");			
+			sb.append("<td>"+czesci.get(i).getIlosc()+"</td>");
+			sb.append("<td><form method=\"post\" action=\"KsiegowyWarsztatServlet?metoda=zaladujAktualizuj\" class=\"inline\">");
+			sb.append("<input type=\"hidden\" id=\"id_czesc\" name=\"id_czesc\" value=\""+czesci.get(i).getId()+"\">");
+			//System.out.println(czesci.get(i).getId());
+			sb.append("<input type=\"hidden\" name=\"model\" value=\""+model+"\">");
+			sb.append("<input type=\"hidden\" name=\"rocznik\" value=\""+rocznik+"\">");
+			sb.append("<input type=\"hidden\" name=\"typ\" value=\""+typ+"\">");
+			sb.append("<input type=\"hidden\" name=\"silnik\" value=\""+silnik+"\">");
+			sb.append("<input type=\"hidden\" id=\"id_warsztat\" name=\"id_warsztat\" value=\""+id_warsztat+"\">");
+
+
+			sb.append("<button type=\"submit\" id=\"btn_zmniejsz\" name=\"submit_param\" value=\"submit_value\" class=\"link-button\">Zwiększ</button> </form></td> </tr>");
 		}
 		
 		out.print(sb);
@@ -118,10 +131,18 @@ public class KsiegowyWarsztatServlet extends HttpServlet {
 			request.setAttribute("warsztat", warsztat);
 			if(blad!=null)
 				request.setAttribute("blad", blad);
-			request.getRequestDispatcher("PanelKsiegowe/czesciWarsztatAktualizacja.jsp").forward(request, response);
+			request.getRequestDispatcher("PanelKsiegowego/czesciWarsztatAktualizacja.jsp").forward(request, response);
 		}
 		else if(metoda.equals("aktualizuj")) {
-			
+			Czesc czesc = spbd.pobierzCzesc(Integer.parseInt(id_czesc), Integer.parseInt(id_warsztat));
+			boolean odp=sk.aktualizujWarsztat(czesc.getIlosc(),Integer.parseInt(id_czesc),Integer.parseInt(ile),Integer.parseInt(id_warsztat));
+			if(odp==false)
+				blad="Nie udało sie zaktualizować.";
+			else
+				blad="Zaktualizowano.";
+			if(blad!=null)
+				request.setAttribute("blad", blad);
+			request.getRequestDispatcher("KsiegowyWarsztatServlet?metoda=zaladujWarsztat").forward(request, response);
 		}
 	}
 

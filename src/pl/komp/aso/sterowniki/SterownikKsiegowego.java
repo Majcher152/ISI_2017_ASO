@@ -52,6 +52,12 @@ public class SterownikKsiegowego {
 		return czesci;
 	}
 	
+	public boolean aktualizujWarsztat(int ilosc,int id_czesc,int ile,int id_warsztat) {
+		ile=ilosc+ile;
+		boolean odp=spbd.aktualizujStanWarsztatu(id_warsztat, id_czesc, ile);
+		return odp;
+	}
+	
 	public int aktualizujONas(String tresc) {
 		if(spbd.aktualizujONas(tresc))
 			return 0;

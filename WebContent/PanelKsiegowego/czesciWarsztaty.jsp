@@ -56,6 +56,7 @@
 			        $rocznik = $('#rocznik');
 			        $typ = $('#typ');
 			        $silnik=$('#silnik');
+			        $id_warsztat=$('#warsztat');
 				$.ajax({
                     type: "POST",
                     url: "KsiegowyWarsztatServlet?metoda=zaladujRoczniki",
@@ -78,7 +79,7 @@
                                         $.ajax({
 						                    type: "POST",
 						                    url: "KsiegowyWarsztatServlet?metoda=zaladujCzesci",
-						                    data: {model: $model.val(), rocznik: $rocznik.val(), typ: $typ.val(),silnik: $silnik.val() },
+						                    data: {model: $model.val(), rocznik: $rocznik.val(), typ: $typ.val(),silnik: $silnik.val(),id_warsztat:$id_warsztat.val() },
 						                    success: function(ret){
 						                    	
 						                        $("#czesc").html(ret);   
@@ -162,7 +163,7 @@
 					                                        $.ajax({
 											                    type: "POST",
 											                    url: "KsiegowyWarsztatServlet?metoda=zaladujCzesci",
-											                    data: {model: $model.val(), rocznik: $rocznik.val(), typ: $typ.val(),silnik: $silnik.val() },
+											                    data: {model: $model.val(), rocznik: $rocznik.val(), typ: $typ.val(),silnik: $silnik.val() ,id_warsztat:$id_warsztat.val()},
 											                    success: function(ret){
 											                        $("#czesc").html(ret);   
 											                    },
@@ -225,7 +226,7 @@
 					                                $.ajax({
 									                    type: "POST",
 									                    url: "KsiegowyWarsztatServlet?metoda=zaladujCzesci",
-									                    data: {model: $model.val(), rocznik: $rocznik.val(), typ: $typ.val(),silnik: $silnik.val() },
+									                    data: {model: $model.val(), rocznik: $rocznik.val(), typ: $typ.val(),silnik: $silnik.val(),id_warsztat:$id_warsztat.val() },
 									                    success: function(ret){
 									                        $("#czesc").html(ret);   
 									                    },
@@ -273,7 +274,7 @@
 					                        $.ajax({
 							                    type: "POST",
 							                    url: "KsiegowyWarsztatServlet?metoda=zaladujCzesci",
-							                    data: {model: $model.val(), rocznik: $rocznik.val(), typ: $typ.val(),silnik: $silnik.val() },
+							                    data: {model: $model.val(), rocznik: $rocznik.val(), typ: $typ.val(),silnik: $silnik.val(),id_warsztat:$id_warsztat.val() },
 							                    success: function(ret){
 							                    	
 							                        $("#czesc").html(ret);   
