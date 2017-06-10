@@ -2,10 +2,15 @@ package pl.komp.aso.sterowniki;
 
 import java.util.ArrayList;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 import pl.komp.aso.dto.Czesc;
 import pl.komp.aso.dto.Samochod;
 import pl.komp.aso.dto.Uzytkownik;
 import pl.komp.aso.dto.Warsztat;
+import pl.komp.aso.dto.Zamowienie;
 
 public class SterownikKsiegowego {
 	SterownikPolBD spbd = new SterownikPolBD();
@@ -62,5 +67,30 @@ public class SterownikKsiegowego {
 		if(spbd.aktualizujONas(tresc))
 			return 0;
 		else return -1;
+	}
+	
+	public boolean zlozZamowienie(Zamowienie z,double koszt) {
+		boolean odp=true;
+		DateTime dzis= new DateTime();
+		DateTimeFormatter fmt = DateTimeFormat.forPattern("dd/MM/yyyy");
+		String data =fmt.print(dzis);
+		odp=spbd.dodajZamowienie(data,koszt);
+		if(odp==false)
+			return odp;
+		int id=spbd.pobierzId();
+		for(int i=0;i<z.getCzesci().size();i++) {
+			odp=spbd.dodajZamowienie(id,z.getCzesci().get(i).getId(),z.getCzesci().get(i).getIlosc());
+			if(odp==false)
+				return odp;
+		}
+			
+		return odp;
+	}
+	
+	public double obliczKoszt(ArrayList<Czesc>czesci) {
+		double koszt=0;
+		for(int i=0;i<czesci.size();i++)
+			koszt+=czesci.get(i).getCena()*czesci.get(i).getIlosc();
+		return koszt;
 	}
 }

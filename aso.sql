@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 10 Cze 2017, 17:24
+-- Czas generowania: 10 Cze 2017, 21:44
 -- Wersja serwera: 10.1.21-MariaDB
 -- Wersja PHP: 5.6.30
 
@@ -653,7 +653,8 @@ INSERT INTO `samochod` (`samochod_id`, `model`, `rocznik`, `typ`, `silnik`) VALU
 (392338, 'Caddy', 2012, 'Kombi', '2.0'),
 (392339, 'Scirocco', 2003, 'Sedan', '2.5'),
 (392340, 'Polo', 2017, 'Sedan', '1.0'),
-(392341, 'Golf', 2011, 'Hatchback', '2.0');
+(392341, 'Golf', 2011, 'Hatchback', '2.0'),
+(392342, 'Jetta', 2015, 'Sedan', '1.9');
 
 -- --------------------------------------------------------
 
@@ -1124,6 +1125,7 @@ INSERT INTO `uzytkownik` (`login`, `haslo`, `imie`, `nazwisko`, `email`, `numer_
 ('kasia', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Katarzyna', 'Klimek', 'kasiaftw@gmail.com', 789562364, 'Administrator'),
 ('krzysiu', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Krzysztof', 'Domagała', 'kdd@gmail.com', 123569965, 'Mechanik'),
 ('marloeve', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Jakub', 'Bożek', 'maryn@gmail.com', 565523526, 'Uzytkownik'),
+('michalowski', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Michał', 'Michałowski', 'michalowski@wp.pl', 888666111, 'Uzytkownik'),
 ('miszcz', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Przemysław', 'Gałka', 'miszczuplis@op.pl', 564236879, 'Uzytkownik'),
 ('niechcesz', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Jan', 'Stańko', 'jedenzerojeden@o2.pl', 456456654, 'Uzytkownik'),
 ('oska', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Piotr', 'Osiewicz', 'piotr.osie@op.pl', 985645236, 'Ksiegowy'),
@@ -1151,7 +1153,8 @@ CREATE TABLE `uzytkownik_samochod` (
 
 INSERT INTO `uzytkownik_samochod` (`Uzytkownik_login_fk`, `Samochod_if_fk`, `vin`, `warsztat_id_fk`) VALUES
 ('aga234', 392248, '123456789abcdefa', NULL),
-('aga234', 392242, '123456789abcdefg', NULL);
+('aga234', 392242, '123456789abcdefg', NULL),
+('aga234', 392247, 'qwertyuiop1234657', NULL);
 
 -- --------------------------------------------------------
 
@@ -1304,10 +1307,8 @@ INSERT INTO `warsztat_czesc` (`warsztat_id_fk`, `czesc_id_fk`, `ilosc`) VALUES
 
 CREATE TABLE `zamowienie` (
   `id` int(7) NOT NULL,
-  `ilosc_czesci` int(7) NOT NULL,
-  `rodzaj_czesci` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `koszt` double(7,2) NOT NULL,
-  `warsztat_id_fk` int(7) NOT NULL
+  `data` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `koszt` double(7,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -1319,7 +1320,7 @@ CREATE TABLE `zamowienie` (
 CREATE TABLE `zamowienie_czesc` (
   `zamowienie_id_fk` int(7) NOT NULL,
   `czesc_id_fk` int(7) NOT NULL,
-  `ilosc` int(5) NOT NULL
+  `ilosc` int(7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -1424,9 +1425,7 @@ ALTER TABLE `warsztat_czesc`
 -- Indexes for table `zamowienie`
 --
 ALTER TABLE `zamowienie`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `rodzaj_czesci_u_idx` (`rodzaj_czesci`),
-  ADD KEY `warsztat_id_fk` (`warsztat_id_fk`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `zamowienie_czesc`
@@ -1463,7 +1462,7 @@ ALTER TABLE `przeglad`
 -- AUTO_INCREMENT dla tabeli `samochod`
 --
 ALTER TABLE `samochod`
-  MODIFY `samochod_id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=392342;
+  MODIFY `samochod_id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=392343;
 --
 -- AUTO_INCREMENT dla tabeli `terminarz`
 --
@@ -1534,17 +1533,11 @@ ALTER TABLE `warsztat_czesc`
   ADD CONSTRAINT `warsztat_czesc_ibfk_2` FOREIGN KEY (`czesc_id_fk`) REFERENCES `czesc` (`id`);
 
 --
--- Ograniczenia dla tabeli `zamowienie`
---
-ALTER TABLE `zamowienie`
-  ADD CONSTRAINT `zamowienie_ibfk_1` FOREIGN KEY (`warsztat_id_fk`) REFERENCES `warsztat` (`id`);
-
---
 -- Ograniczenia dla tabeli `zamowienie_czesc`
 --
 ALTER TABLE `zamowienie_czesc`
-  ADD CONSTRAINT `zamowienie_czesc_ibfk_1` FOREIGN KEY (`czesc_id_fk`) REFERENCES `czesc` (`id`),
-  ADD CONSTRAINT `zamowienie_czesc_ibfk_2` FOREIGN KEY (`zamowienie_id_fk`) REFERENCES `zamowienie` (`id`);
+  ADD CONSTRAINT `zamowienie_czesc_ibfk_1` FOREIGN KEY (`zamowienie_id_fk`) REFERENCES `zamowienie` (`id`),
+  ADD CONSTRAINT `zamowienie_czesc_ibfk_2` FOREIGN KEY (`czesc_id_fk`) REFERENCES `czesc` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -1446,6 +1446,102 @@ public class SterownikPolBD {
 		}
 		return odp;
 	}
+	
+	public Czesc pobierzCzesc(int id_czesci) {
+
+		ResultSet rs = null;
+		Czesc c = new Czesc();
+		PreparedStatement stmt = null;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement("Select * from czesc where id=?");
+			stmt.setInt(1, id_czesci);
+			rs = stmt.executeQuery();
+			rs.next();
+
+			c.setId(rs.getInt("id"));
+			c.setIlosc(rs.getInt("dostepnych_w_magazynie"));
+			c.setNazwa(rs.getString("nazwa"));
+			c.setCena(rs.getDouble("cena_za_sztuke"));
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+
+		} finally {
+			close(rs);
+			close(stmt);
+		}
+		return c;
+	}
+	
+	public int pobierzId() {
+
+		ResultSet rs = null;
+		int id;
+		PreparedStatement stmt = null;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement("SELECT LAST_INSERT_ID() as id");
+			rs = stmt.executeQuery();
+			rs.next();
+			id=rs.getInt("id");
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
+
+		} finally {
+			close(rs);
+			close(stmt);
+		}
+		return id;
+	}
+	
+	public boolean dodajZamowienie(String data, double koszt) {
+
+		PreparedStatement stmt = null;
+
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement("insert into zamowienie (data,koszt) values(?,?)");
+			stmt.setString(1,data);
+			stmt.setDouble(2, koszt);
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("blad");
+			return false;
+
+		} finally {
+			close(stmt);
+		}
+		return true;
+	}
+	
+	public boolean dodajZamowienie(int id_zamowienia,int id_czesci,int ilosc) {
+
+		PreparedStatement stmt = null;
+
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement("insert into `zamowienie_czesc (zamowienie_id_fk,czesc_id_fk,ilosc) values(?,?,?)");
+			stmt.setInt(1, id_zamowienia);
+			stmt.setInt(2, id_czesci);
+			stmt.setInt(3, ilosc);
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("blad");
+			return false;
+
+		} finally {
+			close(stmt);
+		}
+		return true;
+	}
 	// -----------------------------------------------------------------------------------------------------
 
 	/**
