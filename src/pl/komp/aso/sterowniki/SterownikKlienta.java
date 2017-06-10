@@ -68,6 +68,14 @@ public class SterownikKlienta {
 		return 0;
 	}
 	
+	public int uwierzytelnijUsuwanie(String login)
+	{
+		if(!spbd.czyIstniejeLogin(login)){
+			return -1;
+		}
+		return 0;
+	}
+	
 	public int uwierzytelnijHaslo(Uzytkownik uzytkownik,String stareHaslo,String noweHaslo,String noweHaslo2){
 		stareHaslo = DigestUtils.sha1Hex(stareHaslo);
 		SterownikRejestracji sr = new SterownikRejestracji();
@@ -168,6 +176,13 @@ public class SterownikKlienta {
 		}
 		ArrayList<Samochod> samochody = (ArrayList<Samochod>) spbd.pobierzSamochody(u.getLogin());
 		u.setSamochody(samochody);
+		return true;
+	}
+	
+	public boolean usunUzytkownika(String login) {
+		if(!spbd.usunUzytkownika(login)) {
+			return false;
+		}
 		return true;
 	}
 }

@@ -1444,6 +1444,26 @@ public class SterownikPolBD {
 		}
 		return odp;
 	}
+	
+	public boolean usunUzytkownika(String login) {
+		PreparedStatement stmt = null;
+		boolean odp = true;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement("DELETE from uzytkownik where login=? ");
+			stmt.setString(1, login);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			odp = false;
+			return false;
+
+		} finally {
+			close(stmt);
+		}
+		return odp;
+	}
+	
+	
 	// -----------------------------------------------------------------------------------------------------
 
 	/**
