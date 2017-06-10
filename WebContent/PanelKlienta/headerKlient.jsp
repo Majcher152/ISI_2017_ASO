@@ -16,11 +16,6 @@
 <!-- Bootstrap core CSS -->
 <link href="/ISI_2017_ASO/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<link href="/ISI_2017_ASO/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-<script src="/ISI_2017_ASO/js/ie-emulation-modes-warning.js"></script>
-
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
