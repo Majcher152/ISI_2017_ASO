@@ -2,6 +2,8 @@ package pl.komp.aso.sterowniki;
 
 import java.util.regex.Pattern;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 public class SterownikRejestracji {
 
 	SterownikPolBD spbd = new SterownikPolBD();
@@ -126,6 +128,7 @@ public class SterownikRejestracji {
 
 	public boolean zarejestruj(String login, String haslo, String imie, String nazwisko, String email,
 			String numer_telefonu, String rodzaj_konta, String id_warsztatu) {
+		haslo = DigestUtils.sha1Hex(haslo);
 		boolean odp = spbd.zarejestruj(login, haslo, imie, nazwisko, email, numer_telefonu, rodzaj_konta, id_warsztatu);
 		return odp;
 	}

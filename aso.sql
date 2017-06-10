@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 10 Cze 2017, 15:45
+-- Czas generowania: 10 Cze 2017, 17:24
 -- Wersja serwera: 10.1.21-MariaDB
 -- Wersja PHP: 5.6.30
 
@@ -1095,7 +1095,7 @@ CREATE TABLE `terminarz` (
 
 CREATE TABLE `uzytkownik` (
   `login` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `haslo` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `haslo` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `imie` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `nazwisko` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
@@ -1108,29 +1108,29 @@ CREATE TABLE `uzytkownik` (
 --
 
 INSERT INTO `uzytkownik` (`login`, `haslo`, `imie`, `nazwisko`, `email`, `numer_telefonu`, `rodzaj_konta`) VALUES
-('aga234', 'Oskaoska1', 'Agnieszka', 'Kozłowska', 'teczowymis@wp.pl', 456563256, 'Uzytkownik'),
-('amil', 'Amilamil1', 'Kamil', 'Płaczek', 'amil@op.pl', 651234589, 'Mechanik'),
-('buleczka', 'Oskaoska1', 'Szymon', 'Bułka', 'bulkibulki@wp.pl', 459965965, 'Uzytkownik'),
-('ciastko', 'Oskaoska1', 'Faustyna', 'Przezwisko', 'faustyna.przezwisko@gmail.com', 412452412, 'Uzytkownik'),
-('cium', 'Oskaoska1', 'Dorota', 'Szpiłyk', 'dorotaciumcium@op.pl', 452123659, 'Uzytkownik'),
-('dzik', 'Oskaoska1', 'Ernest', 'Bździk', 'wolololo@op.pl', 745745761, 'Uzytkownik'),
-('eminem', 'Oskaoska1', 'Sławomir', 'Dudacz', 'imtherealslimshady@o2.pl', 652223656, 'Uzytkownik'),
-('filemon', 'Oskaoska1', 'Filip', 'Dzięcioł', 'podrozniksnow@op.pl', 745523658, 'Ksiegowy'),
-('goryl', 'Oskaoska1', 'Jan', 'Kowalski', 'goryl.to.wielka@interia.pl', 555777888, 'Uzytkownik'),
-('grzesiu', 'Oskaoska1', 'Grzegorz', 'Komajda', 'grzech@o2.pl', 452123326, 'Mechanik'),
-('janosik', 'Oskaoska1', 'Jan', 'Teatr', 'filmjanosik@o2.pl', 452632512, 'Uzytkownik'),
-('joecocemba', 'Oskaoska1', 'Joe', 'Cocemba', 'jc_46@wp.pl', 506795367, 'Uzytkownik'),
-('justus', 'Oskaoska1', 'Justyna', 'Strojek', 'jstroj@op.pl', 412412412, 'Uzytkownik'),
-('kasia', 'Oskaoska1', 'Katarzyna', 'Klimek', 'kasiaftw@gmail.com', 789562364, 'Administrator'),
-('krzysiu', 'Oskaoska1', 'Krzysztof', 'Domagała', 'kdd@gmail.com', 123569965, 'Mechanik'),
-('marloeve', 'Oskaoska1', 'Jakub', 'Bożek', 'maryn@gmail.com', 565523526, 'Uzytkownik'),
-('miszcz', 'Oskaoska1', 'Przemysław', 'Gałka', 'miszczuplis@op.pl', 564236879, 'Uzytkownik'),
-('niechcesz', 'Oskaoska1', 'Jan', 'Stańko', 'jedenzerojeden@o2.pl', 456456654, 'Uzytkownik'),
-('oska', 'Oskaoska1', 'Piotr', 'Osiewicz', 'piotr.osie@op.pl', 985645236, 'Ksiegowy'),
-('stass', 'Oskaoska1', 'Marcin', 'Stahoń', 'stssts@op.pl', 745745745, 'Uzytkownik'),
-('uechy', 'Oskaoska1', 'Eustachy', 'Warzywo', 'euchy@op.pl', 745745767, 'Uzytkownik'),
-('ukasz', 'Oskaoska1', 'Łukasz', 'Majcher', 'ukasz.maj@wp.pl', 654452236, 'Ksiegowy'),
-('zgadnijfilm', 'Oskaoska1', 'Grzegorz', 'Brzęczyszczykiewicz', 'lalal@gmail.com', 965965854, 'Uzytkownik');
+('aga234', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Agnieszka', 'Kozłowska', 'teczowymis@wp.pl', 456563256, 'Uzytkownik'),
+('amil', '23aa7a5e1ac89dcab770a5d7003122ff6f799d47', 'Kamil', 'Płaczek', 'amil@op.pl', 651234589, 'Mechanik'),
+('buleczka', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Szymon', 'Bułka', 'bulkibulki@wp.pl', 459965965, 'Uzytkownik'),
+('ciastko', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Faustyna', 'Przezwisko', 'faustyna.przezwisko@gmail.com', 412452412, 'Uzytkownik'),
+('cium', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Dorota', 'Szpiłyk', 'dorotaciumcium@op.pl', 452123659, 'Uzytkownik'),
+('dzik', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Ernest', 'Bździk', 'wolololo@op.pl', 745745761, 'Uzytkownik'),
+('eminem', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Sławomir', 'Dudacz', 'imtherealslimshady@o2.pl', 652223656, 'Uzytkownik'),
+('filemon', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Filip', 'Dzięcioł', 'podrozniksnow@op.pl', 745523658, 'Ksiegowy'),
+('goryl', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Jan', 'Kowalski', 'goryl.to.wielka@interia.pl', 555777888, 'Uzytkownik'),
+('grzesiu', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Grzegorz', 'Komajda', 'grzech@o2.pl', 452123326, 'Mechanik'),
+('janosik', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Jan', 'Teatr', 'filmjanosik@o2.pl', 452632512, 'Uzytkownik'),
+('joecocemba', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Joe', 'Cocemba', 'jc_46@wp.pl', 506795367, 'Uzytkownik'),
+('justus', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Justyna', 'Strojek', 'jstroj@op.pl', 412412412, 'Uzytkownik'),
+('kasia', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Katarzyna', 'Klimek', 'kasiaftw@gmail.com', 789562364, 'Administrator'),
+('krzysiu', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Krzysztof', 'Domagała', 'kdd@gmail.com', 123569965, 'Mechanik'),
+('marloeve', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Jakub', 'Bożek', 'maryn@gmail.com', 565523526, 'Uzytkownik'),
+('miszcz', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Przemysław', 'Gałka', 'miszczuplis@op.pl', 564236879, 'Uzytkownik'),
+('niechcesz', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Jan', 'Stańko', 'jedenzerojeden@o2.pl', 456456654, 'Uzytkownik'),
+('oska', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Piotr', 'Osiewicz', 'piotr.osie@op.pl', 985645236, 'Ksiegowy'),
+('stass', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Marcin', 'Stahoń', 'stssts@op.pl', 745745745, 'Uzytkownik'),
+('uechy', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Eustachy', 'Warzywo', 'euchy@op.pl', 745745767, 'Uzytkownik'),
+('ukasz', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Łukasz', 'Majcher', 'ukasz.maj@wp.pl', 654452236, 'Ksiegowy'),
+('zgadnijfilm', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Grzegorz', 'Brzęczyszczykiewicz', 'lalal@gmail.com', 965965854, 'Uzytkownik');
 
 -- --------------------------------------------------------
 

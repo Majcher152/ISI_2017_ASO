@@ -3,6 +3,8 @@ package pl.komp.aso.sterowniki;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import pl.komp.aso.dto.Samochod;
 import pl.komp.aso.dto.Uzytkownik;
 import pl.komp.aso.dto.Warsztat;
@@ -67,6 +69,7 @@ public class SterownikKlienta {
 	}
 	
 	public int uwierzytelnijHaslo(Uzytkownik uzytkownik,String stareHaslo,String noweHaslo,String noweHaslo2){
+		stareHaslo = DigestUtils.sha1Hex(stareHaslo);
 		SterownikRejestracji sr = new SterownikRejestracji();
 		String litery = "abcdefghijklmnopqrstuvxwyząęćźżńół";
 		String liczby = "1234567890";
@@ -111,6 +114,7 @@ public class SterownikKlienta {
 	}
 	
 	public boolean edytujHaslo(Uzytkownik u,String haslo) {
+		haslo = DigestUtils.sha1Hex(haslo);
 		if(spbd.edytujHaslo(u.getLogin(),haslo)) {
 			u.setHaslo(haslo);
 			return true;

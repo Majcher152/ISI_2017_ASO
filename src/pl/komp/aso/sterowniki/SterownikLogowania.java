@@ -2,6 +2,8 @@ package pl.komp.aso.sterowniki;
 
 import java.util.ArrayList;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import pl.komp.aso.dto.FormularzNaprawy;
 import pl.komp.aso.dto.Samochod;
 import pl.komp.aso.dto.Uzytkownik;
@@ -27,7 +29,7 @@ public class SterownikLogowania {
 					return -1;
 		}
 		
-		
+		haslo = DigestUtils.sha1Hex(haslo);
 		int odp = spbd.zaloguj(login, haslo);
 		return odp;	
 	}
