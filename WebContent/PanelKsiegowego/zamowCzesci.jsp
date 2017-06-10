@@ -15,7 +15,7 @@
 			String blad = (String) request.getAttribute("blad");
 		%>
 		<%
-			if (blad != null && ((blad.equals("Zaktualizowano.")))) {
+			if (blad != null && ((blad.equals("Usunięto pozycję z zamówienia.")))) {
 		%>
 		<div class="alert alert-success">
 			<p style="text-align: center"><%=blad%></p>
@@ -56,7 +56,14 @@
 			</tr>
 		</c:forEach>
 	</table>
-	</br> <a href="KsiegowyMagazynServlet?metoda=zamow&koszt=${koszt}">Złóż zamówienie</a>
+	<br>
+	<form method="post" action="KsiegowyMagazynServlet?metoda=zamow" class="inline">
+    			
+    					
+    					<input type="hidden" name="koszt" id="koszt" value="${koszt}"/>
+    			<button type="submit" id="btn_aktualizuj" name="submit_param" value="submit_value" class="link-button">Złóż zamówienie</button> 
+    			</form>
+	
 		
 	</div>
 </div>

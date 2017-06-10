@@ -1524,7 +1524,7 @@ public class SterownikPolBD {
 
 		try {
 			// przygotowanie zapytania
-			stmt = con.prepareStatement("insert into `zamowienie_czesc (zamowienie_id_fk,czesc_id_fk,ilosc) values(?,?,?)");
+			stmt = con.prepareStatement("insert into zamowienie_czesc (zamowienie_id_fk,czesc_id_fk,ilosc) values(?,?,?)");
 			stmt.setInt(1, id_zamowienia);
 			stmt.setInt(2, id_czesci);
 			stmt.setInt(3, ilosc);
