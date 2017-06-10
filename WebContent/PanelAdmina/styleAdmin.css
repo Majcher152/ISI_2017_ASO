@@ -11,6 +11,7 @@ h2 {
 	color: #ffffff;
 }
 
+
 /*
  * Global add-ons
  */
@@ -34,6 +35,19 @@ h2 {
 /* Hide for mobile, show later */
 .sidebar {
 	display: none;
+}
+
+.featurette-heading {
+	font-weight: 300;
+	line-height: 1;
+	letter-spacing: -1px;
+	font-size: 100px;
+}
+
+
+
+.marketing h1 {
+	font-weight: normal;
 }
 
 @media ( min-width : 768px) {
@@ -71,7 +85,6 @@ h2 {
 	background-color: #428bca;
 }
 
-
 form-group-last {
 	margin-top: 50px;
 	padding-top: 50px;
@@ -91,8 +104,8 @@ form-group-last {
 
 @media ( min-width : 768px) {
 	.main {
-			padding-right: 40px;
-			padding-left: 40px;
+		padding-right: 40px;
+		padding-left: 40px;
 	}
 }
 
@@ -102,35 +115,36 @@ form-group-last {
 
 #buttonEdytuj a {
 	color: white;
-	    padding: 5px 10px;
-    font-size: 13px;
-    line-height: 1.5;
-    border-radius: 3px;
+	padding: 5px 10px;
+	font-size: 13px;
+	line-height: 1.5;
+	border-radius: 3px;
 }
 
 /* 
 	Ukryty formularz do wyswietlania pracownika
 */
 .inline {
-  display: inline;
+	display: inline;
 }
 
 .link-button {
-  background: none;
-  border: none;
-  color: #337ab7;
-  text-decoration: none;
-  cursor: pointer;
-  font-size: medium;
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-}
-.link-button:focus {
-  outline: none;
-}
-.link-button:active {
-  color:red;
+	background: none;
+	border: none;
+	color: #337ab7;
+	text-decoration: none;
+	cursor: pointer;
+	font-size: medium;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+.link-button:focus {
+	outline: none;
+}
+
+.link-button:active {
+	color: red;
+}
 
 .form-horizontal {
 	text-align: center;
