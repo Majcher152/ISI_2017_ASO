@@ -7,6 +7,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 import pl.komp.aso.dto.Czesc;
+import pl.komp.aso.dto.FormularzNaprawy;
 import pl.komp.aso.dto.Samochod;
 import pl.komp.aso.dto.Uzytkownik;
 import pl.komp.aso.dto.Warsztat;
@@ -78,6 +79,7 @@ public class SterownikKsiegowego {
 		if(odp==false)
 			return odp;
 		int id=spbd.pobierzId();
+		System.out.println(id);
 		for(int i=0;i<z.getCzesci().size();i++) {
 			odp=spbd.dodajZamowienie(id,z.getCzesci().get(i).getId(),z.getCzesci().get(i).getIlosc());
 			if(odp==false)
@@ -92,5 +94,28 @@ public class SterownikKsiegowego {
 		for(int i=0;i<czesci.size();i++)
 			koszt+=czesci.get(i).getCena()*czesci.get(i).getIlosc();
 		return koszt;
+	}
+	
+	public ArrayList<Zamowienie> sortujZamowienia( ArrayList<Zamowienie> zamowienia){
+		DateTimeFormatter fmt = DateTimeFormat.forPattern("dd/MM/yyyy");
+		DateTime dzisiaj = new DateTime();
+		DateTime najstarszy;
+		DateTime dzien;
+		DateTime dzien2;
+		
+		Zamowienie f;
+		for(int i=0;i<zamowienia.size()-1;i++) {
+			for(int j=0;j<zamowienia.size()-1;j++) {
+				dzien = fmt.parseDateTime(zamowienia.get(j).getData());
+				dzien2 = fmt.parseDateTime(zamowienia.get(j+1).getData());
+				if(dzien.isAfter(dzien2)) {
+					f=zamowienia.get(j);
+					zamowienia.set(j, zamowienia.get(j+1));
+					zamowienia.set(j+1, f);
+				}
+			}
+		}
+		 
+		return zamowienia;
 	}
 }
