@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 public class SterownikUwierzytelnijAdmin {
 
-	public int uwierzytelnij(String imie, String nazwisko, String email, String numer_telefonu, String login) {
+	public int uwierzytelnijAdmin(String imie, String nazwisko, String email, String numer_telefonu, String login) {
 		SterownikRejestracji sr = new SterownikRejestracji();
 		String litery = "abcdefghijklmnopqrstuvxwyząęćźżńół";
 		String liczby = "1234567890";

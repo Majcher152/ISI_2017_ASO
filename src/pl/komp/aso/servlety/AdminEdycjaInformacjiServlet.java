@@ -44,7 +44,7 @@ public class AdminEdycjaInformacjiServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String haslo = request.getParameter("haslo");
 		String haslo2 = request.getParameter("haslo2");
-
+		
 		String adres = request.getParameter("adres");
 		String ilosc_stanowisk = request.getParameter("ilosc_stanowisk");
 		String godzina_zamkniecia = request.getParameter("godzina_zamkniecia");
@@ -52,7 +52,7 @@ public class AdminEdycjaInformacjiServlet extends HttpServlet {
 		String miasto = request.getParameter("miasto");
 		String id_warsztatu = request.getParameter("id_warsztatu");
 		if (ilosc_stanowisk == null) {
-			int blad = sa.uwierzytelnij(imie, nazwisko, email, numer_telefonu, login, haslo, haslo2);
+			int blad = sa.uwierzytelnij(imie, nazwisko, email, numer_telefonu, login);
 			String wyswietl = "";
 			RequestDispatcher dispatcher;
 			switch (blad) {
@@ -63,7 +63,7 @@ public class AdminEdycjaInformacjiServlet extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			case 0:
-				if (sa.zapiszEdycjeInformacji(imie, nazwisko, email, numer_telefonu, login, haslo, rodzaj_konta))
+				if (sa.zapiszEdycjeInformacji(imie, nazwisko, email, numer_telefonu, login, rodzaj_konta))
 					wyswietl = "Zmieniono ustawienia pomyślnie.";
 				else
 					wyswietl = "Błąd";

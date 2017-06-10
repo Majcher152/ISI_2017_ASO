@@ -143,6 +143,127 @@ public class SterownikPolBD {
 		return true;
 	}
 
+	// zmiana danych uzytkownika
+	public boolean edytujUstawienia(String imie, String nazwisko, String email, String numer_telefonu, String login) {
+
+		boolean odp = true;
+		PreparedStatement stmt = null;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement(
+					"UPDATE `uzytkownik` SET imie= ?,nazwisko=?, email=?, numer_telefonu=? WHERE login = ?");
+			stmt.setString(1, imie);
+			stmt.setString(2, nazwisko);
+			stmt.setString(3, email);
+			stmt.setString(4, numer_telefonu);
+			stmt.setString(5, login);
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			odp = false;
+			System.out.println("TU JEST BLAD");
+			return false;
+
+		} finally {
+			close(stmt);
+		}
+		return odp;
+	}
+
+	// zmiana danych uzytkownika, ADMIN
+	public boolean zapiszEdycjeInformacji(String imie, String nazwisko, String email, String numer_telefonu,
+			String login, String rodzaj_konta) {
+		boolean odp = true;
+		PreparedStatement stmt = null;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement(
+					"UPDATE uzytkownik SET imie= ?, nazwisko=?, email=?, numer_telefonu=?, rodzaj_konta=? WHERE login = ?");
+			stmt.setString(1, imie);
+			stmt.setString(2, nazwisko);
+			stmt.setString(3, email);
+			stmt.setString(4, numer_telefonu);
+			stmt.setString(5, rodzaj_konta);
+			stmt.setString(6, login);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			odp = false;
+			System.out.println("TU JEST BLAD");
+			return false;
+		} finally {
+			close(stmt);
+		}
+		return odp;
+	}
+
+	// zmiana danych warsztatu, ADMIN
+	public boolean zapiszEdycjeWarsztatu(String adres, String ilosc_stanowisk, String godzina_zamkniecia,
+			String nrTelefonu, String email, String godzina_otwarcia, String miasto, String id) {
+		boolean odp = true;
+		PreparedStatement stmt = null;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement(
+					"UPDATE warsztat SET adres=?, ilosc_stanowisk= ?, godzina_zamkniecia=?, numer_telefonu=?, email=?, godzina_otwarcia=?, miasto=? WHERE id = ?");
+			stmt.setString(1, adres);
+			stmt.setString(2, ilosc_stanowisk);
+			stmt.setString(3, godzina_zamkniecia);
+			stmt.setString(4, nrTelefonu);
+			stmt.setString(5, email);
+			stmt.setString(6, godzina_otwarcia);
+			stmt.setString(7, miasto);
+			stmt.setString(8, id);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			odp = false;
+			System.out.println("TU JEST BLAD");
+			return false;
+		} finally {
+			close(stmt);
+		}
+		return odp;
+	}
+
+	public boolean usunUzytkownikaPracownika(String imie, String nazwisko, String email) {
+		boolean odp = true;
+		PreparedStatement stmt = null;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement("DELETE FROM uzytkownik WHERE imie = ? AND nazwisko = ? AND email = ?");
+			stmt.setString(1, imie);
+			stmt.setString(2, nazwisko);
+			stmt.setString(3, email);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			odp = false;
+			System.out.println("TU JEST BLAD usunUzytkownikaPracownika");
+			return false;
+		} finally {
+			close(stmt);
+		}
+		return odp;
+	}
+
+	public boolean usunWarsztat(String adres, String miasto, String id) {
+		boolean odp = true;
+		PreparedStatement stmt = null;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement("DELETE FROM warsztat WHERE adres = ? AND miasto = ? AND id = ?");
+			stmt.setString(1, adres);
+			stmt.setString(2, miasto);
+			stmt.setString(3, id);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			odp = false;
+			System.out.println("TU JEST BLAD usunWarsztat");
+			return false;
+		} finally {
+			close(stmt);
+		}
+		return odp;
+	}
+
 	public Connection getCon() {
 		return con;
 	}
@@ -384,128 +505,6 @@ public class SterownikPolBD {
 
 		} finally {
 			close(rs);
-			close(stmt);
-		}
-		return odp;
-	}
-
-	// zmiana danych uzytkownika
-	public boolean edytujUstawienia(String imie, String nazwisko, String email, String numer_telefonu, String login) {
-
-		boolean odp = true;
-		PreparedStatement stmt = null;
-		try {
-			// przygotowanie zapytania
-			stmt = con.prepareStatement(
-					"UPDATE `uzytkownik` SET imie= ?,nazwisko=?, email=?, numer_telefonu=? WHERE login = ?");
-			stmt.setString(1, imie);
-			stmt.setString(2, nazwisko);
-			stmt.setString(3, email);
-			stmt.setString(4, numer_telefonu);
-			stmt.setString(5, login);
-			stmt.executeUpdate();
-
-		} catch (SQLException e) {
-			odp = false;
-			System.out.println("TU JEST BLAD");
-			return false;
-
-		} finally {
-			close(stmt);
-		}
-		return odp;
-	}
-
-	// zmiana danych uzytkownika, ADMIN
-	public boolean zapiszEdycjeInformacji(String imie, String nazwisko, String email, String numer_telefonu,
-			String login, String haslo, String rodzaj_konta) {
-		boolean odp = true;
-		PreparedStatement stmt = null;
-		try {
-			// przygotowanie zapytania
-			stmt = con.prepareStatement(
-					"UPDATE uzytkownik SET haslo=?, imie= ?, nazwisko=?, email=?, numer_telefonu=?, rodzaj_konta=? WHERE login = ?");
-			stmt.setString(1, haslo);
-			stmt.setString(2, imie);
-			stmt.setString(3, nazwisko);
-			stmt.setString(4, email);
-			stmt.setString(5, numer_telefonu);
-			stmt.setString(6, rodzaj_konta);
-			stmt.setString(7, login);
-			stmt.executeUpdate();
-		} catch (SQLException e) {
-			odp = false;
-			System.out.println("TU JEST BLAD");
-			return false;
-		} finally {
-			close(stmt);
-		}
-		return odp;
-	}
-
-	// zmiana danych warsztatu, ADMIN
-	public boolean zapiszEdycjeWarsztatu(String adres, String ilosc_stanowisk, String godzina_zamkniecia,
-			String nrTelefonu, String email, String godzina_otwarcia, String miasto, String id) {
-		boolean odp = true;
-		PreparedStatement stmt = null;
-		try {
-			// przygotowanie zapytania
-			stmt = con.prepareStatement(
-					"UPDATE warsztat SET adres=?, ilosc_stanowisk= ?, godzina_zamkniecia=?, numer_telefonu=?, email=?, godzina_otwarcia=?, miasto=? WHERE id = ?");
-			stmt.setString(1, adres);
-			stmt.setString(2, ilosc_stanowisk);
-			stmt.setString(3, godzina_zamkniecia);
-			stmt.setString(4, nrTelefonu);
-			stmt.setString(5, email);
-			stmt.setString(6, godzina_otwarcia);
-			stmt.setString(7, miasto);
-			stmt.setString(8, id);
-			stmt.executeUpdate();
-		} catch (SQLException e) {
-			odp = false;
-			System.out.println("TU JEST BLAD");
-			return false;
-		} finally {
-			close(stmt);
-		}
-		return odp;
-	}
-
-	public boolean usunUzytkownikaPracownika(String imie, String nazwisko, String email) {
-		boolean odp = true;
-		PreparedStatement stmt = null;
-		try {
-			// przygotowanie zapytania
-			stmt = con.prepareStatement("DELETE FROM uzytkownik WHERE imie = ? AND nazwisko = ? AND email = ?");
-			stmt.setString(1, imie);
-			stmt.setString(2, nazwisko);
-			stmt.setString(3, email);
-			stmt.executeUpdate();
-		} catch (SQLException e) {
-			odp = false;
-			System.out.println("TU JEST BLAD usunUzytkownikaPracownika");
-			return false;
-		} finally {
-			close(stmt);
-		}
-		return odp;
-	}
-
-	public boolean usunWarsztat(String adres, String miasto, String id) {
-		boolean odp = true;
-		PreparedStatement stmt = null;
-		try {
-			// przygotowanie zapytania
-			stmt = con.prepareStatement("DELETE FROM warsztat WHERE adres = ? AND miasto = ? AND id = ?");
-			stmt.setString(1, adres);
-			stmt.setString(2, miasto);
-			stmt.setString(3, id);
-			stmt.executeUpdate();
-		} catch (SQLException e) {
-			odp = false;
-			System.out.println("TU JEST BLAD usunWarsztat");
-			return false;
-		} finally {
 			close(stmt);
 		}
 		return odp;
@@ -1241,15 +1240,16 @@ public class SterownikPolBD {
 		}
 		return true;
 	}
-	
-	public ArrayList<Czesc> pobierzCzesci(int id_warsztatu,int id_samochodu) {
+
+	public ArrayList<Czesc> pobierzCzesci(int id_warsztatu, int id_samochodu) {
 		ArrayList<Czesc> czesci = new ArrayList<Czesc>();
 		ResultSet rs = null;
 
 		PreparedStatement stmt = null;
 		try {
 			// przygotowanie zapytania
-			stmt = con.prepareStatement("Select c.id,c.nazwa,wc.ilosc from czesc as c join samochod_czesc as sc on c.id=sc.czesc_id_fk join warsztat_czesc as wc on c.id=wc.czesc_id_fk where wc.warsztat_id_fk=? and sc.samochod_id_fk=?");
+			stmt = con.prepareStatement(
+					"Select c.id,c.nazwa,wc.ilosc from czesc as c join samochod_czesc as sc on c.id=sc.czesc_id_fk join warsztat_czesc as wc on c.id=wc.czesc_id_fk where wc.warsztat_id_fk=? and sc.samochod_id_fk=?");
 			stmt.setInt(1, id_warsztatu);
 			stmt.setInt(2, id_samochodu);
 			rs = stmt.executeQuery();
@@ -1272,7 +1272,7 @@ public class SterownikPolBD {
 		}
 		return czesci;
 	}
-	
+
 	public ArrayList<Czesc> pobierzCzesciMagazyn(int id_samochodu) {
 		ArrayList<Czesc> czesci = new ArrayList<Czesc>();
 		ResultSet rs = null;
@@ -1280,7 +1280,8 @@ public class SterownikPolBD {
 		PreparedStatement stmt = null;
 		try {
 			// przygotowanie zapytania
-			stmt = con.prepareStatement("Select * from czesc join samochod_czesc on czesc.id=samochod_czesc.czesc_id_fk where samochod_id_fk=?");
+			stmt = con.prepareStatement(
+					"Select * from czesc join samochod_czesc on czesc.id=samochod_czesc.czesc_id_fk where samochod_id_fk=?");
 			stmt.setInt(1, id_samochodu);
 			rs = stmt.executeQuery();
 			while (rs.next()) {
@@ -1302,8 +1303,7 @@ public class SterownikPolBD {
 		}
 		return czesci;
 	}
-	
-	
+
 	public Czesc pobierzCzesc(int id_czesci, int id_warsztatu) {
 
 		ResultSet rs = null;
@@ -1311,7 +1311,8 @@ public class SterownikPolBD {
 		PreparedStatement stmt = null;
 		try {
 			// przygotowanie zapytania
-			stmt = con.prepareStatement("Select id,ilosc,nazwa from czesc join warsztat_czesc on czesc.id=warsztat_czesc.czesc_id_fk where id=? and warsztat_id_fk=?");
+			stmt = con.prepareStatement(
+					"Select id,ilosc,nazwa from czesc join warsztat_czesc on czesc.id=warsztat_czesc.czesc_id_fk where id=? and warsztat_id_fk=?");
 			stmt.setInt(1, id_czesci);
 			stmt.setInt(2, id_warsztatu);
 			rs = stmt.executeQuery();
@@ -1331,8 +1332,8 @@ public class SterownikPolBD {
 		}
 		return c;
 	}
-	
-	public Samochod pobierzSamochodId(String model,String rocznik,String typ,String silnik) {
+
+	public Samochod pobierzSamochodId(String model, String rocznik, String typ, String silnik) {
 
 		ResultSet rs = null;
 		Samochod s = new Samochod();
@@ -1341,9 +1342,9 @@ public class SterownikPolBD {
 			// przygotowanie zapytania
 			stmt = con.prepareStatement("Select * from samochod where model=? and rocznik=? and typ=? and silnik=?");
 			stmt.setString(1, model);
-			stmt.setString(2,rocznik);
-			stmt.setString(3,typ);
-			stmt.setString(4,silnik);
+			stmt.setString(2, rocznik);
+			stmt.setString(3, typ);
+			stmt.setString(4, silnik);
 			rs = stmt.executeQuery();
 			rs.next();
 
@@ -1364,7 +1365,6 @@ public class SterownikPolBD {
 		return s;
 	}
 
-	
 	/**
 	 * Metoda dodajaca pozycje do bazy samochodow
 	 * 
@@ -1397,19 +1397,18 @@ public class SterownikPolBD {
 		}
 		return true;
 	}
-	
+
 	public boolean aktualizujStanWarsztatu(int id_warsztatu, int id_czesci, int ile) {
 		boolean odp = true;
 
 		PreparedStatement stmt = null;
 		try {
 			// przygotowanie zapytania
-			stmt = con.prepareStatement(
-					"UPDATE warsztat_czesc SET ilosc=? WHERE warsztat_id_fk=? and czesc_id_fk=?");
+			stmt = con.prepareStatement("UPDATE warsztat_czesc SET ilosc=? WHERE warsztat_id_fk=? and czesc_id_fk=?");
 			stmt.setInt(1, ile);
 			stmt.setInt(2, id_warsztatu);
 			stmt.setInt(3, id_czesci);
-			
+
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -1422,24 +1421,23 @@ public class SterownikPolBD {
 		}
 		return odp;
 	}
-	
+
 	public boolean aktualizujONas(String tresc) {
 		boolean odp = true;
 
 		PreparedStatement stmt = null;
 		try {
 			// przygotowanie zapytania
-			stmt = con.prepareStatement(
-					"UPDATE informacje SET tresc=? WHERE typ_informacji='o_nas'");
+			stmt = con.prepareStatement("UPDATE informacje SET tresc=? WHERE typ_informacji='o_nas'");
 			stmt.setString(1, tresc);
-			
+
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {
 			odp = false;
 			e.printStackTrace();
 			return false;
-			
+
 		} finally {
 
 			close(stmt);
