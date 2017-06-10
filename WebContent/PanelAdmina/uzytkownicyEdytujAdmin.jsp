@@ -73,38 +73,6 @@ SELECT * FROM `uzytkownik` where email = '<%=emailUzytkownika%>';
 					</div>
 
 					<div class="form-group">
-						<label for="password" class="cols-sm-2 control-label">Hasło
-							pracownika:</label>
-						<div class="cols-sm-10">
-							<div class="input-group">
-								<span class="input-group-addon"><i
-									class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
-									type="text" class="form-control" name="haslo" id="haslo"
-									value="<c:out value="${uzytkownik.haslo}" />"
-									data-toggle="popover"
-									data-content="Hasło musi mieć długość od 8 do 18 znaków oraz musi zawierać conajmniej 1 małą literę, 1 wielką literę oraz cyfrę." />
-								<span class="glyphicon form-control-feedback"></span>
-							</div>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label for="confirm" class="cols-sm-2 control-label">Powtórz
-							hasło:</label>
-						<div class="cols-sm-10">
-							<div class="input-group">
-								<span class="input-group-addon"><i
-									class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
-									type="text" class="form-control" name="haslo2" id="haslo2"
-									value="<c:out value="${uzytkownik.haslo}" />"
-									data-toggle="popover"
-									data-content="Podane hasła muszą być takie same." /> <span
-									class="glyphicon form-control-feedback"></span>
-							</div>
-						</div>
-					</div>
-
-					<div class="form-group">
 						<label for="email" class="cols-sm-2 control-label">E-mail
 							pracownika:</label>
 						<div class="cols-sm-10">

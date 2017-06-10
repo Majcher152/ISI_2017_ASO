@@ -114,22 +114,22 @@ SELECT id_warsztatu_fk FROM `mechanik_warsztat`
 										<c:set var="numRows" value="${warsztatID.id_warsztatu_fk}" />
 									</c:forEach>
 									<c:forEach var="warsztat" items="${resultWarsztat.rows}">
-											<c:choose>
-												<c:when test="${warsztat.id==numRows}">
-													<option selected>
-														<c:out
-															value="${warsztat.id}. ${warsztat.adres}, ${warsztat.miasto}" />
-													</option>
-												</c:when>
+										<c:choose>
+											<c:when test="${warsztat.id==numRows}">
+												<option selected>
+													<c:out
+														value="${warsztat.id}. ${warsztat.adres}, ${warsztat.miasto}" />
+												</option>
+											</c:when>
 
 
-												<c:otherwise>
-													<option>
-														<c:out
-															value="${warsztat.id}. ${warsztat.adres}, ${warsztat.miasto}" />
-													</option>
-												</c:otherwise>
-											</c:choose>
+											<c:otherwise>
+												<option>
+													<c:out
+														value="${warsztat.id}. ${warsztat.adres}, ${warsztat.miasto}" />
+												</option>
+											</c:otherwise>
+										</c:choose>
 									</c:forEach>
 								</select> <span class="glyphicon form-control-feedback"></span>
 							</div>
@@ -148,38 +148,6 @@ SELECT id_warsztatu_fk FROM `mechanik_warsztat`
 									data-toggle="popover"
 									data-content="Login musi składać się z 4 do 16 liter lub cyfr." />
 								<span class="glyphicon form-control-feedback"></span>
-							</div>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label for="password" class="cols-sm-2 control-label">Hasło
-							pracownika:</label>
-						<div class="cols-sm-10">
-							<div class="input-group">
-								<span class="input-group-addon"><i
-									class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
-									type="text" class="form-control" name="haslo" id="haslo"
-									value="<c:out value="${uzytkownik.haslo}" />"
-									data-toggle="popover"
-									data-content="Hasło musi mieć długość od 8 do 18 znaków oraz musi zawierać conajmniej 1 małą literę, 1 wielką literę oraz cyfrę." />
-								<span class="glyphicon form-control-feedback"></span>
-							</div>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label for="confirm" class="cols-sm-2 control-label">Powtórz
-							hasło:</label>
-						<div class="cols-sm-10">
-							<div class="input-group">
-								<span class="input-group-addon"><i
-									class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
-									type="text" class="form-control" name="haslo2" id="haslo2"
-									value="<c:out value="${uzytkownik.haslo}" />"
-									data-toggle="popover"
-									data-content="Podane hasła muszą być takie same." /> <span
-									class="glyphicon form-control-feedback"></span>
 							</div>
 						</div>
 					</div>
