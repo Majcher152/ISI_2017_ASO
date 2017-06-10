@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 08 Cze 2017, 17:29
+-- Czas generowania: 10 Cze 2017, 15:45
 -- Wersja serwera: 10.1.21-MariaDB
--- Wersja PHP: 7.0.15
+-- Wersja PHP: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -482,6 +482,24 @@ CREATE TABLE `formularz_naprawy` (
   `przewid_czas_trwania` int(2) DEFAULT NULL,
   `status` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `informacje`
+--
+
+CREATE TABLE `informacje` (
+  `typ_informacji` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `tresc` varchar(5000) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Zrzut danych tabeli `informacje`
+--
+
+INSERT INTO `informacje` (`typ_informacji`, `tresc`) VALUES
+('o_nas', 'Firma KOŚKA powstała w 2017 roku. Zajmujemy się kompleksowym serwisem samochodów (mechanicznym i blacharsko - lakierniczym) marek VOLKSWAGEN. Swoje usługi kierujemy do klientów indywidualnych i korporacyjnych. Obecnie posiadamy trzy stacje: w Krakowie przy ul. Mieczysława Pszona 16/9, przy ul. Włościańskiej 35 (dzielnica Żoliborz) oraz w Słupnie koło Radzymina, przy ul. Marii Konopnickiej 2. Jesteśmy wyposażeni w najnowocześniejszy sprzęt jaki jest obecnie wykorzystywany w autoryzowanych serwisach samochodowych w całej Europie. Dla potwierdzenia najwyższej jakości oferowanych przez nas usług, uzyskaliśmy certyfikaty jakości ISO 9001:2000 od Polskiego Centrum Badań i Certyfikacji.');
 
 -- --------------------------------------------------------
 
@@ -1231,7 +1249,7 @@ INSERT INTO `warsztat_czesc` (`warsztat_id_fk`, `czesc_id_fk`, `ilosc`) VALUES
 (1, 98, 18),
 (1, 99, 14),
 (2, 1, 11),
-(2, 2, 19),
+(2, 2, 11),
 (2, 6, 7),
 (2, 9, 15),
 (2, 12, 5),
@@ -1328,6 +1346,12 @@ ALTER TABLE `formularz_naprawy`
   ADD KEY `uzytkownik_login_fk` (`uzytkownik_login_fk`),
   ADD KEY `warsztat_id_fk` (`warsztat_id_fk`),
   ADD KEY `vin_fk_idx` (`vin_fk`);
+
+--
+-- Indexes for table `informacje`
+--
+ALTER TABLE `informacje`
+  ADD PRIMARY KEY (`typ_informacji`);
 
 --
 -- Indexes for table `mechanik_warsztat`
@@ -1434,7 +1458,7 @@ ALTER TABLE `formularz_naprawy`
 -- AUTO_INCREMENT dla tabeli `przeglad`
 --
 ALTER TABLE `przeglad`
-  MODIFY `id_przegladu` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_przegladu` int(7) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT dla tabeli `samochod`
 --
