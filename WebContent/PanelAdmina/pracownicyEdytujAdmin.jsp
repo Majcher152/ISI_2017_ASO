@@ -3,12 +3,23 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
-<sql:query dataSource="jdbc/aso" var="result">
-	<%		String emailUzytkownika = request.getParameter("email");%>
-SELECT * FROM `uzytkownik` where email = '<%=emailUzytkownika%>';
-</sql:query>
+
 <sql:query dataSource="jdbc/aso" var="resultWarsztat">
 SELECT * FROM `warsztat`;
+</sql:query>
+<%
+	String emailUzytkownika = request.getParameter("email");
+%>
+<sql:query dataSource="jdbc/aso" var="result">
+
+SELECT * FROM `uzytkownik` where email = '<%=emailUzytkownika%>';
+</sql:query>
+
+<sql:query dataSource="jdbc/aso" var="resultMechanikWarsztat">
+SELECT id_warsztatu_fk FROM `mechanik_warsztat`
+ join uzytkownik on uzytkownik.login = mechanik_warsztat.mechanik_login_fk 
+ where email = '<%=emailUzytkownika%>'  
+ and uzytkownik.login = mechanik_warsztat.mechanik_login_fk ;
 </sql:query>
 
 <jsp:include page="headerAdmin.jsp" />
@@ -98,11 +109,27 @@ SELECT * FROM `warsztat`;
 									aria-hidden="true"></i></span> <select name="warsztat" id="warsztat"
 									class="form-control" data-toggle="popover"
 									data-content="Wybierz jedną z opcji.">
+									<c:forEach var="warsztatID"
+										items="${resultMechanikWarsztat.rows}">
+										<c:set var="numRows" value="${warsztatID.id_warsztatu_fk}" />
+									</c:forEach>
 									<c:forEach var="warsztat" items="${resultWarsztat.rows}">
-										<option>
-											<c:out
-												value="${warsztat.id}. ${warsztat.adres}, ${warsztat.miasto}" />
-										</option>
+											<c:choose>
+												<c:when test="${warsztat.id==numRows}">
+													<option selected>
+														<c:out
+															value="${warsztat.id}. ${warsztat.adres}, ${warsztat.miasto}" />
+													</option>
+												</c:when>
+
+
+												<c:otherwise>
+													<option>
+														<c:out
+															value="${warsztat.id}. ${warsztat.adres}, ${warsztat.miasto}" />
+													</option>
+												</c:otherwise>
+											</c:choose>
 									</c:forEach>
 								</select> <span class="glyphicon form-control-feedback"></span>
 							</div>
@@ -205,7 +232,8 @@ SELECT * FROM `warsztat`;
 			</form>
 		</c:forEach>
 		<div
-			class="form-group-last col-sm-6 col-sm-offset-4 col-md-8 col-md-offset-2">
+			class="form-group-last col-sm-6 col-sm-offset-4 col-md-8
+			col-md-offset-2">
 			<%
 				String blad = (String) request.getAttribute("blad");
 			%>

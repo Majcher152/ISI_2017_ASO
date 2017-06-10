@@ -68,49 +68,73 @@ public class AdminEdycjaInformacjiServlet extends HttpServlet {
 				else
 					wyswietl = "Błąd";
 				request.setAttribute("blad", wyswietl);
-				dispatcher = request.getRequestDispatcher("PanelAdmina/pracownicyEdytujAdmin.jsp");
+				if (rodzaj_konta == "Uzytkownik")
+					dispatcher = request.getRequestDispatcher("/PanelAdmina/uzytkownicyEdytujAdmin.jsp");
+				else
+					dispatcher = request.getRequestDispatcher("/PanelAdmina/pracownicyEdytujAdmin.jsp");
 				dispatcher.forward(request, response);
 				break;
 			case 18:
 				wyswietl = "Podaj imię.";
 				request.setAttribute("blad", wyswietl);
-				dispatcher = request.getRequestDispatcher("PanelAdmina/pracownicyEdytujAdmin.jsp");
+				if (rodzaj_konta == "Uzytkownik")
+					dispatcher = request.getRequestDispatcher("/PanelAdmina/uzytkownicyEdytujAdmin.jsp");
+				else
+					dispatcher = request.getRequestDispatcher("/PanelAdmina/pracownicyEdytujAdmin.jsp");
 				dispatcher.forward(request, response);
 				break;
 			case 1:
 				wyswietl = "Imię może zawierać tylko litery.";
 				request.setAttribute("blad", wyswietl);
-				dispatcher = request.getRequestDispatcher("PanelAdmina/pracownicyEdytujAdmin.jsp");
+				if (rodzaj_konta == "Uzytkownik")
+					dispatcher = request.getRequestDispatcher("/PanelAdmina/uzytkownicyEdytujAdmin.jsp");
+				else
+					dispatcher = request.getRequestDispatcher("/PanelAdmina/pracownicyEdytujAdmin.jsp");
 				dispatcher.forward(request, response);
 				break;
 			case 19:
 				wyswietl = "Podaj nazwisko.";
 				request.setAttribute("blad", wyswietl);
-				dispatcher = request.getRequestDispatcher("PanelAdmina/pracownicyEdytujAdmin.jsp");
+				if (rodzaj_konta == "Uzytkownik")
+					dispatcher = request.getRequestDispatcher("/PanelAdmina/uzytkownicyEdytujAdmin.jsp");
+				else
+					dispatcher = request.getRequestDispatcher("/PanelAdmina/pracownicyEdytujAdmin.jsp");
 				dispatcher.forward(request, response);
 				break;
 			case 2:
 				wyswietl = "Nazwisko może zawierać tylko litery.";
 				request.setAttribute("blad", wyswietl);
-				dispatcher = request.getRequestDispatcher("PanelAdmina/pracownicyEdytujAdmin.jsp");
+				if (rodzaj_konta == "Uzytkownik")
+					dispatcher = request.getRequestDispatcher("/PanelAdmina/uzytkownicyEdytujAdmin.jsp");
+				else
+					dispatcher = request.getRequestDispatcher("/PanelAdmina/pracownicyEdytujAdmin.jsp");
 				dispatcher.forward(request, response);
 				break;
 			case 3:
 				wyswietl = "Numer telefonu może zawierać tylko cyfry.";
 				request.setAttribute("blad", wyswietl);
-				dispatcher = request.getRequestDispatcher("PanelAdmina/pracownicyEdytujAdmin.jsp");
+				if (rodzaj_konta == "Uzytkownik")
+					dispatcher = request.getRequestDispatcher("/PanelAdmina/uzytkownicyEdytujAdmin.jsp");
+				else
+					dispatcher = request.getRequestDispatcher("/PanelAdmina/pracownicyEdytujAdmin.jsp");
 				dispatcher.forward(request, response);
 				break;
 			case 5:
 				wyswietl = "Imię może zawierać maksymalnie 30 znaków.";
 				request.setAttribute("blad", wyswietl);
-				dispatcher = request.getRequestDispatcher("PanelAdmina/pracownicyEdytujAdmin.jsp");
+				if (rodzaj_konta == "Uzytkownik")
+					dispatcher = request.getRequestDispatcher("/PanelAdmina/uzytkownicyEdytujAdmin.jsp");
+				else
+					dispatcher = request.getRequestDispatcher("/PanelAdmina/pracownicyEdytujAdmin.jsp");
 				dispatcher.forward(request, response);
 				break;
 			case 6:
 				wyswietl = "Nazwisko może zawierać maksymalnie 30 znaków.";
 				request.setAttribute("blad", wyswietl);
-				dispatcher = request.getRequestDispatcher("PanelAdmina/pracownicyEdytujAdmin.jsp");
+				if (rodzaj_konta == "Uzytkownik")
+					dispatcher = request.getRequestDispatcher("/PanelAdmina/uzytkownicyEdytujAdmin.jsp");
+				else
+					dispatcher = request.getRequestDispatcher("/PanelAdmina/pracownicyEdytujAdmin.jsp");
 				dispatcher.forward(request, response);
 				break;
 			case 9:
@@ -140,7 +164,10 @@ public class AdminEdycjaInformacjiServlet extends HttpServlet {
 			case 11:
 				wyswietl = "Numer telefonu musi zawierać 9 znaków.";
 				request.setAttribute("blad", wyswietl);
-				dispatcher = request.getRequestDispatcher("PanelAdmina/pracownicyEdytujAdmin.jsp");
+				if (rodzaj_konta == "Uzytkownik")
+					dispatcher = request.getRequestDispatcher("/PanelAdmina/uzytkownicyEdytujAdmin.jsp");
+				else
+					dispatcher = request.getRequestDispatcher("/PanelAdmina/pracownicyEdytujAdmin.jsp");
 				dispatcher.forward(request, response);
 				break;
 			}
