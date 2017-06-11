@@ -1,14 +1,25 @@
 package pl.komp.aso.testy;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Properties;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
+import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import pl.komp.aso.dto.Uzytkownik;
 import pl.komp.aso.sterowniki.SterownikKlienta;
 
 public class EdytowanieUstawienTest {
-
-	
 	
 	@Test
 	public void testUwierzytelnijImie() {

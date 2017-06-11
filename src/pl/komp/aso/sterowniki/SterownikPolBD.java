@@ -1,6 +1,7 @@
 package pl.komp.aso.sterowniki;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,19 +29,39 @@ import pl.komp.aso.dto.Zamowienie;
 public class SterownikPolBD {
 	private Connection con = null;
 
-	public SterownikPolBD() {
-		try {
-			// uzyskanie polaczenia z baza oraz przypisanie obiektu polaczenia
-			Context envContext = new InitialContext();
-			DataSource ds = (DataSource) envContext.lookup("java:/comp/env/jdbc/aso");
-			con = ds.getConnection();
+	//zakomentowac przy normalnym odpalaniu, odkomentowac przy testach
+		//-----------------------Z TEGO KORZYSTAC PRZY JUNIT----------------------------------------------//
+		
+		public SterownikPolBD() {
+			try {
+				// wczytanie sterownikow polaczenia z baza danych
+				Class.forName("com.mysql.jdbc.Driver");
 
-		} catch (NamingException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
+				// utworzenie obiektu polaczenia
+				con = DriverManager.getConnection("jdbc:mysql://localhost:3306/aso?characterEncoding=utf-8", "aso", "aso2468");
+			} catch (Exception e) {
+			}
+
 		}
-	}
+		//------------------------------------------------------------------------------------------------//
+		
+
+		//odkomentowac przy normalnym dzialaniu, zakomentowac przy testach junit
+		//-----------------------------Z TEGO KORZYSTAĆ PRZY NORMALNYM DZIAŁANIU--------------------------//
+//		public SterownikPolBD() {
+//			try {
+//				// uzyskanie polaczenia z baza oraz przypisanie obiektu polaczenia
+//				Context envContext = new InitialContext();
+//				DataSource ds = (DataSource) envContext.lookup("java:/comp/env/jdbc/aso");
+//				con = ds.getConnection();
+//	
+//			} catch (NamingException e) {
+//				e.printStackTrace();
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}
+		//-----------------------------Z TEGO KORZYSTAĆ PRZY NORMALNYM DZIAŁANIU--------------------------//
 
 	/**
 	 * 
