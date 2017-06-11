@@ -12,9 +12,16 @@ public class Uzytkownik {
 	private String haslo;
 	private ArrayList<Samochod>samochody=new ArrayList<Samochod>();
 	private ArrayList<FormularzNaprawy> formularze= new ArrayList<FormularzNaprawy>();
+	private String rodzaj;
 	
 	
 	
+	public String getRodzaj() {
+		return rodzaj;
+	}
+	public void setRodzaj(String rodzaj) {
+		this.rodzaj = rodzaj;
+	}
 	public String getImie() {
 		return imie;
 	}

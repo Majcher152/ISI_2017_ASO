@@ -12,6 +12,7 @@ import pl.komp.aso.dto.Samochod;
 import pl.komp.aso.dto.Uzytkownik;
 import pl.komp.aso.dto.Warsztat;
 import pl.komp.aso.dto.Zamowienie;
+import pl.komp.aso.email.TLSEmail;
 
 public class SterownikKsiegowego {
 	SterownikPolBD spbd = new SterownikPolBD();
@@ -124,5 +125,19 @@ public class SterownikKsiegowego {
 		ArrayList<Czesc>czesci=spbd.pobierzCzesciZamowienie(id);
 		z.setCzesci(czesci);
 		return z;
+	}
+	
+	public boolean wyslijMaile(String tresc) {
+		ArrayList<Uzytkownik> uzytkownicy = spbd.pobierzUzytkownikowEmail();
+		boolean odp=true;
+		for(int i=0;i<uzytkownicy.size();i++) {
+			if(uzytkownicy.get(i).getRodzaj().equals("Uzytkownik")) {
+				odp=TLSEmail.utworzMaila(uzytkownicy.get(i).getEmail(), "Promocja", tresc);
+				if(odp==false)
+					return odp;
+			}
+				
+		}
+		return odp;
 	}
 }
