@@ -253,7 +253,7 @@ public class SterownikPolBD {
 	public boolean usunUzytkownika(String imie, String nazwisko, String email, String login) {
 		boolean odp = true;
 		PreparedStatement stmt = null;
-		String nieaktywny = "Nieaktwyny";
+		String nieaktywny = "Nieaktywny";
 		try {
 			// przygotowanie zapytania
 			stmt = con.prepareStatement("UPDATE`uzytkownik` SET `rodzaj_konta` = ? WHERE `imie` = ? AND `nazwisko` = ? AND `email` = ?");
@@ -1525,10 +1525,12 @@ public class SterownikPolBD {
 	public boolean usunUzytkownika(String login) {
 		PreparedStatement stmt = null;
 		boolean odp = true;
+		String nieaktywny = "Nieaktywny";
 		try {
 			// przygotowanie zapytania
-			stmt = con.prepareStatement("DELETE from uzytkownik where login=? ");
-			stmt.setString(1, login);
+			stmt = con.prepareStatement("UPDATE`uzytkownik` SET `rodzaj_konta` = ? WHERE `login` = ?");
+			stmt.setString(1, nieaktywny);
+			stmt.setString(2, login);
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			odp = false;

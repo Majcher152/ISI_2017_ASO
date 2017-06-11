@@ -23,7 +23,8 @@ public class SterownikLogowania {
 		if(haslo==null || haslo.equals("")) {
 			return 2;
 		}
-		if(!(uzytkownik.getRodzaj().equals("Nieaktywny"))) {
+		if(uzytkownik.getRodzaj().equals("Nieaktywny")) {
+			System.out.println("WRTF");
 			return 4;
 		}
 		

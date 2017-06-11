@@ -47,6 +47,7 @@ public class LoginServlet extends HttpServlet {
 		int wynik=sterownikLogowania.uwierzytelnij(login, haslo);
 		RequestDispatcher dispatcher;
 		String blad ="";
+		System.out.println(wynik);
 		if(wynik==1 || wynik==2) {
 			System.out.println("puste");
 			blad="Proszę wypełnić wszystkie pola.";
