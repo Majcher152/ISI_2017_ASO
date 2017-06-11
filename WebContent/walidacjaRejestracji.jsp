@@ -428,7 +428,7 @@ $(document).ready(function() {
 			event.preventDefault();
 			console.log("hej");
 			if (warning == false) {
-				$('<div class="alert alert-danger"> Wypełnij poprawnie wszystkie pola!</div>').insertBefore(".form-group-last");
+				$('<div class="alert alert-danger"> Wypełnij poprawnie wszystkie pola!</div>').insertBefore(".main-login");
 				warning = true;
 			}
 		}
@@ -446,7 +446,7 @@ $(document).ready(function() {
 			event.preventDefault();
 			console.log("hej");
 			if (warning == false) {
-				$('<div class="alert alert-danger"> Wypełnij poprawnie wszystkie pola!</div>').insertBefore(".form-group-last");
+				$('<div class="alert alert-danger"> Wypełnij poprawnie wszystkie pola!</div>').insertBefore(".main-login");
 				warning = true;
 			}
 		}
@@ -468,7 +468,7 @@ $(document).ready(function() {
 			event.preventDefault();
 			console.log("hej");
 			if (warning == false) {
-				$('<div class="alert alert-danger"> Wypełnij poprawnie wszystkie pola!</div>').insertBefore(".form-group-last");
+				$('<div class="alert alert-danger"> Wypełnij poprawnie wszystkie pola!</div>').insertBefore(".main-login");
 				warning = true;
 			}
 		}

@@ -439,14 +439,18 @@ $(document).ready(function() {
 	});
 	
 	$('#btn_edytuj_warsztat').click(function(event){
-		var stareHaslo = $('#stareHaslo');
-		var noweHaslo = $('#noweHaslo');
-		var noweHaslo2 = $('#noweHaslo2');
+		var adres = $('#adres');
+		var numer_telefonu = $('#numer_telefonu');
+		var email = $('#email');
+		var godzina_zamkniecia = $('#godzina_zamkniecia');
+		var godzina_otwarcia = $('#godzina_otwarcia');
+		var ilosc_stanowisk = $('#ilosc_stanowisk');
+		var miasto = $('#miasto');
 		
-		if(!(imie.hasClass('valid') && nazwisko.hasClass('valid') && email.hasClass('valid') && numer_telefonu.hasClass('valid') && login.hasClass('valid'))){
+		if(!(miasto.hasClass('valid') && adres.hasClass('valid') && numer_telefonu.hasClass('valid') && email.hasClass('valid') && ilosc_stanowisk.hasClass('valid') && godzina_zamkniecia.hasClass('valid') && godzina_otwarcia.hasClass('valid'))){
 			event.preventDefault();
 			if (warning == false) {
-				$('<div class="alert alert-danger"> Wypełnij poprawnie wszystkie pola!</div>').insertBefore(".login-register");
+				$('<div class="alert alert-danger"> Wypełnij poprawnie wszystkie pola!</div>').insertBefore(".main-login");
 				warning = true;
 			}
 		}
