@@ -25,6 +25,11 @@
 			</tr>
 		</c:forEach>
 	</table>	
+	
+	<button type="button" id="powrot"
+							class="button23 col-sm-2 col-sm-offset-8 col-md-1 col-md-offset-10">
+							<a href="/ISI_2017_ASO/KsiegowyHistoriaServlet?metoda=zaladujZamowienia">Powrót</a>
+						</button>
 	</div>
 </div>
 </div>

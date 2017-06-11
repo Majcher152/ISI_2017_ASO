@@ -63,6 +63,10 @@
     					<input type="hidden" name="koszt" id="koszt" value="${koszt}"/>
     			<button type="submit" id="btn_aktualizuj" name="submit_param" value="submit_value" class="link-button">Złóż zamówienie</button> 
     			</form>
+    			<button type="button" id="powrot"
+							class="button23 col-sm-2 col-sm-offset-8 col-md-1 col-md-offset-10">
+							<a href="/ISI_2017_ASO/KsiegowyMagazynServlet?metoda=zaladujMagazyn">Powrót</a>
+						</button>
 	
 		
 	</div>

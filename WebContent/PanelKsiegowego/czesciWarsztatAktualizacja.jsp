@@ -86,6 +86,10 @@
     					<input type="hidden" name="id_warsztat" id="id_warsztat" value="${warsztat.id}"/>
     			<button type="submit" id="btn_aktualizuj" name="submit_param" value="submit_value" class="link-button">Aktualizuj</button> 
     			</form>
+    			<button type="button" id="powrot"
+							class="button23 col-sm-2 col-sm-offset-8 col-md-1 col-md-offset-10">
+							<a href="/ISI_2017_ASO/KsiegowyWarsztatServlet?metoda=zaladujWarsztat">Powrót</a>
+						</button>
     					
 			</div>
 

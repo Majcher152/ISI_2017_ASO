@@ -9,7 +9,7 @@
 
 
 	<div class="col-sm-10 col-sm-offset-2 col-md-11 col-md-offset-1 main">
-		<h1 class="page-header">Promocje"</h1>
+		<h1 class="page-header">Promocje</h1>
 		
 		<form method="post" action="/ISI_2017_ASO/KsiegowyPromocjeServlet" class="inline" id="email">
 	 <div class="form-group">
