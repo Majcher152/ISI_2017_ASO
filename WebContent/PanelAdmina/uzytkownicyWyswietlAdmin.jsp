@@ -44,10 +44,6 @@ SELECT * FROM `uzytkownik` where email = '<%=emailUzytkownika%>';
 							<td><c:out value="${uzytkownik.login}" /></td>
 						</tr>
 						<tr>
-							<td>Haslo:</td>
-							<td><c:out value="${uzytkownik.haslo}" /></td>
-						</tr>
-						<tr>
 							<td>Email:</td>
 							<td><c:out value="${uzytkownik.email}" /></td>
 						</tr>

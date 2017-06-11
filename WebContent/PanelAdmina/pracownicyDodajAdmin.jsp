@@ -178,21 +178,6 @@ SELECT * FROM `warsztat`;
 			</div>
 
 		</form>
-		<div
-			class="form-group-last col-sm-6 col-sm-offset-4 col-md-8 col-md-offset-2">
-			<%
-				String blad = (String) request.getAttribute("blad");
-			%>
-			<%
-				if (blad != null && !blad.equals("")) {
-			%>
-			<div class="alert alert-danger">
-				<%=blad%>
-			</div>
-			<%
-				}
-			%>
-		</div>
 	</div>
 
 
