@@ -29,7 +29,7 @@ SELECT * FROM `uzytkownik` where email = '<%=emailUzytkownika%>';
 					if (blad != null && !blad.equals("")) {
 				%>
 				<div class="alert alert-success">
-					<%=blad%>
+					<p style="text-align:center"><%=blad%></p>
 				</div>
 
 				<%
