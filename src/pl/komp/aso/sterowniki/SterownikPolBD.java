@@ -29,39 +29,43 @@ import pl.komp.aso.dto.Zamowienie;
 public class SterownikPolBD {
 	private Connection con = null;
 
-	//zakomentowac przy normalnym odpalaniu, odkomentowac przy testach
-		//-----------------------Z TEGO KORZYSTAC PRZY JUNIT----------------------------------------------//
-		
-		public SterownikPolBD() {
-			try {
-				// wczytanie sterownikow polaczenia z baza danych
-				Class.forName("com.mysql.jdbc.Driver");
+	// zakomentowac przy normalnym odpalaniu, odkomentowac przy testach
+	// -----------------------Z TEGO KORZYSTAC PRZY
+	// JUNIT----------------------------------------------//
 
-				// utworzenie obiektu polaczenia
-				con = DriverManager.getConnection("jdbc:mysql://localhost:3306/aso?characterEncoding=utf-8", "aso", "aso2468");
-			} catch (Exception e) {
-			}
+	public SterownikPolBD() {
+		try {
+			// wczytanie sterownikow polaczenia z baza danych
+			Class.forName("com.mysql.jdbc.Driver");
 
+			// utworzenie obiektu polaczenia
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/aso?characterEncoding=utf-8", "aso",
+					"aso2468");
+		} catch (Exception e) {
 		}
-		//------------------------------------------------------------------------------------------------//
-		
 
-		//odkomentowac przy normalnym dzialaniu, zakomentowac przy testach junit
-		//-----------------------------Z TEGO KORZYSTAĆ PRZY NORMALNYM DZIAŁANIU--------------------------//
-//		public SterownikPolBD() {
-//			try {
-//				// uzyskanie polaczenia z baza oraz przypisanie obiektu polaczenia
-//				Context envContext = new InitialContext();
-//				DataSource ds = (DataSource) envContext.lookup("java:/comp/env/jdbc/aso");
-//				con = ds.getConnection();
-//	
-//			} catch (NamingException e) {
-//				e.printStackTrace();
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-//		}
-		//-----------------------------Z TEGO KORZYSTAĆ PRZY NORMALNYM DZIAŁANIU--------------------------//
+	}
+	// ------------------------------------------------------------------------------------------------//
+
+	// odkomentowac przy normalnym dzialaniu, zakomentowac przy testach junit
+	// -----------------------------Z TEGO KORZYSTAĆ PRZY NORMALNYM
+	// DZIAŁANIU--------------------------//
+	// public SterownikPolBD() {
+	// try {
+	// // uzyskanie polaczenia z baza oraz przypisanie obiektu polaczenia
+	// Context envContext = new InitialContext();
+	// DataSource ds = (DataSource)
+	// envContext.lookup("java:/comp/env/jdbc/aso");
+	// con = ds.getConnection();
+	//
+	// } catch (NamingException e) {
+	// e.printStackTrace();
+	// } catch (SQLException e) {
+	// e.printStackTrace();
+	// }
+	// }
+	// -----------------------------Z TEGO KORZYSTAĆ PRZY NORMALNYM
+	// DZIAŁANIU--------------------------//
 
 	/**
 	 * 
@@ -266,7 +270,32 @@ public class SterownikPolBD {
 		return odp;
 	}
 
-	
+	public boolean usunMechanik(String imie, String nazwisko, String email, String login) {
+		boolean odp = true;
+		PreparedStatement stmt = null;
+		PreparedStatement stmt2 = null;
+		try {
+			// przygotowanie zapytania
+			stmt2 = con.prepareStatement("DELETE FROM `mechanik_warsztat` WHERE `mechanik_login_fk` = ?");
+			stmt2.setString(1, login);
+			stmt2.executeUpdate();
+			stmt = con.prepareStatement("DELETE FROM `uzytkownik` WHERE `imie` = ? AND `nazwisko` = ? AND `email` = ?");
+			stmt.setString(1, imie);
+			stmt.setString(2, nazwisko);
+			stmt.setString(3, email);
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			odp = false;
+			System.out.println("TU JEST BLAD usunMechanik");
+			return false;
+		} finally {
+			close(stmt);
+			close(stmt2);
+		}
+		return odp;
+	}
+
 	public boolean usunWarsztat(String adres, String miasto, String id) {
 		boolean odp = true;
 		PreparedStatement stmt = null;
@@ -1468,7 +1497,6 @@ public class SterownikPolBD {
 		}
 		return odp;
 	}
-	
 
 	public boolean usunUzytkownika(String login) {
 		PreparedStatement stmt = null;
@@ -1487,7 +1515,7 @@ public class SterownikPolBD {
 		}
 		return odp;
 	}
-	
+
 	public Czesc pobierzCzesc(int id_czesci) {
 
 		ResultSet rs = null;
@@ -1515,7 +1543,7 @@ public class SterownikPolBD {
 		}
 		return c;
 	}
-	
+
 	public int pobierzId() {
 
 		ResultSet rs = null;
@@ -1526,7 +1554,7 @@ public class SterownikPolBD {
 			stmt = con.prepareStatement("SELECT LAST_INSERT_ID() as id");
 			rs = stmt.executeQuery();
 			rs.next();
-			id=rs.getInt("id");
+			id = rs.getInt("id");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1538,7 +1566,7 @@ public class SterownikPolBD {
 		}
 		return id;
 	}
-	
+
 	public boolean dodajZamowienie(String data, double koszt) {
 
 		PreparedStatement stmt = null;
@@ -1546,7 +1574,7 @@ public class SterownikPolBD {
 		try {
 			// przygotowanie zapytania
 			stmt = con.prepareStatement("insert into zamowienie (data,koszt) values(?,?)");
-			stmt.setString(1,data);
+			stmt.setString(1, data);
 			stmt.setDouble(2, koszt);
 			stmt.executeUpdate();
 
@@ -1560,14 +1588,15 @@ public class SterownikPolBD {
 		}
 		return true;
 	}
-	
-	public boolean dodajZamowienie(int id_zamowienia,int id_czesci,int ilosc) {
+
+	public boolean dodajZamowienie(int id_zamowienia, int id_czesci, int ilosc) {
 
 		PreparedStatement stmt = null;
 
 		try {
 			// przygotowanie zapytania
-			stmt = con.prepareStatement("insert into zamowienie_czesc (zamowienie_id_fk,czesc_id_fk,ilosc) values(?,?,?)");
+			stmt = con.prepareStatement(
+					"insert into zamowienie_czesc (zamowienie_id_fk,czesc_id_fk,ilosc) values(?,?,?)");
 			stmt.setInt(1, id_zamowienia);
 			stmt.setInt(2, id_czesci);
 			stmt.setInt(3, ilosc);
@@ -1583,7 +1612,7 @@ public class SterownikPolBD {
 		}
 		return true;
 	}
-	
+
 	public ArrayList<Zamowienie> pobierzZamowienia() {
 		ArrayList<Zamowienie> zamowienia = new ArrayList<Zamowienie>();
 		ResultSet rs = null;
@@ -1596,7 +1625,7 @@ public class SterownikPolBD {
 			Zamowienie z;
 			while (rs.next()) {
 
-				z=new Zamowienie();
+				z = new Zamowienie();
 				z.setId(rs.getInt("id"));
 				z.setKoszt(rs.getDouble("koszt"));
 				z.setData(rs.getString("data"));
@@ -1613,7 +1642,7 @@ public class SterownikPolBD {
 		}
 		return zamowienia;
 	}
-	
+
 	public Zamowienie pobierzZamowienie(int id) {
 		ResultSet rs = null;
 		Zamowienie z;
@@ -1623,15 +1652,13 @@ public class SterownikPolBD {
 			stmt = con.prepareStatement("Select * from zamowienie where id=?");
 			stmt.setInt(1, id);
 			rs = stmt.executeQuery();
-			
+
 			rs.next();
 
-				z=new Zamowienie();
-				z.setId(rs.getInt("id"));
-				z.setKoszt(rs.getDouble("koszt"));
-				z.setData(rs.getString("data"));
-				
-			
+			z = new Zamowienie();
+			z.setId(rs.getInt("id"));
+			z.setKoszt(rs.getDouble("koszt"));
+			z.setData(rs.getString("data"));
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1643,7 +1670,7 @@ public class SterownikPolBD {
 		}
 		return z;
 	}
-	
+
 	public ArrayList<Czesc> pobierzCzesciZamowienie(int id) {
 		ArrayList<Czesc> czesci = new ArrayList<Czesc>();
 		ResultSet rs = null;
@@ -1651,13 +1678,14 @@ public class SterownikPolBD {
 		PreparedStatement stmt = null;
 		try {
 			// przygotowanie zapytania
-			stmt = con.prepareStatement("Select ilosc,nazwa,cena_za_sztuke from zamowienie_czesc join czesc on zamowienie_czesc.czesc_id_fk=czesc.id where zamowienie_id_fk=?");
+			stmt = con.prepareStatement(
+					"Select ilosc,nazwa,cena_za_sztuke from zamowienie_czesc join czesc on zamowienie_czesc.czesc_id_fk=czesc.id where zamowienie_id_fk=?");
 			stmt.setInt(1, id);
 			rs = stmt.executeQuery();
 			Czesc c;
 			while (rs.next()) {
 
-				c=new Czesc();
+				c = new Czesc();
 				c.setCena(rs.getDouble("cena_za_sztuke"));
 				c.setNazwa(rs.getString("nazwa"));
 				c.setIlosc(rs.getInt("ilosc"));
@@ -1674,7 +1702,7 @@ public class SterownikPolBD {
 		}
 		return czesci;
 	}
-	
+
 	public ArrayList<Uzytkownik> pobierzUzytkownikowEmail() {
 		ArrayList<Uzytkownik> uzytkownicy = new ArrayList<Uzytkownik>();
 		ResultSet rs = null;
@@ -1684,9 +1712,9 @@ public class SterownikPolBD {
 			// przygotowanie zapytania
 			stmt = con.prepareStatement("Select * from uzytkownik");
 			rs = stmt.executeQuery();
-			
+
 			while (rs.next()) {
-				u=new Uzytkownik();
+				u = new Uzytkownik();
 				u.setEmail(rs.getString("email"));
 				u.setRodzaj(rs.getString("rodzaj_konta"));
 				uzytkownicy.add(u);
@@ -1702,8 +1730,7 @@ public class SterownikPolBD {
 		}
 		return uzytkownicy;
 	}
-	
-	
+
 	// -----------------------------------------------------------------------------------------------------
 
 	/**

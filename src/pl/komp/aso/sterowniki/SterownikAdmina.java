@@ -1,5 +1,7 @@
 package pl.komp.aso.sterowniki;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.regex.Pattern;
 
 import org.apache.commons.codec.digest.DigestUtils;
@@ -66,7 +68,6 @@ public class SterownikAdmina extends SterownikUwierzytelnijAdmin implements Uwie
 		return 0;
 	}
 
-
 	public boolean zapiszEdycjeInformacji(String imie, String nazwisko, String email, String numer_telefonu,
 			String login, String rodzaj_konta) {
 		// haslo = DigestUtils.sha1Hex(haslo);
@@ -88,12 +89,21 @@ public class SterownikAdmina extends SterownikUwierzytelnijAdmin implements Uwie
 		return false;
 	}
 
-	public boolean usunUzytkownikaPracownika(String imie, String nazwisko, String email) {
-		if (spbd.usunUzytkownikaPracownika(imie, nazwisko, email))
-			return true;
-		return false;
+	public boolean usunUzytkownikaPracownika(String imie, String nazwisko, String email, String rodzaj_konta, String login) {
+		if (rodzaj_konta.equals("Mechanik")) {
+			if (spbd.usunMechanik(imie, nazwisko, email, login))
+				return true;
+			return false;
+		} else {
+			if (spbd.usunUzytkownikaPracownika(imie, nazwisko, email))
+				return true;
+			return false;
+		}
 	}
 
+	
+	
+	
 	public boolean usunWarszat(String adres, String miasto, String id_warszatatu) {
 		if (spbd.usunWarsztat(adres, miasto, id_warszatatu))
 			return true;

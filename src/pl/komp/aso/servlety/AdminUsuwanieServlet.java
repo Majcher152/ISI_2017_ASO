@@ -41,7 +41,8 @@ public class AdminUsuwanieServlet extends HttpServlet {
 		String nazwisko = request.getParameter("nazwisko");
 		String email = request.getParameter("email");
 		String rodzaj_konta = request.getParameter("rodzaj_konta");
-
+		String login = request.getParameter("login");
+		
 		String adres = request.getParameter("adres");
 		String miasto = request.getParameter("miasto");
 		String id_warsztatu = request.getParameter("id_warsztatu");
@@ -50,7 +51,7 @@ public class AdminUsuwanieServlet extends HttpServlet {
 		RequestDispatcher dispatcher;
 
 		if (id_warsztatu == null) {
-			boolean blad = sa.usunUzytkownikaPracownika(imie, nazwisko, email);
+			boolean blad = sa.usunUzytkownikaPracownika(imie, nazwisko, email, rodzaj_konta, login);
 			if (blad)
 				wyswietl = "Usunięto użytkownika pomyślnie.";
 			else

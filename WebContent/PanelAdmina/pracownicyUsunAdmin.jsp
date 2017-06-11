@@ -34,7 +34,9 @@ SELECT * FROM `uzytkownik` where email = '<%=emailUzytkownika%>';
 							type="hidden" name="email" id="email"
 							value="<c:out value="${uzytkownik.email}" />" /> <input
 							type="hidden" name="rodzaj_konta" id="rodzaj_konta"
-							value="<c:out value="${uzytkownik.rodzaj_konta}" />" />
+							value="<c:out value="${uzytkownik.rodzaj_konta}" />" /> <input
+							type="hidden" name="login" id="login"
+							value="<c:out value="${uzytkownik.login}" />" />
 					</h3>
 
 					<br>
