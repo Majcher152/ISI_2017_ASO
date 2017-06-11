@@ -16,7 +16,7 @@
 </style>
 
 <sql:query dataSource="jdbc/aso" var="result">
-SELECT * FROM `uzytkownik` where rodzaj_konta != 'Uzytkownik';
+SELECT * FROM `uzytkownik` where rodzaj_konta != 'Uzytkownik' and rodzaj_konta != 'Nieaktywny';
 </sql:query>
 
 

@@ -12,15 +12,19 @@ public class SterownikLogowania {
 	private SterownikPolBD spbd=new SterownikPolBD();
 	
 	public int uwierzytelnij(String login,String haslo) {
-		
+		Uzytkownik uzytkownik = spbd.pobierzUzytkownika(login);
 		String znak="`~!@#$%^&*()_-+=<,.>?;:'{}][|/";
 		
-		
+		System.out.println(uzytkownik.toString());
+		System.out.println(uzytkownik.getRodzaj());
 		if(login ==null || login.equals("")) {
 			return 1;
 		}
 		if(haslo==null || haslo.equals("")) {
 			return 2;
+		}
+		if(!(uzytkownik.getRodzaj().equals("Nieaktywny"))) {
+			return 4;
 		}
 		
 		for(int i=0;i<znak.length();i++) {

@@ -89,21 +89,25 @@ public class SterownikAdmina extends SterownikUwierzytelnijAdmin implements Uwie
 		return false;
 	}
 
-	public boolean usunUzytkownikaPracownika(String imie, String nazwisko, String email, String rodzaj_konta, String login) {
-		if (rodzaj_konta.equals("Mechanik")) {
+	public boolean usunUzytkownikaPracownika(String imie, String nazwisko, String email, String rodzaj_konta,
+			String login) {
+		switch (rodzaj_konta) {
+		case "Mechanik":
 			if (spbd.usunMechanik(imie, nazwisko, email, login))
 				return true;
 			return false;
-		} else {
-			if (spbd.usunUzytkownikaPracownika(imie, nazwisko, email))
+		case "Uzytkownik":
+			if (spbd.usunUzytkownika(imie, nazwisko, email, login))
+				return true;
+			return false;
+		default:
+			if (spbd.usunPracownika(imie, nazwisko, email))
 				return true;
 			return false;
 		}
+
 	}
 
-	
-	
-	
 	public boolean usunWarszat(String adres, String miasto, String id_warszatatu) {
 		if (spbd.usunWarsztat(adres, miasto, id_warszatatu))
 			return true;

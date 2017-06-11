@@ -68,6 +68,13 @@ public class LoginServlet extends HttpServlet {
 			dispatcher =request.getRequestDispatcher("logowanie.jsp"); 
 			dispatcher.forward(request, response);
 		}
+		else if(wynik==4) {
+			System.out.println("Konto zostało usunięte");
+			blad="Konto zostało usunięte.";
+			request.setAttribute("blad", blad);
+			dispatcher =request.getRequestDispatcher("logowanie.jsp"); 
+			dispatcher.forward(request, response);
+		}
 		//jest to zwykly uzytkownik
 		else if(wynik==5) {
 			Uzytkownik uzytkownik=sterownikLogowania.getUzytkownik(login);

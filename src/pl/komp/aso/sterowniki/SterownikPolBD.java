@@ -250,7 +250,30 @@ public class SterownikPolBD {
 		return odp;
 	}
 
-	public boolean usunUzytkownikaPracownika(String imie, String nazwisko, String email) {
+	public boolean usunUzytkownika(String imie, String nazwisko, String email, String login) {
+		boolean odp = true;
+		PreparedStatement stmt = null;
+		String nieaktywny = "Nieaktwyny";
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement("UPDATE`uzytkownik` SET `rodzaj_konta` = ? WHERE `imie` = ? AND `nazwisko` = ? AND `email` = ?");
+			stmt.setString(1, nieaktywny);
+			stmt.setString(2, imie);
+			stmt.setString(3, nazwisko);
+			stmt.setString(4, email);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			odp = false;
+			System.out.println("TU JEST BLAD usunUzytkownika");
+			return false;
+		} finally {
+			close(stmt);
+		}
+		return odp;
+	}
+	
+	
+	public boolean usunPracownika(String imie, String nazwisko, String email) {
 		boolean odp = true;
 		PreparedStatement stmt = null;
 		try {
@@ -262,7 +285,7 @@ public class SterownikPolBD {
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			odp = false;
-			System.out.println("TU JEST BLAD usunUzytkownikaPracownika");
+			System.out.println("TU JEST BLAD usunPracownika");
 			return false;
 		} finally {
 			close(stmt);
@@ -425,6 +448,7 @@ public class SterownikPolBD {
 			uzytkownik.setEmail(rs.getString("email"));
 			uzytkownik.setNrTelefonu(rs.getInt("numer_telefonu"));
 			uzytkownik.setHaslo(rs.getString("haslo"));
+			uzytkownik.setRodzaj(rs.getString("rodzaj_konta"));
 		} catch (SQLException e) {
 			System.out.println("blad");
 
