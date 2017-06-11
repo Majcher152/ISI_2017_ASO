@@ -11,7 +11,6 @@ h2 {
 	color: #ffffff;
 }
 
-
 /*
  * Global add-ons
  */
@@ -28,6 +27,12 @@ h2 {
 	border: 0;
 }
 
+form-group-first {
+	margin-top: 50px;
+	padding-top: 50px;
+	margin-bottom: 50px;
+	padding-bottom: 50px;
+}
 /*
  * Sidebar
  */
@@ -43,8 +48,6 @@ h2 {
 	letter-spacing: -1px;
 	font-size: 100px;
 }
-
-
 
 .marketing h1 {
 	font-weight: normal;

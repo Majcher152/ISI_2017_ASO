@@ -30,7 +30,38 @@ SELECT id_warsztatu_fk FROM `mechanik_warsztat`
 	<div class="col-sm-10 col-sm-offset-2 col-md-11 col-md-offset-1 main">
 		<c:forEach var="uzytkownik" items="${result.rows}">
 			<h1 class="page-header">Edytuj pracownika</h1>
-
+			<div
+				class="form-group-last col-sm-6 col-sm-offset-4 col-md-8
+			col-md-offset-2">
+				<%
+					String blad = (String) request.getAttribute("blad");
+				%>
+				<%
+					if (blad != null && blad.equals("Zmieniono ustawienia pomyślnie.")) {
+				%>
+				<div class="alert alert-success">
+					<p style="text-align: center"><%=blad%></p>
+				</div>
+				<%
+					} else if (blad != null && !blad.equals("")) {
+				%>
+				<div class="alert alert-danger">
+					<p style="text-align: center"><%=blad%></p>
+				</div>
+				<%
+					}
+				%>
+			</div>
+			<%
+				if (blad != null && !blad.equals("")) {
+			%>
+			<br>
+			<br>
+			<br>
+			<%
+				}
+			%>
+			<br>
 			<form action="/ISI_2017_ASO/AdminEdycjaInformacjiPath" method="post">
 
 				<div class="main-login main-center">
@@ -199,30 +230,9 @@ SELECT id_warsztatu_fk FROM `mechanik_warsztat`
 
 			</form>
 		</c:forEach>
-		<div
-			class="form-group-last col-sm-6 col-sm-offset-4 col-md-8
-			col-md-offset-2">
-			<%
-				String blad = (String) request.getAttribute("blad");
-			%>
-			<%
-				if (blad != null && blad.equals("Zmieniono ustawienia pomyślnie.")) {
-			%>
-			<div class="alert alert-success">
-				<p style="text-align: center"><%=blad%></p>
-			</div>
-			<%
-			}
-				else if (blad != null && !blad.equals("")) { 
-			%>
-			<div class="alert alert-danger">
-				<p style="text-align: center"><%=blad%></p>
-			</div>
-			<%
-				}
-			%>
-		</div>
+
 	</div>
+</div>
 </div>
 </div>
 

@@ -19,13 +19,36 @@ SELECT * FROM `uzytkownik` where email = '<%=emailUzytkownika%>';
 <div class="container marketing">
 	<div class="col-sm-10 col-sm-offset-2 col-md-11 col-md-offset-1 main">
 		<c:forEach var="uzytkownik" items="${result.rows}">
-			<h1 class="page-header">Edytuj pracownika</h1>
+			<h1 class="page-header">Edytuj użytkownika</h1>
+			<div
+				class="form-group-first col-sm-6 col-sm-offset-4 col-md-8 col-md-offset-2">
+				<%
+					String blad = (String) request.getAttribute("blad");
+				%>
+				<%
+					if (blad != null && !blad.equals("")) {
+				%>
+				<div class="alert alert-success">
+					<%=blad%>
+				</div>
 
+				<%
+					}
+				%>
+			</div>
+			<%
+				if (blad != null && !blad.equals("")) {
+			%>
+			<br><br><br>
+			<%
+				}
+			%>
 			<form action="/ISI_2017_ASO/AdminEdycjaInformacjiPath" method="post">
 
 				<div class="main-login main-center">
+
 					<div class="form-group">
-						<label for="name" class="cols-sm-2 control-label">Imię
+						<br> <label for="name" class="cols-sm-2 control-label">Imię
 							pracownika:</label>
 						<div class="cols-sm-10">
 							<div class="input-group">
@@ -121,21 +144,7 @@ SELECT * FROM `uzytkownik` where email = '<%=emailUzytkownika%>';
 			</form>
 		</c:forEach>
 
-		<div
-			class="form-group-last col-sm-6 col-sm-offset-4 col-md-8 col-md-offset-2">
-			<%
-				String blad = (String) request.getAttribute("blad");
-			%>
-			<%
-				if (blad != null && !blad.equals("")) {
-			%>
-			<div class="alert alert-danger">
-				<%=blad%>
-			</div>
-			<%
-				}
-			%>
-		</div>
+
 	</div>
 </div>
 </div>
