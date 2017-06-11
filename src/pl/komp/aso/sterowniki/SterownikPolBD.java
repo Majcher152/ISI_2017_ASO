@@ -230,7 +230,7 @@ public class SterownikPolBD {
 		PreparedStatement stmt = null;
 		try {
 			// przygotowanie zapytania
-			stmt = con.prepareStatement("DELETE FROM uzytkownik WHERE imie = ? AND nazwisko = ? AND email = ?");
+			stmt = con.prepareStatement("DELETE FROM `uzytkownik` WHERE `imie` = ? AND `nazwisko` = ? AND `email` = ?");
 			stmt.setString(1, imie);
 			stmt.setString(2, nazwisko);
 			stmt.setString(3, email);
