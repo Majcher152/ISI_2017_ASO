@@ -245,6 +245,7 @@ public class SterownikPolBD {
 		return odp;
 	}
 
+	
 	public boolean usunWarsztat(String adres, String miasto, String id) {
 		boolean odp = true;
 		PreparedStatement stmt = null;
