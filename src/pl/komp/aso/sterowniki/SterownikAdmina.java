@@ -49,8 +49,8 @@ public class SterownikAdmina extends SterownikUwierzytelnijAdmin implements Uwie
 			return 17;
 
 		// email juz istnieje
-		// if (spbd.czyIstniejeEmail(email))
-		// return 15;
+		 if (spbd.czyIstniejeEmail(email))
+		 return 15;
 
 		// inne znaki niz cyfry w numerze
 		if (!sr.sprawdzZnaki(nrTelefonu, liczby))
@@ -61,8 +61,8 @@ public class SterownikAdmina extends SterownikUwierzytelnijAdmin implements Uwie
 			return 11;
 
 		// nr telefonu juz istnieje
-		// if (spbd.czyIstniejeNrTelefonu(nrTelefonu))
-		// return 16;
+		 if (spbd.czyIstniejeNrTelefonu(nrTelefonu))
+		 return 16;
 
 		// wszystko poprawne
 		return 0;

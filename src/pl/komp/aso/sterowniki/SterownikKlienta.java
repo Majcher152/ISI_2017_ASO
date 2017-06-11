@@ -45,10 +45,10 @@ public class SterownikKlienta {
 			return 17;
 
 		// email juz istnieje(chyba ze nalezy do tej osoby)
-	//	if (spbd.czyIstniejeEmail(email)) {
-	//		if (!spbd.czyIstniejeEmailEdycja(email, login))
-	//			return 15;
-	//	}
+		if (spbd.czyIstniejeEmail(email)) {
+			if (!spbd.czyIstniejeEmailEdycja(email, login))
+				return 15;
+		}
 
 		// inne znaki niz cyfry w numerze
 		if (!sr.sprawdzZnaki(numer_telefonu, liczby))
@@ -59,33 +59,32 @@ public class SterownikKlienta {
 			return 11;
 
 		// nr telefonu juz istnieje(chyba ze nalezy do tej osoby)
-	//	if (spbd.czyIstniejeNrTelefonu(numer_telefonu)) {
-	//		if (!spbd.czyIstniejeNrTelefonuEdycja(numer_telefonu, login))
-	//			return 16;
-	//	}
+		if (spbd.czyIstniejeNrTelefonu(numer_telefonu)) {
+			if (!spbd.czyIstniejeNrTelefonuEdycja(numer_telefonu, login))
+				return 16;
+		}
 		// wszystko poprawne
 
 		return 0;
 	}
-	
-	public int uwierzytelnijUsuwanie(String login)
-	{
-		if(!spbd.czyIstniejeLogin(login)){
+
+	public int uwierzytelnijUsuwanie(String login) {
+		if (!spbd.czyIstniejeLogin(login)) {
 			return -1;
 		}
 		return 0;
 	}
-	
-	public int uwierzytelnijHaslo(Uzytkownik uzytkownik,String stareHaslo,String noweHaslo,String noweHaslo2){
+
+	public int uwierzytelnijHaslo(Uzytkownik uzytkownik, String stareHaslo, String noweHaslo, String noweHaslo2) {
 		stareHaslo = DigestUtils.sha1Hex(stareHaslo);
 		SterownikRejestracji sr = new SterownikRejestracji();
 		String litery = "abcdefghijklmnopqrstuvxwyząęćźżńół";
 		String liczby = "1234567890";
 		String alfanumeryczne = litery + liczby;
-		//stare haslo zle
-		if(!stareHaslo.equals(uzytkownik.getHaslo()))
+		// stare haslo zle
+		if (!stareHaslo.equals(uzytkownik.getHaslo()))
 			return 1;
-		
+
 		// za krotkie haslo
 		if (!sr.minDlugosc(noweHaslo, 8))
 			return 9;
@@ -120,42 +119,40 @@ public class SterownikKlienta {
 		}
 		return false;
 	}
-	
-	public boolean edytujHaslo(Uzytkownik u,String haslo) {
+
+	public boolean edytujHaslo(Uzytkownik u, String haslo) {
 		haslo = DigestUtils.sha1Hex(haslo);
-		if(spbd.edytujHaslo(u.getLogin(),haslo)) {
+		if (spbd.edytujHaslo(u.getLogin(), haslo)) {
 			u.setHaslo(haslo);
 			return true;
 		}
 		return false;
 	}
-	
-	public boolean zarezerwujPrzeglad(String vin,String adres,String dzien,String godzina) {
-		boolean odp=false;
-		Warsztat w= spbd.pobierzWarsztat(adres);
-		if(spbd.zarezerwujPrzeglad(vin,w.getId(),dzien,godzina)) {
-			odp=true;
+
+	public boolean zarezerwujPrzeglad(String vin, String adres, String dzien, String godzina) {
+		boolean odp = false;
+		Warsztat w = spbd.pobierzWarsztat(adres);
+		if (spbd.zarezerwujPrzeglad(vin, w.getId(), dzien, godzina)) {
+			odp = true;
 		}
 		return odp;
 	}
-	
-	public boolean zarezerwujNaprawe(String vin,String adres,String dzien,String opis,Uzytkownik u) {
-		boolean odp=false;
-		Warsztat w= spbd.pobierzWarsztat(adres);
-		if(spbd.zarezerwujNaprawe(vin,w.getId(),dzien,opis,u.getLogin())) {
-			odp=true;
+
+	public boolean zarezerwujNaprawe(String vin, String adres, String dzien, String opis, Uzytkownik u) {
+		boolean odp = false;
+		Warsztat w = spbd.pobierzWarsztat(adres);
+		if (spbd.zarezerwujNaprawe(vin, w.getId(), dzien, opis, u.getLogin())) {
+			odp = true;
 			u.setFormularze(spbd.pobierzFormularze(u.getLogin()));
 		}
 		return odp;
 	}
-	
 
-	
-	public int dodajAuto(Uzytkownik uzytkownik,String model,String rocznik,String typ,String silnik,String vin) {
-		String login=uzytkownik.getLogin();
-		if(spbd.czyIstniejeVin(vin))
+	public int dodajAuto(Uzytkownik uzytkownik, String model, String rocznik, String typ, String silnik, String vin) {
+		String login = uzytkownik.getLogin();
+		if (spbd.czyIstniejeVin(vin))
 			return 1;
-		if(!spbd.dodajAuto(model,rocznik,typ,silnik,login,vin))
+		if (!spbd.dodajAuto(model, rocznik, typ, silnik, login, vin))
 			return -1;
 		Samochod s = new Samochod();
 		s.setModel(model);
@@ -164,23 +161,23 @@ public class SterownikKlienta {
 		s.setTyp(typ);
 		s.setVin(vin);
 		s.setWarsztat(false);
-		ArrayList <Samochod> list =uzytkownik.getSamochody();
+		ArrayList<Samochod> list = uzytkownik.getSamochody();
 		list.add(s);
 		uzytkownik.setSamochody(list);
 		return 0;
 	}
-	
-	public boolean usunAuto(String vin,Uzytkownik u) {
-		if(!spbd.usunSamochod(vin)) {
+
+	public boolean usunAuto(String vin, Uzytkownik u) {
+		if (!spbd.usunSamochod(vin)) {
 			return false;
 		}
 		ArrayList<Samochod> samochody = (ArrayList<Samochod>) spbd.pobierzSamochody(u.getLogin());
 		u.setSamochody(samochody);
 		return true;
 	}
-	
+
 	public boolean usunUzytkownika(String login) {
-		if(!spbd.usunUzytkownika(login)) {
+		if (!spbd.usunUzytkownika(login)) {
 			return false;
 		}
 		return true;
