@@ -14,7 +14,7 @@ public class TLSEmail {
 	   Use Authentication: Yes
 	   Port for TLS/STARTTLS: 587
 	 */
-	public static void utworzMaila(String mail,String tytul,String tresc) {
+	public static boolean utworzMaila(String mail,String tytul,String tresc) {
 		final String fromEmail = "aso.koska@gmail.com"; //requires valid gmail id
 		final String password = "Oskaoska1"; // correct password for gmail id
 		
@@ -34,7 +34,13 @@ public class TLSEmail {
 		};
 		Session session = Session.getInstance(props, auth);
 		
+		try {
 		EmailUtil.sendEmail(session, mail,tytul,tresc);
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 		
 	}
 

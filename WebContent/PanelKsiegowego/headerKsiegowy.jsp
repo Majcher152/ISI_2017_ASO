@@ -53,6 +53,8 @@
 					<li><a href="/ISI_2017_ASO/KsiegowyHistoriaServlet?metoda=zaladujZamowienia">Historia zamówień</a></li>
 					<li><a href="/ISI_2017_ASO/PanelKsiegowego/aktualizujTresc.jsp">Aktualizuj treść</a></li>
 					<li><a href="/ISI_2017_ASO/PanelKsiegowego/dodajSamochod.jsp">Dodaj samochód</a></li>
+					<li><a href="/ISI_2017_ASO/PanelKsiegowego/promocje.jsp">Promocje</a></li>
+					
 					<br/>
 					<li><a href="/ISI_2017_ASO/index.jsp">Wyloguj się</a></li>
 

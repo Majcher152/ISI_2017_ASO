@@ -1653,6 +1653,34 @@ public class SterownikPolBD {
 		return czesci;
 	}
 	
+	public ArrayList<Uzytkownik> pobierzUzytkownikowEmail() {
+		ArrayList<Uzytkownik> uzytkownicy = new ArrayList<Uzytkownik>();
+		ResultSet rs = null;
+		Uzytkownik u;
+		PreparedStatement stmt = null;
+		try {
+			// przygotowanie zapytania
+			stmt = con.prepareStatement("Select * from uzytkownik");
+			rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+				u=new Uzytkownik();
+				u.setEmail(rs.getString("email"));
+				u.setRodzaj(rs.getString("rodzaj_konta"));
+				uzytkownicy.add(u);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+
+		} finally {
+			close(rs);
+			close(stmt);
+		}
+		return uzytkownicy;
+	}
+	
 	
 	// -----------------------------------------------------------------------------------------------------
 
