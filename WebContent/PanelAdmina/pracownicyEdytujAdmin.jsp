@@ -186,7 +186,7 @@ SELECT id_warsztatu_fk FROM `mechanik_warsztat`
 
 					<br>
 					<div class="form-group-last">
-						<button type="submit" id="btn_rej"
+						<button type="submit" id="btn_edytuj_dane"
 							class="btn_rej btn-primary btn-sm col-sm-2  col-md-1 ">Zapisz</button>
 						<button type="button" id="powrot"
 							class="button23 col-sm-2 col-sm-offset-8 col-md-1 col-md-offset-10">
