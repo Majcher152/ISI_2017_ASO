@@ -33,15 +33,21 @@ SELECT * FROM `warsztat`;
 			<%
 				String blad = (String) request.getAttribute("blad");
 			%>
-			<%
-				if (blad != null && !blad.equals("")) {
-			%>
-			<div class="alert alert-danger">
-				<%=blad%>
-			</div>
-			<%
-				}
-			%>
+				<%
+					if (blad != null && blad.equals("Usunięto warsztat pomyślnie.")) {
+				%>
+				<div class="alert alert-success">
+					<p style="text-align: center"><%=blad%></p>
+				</div>
+				<%
+					} else if (blad != null && !blad.equals("")) {
+				%>
+				<div class="alert alert-danger">
+					<p style="text-align: center"><%=blad%></p>
+				</div>
+				<%
+					}
+				%>
 		</div>
 		<div class="row main">
 			<!--  request get parameter  -->
