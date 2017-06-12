@@ -68,7 +68,7 @@
 							class="btn_rej btn-primary btn-sm col-sm-2  col-md-1 ">Zakończ</button>
 						<button type="button" id="powrot"
 							class="button23 col-sm-2 col-sm-offset-8 col-md-1 col-md-offset-10">
-							<a href="/ISI_2017_ASO/MechanikNaprawaServlet?metoda=zaladujZadanaWtrakcie">Powrót</a>
+							<a href="/ISI_2017_ASO/MechanikNaprawaServlet?metoda=zaladujZadaniaWTrakcie">Powrót</a>
 						</button>
 					</div>
 

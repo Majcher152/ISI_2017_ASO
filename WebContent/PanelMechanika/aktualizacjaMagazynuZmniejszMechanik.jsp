@@ -79,13 +79,21 @@
       						<input  class="form-control" type="text" name="ile"  id="ile" data-toggle="popover" data-content="ilość użytych części."/>
     					</div>
     					<input type="hidden" name="id" id="id" value="${czesc.id}"/>
-    			<button type="submit" id="btn_aktualizuj" name="submit_param" value="submit_value" class="link-button">Aktualizuj</button> 
-    			</form>
-    			<button type="button" id="powrot"
+    					
+    					<br/>
+    				<div class="form-group-last">
+						<button type="submit" id="btn_aktualizuj"
+							class="btn_rej btn-primary btn-sm col-sm-2  col-md-1 ">Aktualizuj</button>
+						<button type="button" id="powrot"
 							class="button23 col-sm-2 col-sm-offset-8 col-md-1 col-md-offset-10">
 							<a href="/ISI_2017_ASO/MagazynMechanikServlet?metoda=zaladujAktualizacje">Powrót</a>
 						</button>
+					</div>
+    			</form>
+    			
     					
+    					
+    				
 			</div>
 
 		</div>

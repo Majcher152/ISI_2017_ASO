@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 10 Cze 2017, 21:44
+-- Czas generowania: 12 Cze 2017, 19:36
 -- Wersja serwera: 10.1.21-MariaDB
 -- Wersja PHP: 5.6.30
 
@@ -483,6 +483,16 @@ CREATE TABLE `formularz_naprawy` (
   `status` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Zrzut danych tabeli `formularz_naprawy`
+--
+
+INSERT INTO `formularz_naprawy` (`id`, `opis`, `koszt_naprawy`, `uzytkownik_login_fk`, `warsztat_id_fk`, `vin_fk`, `dataoddania`, `dataodebrania`, `przewid_czas_trwania`, `status`) VALUES
+(1, 'Coś stuka, coś skrzypi, świeci  sę lampa Alladyna..', NULL, 'aga234', 1, '123456789abcdefa', '12/06/2017', NULL, 6, 'warsztat'),
+(2, 'Mąż mówi, że uszczelka pod głowicą do wymiany', NULL, 'aga234', 1, '123456789abcdefg', '12/06/2017', NULL, 3, 'potwierdzenie'),
+(3, 'Spod maski się dymi i wydaje takie dźwięki wrr wrr', NULL, 'aga234', 1, 'qwertyuiop1234657', '13/11/2017', NULL, NULL, 'oczekiwanie'),
+(4, 'Zgubiona nakrętka 710, nie da się wyłączyć meduzy na tym wyświetlaczu za kierownicą', NULL, 'aga234', 1, '123456789abcdefg', '12/06/2017', NULL, 3, 'warsztat');
+
 -- --------------------------------------------------------
 
 --
@@ -534,6 +544,25 @@ CREATE TABLE `przeglad` (
   `data` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `godzina` varchar(5) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
+
+--
+-- Zrzut danych tabeli `przeglad`
+--
+
+INSERT INTO `przeglad` (`id_przegladu`, `id_warsztatu_fk`, `vin_fk`, `data`, `godzina`) VALUES
+(1, 1, '123456789abcdefa', '19/06/2017', '12:00'),
+(2, 1, '123456789abcdefa', '19/06/2017', '10:00'),
+(3, 1, '123456789abcdefa', '19/06/2017', '11:00'),
+(4, 1, '123456789abcdefa', '19/06/2017', '10:00'),
+(5, 1, '123456789abcdefa', '19/06/2017', '10:00'),
+(6, 1, '123456789abcdefa', '19/06/2017', '10:00'),
+(7, 1, '123456789abcdefa', '19/06/2017', '10:00'),
+(8, 1, '123456789abcdefa', '19/06/2017', '10:00'),
+(9, 1, '123456789abcdefa', '19/06/2017', '10:00'),
+(10, 1, '123456789abcdefa', '19/06/2017', '10:00'),
+(11, 1, '123456789abcdefa', '19/06/2017', '10:00'),
+(12, 1, '123456789abcdefa', '12/06/2017', '10:00'),
+(13, 1, '123456789abcdefa', '12/06/2017', '10:00');
 
 -- --------------------------------------------------------
 
@@ -1077,20 +1106,6 @@ INSERT INTO `samochod_czesc` (`czesc_id_fk`, `samochod_id_fk`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `terminarz`
---
-
-CREATE TABLE `terminarz` (
-  `id` int(7) NOT NULL,
-  `id_warsztatu_fk` int(7) NOT NULL,
-  `data` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-  `opis` int(250) NOT NULL,
-  `przewid_czas_trwania` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Struktura tabeli dla tabeli `uzytkownik`
 --
 
@@ -1109,10 +1124,9 @@ CREATE TABLE `uzytkownik` (
 --
 
 INSERT INTO `uzytkownik` (`login`, `haslo`, `imie`, `nazwisko`, `email`, `numer_telefonu`, `rodzaj_konta`) VALUES
-('aga234', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Agnieszka', 'Kozłowska', 'teczowymis@wp.pl', 456563256, 'Uzytkownik'),
+('aga234', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Agnieszka', 'Kozłowska', 'ooskaa93@gmail.com', 456563256, 'Uzytkownik'),
 ('amil', '23aa7a5e1ac89dcab770a5d7003122ff6f799d47', 'Kamil', 'Płaczek', 'amil@op.pl', 651234589, 'Mechanik'),
 ('buleczka', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Szymon', 'Bułka', 'bulkibulki@wp.pl', 459965965, 'Uzytkownik'),
-('ciastko', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Faustyna', 'Przezwisko', 'faustyna.przezwisko@gmail.com', 412452412, 'Uzytkownik'),
 ('cium', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Dorota', 'Szpiłyk', 'dorotaciumcium@op.pl', 452123659, 'Uzytkownik'),
 ('dzik', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Ernest', 'Bździk', 'wolololo@op.pl', 745745761, 'Uzytkownik'),
 ('eminem', 'a3c332aa2b831b7a20df94e29bf54eeb51b548fe', 'Sławomir', 'Dudacz', 'imtherealslimshady@o2.pl', 652223656, 'Uzytkownik'),
@@ -1178,7 +1192,7 @@ CREATE TABLE `warsztat` (
 --
 
 INSERT INTO `warsztat` (`id`, `adres`, `miasto`, `numer_telefonu`, `email`, `ilosc_stanowisk`, `godzina_otwarcia`, `godzina_zamkniecia`) VALUES
-(1, 'Pszona 16', 'Kraków', 555666777, 'pszona@koska.pl', 10, '10:00', '17:00'),
+(1, 'Pszona 16', 'Kraków', 555666777, 'pszona@koska.pl', 2, '10:00', '17:00'),
 (2, 'Kurczaba 38', 'Kraków', 777888999, 'kurczaba@koska.pl', 8, '11:00', '20:00');
 
 -- --------------------------------------------------------
@@ -1205,7 +1219,7 @@ INSERT INTO `warsztat_czesc` (`warsztat_id_fk`, `czesc_id_fk`, `ilosc`) VALUES
 (1, 8, 11),
 (1, 10, 20),
 (1, 11, 10),
-(1, 13, 15),
+(1, 13, 13),
 (1, 15, 4),
 (1, 16, 3),
 (1, 18, 18),
@@ -1243,7 +1257,7 @@ INSERT INTO `warsztat_czesc` (`warsztat_id_fk`, `czesc_id_fk`, `ilosc`) VALUES
 (1, 80, 3),
 (1, 84, 19),
 (1, 87, 5),
-(1, 88, 15),
+(1, 88, 13),
 (1, 89, 11),
 (1, 90, 19),
 (1, 93, 3),
@@ -1252,7 +1266,7 @@ INSERT INTO `warsztat_czesc` (`warsztat_id_fk`, `czesc_id_fk`, `ilosc`) VALUES
 (1, 98, 18),
 (1, 99, 14),
 (2, 1, 11),
-(2, 2, 11),
+(2, 2, 10),
 (2, 6, 7),
 (2, 9, 15),
 (2, 12, 5),
@@ -1311,6 +1325,15 @@ CREATE TABLE `zamowienie` (
   `koszt` double(7,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Zrzut danych tabeli `zamowienie`
+--
+
+INSERT INTO `zamowienie` (`id`, `data`, `koszt`) VALUES
+(5, '11/06/2017', 15764.00),
+(6, '12/06/2017', 34441.00),
+(7, '12/06/2017', 1425.00);
+
 -- --------------------------------------------------------
 
 --
@@ -1322,6 +1345,20 @@ CREATE TABLE `zamowienie_czesc` (
   `czesc_id_fk` int(7) NOT NULL,
   `ilosc` int(7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Zrzut danych tabeli `zamowienie_czesc`
+--
+
+INSERT INTO `zamowienie_czesc` (`zamowienie_id_fk`, `czesc_id_fk`, `ilosc`) VALUES
+(5, 52, 10),
+(5, 338, 3),
+(6, 52, 5),
+(6, 81, 12),
+(6, 84, 4),
+(6, 323, 3),
+(7, 2, 1),
+(7, 244, 5);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -1381,13 +1418,6 @@ ALTER TABLE `samochod`
 ALTER TABLE `samochod_czesc`
   ADD PRIMARY KEY (`czesc_id_fk`,`samochod_id_fk`),
   ADD KEY `samochod_id_fk` (`samochod_id_fk`);
-
---
--- Indexes for table `terminarz`
---
-ALTER TABLE `terminarz`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_warsztatu_fk_idx` (`id_warsztatu_fk`);
 
 --
 -- Indexes for table `uzytkownik`
@@ -1452,22 +1482,17 @@ ALTER TABLE `czesc`
 -- AUTO_INCREMENT dla tabeli `formularz_naprawy`
 --
 ALTER TABLE `formularz_naprawy`
-  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT dla tabeli `przeglad`
 --
 ALTER TABLE `przeglad`
-  MODIFY `id_przegladu` int(7) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_przegladu` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT dla tabeli `samochod`
 --
 ALTER TABLE `samochod`
   MODIFY `samochod_id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=392343;
---
--- AUTO_INCREMENT dla tabeli `terminarz`
---
-ALTER TABLE `terminarz`
-  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT dla tabeli `warsztat`
 --
@@ -1477,7 +1502,7 @@ ALTER TABLE `warsztat`
 -- AUTO_INCREMENT dla tabeli `zamowienie`
 --
 ALTER TABLE `zamowienie`
-  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- Ograniczenia dla zrzutów tabel
 --
@@ -1510,12 +1535,6 @@ ALTER TABLE `przeglad`
 ALTER TABLE `samochod_czesc`
   ADD CONSTRAINT `samochod_czesc_ibfk_1` FOREIGN KEY (`czesc_id_fk`) REFERENCES `czesc` (`id`),
   ADD CONSTRAINT `samochod_czesc_ibfk_2` FOREIGN KEY (`samochod_id_fk`) REFERENCES `samochod` (`samochod_id`);
-
---
--- Ograniczenia dla tabeli `terminarz`
---
-ALTER TABLE `terminarz`
-  ADD CONSTRAINT `terminarz_ibfk_1` FOREIGN KEY (`id_warsztatu_fk`) REFERENCES `warsztat` (`id`);
 
 --
 -- Ograniczenia dla tabeli `uzytkownik_samochod`

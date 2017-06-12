@@ -28,17 +28,23 @@
 		<div
 			class="form-group-last col-sm-6 col-sm-offset-4 col-md-8 col-md-offset-2">
 			<%
-				String blad = (String) request.getAttribute("blad");
-			%>
-			<%
-				if (blad != null && !blad.equals("")) {
-			%>
-			<div class="alert alert-danger">
-				<%=blad%>
-			</div>
-			<%
-				}
-			%>
+			String blad = (String) request.getAttribute("blad");
+		%>
+		<%
+			if (blad != null && ((blad.equals("Zmieniono status.")))) {
+		%>
+		<div class="alert alert-success">
+			<p style="text-align: center"><%=blad%></p>
+		</div>
+		<%
+			} else if (blad != null && !blad.equals("")) {
+		%>
+		<div class="alert alert-danger">
+			<p style="text-align: center"><%=blad%></p>
+		</div>
+		<%
+			}
+		%>
 		</div>
 		<div class="row main">
 

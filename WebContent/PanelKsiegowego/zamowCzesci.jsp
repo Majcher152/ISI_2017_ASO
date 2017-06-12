@@ -5,7 +5,6 @@
 
 
 <jsp:include page="headerKsiegowy.jsp" />
-<jsp:include page="walidacjaDodaniaSamochodu.jsp" />
 
 <div class="container marketing">
 	<div class="col-sm-10 col-sm-offset-2 col-md-11 col-md-offset-1 main">
