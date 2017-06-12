@@ -1066,17 +1066,17 @@ public class SterownikPolBD {
 	 * @param przewid_czas_trwania
 	 * @return
 	 */
-	public boolean zatwierdzRezerwacjeNaprawy(String vin, String dataoddania, String przewid_czas_trwania) {
+	public boolean zatwierdzRezerwacjeNaprawy(String id, String dataoddania, String przewid_czas_trwania) {
 
 		PreparedStatement stmt = null;
 
 		try {
 			// przygotowanie zapytania
 			stmt = con.prepareStatement(
-					"UPDATE `formularz_naprawy` SET `dataoddania` = ?, `przewid_czas_trwania` = ?, `status` = 'potwierdzenie' WHERE `formularz_naprawy`.`vin_fk` = ?");
+					"UPDATE `formularz_naprawy` SET `dataoddania` = ?, `przewid_czas_trwania` = ?, `status` = 'potwierdzenie' WHERE `formularz_naprawy`.`id` = ?");
 			stmt.setString(1, dataoddania);
 			stmt.setString(2, przewid_czas_trwania);
-			stmt.setString(3, vin);
+			stmt.setString(3, id);
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {

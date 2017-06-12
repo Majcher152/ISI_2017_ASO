@@ -42,11 +42,11 @@ public class KsiegowyRezerwacjaNaprawyServlet extends HttpServlet {
 		response.setContentType("text/html");
 		
 		SterownikKsiegowego sk = new SterownikKsiegowego();
-		String vin = request.getParameter("vin");
+		String id = request.getParameter("id_formularza");
 		String dataoddania = request.getParameter("dataoddania");
 		String przewid_czas_trwania = request.getParameter("przewid_czas_trwania");
 		
-		int blad = sk.zatwierdzRezerwacjeNaprawy(vin, dataoddania, przewid_czas_trwania);
+		int blad = sk.zatwierdzRezerwacjeNaprawy(id, dataoddania, przewid_czas_trwania);
 		
 		String wyswietl = "";
 		RequestDispatcher dispatcher;

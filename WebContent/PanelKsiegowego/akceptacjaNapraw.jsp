@@ -68,7 +68,7 @@ SELECT * FROM `formularz_naprawy` where status = 'oczekiwanie';
 							<td><form method="post"
 									action="/ISI_2017_ASO/PanelKsiegowego/akceptacjaWyswietl.jsp"
 									class="inline">
-									<input type="hidden" name="vin" value="${do_realizacji.vin_fk} ">
+									<input type="hidden" name="id_formularza" value="${do_realizacji.id} ">
 									<button type="submit" name="submit_param" value="submit_value"
 										class="link-button">Wyświetl</button>
 								</form></td>

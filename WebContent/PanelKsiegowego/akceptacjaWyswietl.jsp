@@ -18,13 +18,13 @@
 <sql:query dataSource="jdbc/aso" var="result">
 
 	<%
-		String vin = request.getParameter("vin");
+		String id_formularza = request.getParameter("id_formularza");
 	%>
-SELECT * FROM `formularz_naprawy` where vin_fk = '<%=vin%>';
+SELECT * FROM `formularz_naprawy` where id = '<%=id_formularza%>';
 </sql:query>
 
 <jsp:include page="headerKsiegowy.jsp" />
-
+<jsp:include page="walidacjaAkceptacjaWyswietl.jsp" />
 	
 
 <div class="container marketing">
@@ -38,7 +38,7 @@ SELECT * FROM `formularz_naprawy` where vin_fk = '<%=vin%>';
 			<form action="/ISI_2017_ASO/KsiegowyRezerwacjaNaprawy" method="post">
 
 				<div class="main-login main-center">
-					
+					<div class="blad"></div>
 					<%String blad =(String) request.getAttribute("blad"); %>
 						<%if(blad!=null && !blad.equals("")){ %>
 						<div class="alert alert-danger"> <%=blad %> 
@@ -103,17 +103,23 @@ SELECT * FROM `formularz_naprawy` where vin_fk = '<%=vin%>';
 					
 					<div class="form-group">
  						<label class="control-label">Data oddania</label>
-	 					<div class="form-group">
-	 						<input class="form-control" type="text" name="dataoddania" value="<c:out value="${vin.dataoddania}" />">
+	 					<div class="input-group col-xs-12">
+	 						<input class="form-control" type="text" name="dataoddania" id="dataoddania" value="<c:out value="${vin.dataoddania}" />" 
+	 						data-toggle="popover" data-content="Data musi być w formacie dd/mm/yyyy"/>
+	 						<span class="glyphicon form-control-feedback"></span>
 						</div>
 					</div>
 					
 					<div class="form-group">
  						<label class="control-label">Przewidywany czas trwania naprawy</label>
-	 					<div class="form-group">
-	 						<input class="form-control" type="text" name="przewid_czas_trwania">
+	 					<div class="input-group col-xs-12">
+	 						<input class="form-control" type="text" name="przewid_czas_trwania" id="przewid_czas_trwania"
+	 						data-toggle="popover" data-content="Podaj liczbę."/>
+	 						<span class="glyphicon form-control-feedback"></span>
 						</div>
 					</div>
+					
+					<input type="hidden" name="id_formularza" value="${vin.id} ">
 					
 					<div class="form-group-last">
 						<button type="submit" id="btn_rej"
