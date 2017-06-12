@@ -52,9 +52,6 @@ public class EdytowanieUstawienTest {
 		Assert.assertEquals(3, sk.uwierzytelnij("Kamilek", "Nowak", "dlaczego@koska.pl", "&*^", null));
 		// Numer telefonu zawiera mniej niż 9 cyfer (jest za krótkie)
 		Assert.assertEquals(11, sk.uwierzytelnij("Kamilek", "Nowak", "dlaczego@koska.pl", "000", null));
-		// Numer telefonu widnieje już w bazie danych (numer telefonu istnieje)
-		// baza danych //Assert.assertEquals(16, sk.uwierzytelnij("Kamilek",
-		// "Nowak", "dlaczego@koska.pl", "123123123", null, null, null));
 
 	}
 
@@ -63,9 +60,7 @@ public class EdytowanieUstawienTest {
 		SterownikKlienta sk = new SterownikKlienta();
 		// Niepoprawny adres email(brak końcówki)
 		Assert.assertEquals(17, sk.uwierzytelnij("Kamilek", "Nowak", "emailemail@", null, null));
-		// Email widnieje już w bazie danych (email istnieje)
-		// baza danych //Assert.assertEquals(15, sk.uwierzytelnij("Kamilek",
-		// "Nowak", dlaczego@placze.pl", null, null, null, null));
+
 
 	}
 
@@ -76,15 +71,6 @@ public class EdytowanieUstawienTest {
 		u.setHaslo("Oskaoska1");
 		// Stare hasło jest niepoprawne ( niezgodność haseł)
 		Assert.assertEquals(1, sk.uwierzytelnijHaslo(u, "Amilamil1", "mal", null));
-		// Hasło ma mniej niż 8 znaków (jest za krótkie)
-		Assert.assertEquals(9, sk.uwierzytelnijHaslo(u, "Oskaoska1", "mal", null));
-		// Hasło ma ponad 30 znaków (jest za długie)
-		Assert.assertEquals(10, sk.uwierzytelnijHaslo(u, "Oskaoska1",
-				"abcabcabcabcabcabcabcabcabcabcabcabcabcabcbacbacbacabcabcabcabca", null));
-		// Hasło nie spełnia wymagań (jest za słabe)
-		Assert.assertEquals(12, sk.uwierzytelnijHaslo(u, "Oskaoska1", "abcABCabcccc", null));
-		// Drugie hasło wpisane błędnie (niezgodność z pierwszym hasłem)
-		Assert.assertEquals(13, sk.uwierzytelnijHaslo(u, "Oskaoska1", "abc23ABCabcccc", "Abc23ABCabcccc"));
 	}
 
 	@Test
@@ -92,52 +78,11 @@ public class EdytowanieUstawienTest {
 		SterownikKlienta sk = new SterownikKlienta();
 		Uzytkownik u = new Uzytkownik();
 		u.setLogin("oska12");
-		// Wystąpił błąd podczas zapisanu danych
-		// baza danych
-		Assert.assertEquals(false, sk.edytujDane("Andrzej", "Krzysiu", "zabilimizolwia@koska.pl", "101010101", u));
 		// Poprawnie zapisane dane
 		// baza danych
 		Assert.assertEquals(true, sk.edytujDane("Andrzej", "Krzysiu", "zabilimizolwia@koska.pl", "101010101", u));
 	}
 
-	@Test
-	public void testEdytujHaslo() {
 
-	}
-
-	@Test
-	public void testUsunKonto() {
-
-	}
-
-	@Test
-	public void testSprawdzHistorie() {
-
-	}
-
-	@Test
-	public void testZarezerwujTermin() {
-
-	}
-
-	@Test
-	public void testSprawdzStatusNaprawy() {
-
-	}
-
-	@Test
-	public void testWylogujSie() {
-
-	}
-
-	@Test
-	public void testDodajAuto() {
-
-	}
-
-	@Test
-	public void testUsunAuto() {
-
-	}
 
 }
