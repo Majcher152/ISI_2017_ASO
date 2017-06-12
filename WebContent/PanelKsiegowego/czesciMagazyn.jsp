@@ -117,8 +117,9 @@
     
 });</script>
 		<div class="row main">
-							<a href="KsiegowyMagazynServlet?metoda=zaladujZamowienie">Zamówienie</a>
-			</br>
+							<a href="KsiegowyMagazynServlet?metoda=zaladujZamowienie"><h3><b>Zamówienie</b></h3></a>
+							<br/>
+		
 			<div class="panel panel-default">
 			
 				<b>Model</b>
