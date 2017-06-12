@@ -70,9 +70,6 @@ public class SterownikAdmina extends SterownikUwierzytelnijAdmin implements Uwie
 
 	public boolean zapiszEdycjeInformacji(String imie, String nazwisko, String email, String numer_telefonu,
 			String login, String rodzaj_konta) {
-		// haslo = DigestUtils.sha1Hex(haslo);
-		// if (spbd.zapiszEdycjeInformacji(imie, nazwisko, email,
-		// numer_telefonu, login, haslo, rodzaj_konta))
 		if (spbd.zapiszEdycjeInformacji(imie, nazwisko, email, numer_telefonu, login, rodzaj_konta))
 			return true;
 
