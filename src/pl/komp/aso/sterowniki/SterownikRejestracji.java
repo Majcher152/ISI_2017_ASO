@@ -12,7 +12,7 @@ public class SterownikRejestracji extends SterownikUwierzytelnijAdmin implements
 
 	public int uwierzytelnij(String imie, String nazwisko, String email, String nrTelefonu, String login, String haslo,
 			String haslo2) {
-
+		 try{
 		// email juz istnieje
 		 if (spbd.czyIstniejeEmail(email))
 		 return 15;
@@ -21,6 +21,7 @@ public class SterownikRejestracji extends SterownikUwierzytelnijAdmin implements
 		 if (spbd.czyIstniejeNrTelefonu(nrTelefonu))
 		 return 16;
 
+		
 		// za krotki login
 		if (!minDlugosc(login, 4))
 			return 8;
@@ -48,7 +49,9 @@ public class SterownikRejestracji extends SterownikUwierzytelnijAdmin implements
 		// hasla sie nie zgadzaja
 		if (!haslo.equals(haslo2))
 			return 13;
+	} catch(NullPointerException e){
 		
+	}
 		return uwierzytelnijAdmin(imie, nazwisko, email, nrTelefonu, login);
 	}
 
