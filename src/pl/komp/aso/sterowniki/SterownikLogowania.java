@@ -9,39 +9,45 @@ import pl.komp.aso.dto.Samochod;
 import pl.komp.aso.dto.Uzytkownik;
 
 public class SterownikLogowania {
-	private SterownikPolBD spbd=new SterownikPolBD();
-	
-	public int uwierzytelnij(String login,String haslo) {
+	private SterownikPolBD spbd = new SterownikPolBD();
+
+	public int uwierzytelnij(String login, String haslo) {
 		Uzytkownik uzytkownik = spbd.pobierzUzytkownika(login);
-		String znak="`~!@#$%^&*()_-+=<,.>?;:'{}][|/";
-		
+		String znak = "`~!@#$%^&*()_-+=<,.>?;:'{}][|/";
+
 		System.out.println(uzytkownik.toString());
 		System.out.println(uzytkownik.getRodzaj());
-		if(login ==null || login.equals("")) {
+		if (login == null || login.equals("")) {
 			return 1;
 		}
-		if(haslo==null || haslo.equals("")) {
+		if (haslo == null || haslo.equals("")) {
 			return 2;
 		}
-		if(uzytkownik.getRodzaj().equals("Nieaktywny")) {
-			System.out.println("WRTF");
-			return 4;
+		try{
+			if (uzytkownik.getRodzaj().equals("Nieaktywny")) {
+				System.out.println("WRTF");
+				return 4;
+			}
 		}
-		
-		for(int i=0;i<znak.length();i++) {
+		catch(NullPointerException e){
+			
+		}
+
+		for (int i = 0; i < znak.length(); i++) {
 			for (char c : login.toCharArray())
-				if(c==znak.charAt(i))
+				if (c == znak.charAt(i))
 					return -1;
 		}
-		
+
 		haslo = DigestUtils.sha1Hex(haslo);
+		System.out.println();
 		int odp = spbd.zaloguj(login, haslo);
-		return odp;	
+		return odp;
 	}
 
 	public Uzytkownik getUzytkownik(String login) {
 		Uzytkownik uzytkownik = spbd.pobierzUzytkownika(login);
-		ArrayList<Samochod> samochody=spbd.pobierzSamochody(login);
+		ArrayList<Samochod> samochody = spbd.pobierzSamochody(login);
 		ArrayList<FormularzNaprawy> formularze = spbd.pobierzFormularze(login);
 		uzytkownik.setSamochody(samochody);
 		uzytkownik.setFormularze(formularze);
