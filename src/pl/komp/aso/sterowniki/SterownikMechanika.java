@@ -17,7 +17,7 @@ public class SterownikMechanika {
 	SterownikPolBD spbd = new SterownikPolBD();
 	
 	
-	private Warsztat pobierzWarsztat(Uzytkownik u) {
+	public Warsztat pobierzWarsztat(Uzytkownik u) {
 		int id = spbd.pobierzIdWarsztatu(u.getLogin());
 		Warsztat w = spbd.pobierzWarsztatId(id);
 		return w;
